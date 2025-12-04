@@ -20,7 +20,7 @@ const CLASS_OPTIONS = Object.keys(charClass);
 const initialCharacterState = {
     // Identity
     name: "Bozo",
-    characterClass: "Fighter",
+    characterClass: "",
     race: "Human",
     gender: "Male",
 
@@ -216,7 +216,6 @@ export default function CharacterSheet() {
                 derivedData={derivedStats} 
                 />
 
-
             <StatBlock 
                 statName="Constitution" 
                 score={derivedStats.adjustedScores.con} 
@@ -241,6 +240,29 @@ export default function CharacterSheet() {
                 derivedData={derivedStats} 
                 />
 
+        </div>
+        
+        <div>
+            {/* SAVING THROWS - ADD THIS */}
+            <SavingThrows
+                savingThrows={derivedStats.savingThrows}
+                characterClass={character.characterClass}
+                characterLevel={character.level}
+            />
+
+            {/* <ul>
+                <li className="hori-list">Paralyzation: {derivedStats.savingThrows?.paralyzation}</li>
+                <li className="hori-list">Poison: {derivedStats.savingThrows?.poison}</li>
+                <li className="hori-list">Death Magic: {derivedStats.savingThrows?.deathMagic}</li>
+                <li className="hori-list">Rod: {derivedStats.savingThrows?.rod}</li>
+                <li className="hori-list">Staff: {derivedStats.savingThrows?.staff}</li>
+                <li className="hori-list">Wand: {derivedStats.savingThrows?.wand}</li>
+                <li className="hori-list">Petrification: {derivedStats.savingThrows?.petrification}</li>
+                <li className="hori-list">Polymorph: {derivedStats.savingThrows?.polymorph}</li>
+                <li className="hori-list">Breath Weapon: {derivedStats.savingThrows?.breathWeapon}</li>
+                <li className="hori-list">Spell: {derivedStats.savingThrows?.spell}</li>
+            </ul> */}
+                        
         </div>
     </div>
       </>

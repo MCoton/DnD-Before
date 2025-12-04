@@ -9,96 +9,195 @@ import raceMods from "./data/race_mods.json";
 import charClasses from "./data/character_classes.json";
 import charAbilities from "./data/character_abilities_text.json"
 import armourTable from "./data/armour_class.json";
+import { SAVE_CATEGORY_MAP, SAVE_CATEGORY_LABELS } from './constants.js';
 
+/**
+ * Calculates racial save bonus for a given race.
+ * 
+ * @param {object} saveBonusData - The race's saveBonus object from race_mods.json
+ * @param {object} adjustedScores - The character's adjusted ability scores
+ * @param {object} conTable - The constitution table for CON-based lookups
+ * @returns {number} The bonus amount (e.g., 3 for a Dwarf with CON 13)
+ */
+function getRacialSaveBonus(saveBonusData, adjustedScores, conTable) {
+    // Safety check: if no save bonus data, return 0
+    if (!saveBonusData) {
+        return 0;
+    }
 
-function getCumulativeImmunties(wisTable, characterWis) {
+    // Check if this is a flat bonus (for future use)
+    if (saveBonusData.flat !== undefined) {
+        return saveBonusData.flat;
+    }
+
+    // Check if this is a CON-based bonus (Dwarf, Gnome, Halfling)
+    if (saveBonusData.source === "con") {
+        const conData = conTable[adjustedScores.con];
+        return conData.saveBonus || 0;
+    }
+
+    // Default: no bonus
+    return 0;
+}
+
+/**
+ * Expands the 5 base saving throw categories into 10 individual subcategories.
+ * Applies racial bonuses to specific subcategories only.
+ * 
+ * @param {number[]} baseSaves - The 5 base save values [PPDM, RSW, PP, Breath, Spell]
+ * @param {object} raceData - The race data including saveBonus info
+ * @param {number} racialBonus - The calculated racial bonus amount
+ * @returns {object} Object with all 10 subcategory save values
+ */
+function expandSavingThrows(baseSaves, raceData, racialBonus) {
+    // Create the detailed breakdown
+    // All subcategories start with their category's base value
+    const detailed = {
+        // Category 0: Paralyzation, Poison, or Death Magic
+        paralyzation: baseSaves[0],
+        poison: baseSaves[0],
+        deathMagic: baseSaves[0],
+
+        // Category 1: Rod, Staff, or Wand
+        rod: baseSaves[1],
+        staff: baseSaves[1],
+        wand: baseSaves[1],
+
+        // Category 2: Petrification or Polymorph
+        petrification: baseSaves[2],
+        polymorph: baseSaves[2],
+
+        // Category 3: Breath Weapon (no subcategories)
+        breathWeapon: baseSaves[3],
+
+        // Category 4: Spell (no subcategories)
+        spell: baseSaves[4]
+    };
+
+    // Apply racial bonuses to specific subcategories
+    if (raceData.saveBonus && raceData.saveBonus.appliesTo && racialBonus > 0) {
+        raceData.saveBonus.appliesTo.forEach(subcategory => {
+            // Handle direct subcategory match (e.g., "poison")
+            if (detailed[subcategory] !== undefined) {
+                detailed[subcategory] -= racialBonus;
+            }
+            // Handle category-level abbreviations (e.g., "rsw" applies to all three)
+            else if (subcategory === "rsw") {
+                detailed.rod -= racialBonus;
+                detailed.staff -= racialBonus;
+                detailed.wand -= racialBonus;
+            }
+            else if (subcategory === "ppdm") {
+                detailed.paralyzation -= racialBonus;
+                detailed.poison -= racialBonus;
+                detailed.deathMagic -= racialBonus;
+            }
+            else if (subcategory === "pp") {
+                detailed.petrification -= racialBonus;
+                detailed.polymorph -= racialBonus;
+            }
+        });
+    }
+
+    return detailed;
+}
+
+/**
+ * Calculates cumulative spell immunities for high Wisdom characters.
+ * 
+ * @param {object} wisTable - The wisdom table from wisdom_table.json
+ * @param {number} characterWis - The character's Wisdom score
+ * @returns {string[]} Array of capitalised spell names the character is immune to
+ */
+function getCumulativeImmunities(wisTable, characterWis) {
     const cumulativeImmunities = new Set();
     const startScore = 19;
 
-    for(let score = startScore; score <= characterWis; score++) {
+    // Collect all immunities from WIS 19 up to character's WIS
+    for (let score = startScore; score <= characterWis; score++) {
         const entry = wisTable[score];
 
-        if(entry && Array.isArray(entry.spellImmunity)) {
+        if (entry && Array.isArray(entry.spellImmunity)) {
             entry.spellImmunity.forEach(spellGroup => {
                 cumulativeImmunities.add(spellGroup);
             });
         }
     }
-    // Convert the collected spell SET into a standard array
+
+    // Convert the Set to an array
     const rawSpellArray = Array.from(cumulativeImmunities);
 
-    // Create a capitalised array from the raw array
-    // by applying capitalisation logic to each word
+    // Capitalise each word in each spell name
     const capitalisedArray = rawSpellArray.map(spellName => {
-        // Splits the name by spaces, apsses to MAP to iterate over the word(s) parts
         return spellName.split(' ').map(word => {
-            // Gaurd against there being a leading space
-            if(word.length === 0) return '';
-            // Selects and capitalises the first letter of each word
-            // Then concatenate back to the SLICEd word at position 1 to replace the lowercase letter
+            // Guard against empty strings
+            if (word.length === 0) return '';
+            // Capitalise first letter, keep rest of word
             return word.charAt(0).toUpperCase() + word.slice(1);
-        })
-        .join(' '); // Joins the word pairs back together with a space
+        }).join(' ');
     });
-    
 
     return capitalisedArray;
 }
 
-
+/**
+ * Main calculation engine for derived character statistics.
+ * Takes raw character data and returns all calculated/derived values.
+ * 
+ * @param {object} character - The character state object from React
+ * @returns {object} All derived statistics
+ */
 export function calculateDerivedStats(character) {
-    const results = {}; // Object to hold the calculated stats
+    const results = {};
 
-    // Get character race
+    // --- STEP 1: GET RACE DATA ---
     const race = character.race.toLowerCase();
-    // Get the complete race data object (includes statAdj AND saveBonus)
     const raceData = raceMods[race] || { statAdj: {}, saveBonus: null };
-    // Apply stat mods from raceMods table
-    const adjustments = raceData.statAdj || {};
+    const statAdjustments = raceData.statAdj || {};
 
     // Get character level
     const level = character.level;
-    
-    // --- 1. CALCULATE ADJUSTED SCORES (Independent of Class) ---
-    // Ensure all scores are clamped between 1 and 25 after applying racial adjustments
-    const str = Math.min(25, Math.max(1, character.scores.str + (adjustments.str || 0)));
-    const dex = Math.min(25, Math.max(1, character.scores.dex + (adjustments.dex || 0)));
-    const con = Math.min(25, Math.max(1, character.scores.con + (adjustments.con || 0)));
-    const int = Math.min(25, Math.max(1, character.scores.int + (adjustments.int || 0)));
-    const wis = Math.min(25, Math.max(1, character.scores.wis + (adjustments.wis || 0)));
-    const cha = Math.min(25, Math.max(1, character.scores.cha + (adjustments.cha || 0)));
-    
-    // --- 2. INDEPENDENT STAT MODIFIERS LOOKUP ---
-    
-    // STRENGTH items
-    const strMods = strTable[str] || {}; 
+
+    // --- STEP 2: CALCULATE ADJUSTED ABILITY SCORES ---
+    // Apply racial adjustments and clamp between 1 and 25
+    const str = Math.min(25, Math.max(1, character.scores.str + (statAdjustments.str || 0)));
+    const dex = Math.min(25, Math.max(1, character.scores.dex + (statAdjustments.dex || 0)));
+    const con = Math.min(25, Math.max(1, character.scores.con + (statAdjustments.con || 0)));
+    const int = Math.min(25, Math.max(1, character.scores.int + (statAdjustments.int || 0)));
+    const wis = Math.min(25, Math.max(1, character.scores.wis + (statAdjustments.wis || 0)));
+    const cha = Math.min(25, Math.max(1, character.scores.cha + (statAdjustments.cha || 0)));
+
+    // Store adjusted scores
+    results.adjustedScores = { str, dex, con, int, wis, cha };
+    results.raceAdjustments = statAdjustments;
+
+    // --- STEP 3: LOOK UP ABILITY SCORE MODIFIERS ---
+
+    // STRENGTH
+    const strMods = strTable[str] || {};
     results.strHitProb = strMods.hitProb || 0;
     results.strDamAdj = strMods.damageAdj || 0;
     results.strWeightAllow = strMods.weightAllow || 0;
     results.strMaxPress = strMods.maxPress || 0;
     results.strOpenDoors = strMods.openDoors || 0;
     results.strBendBars = strMods.bendBars || 0;
-    
-    // DEXTERITY items
+
+    // DEXTERITY
     const dexMods = dexTable[dex] || {};
     results.dexReactionAdj = dexMods.reactionAdj || 0;
     results.dexMissileAdj = dexMods.missileAdj || 0;
     results.dexDefensiveAdj = dexMods.defensiveAdj || 0;
-    // For use in the AC calcs
-    const dexACAdj = results.dexDefensiveAdj;
 
-    // CONSTITUTION items
+    // CONSTITUTION
     const conMods = conTable[con] || {};
-    const conHpAdj = conMods.hitPointAdj || 0; // Derived early for HP/safe return
-    results.conHitPointAdj = conHpAdj; 
+    results.conHitPointAdj = conMods.hitPointAdj || 0;
     results.conSystemShock = conMods.systemShock || 0;
     results.conResSurvival = conMods.resSurvival || 0;
     results.conPoisonSave = conMods.poisonSave || 0;
     results.conRegeneration = conMods.regeneration || 0;
     results.conSaveBonus = conMods.saveBonus || 0;
-    
 
-    // INTELLIGENCE items
+    // INTELLIGENCE
     const intMods = intTable[int] || {};
     results.intLanguages = intMods.languages || 0;
     results.intSpellLevel = intMods.spellLevel || 0;
@@ -106,76 +205,92 @@ export function calculateDerivedStats(character) {
     results.intMaxSpellsPerLevel = intMods.maxSpellsPerLevel || 0;
     results.intIllusionImmunity = intMods.illusionImmunity || 0;
 
-    // WISDOM items
-    const wisMods = wisTable[wis] || {}; 
+    // WISDOM
+    const wisMods = wisTable[wis] || {};
     results.wisMagicalDefenseAdj = wisMods.magicalDefenseAdj || 0;
-    results.wisBonusSpells = wisMods.bonusSpells || [];
+    results.wisBonusSpells = wisMods.bonusSpells || null;
     results.wisSpellFailureChance = wisMods.spellFailureChance || 0;
-    results.wisSpellImmunity = getCumulativeImmunties(wisTable.wis, wis);
+    results.wisSpellImmunity = getCumulativeImmunities(wisTable, wis);
 
-    // CHARISMA items
-    const chaMods = chaTable[cha] || {}; 
+    // CHARISMA
+    const chaMods = chaTable[cha] || {};
     results.chaMaxHench = chaMods.maxHenchmen || 0;
     results.chaLoyaltyBase = chaMods.loyaltyBase || 0;
     results.chaReactionAdj = chaMods.reactionAdj || 0;
-    
-    // --- 3. INDEPENDENT AGGREGATE CALCULATIONS ---
-    
-    // Posting adjusted scores back to the sheet
-    results.adjustedScores = { str, dex, con, int, wis, cha }
-    results.raceAdjustments = adjustments;
 
-    // Hit points calculator
+    // --- STEP 4: CALCULATE HIT POINTS ---
     const baseHp = character.hp.base;
-    const hpBonus = conHpAdj * level;
+    const hpBonus = results.conHitPointAdj * level;
     results.hpMax = baseHp + hpBonus;
 
-    // Armour Class calculator
+    // --- STEP 5: CALCULATE ARMOR CLASS ---
     const armourType = character.ac.armourType.trim() || 'none';
     const hasShield = character.ac.shield;
     const shieldBonus = -1;
 
-    //Look up AC by armour type, defaults to 10 if not found
-    const baseAC = armourTable.armourType[armourType] || 10 ;
+    // Look up AC by armour type, defaults to 10 if not found
+    const baseAC = armourTable.armourType[armourType] || 10;
 
-    // Apply any shield bonus
+    // Apply shield bonus if equipped
     const shieldAdj = hasShield ? shieldBonus : 0;
 
-    // Calculate the final Armour Class
-    // armour type (base AC) + dex adj + shield (if any)
-    results.acFinal = baseAC + dexACAdj + shieldAdj;
+    // Calculate final AC: base + dex adj + shield
+    results.acFinal = baseAC + results.dexDefensiveAdj + shieldAdj;
 
     // Store AC components for display
     results.acComponents = {
         base: baseAC,
         dexAdj: results.dexDefensiveAdj,
         shieldAdj: shieldAdj
-    }
-    
-    // --- 4. CLASS CHECK (Defensive Guard) ---
-    // Now that all independent stats are calculated, we check for a valid class.
+    };
+
+    // --- STEP 6: CLASS CHECK (Defensive Guard) ---
     const selectedClass = character.characterClass || "";
     const charClassKey = selectedClass.toLowerCase();
-    
-    if(!charClassKey || !charClasses[charClassKey]) {
-        // If no class is selected, return the safely calculated results,
-        // using 0 for the one piece of data that still requires a class (savingThrows).
-        results.savingThrows = [0, 0, 0, 0, 0]; 
+
+    if (!charClassKey || !charClasses[charClassKey]) {
+        // No class selected - return safe defaults
+        results.savingThrows = {
+            paralyzation: 0,
+            poison: 0,
+            deathMagic: 0,
+            rod: 0,
+            staff: 0,
+            wand: 0,
+            petrification: 0,
+            polymorph: 0,
+            breathWeapon: 0,
+            spell: 0
+        };
         return results;
-    } 
+    }
 
-    // --- 5. CLASS-DEPENDENT CALCULATIONS (Saving Throws) ---
-    
-    const classData = charClasses[charClassKey];  
+    // --- STEP 7: CALCULATE SAVING THROWS (Class-dependent) ---
+    const classData = charClasses[charClassKey];
 
-    // Look up the base saves (Safe now, as classData is defined)
-    const baseSave = classData.levelProg[level].saveThrow;
-    // Get any save bonuses for class
+    // LAYER 1: Get base saves from class progression
+    const baseSaves = classData.levelProg[level].saveThrow;
+
+    // LAYER 2: Apply class save bonus (Paladin: 2, Fighter: 0)
     const classSaveBonus = classData.classAbilities.saveVal || 0;
-    // THERE NEEDS TO BE ONE FOR DWARVF's CON BONUS <-- Reminder for a future step!
+    const savesWithClassBonus = baseSaves.map(save => save - classSaveBonus);
 
-    // Set saving throws
-    results.savingThrows = baseSave.map(baseSave => baseSave - classSaveBonus);
+    // LAYER 3: Calculate racial save bonus amount (if any)
+    let racialBonus = 0;
+    if (raceData.saveBonus && raceData.saveBonus.appliesTo) {
+        racialBonus = getRacialSaveBonus(
+            raceData.saveBonus,
+            { str, dex, con, int, wis, cha },
+            conTable
+        );
+    }
+
+    // LAYER 4: Expand to detailed subcategories and apply racial bonuses
+    results.savingThrows = expandSavingThrows(
+        savesWithClassBonus,
+        raceData,
+        racialBonus
+    );
 
     return results;
-};
+}
