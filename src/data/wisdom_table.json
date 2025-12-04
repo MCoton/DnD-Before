@@ -1,52 +1,52 @@
 {
   "wis": {
-    "1":  { "magicalDefenseAdj": -6, "bonusSpells": null, "spellFailureChance": 80, "spellImmunity": null },
-    "2":  { "magicalDefenseAdj": -4, "bonusSpells": null, "spellFailureChance": 60, "spellImmunity": null },
-    "3":  { "magicalDefenseAdj": -3, "bonusSpells": null, "spellFailureChance": 50, "spellImmunity": null },
-    "4":  { "magicalDefenseAdj": -2, "bonusSpells": null, "spellFailureChance": 45, "spellImmunity": null },
-    "5":  { "magicalDefenseAdj": -1, "bonusSpells": null, "spellFailureChance": 40, "spellImmunity": null },
-    "6":  { "magicalDefenseAdj": -1,  "bonusSpells": null, "spellFailureChance": 35, "spellImmunity": null },
-    "7":  { "magicalDefenseAdj": -1,  "bonusSpells": null, "spellFailureChance": 30, "spellImmunity": null },
-    "8":  { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 25, "spellImmunity": null },
-    "9":  { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 20, "spellImmunity": null },
-    "10": { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 15, "spellImmunity": null },
-    "11": { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 10, "spellImmunity": null },
-    "12": { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 5,  "spellImmunity": null },
+    "1":  { "magicalDefenseAdj": -6, "bonusSpells": {}, "spellFailureChance": 80, "spellImmunity": {} },
+    "2":  { "magicalDefenseAdj": -4, "bonusSpells": {}, "spellFailureChance": 60, "spellImmunity": {} },
+    "3":  { "magicalDefenseAdj": -3, "bonusSpells": {}, "spellFailureChance": 50, "spellImmunity": {} },
+    "4":  { "magicalDefenseAdj": -2, "bonusSpells": {}, "spellFailureChance": 45, "spellImmunity": {} },
+    "5":  { "magicalDefenseAdj": -1, "bonusSpells": {}, "spellFailureChance": 40, "spellImmunity": {} },
+    "6":  { "magicalDefenseAdj": -1,  "bonusSpells": {}, "spellFailureChance": 35, "spellImmunity": {} },
+    "7":  { "magicalDefenseAdj": -1,  "bonusSpells": {}, "spellFailureChance": 30, "spellImmunity": {} },
+    "8":  { "magicalDefenseAdj": 0,  "bonusSpells": {}, "spellFailureChance": 25, "spellImmunity": {} },
+    "9":  { "magicalDefenseAdj": 0,  "bonusSpells": {}, "spellFailureChance": 20, "spellImmunity": {} },
+    "10": { "magicalDefenseAdj": 0,  "bonusSpells": {}, "spellFailureChance": 15, "spellImmunity": {} },
+    "11": { "magicalDefenseAdj": 0,  "bonusSpells": {}, "spellFailureChance": 10, "spellImmunity": {} },
+    "12": { "magicalDefenseAdj": 0,  "bonusSpells": {}, "spellFailureChance": 5,  "spellImmunity": {} },
     "13": { 
       "magicalDefenseAdj": 0,
       "bonusSpells": [1, 0, 0, 0, 0, 0, 0],
       "spellFailureChance": 0,
-       "spellImmunity": null
+       "spellImmunity": {}
       },
     "14": { 
       "magicalDefenseAdj": 0,
       "bonusSpells": [2, 0, 0, 0, 0, 0, 0],
       "spellFailureChance": 0,
-       "spellImmunity": null
+       "spellImmunity": {}
       },
     "15": { 
       "magicalDefenseAdj": 1,
       "bonusSpells": [2, 1, 0, 0, 0, 0, 0],
       "spellFailureChance": 0,
-      "spellImmunity": null
+      "spellImmunity": {}
       },
     "16": { 
       "magicalDefenseAdj": 2,
       "bonusSpells": [2, 2, 0, 0, 0, 0, 0],
       "spellFailureChance": 0,
-      "spellImmunity": null
+      "spellImmunity": {}
       },
     "17": { 
       "magicalDefenseAdj": 3,
       "bonusSpells": [2, 2, 1, 0, 0, 0, 0],
       "spellFailureChance": 0,
-      "spellImmunity": null
+      "spellImmunity": {}
       },
     "18": { 
       "magicalDefenseAdj": 4,
       "bonusSpells": [2, 2, 1, 1, 0, 0, 0],
       "spellFailureChance": 0,
-      "spellImmunity": null
+      "spellImmunity": {}
       },
     "19": {
       "magicalDefenseAdj": 4,

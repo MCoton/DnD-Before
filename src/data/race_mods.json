@@ -1,7 +1,7 @@
 {
-    "dwarf": { "con": 1, "cha": -1 },
-    "elf" :{ "dex": 1, "con": -1 },
-    "gnome" :{ "int": 1, "wis": -1 },
-    "halfling": { "dex": 1, "str": -1 },
-    "human": null
+    "dwarf": { "statAdj": {"con": 1, "cha": -1}, "saveBonus": { "source": "con", "appliesTo": ["poison", "rsw", "spell"]} },
+    "elf" :{ "statAdj": {"dex": 1, "con": -1}, "saveBonus": {} },
+    "gnome" :{ "statAdj": {"int": 1, "wis": -1}, "saveBonus": { "source": "con", "appliesTo": ["rsw", "spell"]} },
+    "halfling": { "statAdj": {"dex": 1, "str": -1}, "saveBonus": { "source": "con", "appliesTo": ["poison", "rsw", "spell"]} },
+    "human": { "statAdj": {}, "saveBonus": {} }
 }

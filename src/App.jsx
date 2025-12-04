@@ -26,12 +26,12 @@ const initialCharacterState = {
 
     // CORE stats (Raw user input)
     scores: {
-        str: 25,
-        dex: 25,
-        con: 25,
-        int: 25,
+        str: 24,
+        dex: 23,
+        con: 24,
+        int: 24,
         wis: 10,
-        cha: 25
+        cha: 24
     },
 
     // Progressional stats

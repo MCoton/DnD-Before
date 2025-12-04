@@ -12,7 +12,9 @@
 
       "openDoors": 1, 
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     },
 
@@ -28,7 +30,9 @@
 
       "openDoors": 1, 
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     },
 
@@ -44,7 +48,9 @@
 
       "openDoors": 2, 
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     }, 
 
@@ -60,7 +66,9 @@
 
       "openDoors": 2,
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     }, 
 
@@ -76,7 +84,9 @@
 
       "openDoors": 2, 
 
-      "bendBars": 0 
+      "bendBars": 0,
+
+      "notes": "n/a" 
 
     },
 
@@ -92,7 +102,9 @@
 
       "openDoors": 4, 
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     },
 
@@ -108,7 +120,9 @@
 
       "openDoors": 4, 
 
-      "bendBars": 0
+      "bendBars": 0,
+
+      "notes": "n/a"
 
     },
 
@@ -124,7 +138,9 @@
 
       "openDoors": 5, 
 
-      "bendBars": 1
+      "bendBars": 1,
+
+      "notes": "n/a"
 
     },
 
@@ -140,7 +156,9 @@
 
       "openDoors": 5, 
 
-      "bendBars": 1
+      "bendBars": 1,
+
+      "notes": "n/a"
 
     },
 
@@ -156,7 +174,9 @@
 
       "openDoors": 6, 
 
-      "bendBars": 2 
+      "bendBars": 2,
+
+      "notes": "n/a" 
 
     }, 
 
@@ -172,7 +192,9 @@
 
       "openDoors": 6, 
 
-      "bendBars": 2 
+      "bendBars": 2,
+
+      "notes": "n/a" 
 
     },
 
@@ -188,7 +210,9 @@
 
       "openDoors": 7, 
 
-      "bendBars": 4
+      "bendBars": 4,
+
+      "notes": "n/a"
 
     },
 
@@ -204,7 +228,9 @@
 
       "openDoors": 7, 
 
-      "bendBars": 4
+      "bendBars": 4,
+
+      "notes": "n/a"
 
     },
 
@@ -220,7 +246,9 @@
 
       "openDoors": 8, 
 
-      "bendBars": 7
+      "bendBars": 7,
+
+      "notes": "n/a"
 
     },
 
@@ -236,7 +264,9 @@
 
       "openDoors": 8, 
 
-      "bendBars": 7
+      "bendBars": 7,
+
+      "notes": "n/a"
 
     },
 
@@ -253,6 +283,8 @@
       "openDoors": 9, 
 
       "bendBars": 10
+      ,
+      "notes": "n/a"
 
     },
 
@@ -269,6 +301,8 @@
       "openDoors": 10, 
 
       "bendBars": 13
+      ,
+      "notes": "n/a"
 
     },
 
@@ -284,7 +318,9 @@
 
       "openDoors": 11, 
 
-      "bendBars": 16 
+      "bendBars": 16
+      ,
+      "notes": "n/a" 
 
     }, 
 
@@ -300,7 +336,9 @@
 
       "openDoors": 12,  
 
-      "bendBars": 20 
+      "bendBars": 20
+      ,
+      "notes": "n/a" 
 
     }, 
 
@@ -316,7 +354,9 @@
 
       "openDoors": 13,
 
-      "bendBars": 25 
+      "bendBars": 25
+      ,
+      "notes": "n/a" 
 
     }, 
 
@@ -332,7 +372,9 @@
 
       "openDoors": 14, 
 
-      "bendBars": 30 
+      "bendBars": 30
+      ,
+      "notes": "n/a" 
 
     }, 
 
@@ -350,7 +392,9 @@
 
       "openLockedDoors": 3, 
 
-      "bendBars": 35 
+      "bendBars": 35
+      ,
+      "notes": "n/a" 
 
     }, 
 
@@ -368,7 +412,9 @@
 
       "openLockedDoors": 6, 
 
-      "bendBars": 40 
+      "bendBars": 40
+      ,
+      "notes": "Ogre" 
 
     }, 
 
@@ -386,7 +432,9 @@
 
       "openLockedDoors": 8,  
 
-      "bendBars": 50 
+      "bendBars": 50
+      ,
+      "notes": "Hill Giant" 
 
     },
 
@@ -404,7 +452,9 @@
 
       "openLockedDoors": 10,  
 
-      "bendBars": 60 
+      "bendBars": 60
+      ,
+      "notes": "Stone Giant" 
 
     },
 
@@ -422,7 +472,9 @@
 
       "openLockedDoors": 12,  
 
-      "bendBars": 70 
+      "bendBars": 70
+      ,
+      "notes": "Frost Giant" 
 
     },
 
@@ -438,9 +490,11 @@
 
       "openDoors": 18, 
 
-      "openLockedDoors": 14,  
+      "openLockedDoors": 14,
 
-      "bendBars": 80 
+      "bendBars": 80
+      ,
+      "notes": "Fire Giant" 
 
     },
 
@@ -458,7 +512,9 @@
 
       "openLockedDoors": 16,  
 
-      "bendBars": 90 
+      "bendBars": 90
+      ,
+      "notes": "Cloud Giant" 
 
     },
 
@@ -476,7 +532,9 @@
 
       "openLockedDoors": 17,  
 
-      "bendBars": 95 
+      "bendBars": 95
+      ,
+      "notes": "Storm Giant"
 
     },
 
@@ -494,8 +552,9 @@
 
       "openLockedDoors": 18,  
 
-      "bendBars": 99 
-
+      "bendBars": 99
+      ,
+      "notes": "Titan"
     }
   }
 } 
