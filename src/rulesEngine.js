@@ -51,8 +51,10 @@ export function calculateDerivedStats(character) {
 
     // Get character race
     const race = character.race.toLowerCase();
+    // Get the complete race data object (includes statAdj AND saveBonus)
+    const raceData = raceMods[race] || { statAdj: {}, saveBonus: null };
     // Apply stat mods from raceMods table
-    const adjustments = raceMods[race] || {};
+    const adjustments = raceData.statAdj || {};
 
     // Get character level
     const level = character.level;
@@ -69,7 +71,7 @@ export function calculateDerivedStats(character) {
     // --- 2. INDEPENDENT STAT MODIFIERS LOOKUP ---
     
     // STRENGTH items
-    const strMods = strTable.str[str] || {}; 
+    const strMods = strTable[str] || {}; 
     results.strHitProb = strMods.hitProb || 0;
     results.strDamAdj = strMods.damageAdj || 0;
     results.strWeightAllow = strMods.weightAllow || 0;
@@ -78,7 +80,7 @@ export function calculateDerivedStats(character) {
     results.strBendBars = strMods.bendBars || 0;
     
     // DEXTERITY items
-    const dexMods = dexTable.dex[dex] || {};
+    const dexMods = dexTable[dex] || {};
     results.dexReactionAdj = dexMods.reactionAdj || 0;
     results.dexMissileAdj = dexMods.missileAdj || 0;
     results.dexDefensiveAdj = dexMods.defensiveAdj || 0;
@@ -86,7 +88,7 @@ export function calculateDerivedStats(character) {
     const dexACAdj = results.dexDefensiveAdj;
 
     // CONSTITUTION items
-    const conMods = conTable.con[con] || {};
+    const conMods = conTable[con] || {};
     const conHpAdj = conMods.hitPointAdj || 0; // Derived early for HP/safe return
     results.conHitPointAdj = conHpAdj; 
     results.conSystemShock = conMods.systemShock || 0;
@@ -97,7 +99,7 @@ export function calculateDerivedStats(character) {
     
 
     // INTELLIGENCE items
-    const intMods = intTable.int[int] || {};
+    const intMods = intTable[int] || {};
     results.intLanguages = intMods.languages || 0;
     results.intSpellLevel = intMods.spellLevel || 0;
     results.intChanceLearnSpell = intMods.chanceLearnSpell || 0;
@@ -105,14 +107,14 @@ export function calculateDerivedStats(character) {
     results.intIllusionImmunity = intMods.illusionImmunity || 0;
 
     // WISDOM items
-    const wisMods = wisTable.wis[wis] || {}; 
+    const wisMods = wisTable[wis] || {}; 
     results.wisMagicalDefenseAdj = wisMods.magicalDefenseAdj || 0;
     results.wisBonusSpells = wisMods.bonusSpells || [];
     results.wisSpellFailureChance = wisMods.spellFailureChance || 0;
     results.wisSpellImmunity = getCumulativeImmunties(wisTable.wis, wis);
 
     // CHARISMA items
-    const chaMods = chaTable.cha[cha] || {}; 
+    const chaMods = chaTable[cha] || {}; 
     results.chaMaxHench = chaMods.maxHenchmen || 0;
     results.chaLoyaltyBase = chaMods.loyaltyBase || 0;
     results.chaReactionAdj = chaMods.reactionAdj || 0;

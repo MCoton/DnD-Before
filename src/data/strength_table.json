@@ -1,560 +1,558 @@
 { 
-  "str": {
-    "1": { 
+  "1": { 
 
-      "hitProb": -5, 
+    "hitProb": -5, 
 
-      "damageAdj": -4, 
+    "damageAdj": -4, 
 
-      "weightAllow": 1, 
+    "weightAllow": 1, 
 
-      "maxPress": 3, 
+    "maxPress": 3, 
 
-      "openDoors": 1, 
+    "openDoors": 1, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "2": { 
+  "2": { 
 
-      "hitProb": -3, 
+    "hitProb": -3, 
 
-      "damageAdj": -2, 
+    "damageAdj": -2, 
 
-      "weightAllow": 1, 
+    "weightAllow": 1, 
 
-      "maxPress": 5, 
+    "maxPress": 5, 
 
-      "openDoors": 1, 
+    "openDoors": 1, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "3": { 
+  "3": { 
 
-      "hitProb": -3, 
+    "hitProb": -3, 
 
-      "damageAdj": -1, 
+    "damageAdj": -1, 
 
-      "weightAllow": 5, 
+    "weightAllow": 5, 
 
-      "maxPress": 10, 
+    "maxPress": 10, 
 
-      "openDoors": 2, 
+    "openDoors": 2, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    }, 
+  }, 
 
-    "4": { 
+  "4": { 
 
-      "hitProb": -2, 
+    "hitProb": -2, 
 
-      "damageAdj": -1, 
+    "damageAdj": -1, 
 
-      "weightAllow": 10, 
+    "weightAllow": 10, 
 
-      "maxPress": 25, 
+    "maxPress": 25, 
 
-      "openDoors": 2,
+    "openDoors": 2,
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    }, 
+  }, 
 
-    "5": { 
+  "5": { 
 
-      "hitProb": -2, 
+    "hitProb": -2, 
 
-      "damageAdj": -1, 
+    "damageAdj": -1, 
 
-      "weightAllow": 10, 
+    "weightAllow": 10, 
 
-      "maxPress": 25, 
+    "maxPress": 25, 
 
-      "openDoors": 2, 
+    "openDoors": 2, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a" 
+    "notes": "n/a" 
 
-    },
+  },
 
-    "6": { 
+  "6": { 
 
-      "hitProb": -1, 
+    "hitProb": -1, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 20, 
+    "weightAllow": 20, 
 
-      "maxPress": 55, 
+    "maxPress": 55, 
 
-      "openDoors": 4, 
+    "openDoors": 4, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "7": { 
+  "7": { 
 
-      "hitProb": -1, 
+    "hitProb": -1, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 20, 
+    "weightAllow": 20, 
 
-      "maxPress": 55, 
+    "maxPress": 55, 
 
-      "openDoors": 4, 
+    "openDoors": 4, 
 
-      "bendBars": 0,
+    "bendBars": 0,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "8": { 
+  "8": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 35, 
+    "weightAllow": 35, 
 
-      "maxPress": 90, 
+    "maxPress": 90, 
 
-      "openDoors": 5, 
+    "openDoors": 5, 
 
-      "bendBars": 1,
+    "bendBars": 1,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "9": { 
+  "9": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 35, 
+    "weightAllow": 35, 
 
-      "maxPress": 90, 
+    "maxPress": 90, 
 
-      "openDoors": 5, 
+    "openDoors": 5, 
 
-      "bendBars": 1,
+    "bendBars": 1,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "10": { 
+  "10": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 40, 
+    "weightAllow": 40, 
 
-      "maxPress": 115, 
+    "maxPress": 115, 
 
-      "openDoors": 6, 
+    "openDoors": 6, 
 
-      "bendBars": 2,
+    "bendBars": 2,
 
-      "notes": "n/a" 
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "11": { 
+  "11": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 40, 
+    "weightAllow": 40, 
 
-      "maxPress": 115, 
+    "maxPress": 115, 
 
-      "openDoors": 6, 
+    "openDoors": 6, 
 
-      "bendBars": 2,
+    "bendBars": 2,
 
-      "notes": "n/a" 
+    "notes": "n/a" 
 
-    },
+  },
 
-    "12": { 
+  "12": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 45, 
+    "weightAllow": 45, 
 
-      "maxPress": 140, 
+    "maxPress": 140, 
 
-      "openDoors": 7, 
+    "openDoors": 7, 
 
-      "bendBars": 4,
+    "bendBars": 4,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "13": { 
+  "13": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 45, 
+    "weightAllow": 45, 
 
-      "maxPress": 140, 
+    "maxPress": 140, 
 
-      "openDoors": 7, 
+    "openDoors": 7, 
 
-      "bendBars": 4,
+    "bendBars": 4,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "14": { 
+  "14": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 55, 
+    "weightAllow": 55, 
 
-      "maxPress": 170, 
+    "maxPress": 170, 
 
-      "openDoors": 8, 
+    "openDoors": 8, 
 
-      "bendBars": 7,
+    "bendBars": 7,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "15": { 
+  "15": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 0, 
+    "damageAdj": 0, 
 
-      "weightAllow": 55, 
+    "weightAllow": 55, 
 
-      "maxPress": 170, 
+    "maxPress": 170, 
 
-      "openDoors": 8, 
+    "openDoors": 8, 
 
-      "bendBars": 7,
+    "bendBars": 7,
 
-      "notes": "n/a"
+    "notes": "n/a"
 
-    },
+  },
 
-    "16": { 
+  "16": { 
 
-      "hitProb": 0, 
+    "hitProb": 0, 
 
-      "damageAdj": 1, 
+    "damageAdj": 1, 
 
-      "weightAllow": 70, 
+    "weightAllow": 70, 
 
-      "maxPress": 195, 
+    "maxPress": 195, 
 
-      "openDoors": 9, 
+    "openDoors": 9, 
 
-      "bendBars": 10
-      ,
-      "notes": "n/a"
+    "bendBars": 10
+    ,
+    "notes": "n/a"
 
-    },
+  },
 
-    "17": { 
+  "17": { 
 
-      "hitProb": 1, 
+    "hitProb": 1, 
 
-      "damageAdj": 1, 
+    "damageAdj": 1, 
 
-      "weightAllow": 85, 
+    "weightAllow": 85, 
 
-      "maxPress": 220, 
+    "maxPress": 220, 
 
-      "openDoors": 10, 
+    "openDoors": 10, 
 
-      "bendBars": 13
-      ,
-      "notes": "n/a"
+    "bendBars": 13
+    ,
+    "notes": "n/a"
 
-    },
+  },
 
-    "18": { 
+  "18": { 
 
-      "hitProb": 1, 
+    "hitProb": 1, 
 
-      "damageAdj": 2, 
+    "damageAdj": 2, 
 
-      "weightAllow": 110, 
+    "weightAllow": 110, 
 
-      "maxPress": 255, 
+    "maxPress": 255, 
 
-      "openDoors": 11, 
+    "openDoors": 11, 
 
-      "bendBars": 16
-      ,
-      "notes": "n/a" 
+    "bendBars": 16
+    ,
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "18/01": { 
+  "18/01": { 
 
-      "hitProb": 1, 
+    "hitProb": 1, 
 
-      "damageAdj": 3, 
+    "damageAdj": 3, 
 
-      "weightAllow": 135, 
+    "weightAllow": 135, 
 
-      "maxPress": 280, 
+    "maxPress": 280, 
 
-      "openDoors": 12,  
+    "openDoors": 12,  
 
-      "bendBars": 20
-      ,
-      "notes": "n/a" 
+    "bendBars": 20
+    ,
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "18/51": { 
+  "18/51": { 
 
-      "hitProb": 2, 
+    "hitProb": 2, 
 
-      "damageAdj": 3, 
+    "damageAdj": 3, 
 
-      "weightAllow": 160, 
+    "weightAllow": 160, 
 
-      "maxPress": 305, 
+    "maxPress": 305, 
 
-      "openDoors": 13,
+    "openDoors": 13,
 
-      "bendBars": 25
-      ,
-      "notes": "n/a" 
+    "bendBars": 25
+    ,
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "18/76": { 
+  "18/76": { 
 
-      "hitProb": 2, 
+    "hitProb": 2, 
 
-      "damageAdj": 4, 
+    "damageAdj": 4, 
 
-      "weightAllow": 185, 
+    "weightAllow": 185, 
 
-      "maxPress": 330, 
+    "maxPress": 330, 
 
-      "openDoors": 14, 
+    "openDoors": 14, 
 
-      "bendBars": 30
-      ,
-      "notes": "n/a" 
+    "bendBars": 30
+    ,
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "18/91": { 
+  "18/91": { 
 
-      "hitProb": 2, 
+    "hitProb": 2, 
 
-      "damageAdj": 5, 
+    "damageAdj": 5, 
 
-      "weightAllow": 235, 
+    "weightAllow": 235, 
 
-      "maxPress": 380, 
+    "maxPress": 380, 
 
-      "openDoors": 15, 
+    "openDoors": 15, 
 
-      "openLockedDoors": 3, 
+    "openLockedDoors": 3, 
 
-      "bendBars": 35
-      ,
-      "notes": "n/a" 
+    "bendBars": 35
+    ,
+    "notes": "n/a" 
 
-    }, 
+  }, 
 
-    "18/00": { 
+  "18/00": { 
 
-      "hitProb": 3, 
+    "hitProb": 3, 
 
-      "damageAdj": 6, 
+    "damageAdj": 6, 
 
-      "weightAllow": 335, 
+    "weightAllow": 335, 
 
-      "maxPress": 480, 
+    "maxPress": 480, 
 
-      "openDoors": 16, 
+    "openDoors": 16, 
 
-      "openLockedDoors": 6, 
+    "openLockedDoors": 6, 
 
-      "bendBars": 40
-      ,
-      "notes": "Ogre" 
+    "bendBars": 40
+    ,
+    "notes": "Ogre" 
 
-    }, 
+  }, 
 
-    "19": { 
+  "19": { 
 
-      "hitProb": 3, 
+    "hitProb": 3, 
 
-      "damageAdj": 7, 
+    "damageAdj": 7, 
 
-      "weightAllow": 485, 
+    "weightAllow": 485, 
 
-      "maxPress": 640, 
+    "maxPress": 640, 
 
-      "openDoors": 16, 
+    "openDoors": 16, 
 
-      "openLockedDoors": 8,  
+    "openLockedDoors": 8,  
 
-      "bendBars": 50
-      ,
-      "notes": "Hill Giant" 
+    "bendBars": 50
+    ,
+    "notes": "Hill Giant" 
 
-    },
+  },
 
-    "20": { 
+  "20": { 
 
-      "hitProb": 3, 
+    "hitProb": 3, 
 
-      "damageAdj": 8, 
+    "damageAdj": 8, 
 
-      "weightAllow": 535, 
+    "weightAllow": 535, 
 
-      "maxPress": 700, 
+    "maxPress": 700, 
 
-      "openDoors": 17, 
+    "openDoors": 17, 
 
-      "openLockedDoors": 10,  
+    "openLockedDoors": 10,  
 
-      "bendBars": 60
-      ,
-      "notes": "Stone Giant" 
+    "bendBars": 60
+    ,
+    "notes": "Stone Giant" 
 
-    },
+  },
 
-    "21": { 
+  "21": { 
 
-      "hitProb": 4, 
+    "hitProb": 4, 
 
-      "damageAdj": 9, 
+    "damageAdj": 9, 
 
-      "weightAllow": 635, 
+    "weightAllow": 635, 
 
-      "maxPress": 810, 
+    "maxPress": 810, 
 
-      "openDoors": 17, 
+    "openDoors": 17, 
 
-      "openLockedDoors": 12,  
+    "openLockedDoors": 12,  
 
-      "bendBars": 70
-      ,
-      "notes": "Frost Giant" 
+    "bendBars": 70
+    ,
+    "notes": "Frost Giant" 
 
-    },
+  },
 
-    "22": { 
+  "22": { 
 
-      "hitProb": 4, 
+    "hitProb": 4, 
 
-      "damageAdj": 10, 
+    "damageAdj": 10, 
 
-      "weightAllow": 785, 
+    "weightAllow": 785, 
 
-      "maxPress": 970, 
+    "maxPress": 970, 
 
-      "openDoors": 18, 
+    "openDoors": 18, 
 
-      "openLockedDoors": 14,
+    "openLockedDoors": 14,
 
-      "bendBars": 80
-      ,
-      "notes": "Fire Giant" 
+    "bendBars": 80
+    ,
+    "notes": "Fire Giant" 
 
-    },
+  },
 
-    "23": { 
+  "23": { 
 
-      "hitProb": 5, 
+    "hitProb": 5, 
 
-      "damageAdj": 11, 
+    "damageAdj": 11, 
 
-      "weightAllow": 935, 
+    "weightAllow": 935, 
 
-      "maxPress": 1130, 
+    "maxPress": 1130, 
 
-      "openDoors": 18, 
+    "openDoors": 18, 
 
-      "openLockedDoors": 16,  
+    "openLockedDoors": 16,  
 
-      "bendBars": 90
-      ,
-      "notes": "Cloud Giant" 
+    "bendBars": 90
+    ,
+    "notes": "Cloud Giant" 
 
-    },
+  },
 
-    "24": { 
+  "24": { 
 
-      "hitProb": 6, 
+    "hitProb": 6, 
 
-      "damageAdj": 12, 
+    "damageAdj": 12, 
 
-      "weightAllow": 1235, 
+    "weightAllow": 1235, 
 
-      "maxPress": 1440, 
+    "maxPress": 1440, 
 
-      "openDoors": 19, 
+    "openDoors": 19, 
 
-      "openLockedDoors": 17,  
+    "openLockedDoors": 17,  
 
-      "bendBars": 95
-      ,
-      "notes": "Storm Giant"
+    "bendBars": 95
+    ,
+    "notes": "Storm Giant"
 
-    },
+  },
 
-    "25": { 
+  "25": { 
 
-      "hitProb": 7, 
+    "hitProb": 7, 
 
-      "damageAdj": 14, 
+    "damageAdj": 14, 
 
-      "weightAllow": 1535, 
+    "weightAllow": 1535, 
 
-      "maxPress": 1750, 
+    "maxPress": 1750, 
 
-      "openDoors": 19, 
+    "openDoors": 19, 
 
-      "openLockedDoors": 18,  
+    "openLockedDoors": 18,  
 
-      "bendBars": 99
-      ,
-      "notes": "Titan"
-    }
+    "bendBars": 99
+    ,
+    "notes": "Titan"
   }
-} 
+}
