@@ -1,0 +1,7 @@
+{
+    "dwarf": { "con": 1, "cha": -1 },
+    "elf" :{ "dex": 1, "con": -1 },
+    "gnome" :{ "int": 1, "wis": -1 },
+    "halfling": { "dex": 1, "str": -1 },
+    "human": null
+}

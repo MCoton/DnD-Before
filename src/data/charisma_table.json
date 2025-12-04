@@ -1,0 +1,29 @@
+{
+  "cha": {
+    "1":  { "maxHenchmen": 0,  "loyaltyBase": -8,  "reactionAdj": -7 },
+    "2":  { "maxHenchmen": 1,  "loyaltyBase": -7,  "reactionAdj": -6 },
+    "3":  { "maxHenchmen": 1,  "loyaltyBase": -6,  "reactionAdj": -5 },
+    "4":  { "maxHenchmen": 1,  "loyaltyBase": -5,  "reactionAdj": -4 },
+    "5":  { "maxHenchmen": 2,  "loyaltyBase": -4,  "reactionAdj": -3 },
+    "6":  { "maxHenchmen": 2,  "loyaltyBase": -3,  "reactionAdj": -2 },
+    "7":  { "maxHenchmen": 3,  "loyaltyBase": -2,  "reactionAdj": -1 },
+    "8":  { "maxHenchmen": 3,  "loyaltyBase": -1,  "reactionAdj": 0 },
+    "9":  { "maxHenchmen": 4,  "loyaltyBase": 0,   "reactionAdj": 0 },
+    "10": { "maxHenchmen": 4,  "loyaltyBase": 0,   "reactionAdj": 0 },
+    "11": { "maxHenchmen": 4,  "loyaltyBase": 0,   "reactionAdj": 0 },
+    "12": { "maxHenchmen": 5,  "loyaltyBase": 0,   "reactionAdj": 0 },
+    "13": { "maxHenchmen": 5,  "loyaltyBase": 0,   "reactionAdj": 1 },
+    "14": { "maxHenchmen": 6,  "loyaltyBase": 1,   "reactionAdj": 2 },
+    "15": { "maxHenchmen": 7,  "loyaltyBase": 3,   "reactionAdj": 3 },
+    "16": { "maxHenchmen": 8,  "loyaltyBase": 4,   "reactionAdj": 5 },
+    "17": { "maxHenchmen": 10, "loyaltyBase": 6,   "reactionAdj": 6 },
+    "18": { "maxHenchmen": 15, "loyaltyBase": 8,   "reactionAdj": 7 },
+    "19": { "maxHenchmen": 20, "loyaltyBase": 10,   "reactionAdj": 8 },
+    "20": { "maxHenchmen": 25, "loyaltyBase": 12,   "reactionAdj": 9 },
+    "21": { "maxHenchmen": 30, "loyaltyBase": 14,  "reactionAdj": 10 },
+    "22": { "maxHenchmen": 35, "loyaltyBase": 16,  "reactionAdj": 11 },
+    "23": { "maxHenchmen": 40, "loyaltyBase": 18,  "reactionAdj": 12 },
+    "24": { "maxHenchmen": 45, "loyaltyBase": 20,  "reactionAdj": 13 },
+    "25": { "maxHenchmen": 50, "loyaltyBase": 20,  "reactionAdj": 14 }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "armourType": {
+    "none": 10,
+    "leather": 8,
+    "padded": 8,
+    "studded leather": 7,
+    "ring mail": 7,
+    "brigandine": 6,
+    "scale mail": 6,
+    "hide": 6,
+    "chain mail": 5,
+    "splint mail": 4,
+    "banded mail": 4,
+    "bronze plate mail": 4,
+    "plate mail": 3,
+    "field plate": 2,
+    "full plate": 1
+  },
+  "footnotes": {
+    "note": "See 'Shields' for more on the defensive benefits of various shields."
+  }
+}

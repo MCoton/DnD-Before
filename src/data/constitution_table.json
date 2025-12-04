@@ -1,0 +1,40 @@
+{
+  "con": {
+    "1":  { "hitPointAdj": -3, "systemShock": 25, "resSurvival": 30, "poisonSave": -2, "regeneration": 0, "saveBonus": 0 },
+    "2":  { "hitPointAdj": -2, "systemShock": 30, "resSurvival": 35, "poisonSave": -1, "regeneration": 0, "saveBonus": 0 },
+    "3":  { "hitPointAdj": -2, "systemShock": 35, "resSurvival": 40, "poisonSave": 0, "regeneration": 0, "saveBonus": 0 },
+    "4":  { "hitPointAdj": -1, "systemShock": 40, "resSurvival": 45, "poisonSave": 0,  "regeneration": 0, "saveBonus": 1 },
+    "5":  { "hitPointAdj": -1, "systemShock": 45, "resSurvival": 50, "poisonSave": 0,  "regeneration": 0, "saveBonus": 1 },
+    "6":  { "hitPointAdj": -1, "systemShock": 50, "resSurvival": 55, "poisonSave": 0,  "regeneration": 0, "saveBonus": 1 },
+    "7":  { "hitPointAdj": 0,  "systemShock": 55, "resSurvival": 60, "poisonSave": 0,  "regeneration": 0, "saveBonus": 2 },
+    "8":  { "hitPointAdj": 0,  "systemShock": 60, "resSurvival": 65, "poisonSave": 0,  "regeneration": 0, "saveBonus": 2 },
+    "9":  { "hitPointAdj": 0,  "systemShock": 65, "resSurvival": 70, "poisonSave": 0,  "regeneration": 0, "saveBonus": 2 },
+    "10": { "hitPointAdj": 0,  "systemShock": 70, "resSurvival": 75, "poisonSave": 0,  "regeneration": 0, "saveBonus": 2 },
+    "11": { "hitPointAdj": 0,  "systemShock": 75, "resSurvival": 80, "poisonSave": 0,  "regeneration": 0, "saveBonus": 3 },
+    "12": { "hitPointAdj": 0,  "systemShock": 80, "resSurvival": 85, "poisonSave": 0,  "regeneration": 0, "saveBonus": 3 },
+    "13": { "hitPointAdj": 0,  "systemShock": 85, "resSurvival": 90, "poisonSave": 0,  "regeneration": 0, "saveBonus": 3 },
+    "14": { "hitPointAdj": 0,  "systemShock": 88, "resSurvival": 92, "poisonSave": 0,  "regeneration": 0, "saveBonus": 4 },
+    "15": { "hitPointAdj": 1,  "systemShock": 90, "resSurvival": 94, "poisonSave": 0,  "regeneration": 0, "saveBonus": 4 },
+    "16": { "hitPointAdj": 2,  "systemShock": 95, "resSurvival": 96, "poisonSave": 0,  "regeneration": 0, "saveBonus": 4 },
+    "17": { "hitPointAdj": 3,  "systemShock": 97, "resSurvival": 98, "poisonSave": 0,  "regeneration": 0, "saveBonus": 4 },
+    "18": { "hitPointAdj": 4,  "systemShock": 99, "resSurvival": 100, "poisonSave": 0, "regeneration": 0, "saveBonus": 5 },
+    "19": { "hitPointAdj": 5,  "systemShock": 99, "resSurvival": 100, "poisonSave": 0, "regeneration": 0, "saveBonus": 5 },
+    "20": { "hitPointAdj": 5,  "systemShock": 99, "resSurvival": 100, "poisonSave": 1, "regeneration": 6, "saveBonus": 6 },
+    "21": { "hitPointAdj": 6,  "systemShock": 99, "resSurvival": 100, "poisonSave": 1, "regeneration": 5, "saveBonus": 7 },
+    "22": { "hitPointAdj": 6,  "systemShock": 99, "resSurvival": 100, "poisonSave": 2, "regeneration": 4, "saveBonus": 8 },
+    "23": { "hitPointAdj": 6,  "systemShock": 99, "resSurvival": 100, "poisonSave": 3, "regeneration": 3, "saveBonus": 9 },
+    "24": { "hitPointAdj": 7,  "systemShock": 99, "resSurvival": 100, "poisonSave": 3, "regeneration": 2, "saveBonus": 10 },
+    "25": { "hitPointAdj": 7,  "systemShock": 99, "resSurvival": 100, "poisonSave": 4, "regeneration": 1, "saveBonus": 11 }
+  },
+  "footnotes": {
+    "17": "Warriors only. All other classes receive maximum bonus of +2 per die.",
+    "18": "Warriors only. All other classes receive maximum bonus of +2 per die.",
+    "19": "Warriors only. All other classes receive maximum bonus of +2 per die.",
+    "20": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s rolled for Hit Dice are automatically considered 2s.",
+    "21": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s and 2s rolled for Hit Dice are automatically considered 3s.",
+    "22": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s and 2s rolled for Hit Dice are automatically considered 3s.",
+    "23": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s, 2s, and 3s rolled for Hit Dice are automatically considered 4s.",
+    "24": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s, 2s, and 3s rolled for Hit Dice are automatically considered 4s.",
+    "25": "Warriors only. All other classes receive maximum bonus of +2 per die. All 1s, 2s, and 3s rolled for Hit Dice are automatically considered 4s."
+  }
+}
