@@ -20,7 +20,7 @@ export const SAVE_CATEGORY_MAP = {
 }
 
 export const SAVE_CATEGORY_LABELS = [
-    "Paralyzation, Poison, or Death Magic",
+    "Paralysation, Poison, or Death Magic",
     "Rod, Staff, or Wand",
     "Petrification or Polymorph",
     "Breath Weapon",

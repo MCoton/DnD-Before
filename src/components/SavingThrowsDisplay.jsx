@@ -14,7 +14,7 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
     // Define the structure for displaying the 10 subcategories grouped by category
     const saveCategories = [
         {
-            name: "Paralyzation, Poison, or Death Magic",
+            name: "Para, Poison, Death Magic",
             subcategories: [
                 { key: "paralyzation", label: "Paralyzation" },
                 { key: "poison", label: "Poison" },
@@ -22,7 +22,7 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
             ]
         },
         {
-            name: "Rod, Staff, or Wand",
+            name: "Rod, Staff, Wand",
             subcategories: [
                 { key: "rod", label: "Rod" },
                 { key: "staff", label: "Staff" },
@@ -30,7 +30,7 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
             ]
         },
         {
-            name: "Petrification or Polymorph",
+            name: "Petrification, Polymorph",
             subcategories: [
                 { key: "petrification", label: "Petrification" },
                 { key: "polymorph", label: "Polymorph" }
@@ -52,8 +52,8 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
 
     return (
         <div className="saving-throws-block">
-            <h2 className="title">Saving Throws</h2>
-            <hr className="style14"></hr>
+            <h3 id="saves-title">Saving Throws</h3>
+            <hr className="style13"></hr>
             
             {!isCalculated ? (
                 <p className="no-class-message">
@@ -64,13 +64,13 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
                     {saveCategories.map((category, categoryIndex) => (
                         <div key={categoryIndex} className="save-category">
                             {/* Category header */}
-                            <h3 className="category-name">{category.name}</h3>
+                            <h4 className="category-name centered">{category.name}</h4>
                             
                             {/* Subcategories */}
-                            <ul className="subcategory-list">
+                            <ul className="subcategory-list no-padding centered">
                                 {category.subcategories.map((sub) => (
                                     <li key={sub.key} className="save-entry hori-list">
-                                        <span className="save-label">{sub.label}: </span>
+                                        <span className="save-label ">{sub.label}: </span>
                                         <span className="save-value">{savingThrows[sub.key]}</span>
                                     </li>
                                 ))}

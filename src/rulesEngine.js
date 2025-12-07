@@ -10,6 +10,7 @@ import charClasses from "./data/character_classes.json";
 import charAbilities from "./data/character_abilities_text.json"
 import armourTable from "./data/armour_class.json";
 import { SAVE_CATEGORY_MAP, SAVE_CATEGORY_LABELS } from './constants.js';
+import { capitaliseWords, clamp } from './utils.js';
 
 /**
  * Calculates racial save bonus for a given race.
@@ -124,20 +125,8 @@ function getCumulativeImmunities(wisTable, characterWis) {
         }
     }
 
-    // Convert the Set to an array
-    const rawSpellArray = Array.from(cumulativeImmunities);
-
     // Capitalise each word in each spell name
-    const capitalisedArray = rawSpellArray.map(spellName => {
-        return spellName.split(' ').map(word => {
-            // Guard against empty strings
-            if (word.length === 0) return '';
-            // Capitalise first letter, keep rest of word
-            return word.charAt(0).toUpperCase() + word.slice(1);
-        }).join(' ');
-    });
-
-    return capitalisedArray;
+    return Array.from(cumulativeImmunities).map(capitaliseWords);
 }
 
 /**
@@ -160,12 +149,12 @@ export function calculateDerivedStats(character) {
 
     // --- STEP 2: CALCULATE ADJUSTED ABILITY SCORES ---
     // Apply racial adjustments and clamp between 1 and 25
-    const str = Math.min(25, Math.max(1, character.scores.str + (statAdjustments.str || 0)));
-    const dex = Math.min(25, Math.max(1, character.scores.dex + (statAdjustments.dex || 0)));
-    const con = Math.min(25, Math.max(1, character.scores.con + (statAdjustments.con || 0)));
-    const int = Math.min(25, Math.max(1, character.scores.int + (statAdjustments.int || 0)));
-    const wis = Math.min(25, Math.max(1, character.scores.wis + (statAdjustments.wis || 0)));
-    const cha = Math.min(25, Math.max(1, character.scores.cha + (statAdjustments.cha || 0)));
+    const str = clamp(character.scores.str + (statAdjustments.str || 0), 1, 25);
+    const dex = clamp(character.scores.dex + (statAdjustments.dex || 0), 1, 25);
+    const con = clamp(character.scores.con + (statAdjustments.con || 0), 1, 25);
+    const int = clamp(character.scores.int + (statAdjustments.int || 0), 1, 25);
+    const wis = clamp(character.scores.wis + (statAdjustments.wis || 0), 1, 25);
+    const cha = clamp(character.scores.cha + (statAdjustments.cha || 0), 1, 25);
 
     // Store adjusted scores
     results.adjustedScores = { str, dex, con, int, wis, cha };
@@ -223,7 +212,7 @@ export function calculateDerivedStats(character) {
     const hpBonus = results.conHitPointAdj * level;
     results.hpMax = baseHp + hpBonus;
 
-    // --- STEP 5: CALCULATE ARMOR CLASS ---
+    // --- STEP 5: CALCULATE ARMOUR CLASS ---
     const armourType = character.ac.armourType.trim() || 'none';
     const hasShield = character.ac.shield;
     const shieldBonus = -1;
@@ -291,6 +280,31 @@ export function calculateDerivedStats(character) {
         raceData,
         racialBonus
     );
+
+    // --- STEP 8: CALCULATE THAC0 AND ATTACKS ---
+
+    // Get base THAC0 from class progression
+    const baseThac0 = classData.levelProg[level].thaco;
+
+    // Calculate modified THAC0 for melee (with STR bonus)
+    const meleeThac0 = baseThac0 - results.strHitProb;
+
+    // Calculate modified THAC0 for missile (with DEX bonus)
+    const missileThac0 = baseThac0 - results.dexMissileAdj;
+
+    // Get attacks per round
+    const attacksPerRound = classData.levelProg[level].attacksPerRound;
+
+    // Store combat stats
+    results.combat = {
+        baseThac0,
+        meleeThac0,
+        missileThac0,
+        attacksPerRound,
+        strBonus: results.strHitProb,
+        strDamage: results.strDamAdj,
+        dexBonus: results.dexMissileAdj
+    };
 
     return results;
 }

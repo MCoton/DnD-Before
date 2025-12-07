@@ -36,11 +36,25 @@ h1 {
 }
 
 h2 {
-  margin-top: 0;
+  margin: 0;
 }
 
 h3 {
   display: inline;
+}
+
+h4 {
+  margin: 0;
+}
+
+hr.style13 {
+  margin: 0; 
+  border: 0;
+  height: 1px;
+  background-image: -webkit-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
+  background-image: -moz-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
+  background-image: -ms-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
+  background-image: -o-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
 }
 
 hr.style14 { 
@@ -50,7 +64,6 @@ hr.style14 {
   background-image: -moz-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
   background-image: -ms-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
   background-image: -o-linear-gradient(left, #1d1c1c, #b4b4b4, #1d1c1c);
-   
 }
 
 select {
@@ -124,20 +137,21 @@ button:focus-visible {
   align-items: stretch;
   padding: 5px;
 }
-.container-details div {
+.container-details {
   background-color: #302f2f;
   padding: 10px;
   font-size: 15px;
   text-align: left;
 }
 
-.details-box {
+div.details-box {
   border: 1px solid rgb(117, 114, 114);
 }
 
 .general-box {
   padding: 0px 10px ;
 }
+
 .area-box {
   border: #c0e226;
   border-width: 1px;
@@ -147,16 +161,59 @@ button:focus-visible {
 
 .hori-list {
   display: inline-block;
-  padding: 0px 10px 10px;
+  padding: 0px 10px;
 }
 
 .stat-block {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+.saving-throws-block {
+  border: 1px dotted rgb(3, 30, 151);
+  grid-column: 1/-1; /* spans full width regardless of defined columns*/
+}
+
+div.saving-throws-block, h3#saves-title {
+  text-align: center;
+}
+
+.saves-grid {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.category-name {
+  background-color: #003300;
+  padding: 3px 0px;
+}
+
+.save-category {
+  background-color: #302f2f;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.subcategory-list {
+  margin: 10px;
+}
+
+.no-margin {
+  margin: 0px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
 .no-disc-list {
   list-style-type: none;
   padding: 0;
   margin: 3px 0 0;
+}
+
+.centered {
+  text-align: center;
 }
 
 .inner-border {
@@ -175,4 +232,56 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Combat Statistics Block */
+.combat-stats-block {
+    grid-column: 1 / -1;  /* Span all columns */
+    margin-top: 1rem;
+}
+
+.combat-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.combat-section {
+    padding: 0.5rem;
+}
+
+.section-title {
+    font-size: 1.1em;
+    margin-bottom: 0.75rem;
+    color: #c0e226;
+    border-bottom: 1px solid #646cff;
+    padding-bottom: 0.25rem;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    border-bottom: 1px dotted #444;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-label {
+    font-weight: normal;
+    color: #ccc;
+}
+
+.stat-value {
+    font-weight: bold;
+    color: #fff;
+}
+
+.modifier {
+    font-size: 0.85em;
+    color: #c0e226;
+    font-weight: normal;
 }

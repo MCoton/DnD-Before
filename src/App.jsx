@@ -3,14 +3,17 @@ import './index.css'
 
 import armourTable from "./data/armour_class.json";
 import { calculateDerivedStats } from "./rulesEngine";
-import StatBlock from "./components/statBlock.jsx";
 import raceMods from "./data/race_mods.json";
 import charClass from "./data/character_classes.json";
 import charClassAbilities from "./data/character_abilities_text.json";
+import StatBlock from "./components/statBlock.jsx";
 import SavingThrows from "./components/SavingThrowsDisplay.jsx";
+import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
+import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
+import { capitaliseWords } from "./utils.js";
 
-// Object.keys() pulls all the base armor names directly for the dropdown.
-const ARMOR_OPTIONS = Object.keys(armourTable.armourType);
+// Object.keys() pulls all the base armour names directly for the dropdown.
+const ARMOUR_OPTIONS = Object.keys(armourTable.armourType);
 // Same for races held in raceMods
 const RACE_OPTIONS = Object.keys(raceMods);
 // And again for class
@@ -27,11 +30,11 @@ const initialCharacterState = {
     // CORE stats (Raw user input)
     scores: {
         str: 24,
-        dex: 23,
+        dex: 25,
         con: 24,
         int: 24,
-        wis: 10,
-        cha: 24
+        wis: 24,
+        cha: 25
     },
 
     // Progressional stats
@@ -90,6 +93,20 @@ export default function CharacterSheet() {
         }))
     }
 
+    // Function to handle level changes
+    const handleLevelChange = (e) => {
+        const { value } = e.target;
+        
+        // Convert to number and clamp between 1 and 20
+        const newLevel = Math.min(20, Math.max(1, parseInt(value) || 1));
+        
+        setCharacter(prevCharacter => ({
+            ...prevCharacter,
+            level: newLevel
+        }));
+    };
+
+
     //Simplified useMemo call
     const derivedStats = useMemo(() => {
         return calculateDerivedStats(character);
@@ -125,14 +142,14 @@ export default function CharacterSheet() {
                     >
                     <option value= "">Choose class</option>
                     {CLASS_OPTIONS.map(charClass => (
-                        <option key={charClass} value={charClass}>{charClass.toUpperCase()}</option>
+                        <option key={charClass} value={charClass}>{capitaliseWords(charClass)}</option>
                     ))}
 
                     </select>
 
                 </label>
 
-
+                {/* RACE selector */}
                 <label className="general-box">
                     <h3>Race: </h3>
                     <select
@@ -142,27 +159,40 @@ export default function CharacterSheet() {
                         >
                         <option value = "">Choose race</option> {/* Default Race value */}
                         {RACE_OPTIONS.map(race => (
-                            <option key={race} value={race}>{race.toUpperCase()}</option>
+                            <option key={race} value={race}>{capitaliseWords(race)}</option>
                         ))}
                     </select>
                 </label>
                 (Racial Adj: {racialAdjDisplay})
+
+                <label className="general-box">
+                    <h3>Level: </h3>
+                    <input
+                        type="number"
+                        name="level"
+                        value={character.level}
+                        onChange={handleLevelChange}
+                        min="1"
+                        max="20"
+                        className="level-input"
+                    />
+                </label>
             </div>
 
             <div className="general-box">
-                <h2 className="">Equipment & Armor Class (AC)</h2>
+                <h2 className="">Equipment & Armour Class (AC)</h2>
                 <div className="general-box">
-                    {/* ARMOR TYPE DROPDOWN */}
+                    {/* ARMOUR TYPE DROPDOWN */}
                     <label className="flex flex-col">
-                        <h3>Armor Type: </h3>
+                        <h3>Armour Type: </h3>
                         <select 
                             name="armourType" // Key used in handleArmourChanges
                             value={character.ac.armourType}
                             onChange={handleArmourChanges}
                             className="p-1 border rounded"
                             >
-                            {ARMOR_OPTIONS.map(armor => (
-                                <option key={armor} value={armor}>{armor.toUpperCase()}</option>
+                            {ARMOUR_OPTIONS.map(armour => (
+                                <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
                             ))}
                         </select>
                     </label>
@@ -181,7 +211,7 @@ export default function CharacterSheet() {
 
                 {/* Display the calculated AC */}
                 <div className="general-box">
-                    <p className="">
+                    <p className="no-margin">
                         Front:  {derivedStats.acFinal} | 
                         Rear: {derivedStats.acComponents.base} |
                         Dex Adj: {derivedStats.acComponents.dexAdj} |
@@ -241,30 +271,28 @@ export default function CharacterSheet() {
                 />
 
         </div>
-        
-        <div>
+        <div className="saving-throws-block">
             {/* SAVING THROWS - ADD THIS */}
             <SavingThrows
                 savingThrows={derivedStats.savingThrows}
                 characterClass={character.characterClass}
                 characterLevel={character.level}
             />
+            
+            {/* Any spell immunities derived from Class, Race or Wisdom score */}
+            <SpellImmunitiesDisplay 
+            immunities={derivedStats.wisSpellImmunity}
+            wisdomScore={derivedStats.adjustedScores.wis}
+            />
 
-            {/* <ul>
-                <li className="hori-list">Paralyzation: {derivedStats.savingThrows?.paralyzation}</li>
-                <li className="hori-list">Poison: {derivedStats.savingThrows?.poison}</li>
-                <li className="hori-list">Death Magic: {derivedStats.savingThrows?.deathMagic}</li>
-                <li className="hori-list">Rod: {derivedStats.savingThrows?.rod}</li>
-                <li className="hori-list">Staff: {derivedStats.savingThrows?.staff}</li>
-                <li className="hori-list">Wand: {derivedStats.savingThrows?.wand}</li>
-                <li className="hori-list">Petrification: {derivedStats.savingThrows?.petrification}</li>
-                <li className="hori-list">Polymorph: {derivedStats.savingThrows?.polymorph}</li>
-                <li className="hori-list">Breath Weapon: {derivedStats.savingThrows?.breathWeapon}</li>
-                <li className="hori-list">Spell: {derivedStats.savingThrows?.spell}</li>
-            </ul> */}
-                        
+            <CombatStatsDisplay 
+            combat={derivedStats.combat}
+            characterClass={character.characterClass}
+            characterLevel={character.level}
+            />
+
+        </div>          
         </div>
-    </div>
       </>
     )
 }

@@ -59,7 +59,6 @@ export default function StatBlock({ statName, score, derivedData }) {
             { label: 'Mag Def Adj', value: derivedData.wisMagicalDefenseAdj },
             { label: 'Bonus Spells', value: derivedData.wisBonusSpells?.join(', ') || 'None' },
             { label: 'Spell Fail', value: `${derivedData.wisSpellFailureChance}%` },
-            { label: 'Spell Immunity', value: derivedData.wisSpellImmunity?.join(', ') || 'None' },
         ],
         // --- CHARISMA ---
         cha: [
