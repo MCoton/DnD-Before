@@ -6,8 +6,10 @@ import React from 'react';
  * @param {object} props.savingThrows - Object with 10 subcategory values
  * @param {string} props.characterClass - The character's class name
  * @param {number} props.characterLevel - The character's level
+ * @param {number} props.magicalDefAdj - Wisdom based save adjusment (mind affecting spells only)
  */
-export default function SavingThrowsDisplay({ savingThrows, characterClass, characterLevel }) {
+
+export default function SavingThrowsDisplay({ savingThrows, magicalDefenseAdj }) {
     // Check if saves are calculated (savingThrows is an object, not null/undefined)
     const isCalculated = savingThrows && typeof savingThrows === 'object';
 
@@ -51,7 +53,7 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
     ];
 
     return (
-        <div className="saving-throws-block">
+        <div>
             <h3 id="saves-title">Saving Throws</h3>
             <hr className="style13"></hr>
             
@@ -67,7 +69,7 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
                             <h4 className="category-name centered">{category.name}</h4>
                             
                             {/* Subcategories */}
-                            <ul className="subcategory-list no-padding centered">
+                            <ul className="subcategory-list no-padding centered no-disc-list">
                                 {category.subcategories.map((sub) => (
                                     <li key={sub.key} className="save-entry hori-list">
                                         <span className="save-label ">{sub.label}: </span>
@@ -79,6 +81,16 @@ export default function SavingThrowsDisplay({ savingThrows, characterClass, char
                     ))}
                 </div>
             )}
+
+            {/* Conditional Magical Defense Adjustment footnote */}
+            {magicalDefenseAdj !== 0 && (
+                <p className="magical-defense-note">
+                    <strong>Magical Defense Adjustment:</strong> {magicalDefenseAdj >= 0 ? '+' : ''}{magicalDefenseAdj} 
+                    {' '}(Applies only to saving throws vs. spells that affect the mind)
+                </p>
+            )}
+
+
         </div>
     );
 }

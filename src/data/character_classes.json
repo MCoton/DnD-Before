@@ -17,9 +17,9 @@
             "7":  { "saveThrow":  [10, 12, 11, 12, 13], "xp": 64000,    "hitDice": 7, "lvlHPAdj": 0, "thaco": 14, "attacksPerRound": "3/2 rounds","weaponSlots": 6, "nonWeaponSlots": 5 },
             "8":  {	"saveThrow":  [10, 12, 11, 12, 13], "xp": 120000,   "hitDice": 8, "lvlHPAdj": 0, "thaco": 13, "attacksPerRound": "3/2 rounds","weaponSlots": 6, "nonWeaponSlots": 5 },
             "9":  {	"saveThrow":  [8, 10, 9, 9, 11], "xp": 250000,   "hitDice": 9, "lvlHPAdj": 0, "thaco": 12, "attacksPerRound": "3/2 rounds","weaponSlots": 7, "nonWeaponSlots": 6 },
-            "10": {	"saveThrow":  [8, 10, 9, 9, 11], "xp": 500000,   "hitDice": 9, "lvlHPAdj": 3, "thaco": 11, "attacksPerRound": "2/round",   "weaponSlots": 7, "nonWeaponSlots": 6 },
-            "11": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 750000,   "hitDice": 9, "lvlHPAdj": 6, "thaco": 10, "attacksPerRound": "2/round",   "weaponSlots": 7, "nonWeaponSlots": 6 },
-            "12": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 1000000,  "hitDice": 9, "lvlHPAdj": 9, "thaco": 9,  "attacksPerRound": "2/round",   "weaponSlots": 8, "nonWeaponSlots": 7 },
+            "10": {	"saveThrow":  [8, 10, 9, 9, 11], "xp": 500000,   "hitDice": 9, "lvlHPAdj": 3, "thaco": 11, "attacksPerRound": "3/2 rounds",   "weaponSlots": 7, "nonWeaponSlots": 6 },
+            "11": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 750000,   "hitDice": 9, "lvlHPAdj": 6, "thaco": 10, "attacksPerRound": "3/2 rounds",   "weaponSlots": 7, "nonWeaponSlots": 6 },
+            "12": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 1000000,  "hitDice": 9, "lvlHPAdj": 9, "thaco": 9,  "attacksPerRound": "3/2 rounds",   "weaponSlots": 8, "nonWeaponSlots": 7 },
             "13": {	"saveThrow":  [5, 7, 6, 5, 8], "xp": 1250000,  "hitDice": 9, "lvlHPAdj": 12, "thaco": 8,  "attacksPerRound": "2/round",   "weaponSlots": 8, "nonWeaponSlots": 7 },
             "14": {	"saveThrow":  [5, 7, 6, 5, 8], "xp": 1500000,  "hitDice": 9, "lvlHPAdj": 15, "thaco": 7,  "attacksPerRound": "2/round",   "weaponSlots": 8, "nonWeaponSlots": 7 },
             "15": {	"saveThrow":  [4, 6, 5, 4, 7], "xp": 1750000,  "hitDice": 9, "lvlHPAdj": 18, "thaco": 6,  "attacksPerRound": "2/round",   "weaponSlots": 9, "nonWeaponSlots": 8 },
@@ -36,7 +36,7 @@
         "minStatreqs": {"str": 12, "con": 9, "wis":13, "cha": 17},
         "nonProfPen": -2,
         "races": "Human",
-        "alignment": "LG",
+        "alignment": "lg",
         "classAbilities": { "saveVal": 2 },
         "levelProg": {
             "1": {
@@ -189,7 +189,7 @@
                 "hitDice": 9,
                 "lvlHPAdj": 3,
                 "thaco": 11,
-                "attacksPerRound": "2/round",
+                "attacksPerRound": "3/2 rounds",
                 "weaponSlots": 7,
                 "nonWeaponSlots": 6,
                 "turnUnd": true,
@@ -205,7 +205,7 @@
                 "hitDice": 9,
                 "lvlHPAdj": 6,
                 "thaco": 10,
-                "attacksPerRound": "2/round",
+                "attacksPerRound": "3/2 rounds",
                 "weaponSlots": 7,
                 "nonWeaponSlots": 6,
                 "turnUnd": true,
@@ -221,7 +221,7 @@
                 "hitDice": 9,
                 "lvlHPAdj": 9,
                 "thaco": 9,
-                "attacksPerRound": "2/round",
+                "attacksPerRound": "3/2 rounds",
                 "weaponSlots": 8,
                 "nonWeaponSlots": 7,
                 "turnUnd": true,
@@ -359,6 +359,37 @@
                 "layOnHpPerLvl": 2,
                 "cureDiseasesPerWk": 4
             }
+        }
+    },
+        "ranger": {
+        "group": "warrior",
+        "primeStats": ["Strength", "Dexterity", "Wisdom"],
+        "minStatreqs": {"str": 13, "dex": 13, "con": 14, "wis": 14},
+        "nonProfPen": -2,
+        "races": ["human", "elf", "half-elf"],
+        "alignment": "g",
+        "classAbilities": { "saveVal": 0 },
+        "levelProg": {
+            "1":  { "saveThrow":  [14, 16, 15, 17, 17], "xp": 0,        "hitDice": 1, "lvlHPAdj": 0, "thaco": 20, "attacksPerRound": "1/round",   "weaponSlots": 4,  "nonWeaponSlots": 3, "hideInShad": 10, "moveSilent": 15, "priestSpells": null, "animalEmpathy" : -1 },
+            "2":  { "saveThrow":  [14, 16, 15, 17, 17], "xp": 2250,     "hitDice": 2, "lvlHPAdj": 0, "thaco": 19, "attacksPerRound": "1/round",   "weaponSlots": 4,  "nonWeaponSlots": 3, "hideInShad": 15, "moveSilent": 21, "priestSpells": null, "animalEmpathy" : -1 },
+            "3":  {	"saveThrow":  [13, 15, 14, 16, 16], "xp": 4500,     "hitDice": 3, "lvlHPAdj": 0, "thaco": 18, "attacksPerRound": "1/round",   "weaponSlots": 5,  "nonWeaponSlots": 4, "hideInShad": 20, "moveSilent": 27, "priestSpells": null, "animalEmpathy" : -1 },
+            "4":  {	"saveThrow":  [13, 15, 14, 16, 16], "xp": 9000,     "hitDice": 4, "lvlHPAdj": 0, "thaco": 17, "attacksPerRound": "1/round",   "weaponSlots": 5,  "nonWeaponSlots": 4, "hideInShad": 25, "moveSilent": 33, "priestSpells": null, "animalEmpathy" : -2 },
+            "5":  {	"saveThrow":  [11, 13, 12, 13, 14], "xp": 18000,    "hitDice": 5, "lvlHPAdj": 0, "thaco": 16, "attacksPerRound": "1/round",   "weaponSlots": 5,  "nonWeaponSlots": 4, "hideInShad": 31, "moveSilent": 40, "priestSpells": null, "animalEmpathy" : -2 },
+            "6":  {	"saveThrow":  [11, 13, 12, 13, 14], "xp": 36000,    "hitDice": 6, "lvlHPAdj": 0, "thaco": 15, "attacksPerRound": "1/round",   "weaponSlots": 6,  "nonWeaponSlots": 5, "hideInShad": 37, "moveSilent": 47, "priestSpells": null, "animalEmpathy" : -2 },
+            "7":  { "saveThrow":  [10, 12, 11, 12, 13], "xp": 75000,    "hitDice": 7, "lvlHPAdj": 0, "thaco": 14, "attacksPerRound": "3/2 rounds","weaponSlots": 6, "nonWeaponSlots": 5, "hideInShad": 43, "moveSilent": 55, "priestSpells": null, "animalEmpathy" : -3 },
+            "8":  {	"saveThrow":  [10, 12, 11, 12, 13], "xp": 150000,   "hitDice": 8, "lvlHPAdj": 0, "thaco": 13, "attacksPerRound": "3/2 rounds","weaponSlots": 6, "nonWeaponSlots": 5, "hideInShad": 49, "moveSilent": 62, "priestSpells": [1, 0, 0], "animalEmpathy" : -3 },
+            "9":  {	"saveThrow":  [8, 10, 9, 9, 11], "xp": 300000,   "hitDice": 9, "lvlHPAdj": 0, "thaco": 12, "attacksPerRound": "3/2 rounds","weaponSlots": 7, "nonWeaponSlots": 6, "hideInShad": 56, "moveSilent": 70, "priestSpells": [2, 0, 0], "animalEmpathy" : -3 },
+            "10": {	"saveThrow":  [8, 10, 9, 9, 11], "xp": 600000,   "hitDice": 9, "lvlHPAdj": 3, "thaco": 11, "attacksPerRound": "3/2 rounds",   "weaponSlots": 7, "nonWeaponSlots": 6, "hideInShad": 63, "moveSilent": 78, "priestSpells": [2, 1, 0], "animalEmpathy" : -4 },
+            "11": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 900000,   "hitDice": 9, "lvlHPAdj": 6, "thaco": 10, "attacksPerRound": "3/2 rounds",   "weaponSlots": 7, "nonWeaponSlots": 6, "hideInShad": 70, "moveSilent": 86, "priestSpells": [2,	2, 0], "animalEmpathy" : -4 },
+            "12": {	"saveThrow":  [7, 9, 8, 8, 10], "xp": 1200000,  "hitDice": 9, "lvlHPAdj": 9, "thaco": 9,  "attacksPerRound": "3/2 rounds",   "weaponSlots": 8, "nonWeaponSlots": 7, "hideInShad": 77, "moveSilent": 94, "priestSpells": [2, 2, 1], "animalEmpathy" : -4 },
+            "13": {	"saveThrow":  [5, 7, 6, 5, 8], "xp": 1500000,  "hitDice": 9, "lvlHPAdj": 12, "thaco": 8,  "attacksPerRound": "2/round",   "weaponSlots": 8, "nonWeaponSlots": 7, "hideInShad": 85, "moveSilent": 99, "priestSpells": [3, 2,	1], "animalEmpathy" : -5 },
+            "14": {	"saveThrow":  [5, 7, 6, 5, 8], "xp": 1800000,  "hitDice": 9, "lvlHPAdj": 15, "thaco": 7,  "attacksPerRound": "2/round",   "weaponSlots": 8, "nonWeaponSlots": 7, "hideInShad": 93, "moveSilent": 99, "priestSpells": [3, 2, 2], "animalEmpathy" : -5 },
+            "15": {	"saveThrow":  [4, 6, 5, 4, 7], "xp": 2100000,  "hitDice": 9, "lvlHPAdj": 18, "thaco": 6,  "attacksPerRound": "2/round",   "weaponSlots": 9, "nonWeaponSlots": 8, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3, 2], "animalEmpathy" : -5 },
+            "16": {	"saveThrow":  [4, 6, 5, 4, 7], "xp": 2400000,  "hitDice": 9, "lvlHPAdj": 21, "thaco": 5,  "attacksPerRound": "2/round",   "weaponSlots": 9, "nonWeaponSlots": 8, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3,	3], "animalEmpathy" : -6 },
+            "17": {	"saveThrow":  [3, 5, 4, 4, 6], "xp": 2700000,  "hitDice": 9, "lvlHPAdj": 24, "thaco": 4,  "attacksPerRound": "2/round",   "weaponSlots": 9, "nonWeaponSlots": 8, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3, 3], "animalEmpathy" : -6 },
+            "18": {	"saveThrow":  [3, 5, 4, 4, 6], "xp": 3000000,  "hitDice": 9, "lvlHPAdj": 27, "thaco": 3,  "attacksPerRound": "2/round",   "weaponSlots": 10, "nonWeaponSlots": 9, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3, 3], "animalEmpathy" : -6 },
+            "19": {	"saveThrow":  [3, 5, 4, 4, 6], "xp": 3300000,  "hitDice": 9, "lvlHPAdj": 30, "thaco": 2,  "attacksPerRound": "2/round",   "weaponSlots": 10, "nonWeaponSlots": 9, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3, 3], "animalEmpathy" : -6 },
+            "20": {	"saveThrow":  [3, 5, 4, 4, 6], "xp": 3600000,  "hitDice": 9, "lvlHPAdj": 33, "thaco": 1,  "attacksPerRound": "2/round",   "weaponSlots": 10, "nonWeaponSlots": 9, "hideInShad": 99, "moveSilent": 99, "priestSpells": [3, 3, 3], "animalEmpathy" : -6 }
         }
     }
 }

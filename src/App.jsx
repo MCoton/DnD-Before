@@ -10,6 +10,7 @@ import StatBlock from "./components/statBlock.jsx";
 import SavingThrows from "./components/SavingThrowsDisplay.jsx";
 import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
 import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
+import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
 import { capitaliseWords } from "./utils.js";
 
 // Object.keys() pulls all the base armour names directly for the dropdown.
@@ -23,28 +24,27 @@ const CLASS_OPTIONS = Object.keys(charClass);
 const initialCharacterState = {
     // Identity
     name: "Bozo",
-    characterClass: "",
-    race: "Human",
+    characterClass: "paladin",
+    race: "human",
     gender: "Male",
 
     // CORE stats (Raw user input)
     scores: {
-        str: 24,
-        dex: 25,
-        con: 24,
-        int: 24,
-        wis: 24,
-        cha: 25
+        str: 10,
+        dex: 10,
+        con: 10,
+        int: 10,
+        wis: 25,
+        cha: 10
     },
 
     // Progressional stats
-    level: 1,
-    xp: 0,
+    xp: 10000,
     hp: {
         base: 10, // The manually rolled numbers
         bonus: 0, // Will be the "con" modifier
         current: 0, // HP minus any damage
-        hpMax: 0 // Maximum HP if uninjured, lus and "con" bonus
+        hpMax: 0 // Maximum HP if uninjured, plus and "con" bonus
     },
 
     // Gear stats
@@ -93,24 +93,58 @@ export default function CharacterSheet() {
         }))
     }
 
-    // Function to handle level changes
-    const handleLevelChange = (e) => {
+    // Function to handle name changes
+    const handleNameChange = (e) => {
         const { value } = e.target;
-        
-        // Convert to number and clamp between 1 and 20
-        const newLevel = Math.min(20, Math.max(1, parseInt(value) || 1));
-        
         setCharacter(prevCharacter => ({
             ...prevCharacter,
-            level: newLevel
+            name: value
         }));
     };
 
+    // Function to handle ability score changes from stat blocks
+    const handleScoreChange = (statAbbrev, newValue) => {
+        setCharacter(prevCharacter => ({
+            ...prevCharacter,
+            scores: {
+                ...prevCharacter.scores,
+                [statAbbrev]: newValue
+            }
+        }));
+    };
 
-    //Simplified useMemo call
+    // Function to handle HP base changes
+    const handleHPChange = (e) => {
+        const { value } = e.target;
+        
+        // Allow any positive number for HP
+        const newHP = Math.max(1, parseInt(value) || 1);
+        
+        setCharacter(prevCharacter => ({
+            ...prevCharacter,
+            hp: {
+                ...prevCharacter.hp,
+                base: newHP
+            }
+        }));
+    };
+
+    // Function to handle XP changes (auto-calculates level)
+    const handleXPChange = (e) => {
+        const { value } = e.target;
+        const newXP = Math.max(0, parseInt(value) || 0);
+        
+        // Simply update XP - level will be calculated in rulesEngine
+        setCharacter(prevCharacter => ({
+            ...prevCharacter,
+            xp: newXP
+        }));
+    };
+
+    // Simplified useMemo call
     const derivedStats = useMemo(() => {
         return calculateDerivedStats(character);
-    })
+    }, [character]);
 
     // Derive racial adjustment string
     let racialAdjDisplay = 'none';
@@ -123,177 +157,259 @@ export default function CharacterSheet() {
     }
 
     return(
-      <>
-        <div className="page-header general-box">
-            <h1>D&D Be...fore</h1>
-        </div>
-    <div className="wrapper">
+        <>
+            <div className="page-header full-page-grid">
+                <h1>D&D Be...fore</h1>
+            <div className="wrapper">
 
-        <div className="container-details details-box">
-            <div className="general-box">
-                <h2>Name: {character.name}</h2>
-                {/* Character class selector */}
-                <label className="general-box">
-                    <h3>Class: </h3>
-                     <select
-                        name="characterClass"
-                        value={character.characterClass || ""}
-                        onChange={handleClassChanges} // Handler set up
-                    >
-                    <option value= "">Choose class</option>
-                    {CLASS_OPTIONS.map(charClass => (
-                        <option key={charClass} value={charClass}>{capitaliseWords(charClass)}</option>
-                    ))}
-
-                    </select>
-
-                </label>
-
-                {/* RACE selector */}
-                <label className="general-box">
-                    <h3>Race: </h3>
-                    <select
-                        name="race"
-                        value={character.race || ""}
-                        onChange={handleRaceChanges} // Use the new handler
-                        >
-                        <option value = "">Choose race</option> {/* Default Race value */}
-                        {RACE_OPTIONS.map(race => (
-                            <option key={race} value={race}>{capitaliseWords(race)}</option>
-                        ))}
-                    </select>
-                </label>
-                (Racial Adj: {racialAdjDisplay})
-
-                <label className="general-box">
-                    <h3>Level: </h3>
-                    <input
-                        type="number"
-                        name="level"
-                        value={character.level}
-                        onChange={handleLevelChange}
-                        min="1"
-                        max="20"
-                        className="level-input"
-                    />
-                </label>
-            </div>
-
-            <div className="general-box">
-                <h2 className="">Equipment & Armour Class (AC)</h2>
-                <div className="general-box">
-                    {/* ARMOUR TYPE DROPDOWN */}
-                    <label className="flex flex-col">
-                        <h3>Armour Type: </h3>
-                        <select 
-                            name="armourType" // Key used in handleArmourChanges
-                            value={character.ac.armourType}
-                            onChange={handleArmourChanges}
-                            className="p-1 border rounded"
-                            >
-                            {ARMOUR_OPTIONS.map(armour => (
-                                <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
-                            ))}
-                        </select>
-                    </label>
-
-                    {/* SHIELD CHECKBOX */}
-                    <label className="check-box">
-                        <input 
-                            type="checkbox"
-                            name="shield" // Key used in handleArmourChanges
-                            checked={character.ac.shield}
-                            onChange={handleArmourChanges}
+                <div className="container area-box">
+                    
+                    {/* NAME AND IDENTITY SECTION */}
+                    <div className="">
+                        <h3>Character Identity</h3>
+                        
+                        {/* Name Input */}
+                        <label className="input-row">
+                            <span className="input-label">Name:</span>
+                            <input
+                                type="text"
+                                name="name"
+                                value={character.name}
+                                onChange={handleNameChange}
+                                className="text-input"
+                                placeholder="Enter character name"
                             />
-                        <span>Equipped with Shield</span>
-                    </label>
+                        </label>
+
+                        {/* Character Class Selector */}
+                        <label className="input-row">
+                            <span className="input-label">Class:</span>
+                            <select
+                                name="characterClass"
+                                value={character.characterClass || ""}
+                                onChange={handleClassChanges}
+                                className="select-input"
+                            >
+                                <option value="">Choose class</option>
+                                {CLASS_OPTIONS.map(charClass => (
+                                    <option key={charClass} value={charClass}>
+                                        {charClass.charAt(0).toUpperCase() + charClass.slice(1)}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+
+                        {/* Race Selector */}
+                        <label className="input-row">
+                            <span className="input-label">Race:</span>
+                            <select
+                                name="race"
+                                value={character.race || ""}
+                                onChange={handleRaceChanges}
+                                className="select-input"
+                            >
+                                <option value="">Choose race</option>
+                                {RACE_OPTIONS.map(race => (
+                                    <option key={race} value={race}>
+                                        {race.charAt(0).toUpperCase() + race.slice(1)}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                        
+                        {racialAdjDisplay !== 'none' && (
+                            <p className="racial-adj-display">Racial Adjustments: {racialAdjDisplay}</p>
+                        )}
+                    </div>
+
+                    {/* PROGRESSION SECTION */}
+                    <div className="">
+                        <h3>Experience & Progression</h3>
+                        
+                        {/* Experience Points */}
+                        <label className="input-row">
+                            <span className="input-label">Experience Points:</span>
+                            <input
+                                type="number"
+                                name="xp"
+                                value={character.xp}
+                                onChange={handleXPChange}
+                                min=""
+                                className="number-input"
+                            />
+                        </label>
+
+                        {/* Level (calculated from XP - read only) */}
+                        <label className="input-row">
+                            <span className="input-label">Level:</span>
+                            <input
+                                type="number"
+                                name="level"
+                                value={derivedStats.level}  // ← Changed from character.level
+                                readOnly  // ← Added read-only attribute
+                                className="number-input level-readonly"  // ← Added class for styling
+                            />
+                            <span className="input-note">(Calculated from XP)</span>
+                        </label>
+
+                        {/* Base HP */}
+                        <label className="input-row">
+                            <span className="input-label">Base Hit Points:</span>
+                            <input
+                                type="number"
+                                name="baseHP"
+                                value={character.hp.base}
+                                onChange={handleHPChange}
+                                min="1"
+                                className="number-input"
+                            />
+                            <span className="input-note">(Rolled HD total)</span>
+                        </label>
+
+                        {/* Display calculated max HP */}
+                        <div className="calculated-stat">
+                            <span className="stat-label">Maximum HP:</span>
+                            <span className="stat-value">{derivedStats.hpMax}</span>
+                        </div>
+                    </div>
+
+                    <div className="">
+                        <h3 className="">Equipment & Armour Class (AC)</h3>
+                        <div className="">
+                            {/* ARMOUR TYPE DROPDOWN */}
+                            <label className="flex flex-col">
+                                <h3>Armour Type: </h3>
+                                <select 
+                                    name="armourType"
+                                    value={character.ac.armourType}
+                                    onChange={handleArmourChanges}
+                                    className="p-1 border rounded"
+                                >
+                                    {ARMOUR_OPTIONS.map(armour => (
+                                        <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
+                                    ))}
+                                </select>
+                            </label>
+
+                            {/* SHIELD CHECKBOX */}
+                            <label className="check-box">
+                                <input 
+                                    type="checkbox"
+                                    name="shield"
+                                    checked={character.ac.shield}
+                                    onChange={handleArmourChanges}
+                                />
+                                <span>Equipped with Shield</span>
+                            </label>
+                        </div>
+
+                        {/* Display the calculated AC */}
+                        <div className="">
+                            <p className="no-margin">
+                                Front: {derivedStats.acFinal} | 
+                                Rear: {derivedStats.acComponents.base} |
+                                Dex Adj: {derivedStats.acComponents.dexAdj} |
+                                Shield Adj: {derivedStats.acComponents.shieldAdj}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="column-span">
+                        <h3 className="">Health Points (HP)</h3>
+                        <ul className="no-disc-list">
+                            <li className="hori-list">Base HP (Rolled): **{character.hp.base}**</li>
+                            <li className="hori-list">Con Bonus: **{derivedStats.conHitPointAdj}**</li>
+                            <li className="hori-list">Max HP: **{derivedStats.hpMax}**</li>
+                            <li className="hori-list">Current HP: **{derivedStats.currentHp}**</li>
+                        </ul>
+                    </div>
                 </div>
 
-                {/* Display the calculated AC */}
-                <div className="general-box">
-                    <p className="no-margin">
-                        Front:  {derivedStats.acFinal} | 
-                        Rear: {derivedStats.acComponents.base} |
-                        Dex Adj: {derivedStats.acComponents.dexAdj} |
-                        Shield Adj: {derivedStats.acComponents.shieldAdj}
-                    </p>
+                {/* STATS BLOCK  */}
+                <div className="container main-stats area-box"> 
+                    <StatBlock 
+                        statName="Strength" 
+                        score={character.scores.str}  // ← Changed from derivedStats.adjustedScores.str
+                        adjustedScore={derivedStats.adjustedScores.str}  // ← NEW: Pass adjusted for display
+                        derivedData={derivedStats}
+                        onScoreChange={handleScoreChange}
+                    />
+
+                    <StatBlock 
+                        statName="Dexterity" 
+                        score={character.scores.dex}  // ← Raw score
+                        adjustedScore={derivedStats.adjustedScores.dex}  // ← Adjusted score
+                        derivedData={derivedStats} 
+                        onScoreChange={handleScoreChange}
+                    />
+
+                    <StatBlock 
+                        statName="Constitution" 
+                        score={character.scores.con}  // ← Raw score
+                        adjustedScore={derivedStats.adjustedScores.con}  // ← Adjusted score
+                        derivedData={derivedStats} 
+                        onScoreChange={handleScoreChange}
+                        race={character.race}
+                    />
+
+                    <StatBlock 
+                        statName="Intelligence" 
+                        score={character.scores.int}  // ← Raw score
+                        adjustedScore={derivedStats.adjustedScores.int}  // ← Adjusted score
+                        derivedData={derivedStats} 
+                        onScoreChange={handleScoreChange}
+                    />
+
+                    <StatBlock 
+                        statName="Wisdom" 
+                        score={character.scores.wis}  // ← Raw score
+                        adjustedScore={derivedStats.adjustedScores.wis}  // ← Adjusted score
+                        derivedData={derivedStats} 
+                        onScoreChange={handleScoreChange}
+                    />
+
+                    <StatBlock 
+                        statName="Charisma" 
+                        score={character.scores.cha}  // ← Raw score
+                        adjustedScore={derivedStats.adjustedScores.cha}  // ← Adjusted score
+                        derivedData={derivedStats} 
+                        onScoreChange={handleScoreChange}
+                    />
                 </div>
+
+                <div className= "combat-stats area-box">
+                    <CombatStatsDisplay 
+                    combat={derivedStats.combat}
+                    characterClass={character.characterClass}
+                    characterLevel={derivedStats.level}
+                    />
+                </div>
+
+                <div className="saving-throws-block area-box column-span">
+                    {/* SAVING THROWS */}
+                    <SavingThrows
+                        savingThrows={derivedStats.savingThrows}
+                        characterClass={character.characterClass}
+                        characterLevel={derivedStats.level}
+                        magicalDefenseAdj={derivedStats.wisMagicalDefenseAdj}
+                    />
+                </div>
+                <div className="spell-immunities-block column-span">
+                    {/* Any spell immunities derived from Class, Race or Wisdom score */}
+                    <SpellImmunitiesDisplay 
+                        immunities={derivedStats.wisSpellImmunity}
+                        wisdomScore={derivedStats.adjustedScores.wis}
+                    />
+                </div>
+                <div className="class-abilities-block column-span">
+                    <ClassAbilitiesDisplay
+                        characterClass={character.characterClass}
+                        characterLevel={derivedStats.level}
+                    />
+                </div>
+       
             </div>
-
-            <div className="general-box">
-                <h2 className="">Health Points (HP)</h2>
-                <ul className="no-disc-list">
-                    <li className="hori-list">Base HP (Rolled): **{character.hp.base}**</li>
-                    <li className="hori-list">Con Bonus: **{derivedStats.conHitPointAdj}**</li>
-                    <li className="hori-list">Max HP: **{derivedStats.hpMax}**</li>
-                    <li className="hori-list">Current HP: **{derivedStats.currentHp}**</li>
-                </ul>
             </div>
-        </div>
-
-            {/* STATS BLOCK  */}
-        <div className="container area-box"> 
-            {/* The grid classes are an example to display them nicely */}
-            <StatBlock 
-                statName="Strength" 
-                score={derivedStats.adjustedScores.str} 
-                derivedData={derivedStats} 
-                />
-
-            <StatBlock 
-                statName="Dexterity" 
-                score={derivedStats.adjustedScores.dex} 
-                derivedData={derivedStats} 
-                />
-
-            <StatBlock 
-                statName="Constitution" 
-                score={derivedStats.adjustedScores.con} 
-                derivedData={derivedStats} 
-                />
-
-            <StatBlock 
-                statName="Intelligence" 
-                score={derivedStats.adjustedScores.int} 
-                derivedData={derivedStats} 
-                />
-
-            <StatBlock 
-                statName="Wisdom" 
-                score={derivedStats.adjustedScores.wis} 
-                derivedData={derivedStats} 
-                />
-
-            <StatBlock 
-                statName="Charisma" 
-                score={derivedStats.adjustedScores.cha} 
-                derivedData={derivedStats} 
-                />
-
-        </div>
-        <div className="saving-throws-block">
-            {/* SAVING THROWS - ADD THIS */}
-            <SavingThrows
-                savingThrows={derivedStats.savingThrows}
-                characterClass={character.characterClass}
-                characterLevel={character.level}
-            />
-            
-            {/* Any spell immunities derived from Class, Race or Wisdom score */}
-            <SpellImmunitiesDisplay 
-            immunities={derivedStats.wisSpellImmunity}
-            wisdomScore={derivedStats.adjustedScores.wis}
-            />
-
-            <CombatStatsDisplay 
-            combat={derivedStats.combat}
-            characterClass={character.characterClass}
-            characterLevel={character.level}
-            />
-
-        </div>          
-        </div>
-      </>
+        </>
     )
 }
-

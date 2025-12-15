@@ -139,15 +139,33 @@ function getCumulativeImmunities(wisTable, characterWis) {
 export function calculateDerivedStats(character) {
     const results = {};
 
-    // --- STEP 1: GET RACE DATA ---
+    // --- STEP 1: Calculate level from XP
+    const charClassKey = character.characterClass.toLowerCase();
+    let calculatedLevel = 1;
+
+    if (charClassKey && charClasses[charClassKey]) {
+        const levelProg = charClasses[charClassKey].levelProg;
+        for (let lvl = 1; lvl<=20; lvl++) {
+            if(levelProg[lvl] && character.xp >= levelProg[lvl].xp) {
+                calculatedLevel = lvl;
+            } else {
+                break;
+            }
+        }
+    }
+
+    // Store the calculated level
+    results.level = calculatedLevel;
+    const level = calculatedLevel;  // Use this throughout the function
+
+
+    // --- STEP 2: GET RACE DATA ---
     const race = character.race.toLowerCase();
     const raceData = raceMods[race] || { statAdj: {}, saveBonus: null };
     const statAdjustments = raceData.statAdj || {};
 
-    // Get character level
-    const level = character.level;
 
-    // --- STEP 2: CALCULATE ADJUSTED ABILITY SCORES ---
+    // --- STEP 3: CALCULATE ADJUSTED ABILITY SCORES ---
     // Apply racial adjustments and clamp between 1 and 25
     const str = clamp(character.scores.str + (statAdjustments.str || 0), 1, 25);
     const dex = clamp(character.scores.dex + (statAdjustments.dex || 0), 1, 25);
@@ -160,7 +178,8 @@ export function calculateDerivedStats(character) {
     results.adjustedScores = { str, dex, con, int, wis, cha };
     results.raceAdjustments = statAdjustments;
 
-    // --- STEP 3: LOOK UP ABILITY SCORE MODIFIERS ---
+
+    // --- STEP 4: LOOK UP ABILITY SCORE MODIFIERS ---
 
     // STRENGTH
     const strMods = strTable[str] || {};
@@ -207,12 +226,14 @@ export function calculateDerivedStats(character) {
     results.chaLoyaltyBase = chaMods.loyaltyBase || 0;
     results.chaReactionAdj = chaMods.reactionAdj || 0;
 
-    // --- STEP 4: CALCULATE HIT POINTS ---
+
+    // --- STEP 5: CALCULATE HIT POINTS ---
     const baseHp = character.hp.base;
     const hpBonus = results.conHitPointAdj * level;
     results.hpMax = baseHp + hpBonus;
 
-    // --- STEP 5: CALCULATE ARMOUR CLASS ---
+
+    // --- STEP 6: CALCULATE ARMOUR CLASS ---
     const armourType = character.ac.armourType.trim() || 'none';
     const hasShield = character.ac.shield;
     const shieldBonus = -1;
@@ -233,9 +254,9 @@ export function calculateDerivedStats(character) {
         shieldAdj: shieldAdj
     };
 
-    // --- STEP 6: CLASS CHECK (Defensive Guard) ---
+
+    // --- STEP 7: CLASS CHECK (Defensive Guard) ---
     const selectedClass = character.characterClass || "";
-    const charClassKey = selectedClass.toLowerCase();
 
     if (!charClassKey || !charClasses[charClassKey]) {
         // No class selected - return safe defaults
@@ -254,34 +275,36 @@ export function calculateDerivedStats(character) {
         return results;
     }
 
-    // --- STEP 7: CALCULATE SAVING THROWS (Class-dependent) ---
+
+    // --- STEP 8: CALCULATE SAVING THROWS (Class-dependent) ---
     const classData = charClasses[charClassKey];
 
-    // LAYER 1: Get base saves from class progression
-    const baseSaves = classData.levelProg[level].saveThrow;
+        // LAYER 1: Get base saves from class progression
+        const baseSaves = classData.levelProg[level].saveThrow;
 
-    // LAYER 2: Apply class save bonus (Paladin: 2, Fighter: 0)
-    const classSaveBonus = classData.classAbilities.saveVal || 0;
-    const savesWithClassBonus = baseSaves.map(save => save - classSaveBonus);
+        // LAYER 2: Apply class save bonus (Paladin: 2, Fighter: 0)
+        const classSaveBonus = classData.classAbilities.saveVal || 0;
+        const savesWithClassBonus = baseSaves.map(save => save - classSaveBonus);
 
-    // LAYER 3: Calculate racial save bonus amount (if any)
-    let racialBonus = 0;
-    if (raceData.saveBonus && raceData.saveBonus.appliesTo) {
-        racialBonus = getRacialSaveBonus(
-            raceData.saveBonus,
-            { str, dex, con, int, wis, cha },
-            conTable
+        // LAYER 3: Calculate racial save bonus amount (if any)
+        let racialBonus = 0;
+        if (raceData.saveBonus && raceData.saveBonus.appliesTo) {
+            racialBonus = getRacialSaveBonus(
+                raceData.saveBonus,
+                { str, dex, con, int, wis, cha },
+                conTable
+            );
+        }
+
+        // LAYER 4: Expand to detailed subcategories and apply racial bonuses
+        results.savingThrows = expandSavingThrows(
+            savesWithClassBonus,
+            raceData,
+            racialBonus
         );
-    }
 
-    // LAYER 4: Expand to detailed subcategories and apply racial bonuses
-    results.savingThrows = expandSavingThrows(
-        savesWithClassBonus,
-        raceData,
-        racialBonus
-    );
 
-    // --- STEP 8: CALCULATE THAC0 AND ATTACKS ---
+    // --- STEP 9: CALCULATE THAC0 AND ATTACKS ---
 
     // Get base THAC0 from class progression
     const baseThac0 = classData.levelProg[level].thaco;

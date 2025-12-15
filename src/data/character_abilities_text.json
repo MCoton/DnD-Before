@@ -1,17 +1,23 @@
 {
     "paladin": {
+        "detectEvil" : "A paladin can detect the presence of evil intent up to 60 feet away by concentrating on locating evil in a particular direction. They can do this as often as desired, but each attempt takes one round. This ability detects evil monsters and characters.",
         "savebontext": "Saving Throws. A paladin receives a +2 bonus to all saving throws.",
         "saveVal": 2,
         "immunityText": "Disease immunity. A paladin is immune to all forms of disease. (Note that certain magical afflictions—lycanthropy and mummy rot—are curses and not diseases.)",
-        "layOnText": "Lay on Hands. The paladin restores 2 hit points per experience level. They can heal themself or someone else",
+        "layOnText": "Lay on Hands. Once per day a Paladin can restores 2 hit points per experience level. They can heal themself or someone else",
         "layOnVal": 2,
         "cureDisText": "Cure Diseases. A paladin can cure diseases of all sorts (though not cursed afflictions such as lycanthropy). Once per week for each five levels of experience (once per week at levels 1 through 5, twice per week at levels 6 through 10, etc.).",
-
         "protEvilText": "Protection from Evil. A paladin is surrounded by an aura of protection with a 10-foot radius. Within this radius, all summoned and specifically evil creatures suffer a -1 penalty to their attack rolls, regardless of whom they attack. Creatures affected by this aura can spot its source easily, even if the paladin is disguised.",
         "holyWeap": "Holy Weapons. A paladin using a holy sword projects a circle of power 10 feet in diameter when the sword is unsheathed and held. This power dispels hostile magic of a level up to the paladin's experience level. (A holy sword is a very special weapon; if your paladin acquires one, the DM will explain its other powers.)",
         "faithMount": "Faithful Mount. A paladin may call for their war horse upon reaching 4th level, or anytime thereafter. This faithful steed need not be a horse; it may be whatever sort of creature is appropriate to the character (as decided by the DM). A paladin's war horse is a very special animal, bonded by fate to the warrior. The paladin does not really 'call' the animal, nor does the horse instantly appear in front of them. Rather, the character must find their war horse in some memorable way, most frequently by a specific quest."
     },
     "ranger": {
-
+        "tracking" : "Tracking (Skill). You automatically gain the Tracking skill without expending a non-weapon proficiency.",
+        "survival" : "Survival (Skill). You automatically gain the Survival skill. The ranger is exceptionally skilled at surviving harsh conditions associated with his Primarv Terrain.",
+        "dualWield" : "Dual Wielding. A ranger may use two weapons simultaneously without the standard penalties if wearing Ring Mail or lighter armour. The following restrictions also apply; the main weapon is usable one handed, the second be smaller in size and weigh less than the main weapon",
+        "stealth" : "Stealth. You can also hide in shadows and move silently while wearing armour less than AC 7 or lower e.g. Ring Mail",
+        "speciesEnemy" : "Species Enemy. You have a particular enmity with a particular specied. Choose this before advancing to 2nd level. You gain +4 to hit when fighting this enemy and (Charisma) Reaction Penalty of -4 when seeing them.",
+        "animalEmpathy" : "Animal Empathy. Rangershave an innate understanding of animal behavior giving a limited ability to influence their emotions and manipulate their behavior. Animal saves vs Rods minus the Rangers modifier",
+        "nature" : "Nature Lore. All rangers have an inherent understanding of natural lore, encompassing a broad set of principles involving conservation, ecology, and natural order. Though not every ranger knows specific details about particular situations, all of them understand the general concepts at work."
     }
 }

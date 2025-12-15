@@ -15,7 +15,7 @@ export default function SpellImmunitiesDisplay({ immunities, wisdomScore }) {
     }
 
     return (
-        <div className="spell-immunities-block area-box details-box">
+        <div className="area-box details-box">
             <h3 className="title">Spell Immunities</h3>
             <hr className="style13"></hr>
             <p className='immunity-text'> {...immunities.sort().join(', ')} </p>

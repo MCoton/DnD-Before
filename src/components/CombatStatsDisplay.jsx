@@ -12,7 +12,7 @@ export default function CombatStatsDisplay({ combat, characterClass, characterLe
     // Don't render if no combat data
     if (!combat) {
         return (
-            <div className="combat-stats-block area-box details-box">
+            <div className="">
                 <h2 className="title">Combat Statistics</h2>
                 <hr className="style14"></hr>
                 <p className="no-class-message">
@@ -23,8 +23,8 @@ export default function CombatStatsDisplay({ combat, characterClass, characterLe
     }
 
     return (
-        <div className="combat-stats-block area-box details-box">
-            <h2 className="title">Combat Statistics</h2>
+        <div className="">
+            <h3 className="title">Combat Statistics</h3>
             <hr className="style14"></hr>
 
             <div className="combat-grid">
