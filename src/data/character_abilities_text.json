@@ -19,5 +19,16 @@
         "speciesEnemy" : "Species Enemy. You have a particular enmity with a particular specied. Choose this before advancing to 2nd level. You gain +4 to hit when fighting this enemy and (Charisma) Reaction Penalty of -4 when seeing them.",
         "animalEmpathy" : "Animal Empathy. Rangershave an innate understanding of animal behavior giving a limited ability to influence their emotions and manipulate their behavior. Animal saves vs Rods minus the Rangers modifier",
         "nature" : "Nature Lore. All rangers have an inherent understanding of natural lore, encompassing a broad set of principles involving conservation, ecology, and natural order. Though not every ranger knows specific details about particular situations, all of them understand the general concepts at work."
+    },
+    "fighter": {
+        "specialise" : "Fighters can double specialise in weapons. There may be house rules regarding how it's handled, ask the DM"
+    },
+    "mage" : {
+        "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required.",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
+    },
+    "specialistWizard" : {
+    "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required. 1 of the starting spells can be of the Specialist Wizard's specialty (1st level spell only) without making a learn spells roll",
+    "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     }
 }
