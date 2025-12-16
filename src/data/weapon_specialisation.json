@@ -1,0 +1,33 @@
+{
+  "proficient": {
+    "slots": 1,
+    "name": "Proficient",
+    "bonuses": {
+      "attackBonus": 0,
+      "damageBonus": 0,
+      "description": "No attack penalty"
+    }
+  },
+  "expert": {
+    "slots": 2,
+    "name": "Expert",
+    "bonuses": {
+      "attackBonus": 1,
+      "damageBonus": 2,
+      "attacksPerRound": "+1/2 for melee, +1 for ranged",
+      "description": "+1 to hit, +2 damage, bonus attacks"
+    },
+    "restrictedTo": ["warrior"]
+  },
+  "master": {
+    "slots": 3,
+    "name": "Master",
+    "bonuses": {
+      "attackBonus": 2,
+      "damageBonus": 3,
+      "attacksPerRound": "+1 for melee, +2 for ranged",
+      "description": "+2 to hit, +3 damage, more bonus attacks"
+    },
+    "restrictedTo": ["fighter"]
+  }
+}

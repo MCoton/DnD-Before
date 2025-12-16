@@ -407,6 +407,173 @@ div.saving-throws-block, h3#saves-title {
     font-weight: normal;
 }
 
+/* Weapon Proficiencies */
+.weapon-proficiencies-block {
+  grid-column: 1 / -1;
+  margin-top: var(--spacing-md);
+}
+
+.proficiency-summary {
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+}
+
+.proficiency-summary p {
+  margin: var(--spacing-sm) 0;
+}
+
+.remaining-slots {
+  color: var(--color-accent-secondary);
+  font-weight: bold;
+}
+
+.speciALISATION-note {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.proficiency-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.proficiency-item {
+  background-color: var(--color-bg-tertiary);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  border-radius: 4px;
+  border-left: 3px solid var(--color-accent-primary);
+}
+
+.weapon-info {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+.weapon-name {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.spec-level {
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.spec-proficient {
+  background-color: #555;
+  color: #ddd;
+}
+
+.spec-expert {
+  background-color: #2a5298;
+  color: #fff;
+}
+
+.spec-master {
+  background-color: #c0e226;
+  color: #000;
+}
+
+.slots-used {
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+}
+
+.spec-bonuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg-secondary);
+  border-radius: 4px;
+}
+
+.spec-bonuses .bonus {
+  background-color: var(--color-accent-secondary);
+  color: #000;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.proficiency-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.upgrade-btn,
+.downgrade-btn,
+.remove-btn {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9em;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.upgrade-btn {
+  background-color: #2a5298;
+  color: white;
+  border: none;
+}
+
+.upgrade-btn:hover {
+  background-color: #3a62a8;
+}
+
+.downgrade-btn {
+  background-color: #666;
+  color: white;
+  border: none;
+}
+
+.downgrade-btn:hover {
+  background-color: #777;
+}
+
+.remove-btn {
+  background-color: #aa3333;
+  color: white;
+  border: none;
+}
+
+.remove-btn:hover {
+  background-color: #bb4444;
+}
+
+.add-proficiency {
+  margin-top: var(--spacing-lg);
+  padding: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+}
+
+.weapon-select {
+  width: 100%;
+  max-width: 400px;
+  padding: var(--spacing-sm);
+  font-size: 1em;
+}
+
+.no-proficiencies,
+.slots-full {
+  text-align: center;
+  padding: var(--spacing-lg);
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
 /* ============================================================================
    MEDIA QUERIES - Light Mode
    ============================================================================ */

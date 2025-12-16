@@ -1,0 +1,101 @@
+{
+  "arrow sheaf":{
+    "name":"Arrow, sheaf (12)",
+    "cost":"3 gp",
+    "weight":1,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"bow long",
+    "damage s-m":"1d8",
+    "damage lg":"1d8",
+    "knockdown":"d6"
+  },
+  "arrow flight":{
+    "name":"Arrow, flight (12)",
+    "cost":"3 gp",
+    "weight":1,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"bow long",
+    "damage s-m":"1d6",
+    "damage lg":"1d6",
+    "knockdown":"d4"
+  },
+  "quarrel hand":{
+    "name":"Quarrel, hand (12)",
+    "cost":"1 gp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"crossbow hand",
+    "damage s-m":"special",
+    "damage lg":"special",
+    "knockdown":null
+  },
+  "quarrel light":{
+    "name":"Quarrel, light (12)",
+    "cost":"1 gp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"crossbow light",
+    "damage s-m":"special",
+    "damage lg":"special",
+    "knockdown":null
+  },
+  "quarrel heavy":{
+    "name":"Quarrel, heavy (12)",
+    "cost":"2 gp",
+    "weight":1,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"crossbow heavy",
+    "damage s-m":"special",
+    "damage lg":"special",
+    "knockdown":null
+  },
+  "sling bullet":{
+    "name":"Sling bullet",
+    "cost":"2 cp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"sling",
+    "damage s-m":"1d4+1",
+    "damage lg":"1d6+1",
+    "knockdown":"d4"
+  },
+  "sling stone":{
+    "name":"Sling stone",
+    "cost":"0 gp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"sling",
+    "damage s-m":"1d4",
+    "damage lg":"1d4",
+    "knockdown":"d4"
+  },
+  "staff sling bullet":{
+    "name":"Staff sling bullet",
+    "cost":"1 cp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"staff sling",
+    "damage s-m":"1d4+1",
+    "damage lg":"1d6+1",
+    "knockdown":"d6"
+  },
+  "staff sling stone":{
+    "name":"Staff sling stone",
+    "cost":"0 gp",
+    "weight":0.5,
+    "size":"S",
+    "type":"Ammunition",
+    "usedBy":"staff sling",
+    "damage s-m":"1d4",
+    "damage lg":"1d4",
+    "knockdown":"d6"
+  }
+}
