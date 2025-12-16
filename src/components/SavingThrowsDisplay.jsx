@@ -72,7 +72,7 @@ export default function SavingThrowsDisplay({ savingThrows, magicalDefenseAdj })
                             <ul className="subcategory-list no-padding centered no-disc-list">
                                 {category.subcategories.map((sub) => (
                                     <li key={sub.key} className="save-entry hori-list">
-                                        <span className="save-label ">{sub.label}: </span>
+                                        <span className="save-label"> {sub.label}: </span>
                                         <span className="save-value">{savingThrows[sub.key]}</span>
                                     </li>
                                 ))}

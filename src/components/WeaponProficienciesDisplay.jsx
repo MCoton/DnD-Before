@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import weapons from "../data/weapons.json";
 import charClasses from "../data/character_classes.json";
 import specialisation from "../data/weapon_specialisation.json";
@@ -32,7 +32,7 @@ export default function WeaponProficiencies({
     if(!characterClass) {
         return (
             <div className="weapon-proficiencies-block area-box details-box">
-                <h2 classNam="title">Weapon Proficiencies</h2>
+                <h2 className="title">Weapon Proficiencies</h2>
                 <hr className="style14"></hr>
                 <p className="no-class-message">
                     Pick a class you raging numpty.

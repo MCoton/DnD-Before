@@ -431,7 +431,7 @@
             "20": {"saveThrow": [10, 5, 7, 9, 6],       "xp": 3750000,  "hitDice":10, "lvlHPAdj": 10,   "thaco": 14, "attacksPerRound": 1, "weaponSlots": 4, "nonWeaponSlots": 10, "mageSpells": [5, 5, 5, 5, 5, 4, 3, 3, 2]}
         }
     },
-    "specialistWizard": {
+    "specialist wizard": {
         "group": "wizard",
         "hitDie": 4,
         "primeStats": ["Intelligence"],

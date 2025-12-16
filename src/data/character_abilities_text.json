@@ -27,8 +27,8 @@
         "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required.",
         "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
-    "specialistWizard" : {
-    "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required. 1 of the starting spells can be of the Specialist Wizard's specialty (1st level spell only) without making a learn spells roll",
-    "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
+    "specialist wizard" : {
+        "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required. 1 of the starting spells can be of the Specialist Wizard's specialty (1st level spell only) without making a learn spells roll",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     }
 }
