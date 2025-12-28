@@ -82,7 +82,7 @@
 body {
   margin: 0;
   padding: 0;
-  min-width: 320px;
+  min-width: 314px;
   min-height: 100vh;
   background-color: var(--color-bg-primary);
 }
@@ -90,6 +90,8 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 /* ============================================================================
@@ -215,10 +217,12 @@ hr.style14 {
    LAYOUT GRID
    ============================================================================ */
 .page-header {
-  width: 100%;
+  width: 100%;  /* ← Use viewport width instead of 100% */
+  /* margin-left: calc(50% - 50vw);  ← Center it and extend to edges */
   padding: var(--spacing-lg);
   background-color: var(--color-bg-elevated);
   text-align: center;
+  box-sizing: border-box;  /* ← Ensure padding doesn't add to width */
 }
 
 .wrapper {
@@ -244,6 +248,17 @@ hr.style14 {
   }
 }
 
+/* FORCE single column on narrow screens */
+@media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .wrapper > * {
+    grid-column: 1 / -1 !important;  /* Force all children to span full width */
+  }
+}
+
 /* ============================================================================
    CONTAINERS & BOXES
    ============================================================================ */
@@ -264,10 +279,7 @@ hr.style14 {
 .container {
   display: grid;
   grid-template-columns: 1fr;  /* Mobile: stack vertically */
-  align-items: stretch;
   gap: var(--spacing-sm);
-  padding: var(--spacing-sm);
-  background-color: var(--color-bg-elevated);
 }
 
 /* Tablet: 2 columns */
@@ -285,7 +297,7 @@ hr.style14 {
 }
 
 .container div {
-  grid-auto-flow: column;
+  /* grid-auto-flow: column; */
   background-color: #1d1c1c;
   padding: 5px 2px 0;
   font-size: 15px;
@@ -335,7 +347,7 @@ div.saving-throws-block, h3#saves-title {
 /* Tablet: 3 columns */
 @media (min-width: 768px) {
   .saves-grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
 
@@ -454,7 +466,7 @@ div.saving-throws-block, h3#saves-title {
 /* Tablet and up: 2 columns */
 @media (min-width: 768px) {
   .combat-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   }
 }
 
