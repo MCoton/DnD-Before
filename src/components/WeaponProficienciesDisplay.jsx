@@ -1,7 +1,7 @@
 import react from 'react';
-import weapons from "../data/weapons.json";
-import charClasses from "../data/character_classes.json";
-import specialisation from "../data/weapon_specialisation.json";
+import weapons from "../data/equipment/weapons.json";
+import charClasses from "../data/classes/character_classes.json";
+import specialisation from "../data/equipment/weapon_specialisation.json";
 
 /**
  * Displays weapon proficiencies and allows managing them

@@ -1,5 +1,5 @@
 import React from 'react';
-import charClasses from '../data/character_classes.json';
+import charClasses from '../data/classes/character_classes.json';
 
 
 /**

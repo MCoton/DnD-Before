@@ -1,5 +1,5 @@
 import React from 'react';
-import charClassAbilities from '../data/character_abilities_text.json';
+import charClassAbilities from '../data/classes/character_abilities_text.json';
 import { capitaliseWords } from '../utils';
 
 /**

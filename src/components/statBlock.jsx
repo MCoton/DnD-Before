@@ -1,5 +1,5 @@
-import React from "react";
-import raceMods from '../data/race_mods.json';
+import React, { useState, useEffect } from "react";
+import raceMods from '../data/races/race_mods.json';
 import { clamp } from '../utils';
 
 /**
@@ -22,18 +22,52 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
     // Check if derivedData is available before attempting lookups
     if (!derivedData) return null;
     
+    // Local state to allow empty input temporarily
+    const [inputValue, setInputValue] = useState(String(adjustedScore));
+    
+    // Update local state when adjustedScore prop changes (from external updates)
+    useEffect(() => {
+        setInputValue(String(adjustedScore));
+    }, [adjustedScore]);
+    
     // Handle input change
     const handleChange = (e) => {
-        const newAdjustedValue = parseInt(e.target.value) || 1;  // ← Changed variable name
-        const clampedAdjustedValue = clamp(newAdjustedValue, 1, 25);  // ← Now it's defined
+        const inputVal = e.target.value;
+        
+        // Allow empty string temporarily so user can clear the field
+        if (inputVal === '') {
+            setInputValue('');
+            return;
+        }
+        
+        // Parse the input value
+        const parsedValue = parseInt(inputVal, 10);
+        
+        // If not a valid number, don't update
+        if (isNaN(parsedValue)) {
+            return;
+        }
+        
+        // Update local state to show what user is typing
+        setInputValue(inputVal);
+        
+        // Clamp the value to valid range
+        const clampedAdjustedValue = clamp(parsedValue, 1, 25);
 
         // Calculate what the raw score should be to achieve this adjusted score
         const racialAdjustment = adjustedScore - score;
-        const newRawScore = clampedAdjustedValue - racialAdjustment;  // ← Now this works
+        const newRawScore = clampedAdjustedValue - racialAdjustment;
         const clampedRawScore = clamp(newRawScore, 1, 25);
 
         if(onScoreChange) {
-            onScoreChange(statPrefix, clampedRawScore);  // ← Only pass ONE value (the raw score)
+            onScoreChange(statPrefix, clampedRawScore);
+        }
+    }
+    
+    // Handle blur - if field is empty, restore the previous value
+    const handleBlur = () => {
+        if (inputValue === '' || isNaN(parseInt(inputValue, 10))) {
+            setInputValue(String(adjustedScore));
         }
     }
 
@@ -121,9 +155,11 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
                     </label>
                     <input
                         id={`${statPrefix}-input`}
-                        type="number"
-                        value={adjustedScore}
+                        type="text"
+                        inputMode="numeric"
+                        value={inputValue}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         min="1"
                         max="25"
                         className="stat-score-input"

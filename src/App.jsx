@@ -1,10 +1,10 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import './index.css'
 
-import armourTable from "./data/armour_class.json";
+import armourTable from "./data/equipment/armour_class.json";
 import { calculateDerivedStats } from "./rulesEngine";
-import raceMods from "./data/race_mods.json";
-import charClass from "./data/character_classes.json";
+import raceMods from "./data/races/race_mods.json";
+import charClass from "./data/classes/character_classes.json";
 import StatBlock from "./components/statBlock.jsx";
 import SavingThrows from "./components/SavingThrowsDisplay.jsx";
 import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
@@ -12,6 +12,7 @@ import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
 import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
 import WeaponProficiencies from "./components/WeaponProficienciesDisplay.jsx";
 import SpellSlotDisplay from "./components/SpellSlotDisplay.jsx";
+import WizardSpellsDisplay from "./components/WizardSpellsDisplay.jsx";
 import { capitaliseWords } from "./utils.js";
 
 // Object.keys() pulls all the base armour names directly for the dropdown.
@@ -65,6 +66,19 @@ export default function CharacterSheet() {
     // 'character' is the current state object.
     // 'setCharacter' is the function we call to change the state.
     const [character, setCharacter] = useState(initialCharacterState);
+    
+    // Local state for input fields to allow empty values temporarily
+    const [hpInputValue, setHpInputValue] = useState(String(character.hp.base));
+    const [xpInputValue, setXpInputValue] = useState(String(character.xp));
+    
+    // Update local input state when character state changes (from external updates)
+    useEffect(() => {
+        setHpInputValue(String(character.hp.base));
+    }, [character.hp.base]);
+    
+    useEffect(() => {
+        setXpInputValue(String(character.xp));
+    }, [character.xp]);
 
     // Function to handle changes in armour set up
     const handleArmourChanges = (e) => {
@@ -121,8 +135,23 @@ export default function CharacterSheet() {
     const handleHPChange = (e) => {
         const { value } = e.target;
         
-        // Allow any positive number for HP
-        const newHP = Math.max(1, parseInt(value) || 1);
+        // Update local state to show what user is typing
+        setHpInputValue(value);
+        
+        // Allow empty string temporarily
+        if (value === '') {
+            return;
+        }
+        
+        const parsedValue = parseInt(value, 10);
+        
+        // If not a valid number, don't update character state
+        if (isNaN(parsedValue)) {
+            return;
+        }
+        
+        // Allow any positive number for HP (minimum 1)
+        const newHP = Math.max(1, parsedValue);
         
         setCharacter(prevCharacter => ({
             ...prevCharacter,
@@ -132,17 +161,49 @@ export default function CharacterSheet() {
             }
         }));
     };
+    
+    // Handle HP input blur - restore value if empty
+    const handleHPBlur = () => {
+        if (hpInputValue === '' || isNaN(parseInt(hpInputValue, 10))) {
+            // Restore the current base HP value
+            setHpInputValue(String(character.hp.base));
+        }
+    };
 
     // Function to handle XP changes (auto-calculates level)
     const handleXPChange = (e) => {
         const { value } = e.target;
-        const newXP = Math.max(0, parseInt(value) || 0);
+        
+        // Update local state to show what user is typing
+        setXpInputValue(value);
+        
+        // Allow empty string temporarily
+        if (value === '') {
+            return;
+        }
+        
+        const parsedValue = parseInt(value, 10);
+        
+        // If not a valid number, don't update character state
+        if (isNaN(parsedValue)) {
+            return;
+        }
+        
+        const newXP = Math.max(0, parsedValue);
         
         // Simply update XP - level will be calculated in rulesEngine
         setCharacter(prevCharacter => ({
             ...prevCharacter,
             xp: newXP
         }));
+    };
+    
+    // Handle XP input blur - restore value if empty
+    const handleXPBlur = () => {
+        if (xpInputValue === '' || isNaN(parseInt(xpInputValue, 10))) {
+            // Restore the current XP value
+            setXpInputValue(String(character.xp));
+        }
     };
 
     // Function to update weapon proficiency (add or change slot count)
@@ -260,11 +321,13 @@ export default function CharacterSheet() {
                         <label className="input-row">
                             <span className="input-label">Experience Points:</span>
                             <input
-                                type="number"
+                                type="text"
+                                inputMode="numeric"
                                 name="xp"
-                                value={character.xp}
+                                value={xpInputValue}
                                 onChange={handleXPChange}
-                                min=""
+                                onBlur={handleXPBlur}
+                                min="0"
                                 className="number-input"
                             />
                         </label>
@@ -286,10 +349,12 @@ export default function CharacterSheet() {
                         <label className="input-row">
                             <span className="input-label">Base Hit Points:</span>
                             <input
-                                type="number"
+                                type="text"
+                                inputMode="numeric"
                                 name="baseHP"
-                                value={character.hp.base}
+                                value={hpInputValue}
                                 onChange={handleHPChange}
+                                onBlur={handleHPBlur}
                                 min="1"
                                 className="number-input"
                             />
@@ -407,7 +472,7 @@ export default function CharacterSheet() {
                     />
                 </div>
 
-                <div className= "combat-stats area-box">
+                <div className= "container combat-stats area-box">
                     <CombatStatsDisplay 
                     combat={derivedStats.combat}
                     characterClass={character.characterClass}
@@ -459,6 +524,16 @@ export default function CharacterSheet() {
                         characterClass={character.characterClass}
                         characterLevel={derivedStats.level}
                         />
+                </div>
+
+                {/* WIZARD SPELLS BROWSER */}
+                <div className="column-span">
+                    <WizardSpellsDisplay 
+                        characterClass={character.characterClass}
+                        characterLevel={derivedStats.level}
+                        intSpellLevel={derivedStats.intSpellLevel}
+                        intMaxSpellsPerLevel={derivedStats.intMaxSpellsPerLevel}
+                    />
                 </div>
             </div>
         </>

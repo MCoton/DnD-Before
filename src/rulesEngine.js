@@ -1,14 +1,14 @@
 // Rules Engine Imports
-import strTable from './data/strength_table.json';
-import dexTable from "./data/dexterity_table.json";
-import conTable from "./data/constitution_table.json";
-import intTable from "./data/intelligence_table.json";
-import wisTable from "./data/wisdom_table.json";
-import chaTable from "./data/charisma_table.json";
-import raceMods from "./data/race_mods.json";
-import charClasses from "./data/character_classes.json";
-import charAbilities from "./data/character_abilities_text.json"
-import armourTable from "./data/armour_class.json";
+import strTable from './data/statTables/strength_table.json';
+import dexTable from "./data/statTables/dexterity_table.json";
+import conTable from "./data/statTables/constitution_table.json";
+import intTable from "./data/statTables/intelligence_table.json";
+import wisTable from "./data/statTables/wisdom_table.json";
+import chaTable from "./data/statTables/charisma_table.json";
+import raceMods from "./data/races/race_mods.json";
+import charClasses from "./data/classes/character_classes.json";
+import charAbilities from "./data/classes/character_abilities_text.json"
+import armourTable from "./data/equipment/armour_class.json";
 import { SAVE_CATEGORY_MAP, SAVE_CATEGORY_LABELS } from './constants.js';
 import { capitaliseWords, clamp } from './utils.js';
 
