@@ -8,6 +8,7 @@ import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
 import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
 import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
 import WeaponProficiencies from "./components/WeaponProficienciesDisplay.jsx";
+import NonWeapProfDisplay from "./components/NonWeapProfDisplay.jsx";
 import SpellSlotDisplay from "./components/SpellSlotDisplay.jsx";
 import SpellDisplay from "./components/SpellDisplay.jsx";
 import charClasses from "./data/classes/character_classes.json";
@@ -47,6 +48,9 @@ const initialCharacterState = {
 
     // Weapon proficiencies (key = weaponId, value = slots invested)
     weaponProficiencies: {},
+
+    // Non-weapon proficiencies (array of proficiency names)
+    nonWeaponProficiencies: [],
 
     // Gear stats
     ac: {
@@ -114,6 +118,26 @@ export default function CharacterSheet() {
             return {
                 ...prevCharacter,
                 weaponProficiencies: newProficiencies
+            };
+        });
+    };
+
+    // Function to handle non-weapon proficiency changes
+    const handleNonWeaponProficiencyChange = (index, proficiencyName) => {
+        setCharacter(prevCharacter => {
+            const newProficiencies = [...(prevCharacter.nonWeaponProficiencies || [])];
+            
+            if (proficiencyName && proficiencyName !== '') {
+                // Adding a new proficiency - append to array
+                newProficiencies.push(proficiencyName);
+            } else if (index < newProficiencies.length) {
+                // Removing a proficiency at a specific index
+                newProficiencies.splice(index, 1);
+            }
+            
+            return {
+                ...prevCharacter,
+                nonWeaponProficiencies: newProficiencies
             };
         });
     };
@@ -385,15 +409,32 @@ export default function CharacterSheet() {
                     />
                 </div>
 
-                {/* WEAPON PROFICIENCIES */}
-                <div>
-                    <WeaponProficiencies 
-                        characterClass={character.characterClass}
-                        characterLevel={derivedStats.level}
-                        proficiencies={character.weaponProficiencies}
-                        onAddProficiency={handleAddProficiency}
-                        onRemoveProficiency={handleRemoveProficiency}
+                {/* PROFICIENCIES CONTAINER */}
+                <div className="proficiencies-container">
+                    {/* WEAPON PROFICIENCIES */}
+                    <div className="proficiency-section">
+                        <WeaponProficiencies
+                            characterClass={character.characterClass}
+                            characterLevel={derivedStats.level}
+                            proficiencies={character.weaponProficiencies}
+                            onAddProficiency={handleAddProficiency}
+                            onRemoveProficiency={handleRemoveProficiency}
+                            baseThac0={derivedStats.combat?.baseThac0}
+                            strHitProb={derivedStats.strHitProb}
+                            dexMissileAdj={derivedStats.dexMissileAdj}
                         />
+                    </div>
+
+                    {/* NON-WEAPON PROFICIENCIES */}
+                    <div className="proficiency-section">
+                        <NonWeapProfDisplay
+                            characterClass={character.characterClass}
+                            characterLevel={derivedStats.level}
+                            abilityScores={derivedStats.adjustedScores}
+                            proficiencies={character.nonWeaponProficiencies || []}
+                            onProficiencyChange={handleNonWeaponProficiencyChange}
+                        />
+                    </div>
                 </div>
                 
                 {/* SPELL SLOTS */}

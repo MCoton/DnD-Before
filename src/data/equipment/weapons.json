@@ -528,5 +528,181 @@
     "speed":8,
     "type":"Melee",
     "weight":2
+  },
+  "halberd":{
+    "cost":"7 gp",
+    "damageL":"1d10",
+    "damageS-M":"1d6+1",
+    "knockdown":"d10",
+    "name":"Halberd",
+    "size":"L",
+    "speed":9,
+    "type":"Melee",
+    "weight":15
+  },
+  "glaive":{
+    "cost":"6 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6",
+    "knockdown":"d8",
+    "name":"Glaive",
+    "size":"L",
+    "speed":8,
+    "type":"Melee",
+    "weight":8
+  },
+  "guisarme":{
+    "cost":"5 gp",
+    "damageL":"2d4",
+    "damageS-M":"1d8",
+    "knockdown":"d8",
+    "name":"Guisarme",
+    "size":"L",
+    "speed":8,
+    "type":"Melee",
+    "weight":8
+  },
+  "bill":{
+    "cost":"7 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6+1",
+    "knockdown":"d8",
+    "name":"Bill",
+    "size":"L",
+    "speed":9,
+    "type":"Melee",
+    "weight":10
+  },
+  "fauchard":{
+    "cost":"5 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6",
+    "knockdown":"d8",
+    "name":"Fauchard",
+    "size":"L",
+    "speed":8,
+    "type":"Melee",
+    "weight":5
+  },
+  "military-pick":{
+    "cost":"8 gp",
+    "damageL":"1d6",
+    "damageS-M":"1d4+1",
+    "knockdown":"d6",
+    "name":"Military pick",
+    "size":"M",
+    "speed":7,
+    "type":"Melee",
+    "weight":6
+  },
+  "horsemans-flail":{
+    "cost":"8 gp",
+    "damageL":"1d6+1",
+    "damageS-M":"1d4+1",
+    "knockdown":"d6",
+    "name":"Horseman's flail",
+    "size":"S",
+    "speed":6,
+    "type":"Melee",
+    "weight":5
+  },
+  "horsemans-mace":{
+    "cost":"5 gp",
+    "damageL":"1d6",
+    "damageS-M":"1d4+1",
+    "knockdown":"d6",
+    "name":"Horseman's mace",
+    "size":"S",
+    "speed":6,
+    "type":"Melee",
+    "weight":4
+  },
+  "horsemans-pick":{
+    "cost":"7 gp",
+    "damageL":"1d6",
+    "damageS-M":"1d4",
+    "knockdown":"d6",
+    "name":"Horseman's pick",
+    "size":"S",
+    "speed":5,
+    "type":"Melee",
+    "weight":3
+  },
+  "rapier":{
+    "cost":"15 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6",
+    "knockdown":"d6",
+    "name":"Rapier",
+    "size":"M",
+    "speed":4,
+    "type":"Melee",
+    "weight":2
+  },
+  "quarterstaff":{
+    "cost":"0 gp",
+    "damageL":"1d6",
+    "damageS-M":"1d6",
+    "knockdown":"d6",
+    "name":"Quarterstaff",
+    "size":"L",
+    "speed":4,
+    "type":"Melee",
+    "weight":4
+  },
+  "voulge":{
+    "cost":"3 gp",
+    "damageL":"2d4",
+    "damageS-M":"1d8",
+    "knockdown":"d8",
+    "name":"Voulge",
+    "size":"L",
+    "speed":10,
+    "type":"Melee",
+    "weight":12
+  },
+  "bec-de-corbin":{
+    "cost":"8 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6+1",
+    "knockdown":"d8",
+    "name":"Bec de corbin",
+    "size":"L",
+    "speed":7,
+    "type":"Melee",
+    "weight":10
+  },
+  "lucern-hammer":{
+    "cost":"7 gp",
+    "damageL":"2d4",
+    "damageS-M":"1d6",
+    "knockdown":"d8",
+    "name":"Lucern hammer",
+    "size":"L",
+    "speed":9,
+    "type":"Melee",
+    "weight":15
+  },
+  "bill-guisarme":{
+    "cost":"7 gp",
+    "damageL":"2d4",
+    "damageS-M":"1d8",
+    "knockdown":"d8",
+    "name":"Bill-guisarme",
+    "size":"L",
+    "speed":9,
+    "type":"Melee",
+    "weight":12
+  },
+  "fauchard-fork":{
+    "cost":"6 gp",
+    "damageL":"1d8",
+    "damageS-M":"1d6",
+    "knockdown":"d8",
+    "name":"Fauchard-fork",
+    "size":"L",
+    "speed":8,
+    "type":"Melee",
+    "weight":8
   }
 }

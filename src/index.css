@@ -531,11 +531,41 @@ div.saving-throws-block, h3#saves-title {
 }
 
 /* =========================
+    Proficiencies Container
+  ========================= */
+.proficiencies-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  width: 100%;
+  grid-column: 1 / -1;
+}
+
+.proficiency-section {
+  flex: 1;
+  min-width: 0; /* Allows flex items to shrink below content size */
+}
+
+/* Desktop: side by side */
+@media (min-width: 768px) {
+  .proficiencies-container {
+    flex-direction: row;
+  }
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 767px) {
+  .proficiencies-container {
+    flex-direction: column;
+  }
+}
+
+/* =========================
     Weapon Proficiencies
   ========================= */
 .weapon-proficiencies-block {
-  grid-column: 1 / -1;
   margin-top: var(--spacing-md);
+  width: 100%;
 }
 
 .proficiency-summary {
@@ -558,6 +588,194 @@ div.saving-throws-block, h3#saves-title {
   font-size: 0.9em;
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+/* Weapon Proficiency Table */
+.weapon-proficiency-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-md);
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 600px; /* Minimum width for table content */
+}
+
+/* Wrap table in scrollable container on mobile */
+@media (max-width: 767px) {
+  .weapon-proficiency-table {
+    font-size: 0.85em;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .weapon-proficiency-table thead,
+  .weapon-proficiency-table tbody,
+  .weapon-proficiency-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .weapon-proficiency-table th,
+  .weapon-proficiency-table td {
+    padding: var(--spacing-xs);
+    font-size: 0.8em;
+  }
+  
+  .weapon-proficiency-table th {
+    white-space: nowrap;
+  }
+}
+
+.weapon-proficiency-table thead {
+  background-color: var(--color-bg-elevated);
+}
+
+.weapon-proficiency-table th {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+  border-bottom: 2px solid var(--color-border-default);
+  font-size: 0.9em;
+}
+
+.weapon-proficiency-table td {
+  padding: var(--spacing-sm) var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border-default);
+  font-size: 0.9em;
+}
+
+.weapon-proficiency-table tbody tr:hover {
+  background-color: var(--color-bg-elevated);
+}
+
+.weapon-proficiency-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.weapon-name-cell {
+  font-weight: 600;
+}
+
+.spec-level-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+.spec-level-cell .slots-used {
+  font-size: 0.8em;
+  color: var(--color-text-muted);
+}
+
+.thac0-cell {
+  text-align: center;
+}
+
+.thac0-value {
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+  font-size: 1.1em;
+}
+
+.thac0-breakdown {
+  display: block;
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-weight: normal;
+  margin-top: var(--spacing-xs);
+}
+
+.thac0-na {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.damage-cell {
+  text-align: center;
+  font-family: monospace;
+}
+
+.range-cell {
+  text-align: center;
+}
+
+.damage-type-cell {
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+}
+
+.speed-cell {
+  text-align: center;
+}
+
+.actions-cell {
+  text-align: center;
+}
+
+.proficiency-actions {
+  display: flex;
+  gap: var(--spacing-xs);
+  justify-content: center;
+}
+
+.proficiency-actions button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.2s;
+  min-width: 28px;
+}
+
+.proficiency-actions button:hover {
+  background-color: var(--color-accent-primary);
+  border-color: var(--color-accent-primary);
+  color: white;
+}
+
+.upgrade-btn {
+  background-color: var(--color-accent-secondary) !important;
+  color: white !important;
+}
+
+.downgrade-btn {
+  background-color: var(--color-bg-elevated) !important;
+}
+
+.remove-btn {
+  background-color: #d32f2f !important;
+  color: white !important;
+}
+
+.spec-bonuses-summary {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg-elevated);
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+.spec-bonuses-summary h4 {
+  margin: 0 0 var(--spacing-sm) 0;
+  color: var(--color-accent-secondary);
+  font-size: 1em;
+}
+
+.spec-bonus-item {
+  margin-bottom: var(--spacing-xs);
+}
+
+.spec-bonus-item .bonus {
+  color: var(--color-accent-secondary);
+  margin-left: var(--spacing-xs);
 }
 
 .proficiency-list {
@@ -697,6 +915,173 @@ div.saving-throws-block, h3#saves-title {
   padding: var(--spacing-lg);
   color: var(--color-text-muted);
   font-style: italic;
+}
+
+/* =========================
+   Non-Weapon Proficiencies
+   =========================*/
+.non-weapon-proficiencies-block {
+  margin-top: var(--spacing-md);
+  width: 100%;
+}
+
+.proficiency-summary {
+  margin-bottom: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+}
+
+.proficiency-summary p {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+.remaining-slots {
+  color: var(--color-accent-secondary);
+  font-weight: 600;
+}
+
+.proficiency-selection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
+}
+
+.proficiency-slot {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.proficiency-dropdown-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.proficiency-slot-number {
+  min-width: 80px;
+  font-weight: 600;
+  color: var(--color-text-label);
+}
+
+.proficiency-dropdown {
+  flex: 1;
+  min-width: 200px;
+  padding: var(--spacing-sm);
+  font-size: 1em;
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.proficiency-dropdown:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.proficiencies-table-container {
+  margin-top: var(--spacing-lg);
+}
+
+.proficiencies-table-title {
+  color: var(--color-accent-secondary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.1em;
+}
+
+.proficiencies-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  overflow: hidden;
+  min-width: 400px; /* Minimum width for table content */
+}
+
+@media (max-width: 767px) {
+  .proficiencies-table {
+    font-size: 0.85em;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .proficiencies-table thead,
+  .proficiencies-table tbody,
+  .proficiencies-table tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  .proficiencies-table th,
+  .proficiencies-table td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    font-size: 0.8em;
+  }
+}
+
+.proficiencies-table thead {
+  background-color: var(--color-bg-elevated);
+}
+
+.proficiencies-table th {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+  border-bottom: 2px solid var(--color-border-default);
+}
+
+.proficiencies-table td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.proficiencies-table tbody tr:hover {
+  background-color: var(--color-bg-secondary);
+}
+
+.proficiencies-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.proficiency-value {
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+  text-align: center;
+}
+
+.proficiency-slots-cost {
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+.remove-proficiency-btn {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1.2em;
+  padding: 0 var(--spacing-xs);
+  margin-left: var(--spacing-sm);
+  line-height: 1;
+  transition: color 0.2s;
+  vertical-align: middle;
+}
+
+.remove-proficiency-btn:hover {
+  color: var(--color-accent-secondary);
 }
 
 /* =========================
