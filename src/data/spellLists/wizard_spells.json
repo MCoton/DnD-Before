@@ -35,23 +35,6 @@
   },
   {
     "Spell Level": 1,
-    "Name": "Alarm",
-    "School": "Evocation",
-    "Range": 10,
-    "Damage": null,
-    "Duration": 4,
-    "AOE": "Up to a 20-ft. cube",
-    "Casting Time": 1,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "When an alarm spell is cast, the wizard causes a selected area to react to the presence of any creature larger than a normal rat - anything larger than about one-half cubic foot in volume or more than about three pounds in weight. The area of effect can be a portal, a section of floor, stairs, etc. As soon as any creature enters the warded area, touches it, or otherwise contacts it without speaking a password established by the caster, the alarm spell lets out a loud ringing that can be heard clearly within a 60-foot radius. (Reduce the radius by 10 feet for each interposing door and by 20 feet for each substantial interposing wall.)The sound lasts for one round and then ceases. Ethereal or astrally projected creatures do not trigger an alarm, but flying or levitating creatures, invisible creatures, or incorporeal or gaseous creatures do. The caster can dismiss the alarm with a single word.The material components of this spell are a tiny bell and a piece of very fine silver wire."
-  },
-  {
-    "Spell Level": 1,
     "Name": "Allure",
     "School": "Alteration",
     "Range": "Self",
@@ -66,23 +49,6 @@
       "Material"
     ],
     "Description": "To cast this spell, the transmuter must wash themselves in soap and water, creating a plethora of bubbles which they then cover themselves with. The washing process is magical. Any normal soap will be extra sudsy, helping to facilitate the process.When the wizard is done with washing, any area that retains bubbles is covered with a spell that increases one's perceived attractiveness. It should be noted that attractiveness is not the same as charisma, and this spell has no effect on one's charisma. For purposes of this spell, attractiveness is a non-standard stat based on a 3d6 roll, and this spell increases one's attractiveness to a minimum of 15, or by 1d4, whichever is higher. A character may not exceed 18 hotness.Allure persists until the caster speaks or makes any verbal sound. The spell similarly fails if the bubbles are washed off, or if the caster falls asleep. Should this spell be dispelled, the change is instant. All people viewing the subject see the transformation instantly. It is made even more apparent by the fact the caster is probably still covered in bubbles.Someone making physical contact with an Allured section of the caster (i.e. an area covered by unseen magic bubbles) will feel the bubbles, breaking them, and breaking the spell."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Allure",
-    "School": "Enchantment",
-    "Range": 120,
-    "Damage": null,
-    "Duration": 1,
-    "AOE": "1 person",
-    "Casting Time": 3,
-    "Save": "1/2",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "In casting this spell, the enchanter applies a small amount of perfume or cosmetics to themself, while softly chanting the real name of the target of the spell while they are in sight. Upon completing the spell, the target, if they fail their save, sees the caster as being far more attractive than they really are.It should be noted that attractiveness is not the same as charisma, and this spell has no effect on one's charisma. For purposes of this spell, attractiveness is a non-standard stat based on a 3d6 roll, and this spell increases one's attractiveness to a minimum of 15, or by 1d4, whichever is higher. A character may not exceed 18 hotness.Should the target pass their save, they feel uncannily disturbed by the caster, fading over the next 24 hours."
   },
   {
     "Spell Level": 1,
@@ -256,23 +222,6 @@
   },
   {
     "Spell Level": 1,
-    "Name": "Comprehend Languages",
-    "School": "Divination",
-    "Range": "Self",
-    "Damage": null,
-    "Duration": 5,
-    "AOE": "1 creature / level",
-    "Casting Time": 5,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The caster makes wide gesticulations and forcefully speaks the words to this spell, allowing them to understand any language they are in contact with. To understand spoken words, the caster must touch the creature who is speaking. To understand written words, the caster must touch the writings. This spell does not let the caster speak/read the language, only to understand the language. Translation does not necessarily impart understanding (A cryptically worded letter translated is still cryptic.), nor does it permit another creature to understand the caster. Example: A caster could touch a goblin to understand it, but should another nearby goblin also be speaking, the caster could not understand the other goblin. Neither goblin could understand the caster.A caster may affect themselves and one other creature per level of experience.The material components of this spell are a pinch of soot and a few grains of salt."
-  },
-  {
-    "Spell Level": 1,
     "Name": "Conjure Spell Component",
     "School": "Conjuration",
     "Range": 1,
@@ -321,23 +270,6 @@
       "Material"
     ],
     "Description": "When the detect magic spell is cast, the wizard detects magical radiations in a path 10 feet wide and up to 60 feet long, in the direction he is facing. The intensity of the magic can be determined (dim, faint, moderate, strong, overwhelming), and the wizard has a 10% chance per level to recognize if a certain type of magic (alteration, conjuration, etc.) is present. The caster can turn, scanning a 60-degree arc per round. A stone wall of one foot or more thickness, solid metal of one inch thickness, or a yard or more of solid wood blocks the spell. Magical areas, multiple types of magic, or strong local magical emanations may confuse or conceal weaker radiations. Note that this spell does not reveal the presence of good or evil, or reveal alignment. Other-planar creatures are not necessarily magical."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Detect Magic",
-    "School": "Enchantment",
-    "Range": 30,
-    "Damage": null,
-    "Duration": 1,
-    "AOE": "1 creature",
-    "Casting Time": 5,
-    "Save": "1/2",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "This spell causes the dust of crystals to resonate with magical auras. The dust will react when sprinkled on magical items, giving them a soft yellow glow for the duration of the spell.Alternatively, the dust may be inhaled by any creature whose eyes (pupil, iris, and whites) will glow bright yellow and be able to see the auras of magical items and effects. When used in this way, the range of the vision is 30', and the vision is blocked by any amount of stone or metal, or an inch of wood or dirt. Unlike other versions of this spell, the creatures need not concentrate to see these auras. Once the spell runs its course, the subject (if the dust was inhaled) is rendered blind for 1 minute, and semi blind for 1 minute after that. Semi blind effects are similar to those of poor lighting.The caster may enchant as much dust as they can hold in their hands. A 2\" crystal will create 2 doses, which is enough dust to cover a 10x10 area. Large creatures need 3 doses, huge need 10, gargantuan need 30. Small creatures need 1/3, tiny need 1/10. The crystal must already be in dust form before the spell is cast."
   },
   {
     "Spell Level": 1,
@@ -681,23 +613,6 @@
   },
   {
     "Spell Level": 1,
-    "Name": "Hold Portal",
-    "School": "Abjuration",
-    "Range": "Touch",
-    "Damage": null,
-    "Duration": "Special",
-    "AOE": "1 door",
-    "Casting Time": 1,
-    "Save": "Special",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The abjurer places one hand on the door, closes their eyes, and intones the words to the spell in a low voice. The affected door will remain shut unless magically opened, physically battered down, or the spell expires. Any extra-planar creature (djinn, elemental, etc.) with 4 or more Hit Dice can shatter the spell and burst open the portal. A wizard of 4 or more experience levels higher than the spellcaster can open the held portal at will. A knock spell or a successful dispel magic spell can negate the hold portal.The caster may channel the spell for as long as they like, and the duration begins from the point at which they stop channeling.E.G. Adea and her companions are being chased by goblins down a hallway when she comes to a door. Running through and slamming it shut, she tries to cast Hold Portal to buy the party some time. Initiative is rolled and Adea comes out on top. She begins to channel the hold portal spell, giving the rest of her party time to come up with a plan. Several hours later a plan has been made, and she stops the channeling and steps away. The door will continue to be held for a number of rounds equal to her level if the goblins are still interested.As a ritual, this spell can be made permanent. The caster prepares a special ink made with fine iron powder and a dark fluid. One standard door [20 square feet] can be appropriately inked in one day, with one ounce, and one dexterity check by the spell caster. Larger doors require more of each, although one failed dexterity check and the entire door will need to be washed and started over again. Unless exceptionally large or unusual, a doorframe can then be inked in one day, with one ounce, and one dexterity check. The spell is then cast into the ink, door, and frame, binding them together permanently. The ink now stains the door, but with effort or time and exposure will fade. If enough ink is removed or faded, the spell breaks.Different fluids can provide different additional affects.Fine Wine: 1gp/oz. No special effect.Blood: Fresh caster's blood that drains 2hp / oz. The door emits an unearthly wail when something larger than a rat approaches it. The wail is in the voice of the caster, starts softly when something is within 30', and gets louder until it is a full screech just before the door is touched. Contact with the door ends the wail until nothing is within proximity again.Tar thinned with exceptionally high prof alcohol: 5gp/oz The door becomes sticky to the touch, requiring a strength check to be removed.1 year fermented poultice [Wooden doors only]: The door grows brambles and spikes that snare clothes, and rip exposed flesh.Nightblossom Nectar: 100gp/oz. The door becomes semi-transparent, allowing those one one side to see details from those within 5' on the other side."
-  },
-  {
-    "Spell Level": 1,
     "Name": "Hornung's Guess",
     "School": "Divination",
     "Range": 300,
@@ -831,57 +746,6 @@
       "Material"
     ],
     "Description": "This spell creates a luminous glow, equal to torchlight, within a fixed radius of the spell's center. Objects in darkness beyond this sphere can be seen, at best, as vague and shadowy shapes. The spell is centered on a point selected by the caster, and he must have a line of sight and unobstructed path for the spell when it is cast. Light can spring from air, rock, metal, wood, or almost any similar substance.The effect is immobile unless it is specifically centered on a moveable object or mobile creature. If this spell is cast upon a creature, the applicable magic resistance and saving throw rolls must be made. Successful resistance negates the spell, while a successful saving throw indicates that the spell is centered immediately behind the creature, rather than upon the creature itself. Light taken into an area of magical darkness does not function, but if cast directly against magical darkness negates it (but only for the duration of the light spell, if the darkness effect is continual).Light centered on the visual organs of a creature blinds it, reducing its attack rolls and saving throws by 4 and worsening its Armor Class by 4. The caster can end the spell at any time by uttering a single word. The material component is a firefly or a piece of phosphorescent moss."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Light",
-    "School": "Conjuration",
-    "Range": "Hand",
-    "Damage": null,
-    "Duration": 3,
-    "AOE": "1,000 cubic feet (10' cube)",
-    "Casting Time": 6,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "By crushing the dried remains of a harmless glowing creature (like a firefly) and blowing it from their hand, the caster conjures a small swarm of the creatures that shed soft light in the area. If larger harmless glowing creatures are to be summoned, such as a puffball, only one is summoned and it sheds light in a 5' diameter circle.The creatures can be commanded using only a look [requires line of sight] and a gesture with only a moments focus, and will fly/walk/crawl/swim/hover at their typical movement rate. Most flying insects will move around walking pace.At 4th level, the caster may reduce the duration of the spell to increase the area covered. Every time the duration is decreased by half, the volume is doubled, with each new volume created being an independently controllable swarm. For example, if the duration is cut in half, the caster has two swarms that each light a 10' cube. The caster cluster them to create one big light, or split them into two groups, one following herself, and one following another party member.The spell can be dismissed at will."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Light",
-    "School": "Enchantment",
-    "Range": "Self",
-    "Damage": null,
-    "Duration": "Until touched by sunlight",
-    "AOE": "60' Radius",
-    "Casting Time": 2,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The caster touches a living plant or the earth itself and enchants all living plants within the area of effect to bioluminesce. If there are no living plants in the area, or the plants are disconnected (across a chasm, floating, etc.), the effect will not spread. The Enchanter need not spread the light to all plants in the area, but the effect must spread from the caster. For example, the caster may light all plants in a cross around them, but may not cause plants 60 feet away to be lit without a path of lit plants there. If the caster maintains light concentration, the effect will continue to spread within the AoE as the caster moves.The spell can be dismissed while still within the area of it by touching a glowing plant. The effect will then fade out over a few minutes.Once daylight reaches the enchanted plants, their magic fades away."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Light",
-    "School": "Evocation",
-    "Range": "level^2 yards",
-    "Damage": null,
-    "Duration": 1,
-    "AOE": "1 room / level",
-    "Casting Time": "Instant",
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "With a clap of their hands, a snap of their fingers, or some other non-language sound, the caster instantly and perfectly lights up a room or other enclosed area. The area must have clear boundaries as to what constitutes in or out of the room, although the size of the room does not matter, be it a peasant's hovel or a dragon's den.At the time of the casting, the rooms to be lit must be chosen. This can be either a general idea (rooms centered on the one I'm standing in) or specifically chosen (living room, kitchen, bedroom, but not the closet, and cellar). If many areas are to be lit, they must all be adjacent - a wizard may not light the room they are in, skip the hallway, and light the room at the end of the hallway.The light can be doused with the same action and sound used to create it."
   },
   {
     "Spell Level": 1,
@@ -1307,23 +1171,6 @@
       "Material"
     ],
     "Description": "A spider climb spell enables the recipient to climb and travel upon vertical surfaces as well as a giant spider, or even hang upside down from ceilings. Unwilling victims must be touched and are then allowed a saving throw vs. spell to negate the effect. The affected creature must have bare hands and feet in order to climb in this manner, at a movement rate of 6 (3 if at all encumbered). During the course of the spell, the recipient cannot handle objects that weigh less than a dagger (one pound), for such objects stick to his hands and feet. Thus a wizard will find it virtually impossible to cast spells if under a spider climb spell. Sufficient force can pull the recipient free; the DM can assign a saving throw based on circumstances, the strength of the force, and so on. For example, a creature with a Strength of 12 might pull the subject free if the subject fails a saving throw vs. paralyzation (a moderately difficult saving throw). The caster can end the spell effect with a word.The material components of this spell are a drop of bitumen and a live spider, both of which must be eaten by the spell recipient."
-  },
-  {
-    "Spell Level": 1,
-    "Name": "Spider Climb",
-    "School": "Enchantment",
-    "Range": "Touch",
-    "Damage": null,
-    "Duration": 5,
-    "AOE": "1 creature",
-    "Casting Time": 5,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The caster enchants the spider (or webs) with this spell. Upon eating the enchanted components, a creature's hands and feet become sticky and the creature gains the ability to climb like a spider. This includes sheer surfaces, over hangs, spider webs, etc. To fully gain these powers, the creature must be barefoot, as the spell only affects the creature's body and not their gear.Because the creature's hands are sticky, objects of 1lb or less cannot be manipulated. Casters may have a hard time with spells that require material components (being unable to cast with components that weigh a pound or less). Similarly, trying to remove a creature enchanted thusly from a wall (pull or knock off) requires a strength check."
   },
   {
     "Spell Level": 1,
@@ -2279,23 +2126,6 @@
   },
   {
     "Spell Level": 2,
-    "Name": "Mount",
-    "School": "Conjuration",
-    "Range": 5,
-    "Damage": null,
-    "Duration": 1,
-    "AOE": "100' per level",
-    "Casting Time": 6,
-    "Save": "1/2",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "Throwing the components into the air an speaking the words aloud summons into existence a mount. The creature summoned must be of hit dice equal to or less than that of the caster. The mount is broken in and well behaved, but knows no special commands or tricks and will serve only the person it was specifically summoned for. Any other person or creature attempting to ride it will meet with a very uncomfortable and spooked mount who will try to throw them. The mount will carry its rider into combat, but will not fight. A summoned horse will not overrun someone, for example.The ability to summon a mount does not confer and ability to ride it. A cater who has never ridden a giant spider might have a very hard, or impossible, time trying to ride one they have summoned via this spell. This spell does not confer any supernatural communication with the mount.The mount's link to the caster is weak, and the mount will vanish when it takes damage equal to the caster's level, or if the mount is separated by its rider by more than 100' per caster level."
-  },
-  {
-    "Spell Level": 2,
     "Name": "Nahal's Nonsensical Nulifier",
     "School": "Abjuration",
     "Range": "Touch",
@@ -2771,23 +2601,6 @@
     "Description": "A wizard lock spell cast upon a door, chest, or portal magically locks it. The caster can freely pass his own lock without affecting it; otherwise, the wizard-locked door or object can be opened only by breaking in, by a successful dispel magic or knock spell, or by a wizard four or more levels higher than the one casting the spell. Note that the last two methods do not remove the wizard lock; they only negate it for a brief duration - about one turn. Creatures from other planes cannot burst a wizard lock as they can a held portal (see the hold portal spell). This version of the spell may be dismissed with a gesture by the caster.Using a ritual nearly identical to the Hold Portal spell, Wizard Lock too can be made permanent. In addition to the costs of the Hold Portal ritual, an additional 1oz / 20 square feet is needed for a final symbol that requires no dexterity check, but an additional intelligence check."
   },
   {
-    "Spell Level": 2,
-    "Name": "Wizard Lock",
-    "School": "Abjuration",
-    "Range": "Touch",
-    "Damage": null,
-    "Duration": "Until opened",
-    "AOE": "1 lock",
-    "Casting Time": 1,
-    "Save": "Negate",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "[This spell uses the Thief Rebuild version of locks.]The caster places their hand on the object holding the lock and sprinkles the silver over their hand while speaking the words to the spell quietly. When the dust settles on the object, it vanishes. At the end of the spell, the difficulty of the lock is then increased by 5 + 1/3 the caster level. Furthermore, spells that may unlock doors (e.g. alteration version of Hold Portal) must pass a contested saving throw or fizzle. Once the object has been opened, the lock is returned to it's normal difficulty, but the area where silver did not touch the object, due to the caster's hand being there, takes on a gentle red glow for a number of weeks equal to the caster's level. The glow only becomes visible ten minutes after the object was closed again. This red glow can be dismissed with a gesture by the caster."
-  },
-  {
     "Spell Level": 3,
     "Name": "Alamir's Fundamental Breakdown",
     "School": "Divination",
@@ -3160,40 +2973,6 @@
       "Material"
     ],
     "Description": "This spell holds up to 4 humans, demihumans, or humanoid creatures rigidly immobile for five or more rounds.The hold person spell affects any bipedal human, demihuman or humanoid of man-size or smaller, including brownies, dryads, dwarves, elves, gnolls, gnomes, goblins, half-elves, halflings, half-orcs, hobgoblins, humans, kobolds, lizard men, nixies, orcs, pixies, sprites, troglodytes, and others.The spell is centered on a point selected by the caster; it affects persons selected by the caster within the area of effect.If the spell is cast at three or four people, each gets an unmodified saving throw. If only two people are being enspelled, each makes his saving throw with a -1 penalty. If the spell is cast at only one person, the saving throw suffers a -3 penalty. Saving throws are adjusted for Wisdom. Those succeeding on their saving throws are unaffected by the spell. Undead creatures cannot be held.Held beings cannot move or speak, but they remain aware of events around them and can use abilities not requiring motion or speech. Being held does not prevent the worsening of the subjects' condition due to wounds, disease, or poison. The caster can end the spell with a single utterance at any time; otherwise the duration is 10 rounds at 5th level, 12 rounds at 6th level, 14 rounds at 7th level, etc.The spellcaster needs a small, straight piece of iron as the material component of this spell."
-  },
-  {
-    "Spell Level": 3,
-    "Name": "Hold Person",
-    "School": "Necromancy",
-    "Range": "Touch",
-    "Damage": "None",
-    "Duration": "Special",
-    "AOE": "1 creature",
-    "Casting Time": 5,
-    "Save": "Negate",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "By positioning a creature against a mirror, and marking their forehead with their own blood, the necromancer entombs the creature inside a mirror. The mirror must be of a size to hold the creature. Spells that change the size of the creature prevent the creature from being entombed until the spell is worn off. Similarly, mirrors that are magically changed in size are unsuitable for this task.Once a creature is held in a mirror, it is in a state of two dimensional semi-stasis. The creature does not heal, does not age, has no need of food, drink, or bodily functions, yet they may still move and speak (if they were able to outside of the mirror). Furthermore, those trapped in the mirror find that their three dimensional belongings no longer function in two dimensional space: books cannot be read, potions cannot be consumed, itches cannot be scratched, etc. Creatures with magical abilities (spells, gazes, etc.) will find that their spells are restricted to the mirror dimension in which they are placed. A basilisk would not petrify someone looking at it, nor could a mage within a mirror cast Magic Missile at someone on the other side or at the mirror itself.Creatures inside the mirror are aware of what is happening on the outside of the mirror, being able to see, hear, and smell. Similarly, creatures on the outside of the mirror and see and hear those trapped within. Those inside the mirror may walk around within the confines of the mirror, and may come into the foreground (between the onlooker and their reflection) or stay in the background (behind the reflection of creatures). If the mirror is broken or damaged (scratching the glass counts as damaged), the magic is broken, the mirror shatters, and the creature is freed, in the exact state it was originally imprisoned.A shatter spell cast from within the mirror dimension will break the mirror. Spells that move between dimensions can be used as long as they do not require 3 dimensional space (A spell that opens a portal one walks through would not work, but a spell that shifts the caster from one dimension to another will). Teleportation has no effect.A caster may not imprison themselves in a mirror."
-  },
-  {
-    "Spell Level": 3,
-    "Name": "Hold Person",
-    "School": "Illusion",
-    "Range": 60,
-    "Damage": null,
-    "Duration": "Light concentration",
-    "AOE": "1 creature / level",
-    "Casting Time": 3,
-    "Save": "Negate",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The caster causes a number of creatures within a 20' cube to believe that they are frozen in place, should they fail their saving throw. The freezing effect happens over a few seconds, allowing creatures in mid stride to come to a stop. These creatures are not actually frozen or held, but the effect of the illusion is strong enough to make them think they are.Each creature receives a saving throw on their turn to break the illusion, as well as each time they take damage. Should the caster lose light concentration, the spell is broken.This spell is cast as if it were a command from the spell caster. They must have visual contact with the whole of the group to be affected, and command them to \"hold\" or \"freeze\" or some similar utterance. The creatures to be affected need not understand the caster.Creatures of 4 intelligence or less are unaffected by this spell."
   },
   {
     "Spell Level": 3,
@@ -3588,23 +3367,6 @@
   },
   {
     "Spell Level": 3,
-    "Name": "Phantom Feast",
-    "School": "Necromancy",
-    "Range": "",
-    "Damage": "3 + 1 / person",
-    "Duration": 1,
-    "AOE": "",
-    "Casting Time": 1,
-    "Save": "1/2",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "By presenting a part of their body and declaring a feast, the caster imbues themself with magic. The caster, and a number of people up to the caster level, may eat the flesh of the caster. Each person needs but one mouthful of flesh to nourish them for a week, although this spell does not stave off the effects of dehydration. The caster takes an amount of damage equal to the number of people who feast on them plus three (a 4 person party would deal 7 damage to the caster). The caster's flesh quickly regrows, but the damage they take is very real and cannot be healed by magical means.Creatures one size larger than the caster deal 3 damage when they feast, while smaller creatures still deal 1 point of damage. It is not uncommon for creatures who use this spell to develop a taste for human flesh (assuming the caster is human). Those who survive on this spell for too long may find themselves repulsed by normal food."
-  },
-  {
-    "Spell Level": 3,
     "Name": "Phantom Steed",
     "School": "Conjuration",
     "Range": "Touch",
@@ -3826,23 +3588,6 @@
   },
   {
     "Spell Level": 3,
-    "Name": "Spirit Armor",
-    "School": "Necromancy",
-    "Range": "Touch",
-    "Damage": null,
-    "Duration": 3,
-    "AOE": "1 creature",
-    "Casting Time": 5,
-    "Save": "None",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "This spell conjures spirits from another plane that surround the target. They weight nothing, add nothing to encumbrance, and do not interfere with casting or visibility. These spirits interpose themselves between their host and her nearby enemies. Anyone within 15 feet of the subject attempting to make an attack against them must make a saving throw vs spell or instead attack the spirits. The spirits have AC 13 and hit points equal to 8 + caster level.Additionally, depending on the material components there is an additional effect.5 steel coins: earth elemental spirits surround the target, reducing damage by 1 per die from non magical weapon attacks.10gp crystal: the spirits have AC 14Fungus or lichen: the spirits are fey and shed a soft green light for 10 feet in all directionsHealing potion: spirits have additional hit points as if the potion was consumed.Humanoid finger: the spirits those of the dead and impose a -1 to fear saves of all enemies who can clearly see themWater, fresh: the subject and their clothes are imbued with water, wetting skin and dampening clothes. Saves vs. fire effects are made at +1Water, salt: the spirits are foggy and dense, creating an area of light fog for 10 feet"
-  },
-  {
-    "Spell Level": 3,
     "Name": "Suggestion",
     "School": "Enchantment",
     "Range": 30,
@@ -3976,23 +3721,6 @@
       "Material"
     ],
     "Description": "The recipient of a water breathing spell is able to breathe water freely for the duration of the spell. The caster can touch more than one creature with a single casting; in this case the duration is divided by the number of creatures touched. The reverse, air breathing, enables water-breathing creatures to comfortably survive in the atmosphere for an equal duration.The material component of the spell is a short reed or piece of straw."
-  },
-  {
-    "Spell Level": 3,
-    "Name": "Water Breathing",
-    "School": "Enchantment",
-    "Range": "Touch",
-    "Damage": null,
-    "Duration": "Until dispelled",
-    "AOE": "1 creature / level",
-    "Casting Time": 5,
-    "Save": "1/2",
-    "Components": [
-      "Verbal",
-      "Somatic",
-      "Material"
-    ],
-    "Description": "The caster places a fish in the mouth of each creature to be enchanted and walks around them while incanting the words to the spell. Upon completion each creature grows gills on their necks. These gills last until the creature uses their normal method of breathing, and then vanish."
   },
   {
     "Spell Level": 3,

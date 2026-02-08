@@ -792,7 +792,8 @@ div.saving-throws-block, h3#saves-title {
 /* =========================
     Wizard Spells Browser
    =========================*/
-.wizard-spells-block {
+.wizard-spells-block,
+.priest-spells-block {
   grid-column: 1 / -1;
   margin-top: var(--spacing-md);
 }
@@ -959,9 +960,433 @@ div.saving-throws-block, h3#saves-title {
   margin-bottom: 0;
 }
 
+/* Spell Reference Section (Priest Spells) - Compact Sidebar */
+.spell-reference-sidebar {
+  position: sticky;
+  top: var(--spacing-md);
+  max-height: calc(100vh - var(--spacing-xl));
+  overflow-y: auto;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-default);
+}
+
+.spell-reference-heading {
+  color: var(--color-accent-secondary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.spell-reference-search-container {
+  margin-bottom: var(--spacing-md);
+}
+
+.spell-reference-search-input {
+  width: 100%;
+  padding: var(--spacing-sm);
+  font-size: 0.9em;
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.spell-reference-search-input:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.spell-reference-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.spell-reference-level-compact {
+  margin-bottom: 0;
+}
+
+.spell-reference-level-header-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.spell-reference-level-heading-compact {
+  color: var(--color-accent-secondary);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.spell-reference-count-badge-compact {
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.spell-reference-list-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.spell-reference-item-compact {
+  display: flex;
+  align-items: center;
+}
+
+.spell-reference-link-compact {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.85em;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spell-reference-link-compact:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent-primary);
+}
+
+.spell-reference-no-results {
+  padding: var(--spacing-md);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/* Spell Book Sidebar (Wizards) - Compact Right Side */
+.spell-book-sidebar {
+  position: sticky;
+  top: var(--spacing-md);
+  max-height: calc(100vh - var(--spacing-xl));
+  overflow-y: auto;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-default);
+}
+
+.spell-book-level-compact {
+  margin-bottom: var(--spacing-md);
+}
+
+.spell-book-level-header-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.spell-book-level-heading-compact {
+  color: var(--color-accent-secondary);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.spell-book-count-badge-compact {
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.spell-book-add-label-compact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.spell-book-add-dropdown-compact {
+  width: 100%;
+  padding: var(--spacing-xs);
+  font-size: 0.85em;
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.spell-book-add-dropdown-compact:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.spell-book-add-dropdown-compact:disabled {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.spell-book-list-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.spell-book-item-compact {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.spell-book-link-compact {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.85em;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spell-book-link-compact:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent-primary);
+}
+
+.spell-book-remove-btn-compact {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0 var(--spacing-xs);
+  line-height: 1;
+  transition: color 0.2s;
+  min-width: 20px;
+  flex-shrink: 0;
+}
+
+.spell-book-remove-btn-compact:hover {
+  color: var(--color-accent-secondary);
+}
+
+.spell-book-limit-message-compact {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  background-color: var(--color-bg-elevated);
+  border-radius: 4px;
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0;
+}
+
+/* Responsive: Stack on smaller screens */
+@media (max-width: 1024px) {
+  .prepared-spells-layout {
+    grid-template-columns: 1fr;
+  }
+  
+  .spell-reference-sidebar {
+    position: static;
+    max-height: none;
+  }
+}
+
 /* Memorized Spells Section */
 .memorized-spells-section {
   margin-top: var(--spacing-lg);
+}
+
+.memorized-spells-section.with-reference {
+  margin-top: var(--spacing-lg);
+}
+
+.prepared-spells-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.prepared-spells-main {
+  min-width: 0; /* Prevent grid overflow */
+}
+
+/* Spell Book Sidebar (Wizards) - Compact Right Side */
+.spell-book-sidebar {
+  position: sticky;
+  top: var(--spacing-md);
+  max-height: calc(100vh - var(--spacing-xl));
+  overflow-y: auto;
+  background-color: var(--color-bg-tertiary);
+  border-radius: 4px;
+  padding: var(--spacing-md);
+  border: 1px solid var(--color-border-default);
+}
+
+.spell-book-heading {
+  color: var(--color-accent-secondary);
+  margin-bottom: var(--spacing-md);
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.spell-book-level-compact {
+  margin-bottom: var(--spacing-md);
+}
+
+.spell-book-level-header-compact {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--color-border-default);
+}
+
+.spell-book-level-heading-compact {
+  color: var(--color-accent-secondary);
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.spell-book-count-badge-compact {
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-weight: normal;
+}
+
+.spell-book-add-label-compact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
+}
+
+.spell-book-add-dropdown-compact {
+  width: 100%;
+  padding: var(--spacing-xs);
+  font-size: 0.85em;
+  border: 1px solid var(--color-border-default);
+  border-radius: 4px;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.spell-book-add-dropdown-compact:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.spell-book-add-dropdown-compact:disabled {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.spell-book-list-compact {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.spell-book-item-compact {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.spell-book-link-compact {
+  flex: 1;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.85em;
+  font-family: inherit;
+  transition: background-color 0.2s, color 0.2s;
+  border-radius: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spell-book-link-compact:hover {
+  background-color: var(--color-bg-secondary);
+  color: var(--color-accent-primary);
+}
+
+.spell-book-remove-btn-compact {
+  background: none;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0 var(--spacing-xs);
+  line-height: 1;
+  transition: color 0.2s;
+  min-width: 20px;
+  flex-shrink: 0;
+}
+
+.spell-book-remove-btn-compact:hover {
+  color: var(--color-accent-secondary);
+}
+
+.spell-book-limit-message-compact {
+  margin-top: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  background-color: var(--color-bg-elevated);
+  border-radius: 4px;
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: 0;
 }
 
 .memorized-spells-heading {

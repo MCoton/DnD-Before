@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import raceMods from '../data/races/race_mods.json';
 import { clamp } from '../utils';
+import { useNumericInput } from '../hooks/useNumericInput';
+import { STAT_MIN, STAT_MAX } from '../constants/characterLimits';
 
 /**
  * Renders the score and derived statistics for a single D&D Attribute.
@@ -22,54 +24,21 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
     // Check if derivedData is available before attempting lookups
     if (!derivedData) return null;
     
-    // Local state to allow empty input temporarily
-    const [inputValue, setInputValue] = useState(String(adjustedScore));
-    
-    // Update local state when adjustedScore prop changes (from external updates)
-    useEffect(() => {
-        setInputValue(String(adjustedScore));
-    }, [adjustedScore]);
-    
-    // Handle input change
-    const handleChange = (e) => {
-        const inputVal = e.target.value;
-        
-        // Allow empty string temporarily so user can clear the field
-        if (inputVal === '') {
-            setInputValue('');
-            return;
-        }
-        
-        // Parse the input value
-        const parsedValue = parseInt(inputVal, 10);
-        
-        // If not a valid number, don't update
-        if (isNaN(parsedValue)) {
-            return;
-        }
-        
-        // Update local state to show what user is typing
-        setInputValue(inputVal);
-        
-        // Clamp the value to valid range
-        const clampedAdjustedValue = clamp(parsedValue, 1, 25);
+    // Use custom hook for numeric input handling
+    const { inputValue, handleChange, handleBlur } = useNumericInput(adjustedScore, {
+        min: STAT_MIN,
+        max: STAT_MAX,
+        onUpdate: (clampedAdjustedValue) => {
+            // Calculate what the raw score should be to achieve this adjusted score
+            const racialAdjustment = adjustedScore - score;
+            const newRawScore = clampedAdjustedValue - racialAdjustment;
+            const clampedRawScore = clamp(newRawScore, STAT_MIN, STAT_MAX);
 
-        // Calculate what the raw score should be to achieve this adjusted score
-        const racialAdjustment = adjustedScore - score;
-        const newRawScore = clampedAdjustedValue - racialAdjustment;
-        const clampedRawScore = clamp(newRawScore, 1, 25);
-
-        if(onScoreChange) {
-            onScoreChange(statPrefix, clampedRawScore);
+            if (onScoreChange) {
+                onScoreChange(statPrefix, clampedRawScore);
+            }
         }
-    }
-    
-    // Handle blur - if field is empty, restore the previous value
-    const handleBlur = () => {
-        if (inputValue === '' || isNaN(parseInt(inputValue, 10))) {
-            setInputValue(String(adjustedScore));
-        }
-    }
+    });
 
     // Check if Race gets CON-based save bonuses by looking at race_mods data
     const raceKey = race?.toLowerCase() || 'human';
@@ -160,8 +129,8 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
                         value={inputValue}
                         onChange={handleChange}
                         onBlur={handleBlur}
-                        min="1"
-                        max="25"
+                        min={STAT_MIN}
+                        max={STAT_MAX}
                         className="stat-score-input"
                     />
                 </div>

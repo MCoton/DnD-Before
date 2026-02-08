@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import wizardSpells from '../data/spellLists/wizard_spells.json';
 import charClasses from '../data/classes/character_classes.json';
+import SpellModal from './SpellModal';
 
 /**
  * Displays wizard spells with a Spell Book for known spells and slots for memorized spells
@@ -21,28 +22,36 @@ export default function WizardSpellsDisplay({
     const [memorizedSpells, setMemorizedSpells] = useState([]); // Array of memorized spell objects
     const [modalSpell, setModalSpell] = useState(null); // Currently displayed spell in modal
 
-    // Check if character is a wizard/mage and get their spell slots
-    const mageSpells = useMemo(() => {
-        if (!characterClass || !characterLevel) return null;
+    // Combined calculation: Get mage spells, available levels, and spells by level in one pass
+    // This reduces re-renders and improves performance with large spell lists
+    const spellData = useMemo(() => {
+        // Step 1: Get mage spells from class data
+        if (!characterClass || !characterLevel) {
+            return { mageSpells: null, availableSpellLevels: [], allSpellsByLevel: {} };
+        }
         
         const classKey = characterClass.toLowerCase();
         const classData = charClasses[classKey];
         
-        if (!classData || !classData.levelProg) return null;
-        
-        const levelData = classData.levelProg[characterLevel];
-        if (!levelData || !levelData.mageSpells) return null;
-        
-        return levelData.mageSpells; // Array of 9 elements (spell levels 1-9)
-    }, [characterClass, characterLevel]);
-
-    // Get available spell levels based on wizard level and Intelligence
-    const availableSpellLevels = useMemo(() => {
-        if (!mageSpells || intSpellLevel === undefined || intSpellLevel === null || intSpellLevel === 0) {
-            return [];
+        if (!classData || !classData.levelProg) {
+            return { mageSpells: null, availableSpellLevels: [], allSpellsByLevel: {} };
         }
         
-        const levels = [];
+        const levelData = classData.levelProg[characterLevel];
+        if (!levelData || !levelData.mageSpells) {
+            return { mageSpells: null, availableSpellLevels: [], allSpellsByLevel: {} };
+        }
+        
+        const mageSpells = levelData.mageSpells; // Array of 9 elements (spell levels 1-9)
+        
+        // Step 2: Calculate available spell levels and spells by level in one pass
+        if (intSpellLevel === undefined || intSpellLevel === null || intSpellLevel === 0) {
+            return { mageSpells, availableSpellLevels: [], allSpellsByLevel: {} };
+        }
+        
+        const availableSpellLevels = [];
+        const allSpellsByLevel = {};
+        
         // mageSpells array: index 0 = 1st level, index 1 = 2nd level, etc.
         for (let i = 0; i < mageSpells.length; i++) {
             const spellLevel = i + 1; // Convert index to spell level (1-9)
@@ -50,56 +59,51 @@ export default function WizardSpellsDisplay({
             const withinIntLimit = spellLevel <= intSpellLevel; // Within Intelligence limit
             
             if (hasSlots && withinIntLimit) {
-                levels.push(spellLevel);
+                availableSpellLevels.push(spellLevel);
+                
+                // Filter and sort spells for this level
+                const spells = wizardSpells
+                    .filter(spell => spell["Spell Level"] === spellLevel)
+                    .sort((a, b) => a.Name.localeCompare(b.Name));
+                
+                allSpellsByLevel[spellLevel] = spells;
             }
         }
         
-        return levels;
-    }, [mageSpells, intSpellLevel]);
+        return { mageSpells, availableSpellLevels, allSpellsByLevel };
+    }, [characterClass, characterLevel, intSpellLevel]);
+    
+    // Destructure for easier access
+    const { mageSpells, availableSpellLevels, allSpellsByLevel } = spellData;
 
-    // Get all available spells grouped by level (NO filtering by maxSpellsPerLevel)
-    const allSpellsByLevel = useMemo(() => {
-        if (availableSpellLevels.length === 0) return {};
-        
-        const spellsByLevel = {};
-        
-        availableSpellLevels.forEach(level => {
-            const spells = wizardSpells
-                .filter(spell => spell["Spell Level"] === level)
-                .sort((a, b) => a.Name.localeCompare(b.Name));
-            
-            spellsByLevel[level] = spells;
-        });
-        
-        return spellsByLevel;
-    }, [availableSpellLevels]);
-
-    // Get spell book spells grouped by level
-    const spellBookByLevel = useMemo(() => {
+    // Combined calculation: Get spell book grouped by level and counts in one pass
+    const spellBookData = useMemo(() => {
         const bookByLevel = {};
+        const countByLevel = {};
+        
         spellBook.forEach(spell => {
             const level = spell["Spell Level"];
+            
+            // Group by level
             if (!bookByLevel[level]) {
                 bookByLevel[level] = [];
             }
             bookByLevel[level].push(spell);
+            
+            // Count by level
+            countByLevel[level] = (countByLevel[level] || 0) + 1;
         });
+        
         // Sort each level's spells
         Object.keys(bookByLevel).forEach(level => {
             bookByLevel[level].sort((a, b) => a.Name.localeCompare(b.Name));
         });
-        return bookByLevel;
+        
+        return { spellBookByLevel: bookByLevel, spellBookCountByLevel: countByLevel };
     }, [spellBook]);
-
-    // Count spell book spells per level
-    const spellBookCountByLevel = useMemo(() => {
-        const countByLevel = {};
-        spellBook.forEach(spell => {
-            const level = spell["Spell Level"];
-            countByLevel[level] = (countByLevel[level] || 0) + 1;
-        });
-        return countByLevel;
-    }, [spellBook]);
+    
+    // Destructure for easier access
+    const { spellBookByLevel, spellBookCountByLevel } = spellBookData;
 
     // Count memorized spells per level
     const memorizedSpellsByLevel = useMemo(() => {
@@ -213,13 +217,6 @@ export default function WizardSpellsDisplay({
     // Handle modal close
     const handleCloseModal = () => {
         setModalSpell(null);
-    };
-
-    // Handle modal backdrop click
-    const handleBackdropClick = (e) => {
-        if (e.target === e.currentTarget) {
-            handleCloseModal();
-        }
     };
 
     // Format ordinal numbers (1st, 2nd, 3rd, etc.)
@@ -410,76 +407,7 @@ export default function WizardSpellsDisplay({
             </div>
 
             {/* Spell Details Modal */}
-            {modalSpell && (
-                <div className="spell-modal-backdrop" onClick={handleBackdropClick}>
-                    <div className="spell-modal" onClick={(e) => e.stopPropagation()}>
-                        <button
-                            type="button"
-                            className="spell-modal-close"
-                            onClick={handleCloseModal}
-                            aria-label="Close modal"
-                        >
-                            ×
-                        </button>
-                        
-                        <h2 className="spell-modal-name">{modalSpell.Name}</h2>
-                        
-                        <div className="spell-modal-info-grid">
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Level:</span>
-                                <span className="spell-modal-info-value">{formatOrdinal(modalSpell["Spell Level"])}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">School:</span>
-                                <span className="spell-modal-info-value">{modalSpell.School}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Range:</span>
-                                <span className="spell-modal-info-value">{modalSpell.Range}</span>
-                            </div>
-                            
-                            {modalSpell.Damage && (
-                                <div className="spell-modal-info-item">
-                                    <span className="spell-modal-info-label">Damage:</span>
-                                    <span className="spell-modal-info-value">{modalSpell.Damage}</span>
-                                </div>
-                            )}
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Duration:</span>
-                                <span className="spell-modal-info-value">{modalSpell.Duration}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Area of Effect:</span>
-                                <span className="spell-modal-info-value">{modalSpell.AOE}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Casting Time:</span>
-                                <span className="spell-modal-info-value">{modalSpell["Casting Time"]}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item">
-                                <span className="spell-modal-info-label">Saving Throw:</span>
-                                <span className="spell-modal-info-value">{modalSpell.Save}</span>
-                            </div>
-                            
-                            <div className="spell-modal-info-item spell-modal-info-full">
-                                <span className="spell-modal-info-label">Components:</span>
-                                <span className="spell-modal-info-value">{modalSpell.Components.join(', ')}</span>
-                            </div>
-                        </div>
-
-                        <div className="spell-modal-description">
-                            <h4 className="spell-modal-description-title">Description:</h4>
-                            <p className="spell-modal-description-text">{modalSpell.Description}</p>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <SpellModal spell={modalSpell} onClose={handleCloseModal} />
         </>
     );
 }

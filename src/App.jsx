@@ -1,10 +1,7 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import './index.css'
 
-import armourTable from "./data/equipment/armour_class.json";
 import { calculateDerivedStats } from "./rulesEngine";
-import raceMods from "./data/races/race_mods.json";
-import charClass from "./data/classes/character_classes.json";
 import StatBlock from "./components/statBlock.jsx";
 import SavingThrows from "./components/SavingThrowsDisplay.jsx";
 import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
@@ -12,15 +9,14 @@ import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
 import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
 import WeaponProficiencies from "./components/WeaponProficienciesDisplay.jsx";
 import SpellSlotDisplay from "./components/SpellSlotDisplay.jsx";
-import WizardSpellsDisplay from "./components/WizardSpellsDisplay.jsx";
+import SpellDisplay from "./components/SpellDisplay.jsx";
+import charClasses from "./data/classes/character_classes.json";
+import SelectInput from "./components/SelectInput.jsx";
 import { capitaliseWords } from "./utils.js";
-
-// Object.keys() pulls all the base armour names directly for the dropdown.
-const ARMOUR_OPTIONS = Object.keys(armourTable.armourType);
-// Same for races held in raceMods
-const RACE_OPTIONS = Object.keys(raceMods);
-// And again for class
-const CLASS_OPTIONS = Object.keys(charClass);
+import { useNumericInput } from "./hooks/useNumericInput.js";
+import { updateNestedState } from "./utils/stateHelpers.js";
+import { ARMOUR_OPTIONS, RACE_OPTIONS, CLASS_OPTIONS } from "./constants/characterOptions.js";
+import { HP_MIN, XP_MIN } from "./constants/characterLimits.js";
 
 // Initial data model for a new character
 const initialCharacterState = {
@@ -67,154 +63,47 @@ export default function CharacterSheet() {
     // 'setCharacter' is the function we call to change the state.
     const [character, setCharacter] = useState(initialCharacterState);
     
-    // Local state for input fields to allow empty values temporarily
-    const [hpInputValue, setHpInputValue] = useState(String(character.hp.base));
-    const [xpInputValue, setXpInputValue] = useState(String(character.xp));
+    // Use custom hook for numeric input handling
+    const hpInput = useNumericInput(character.hp.base, {
+        min: HP_MIN,
+        onUpdate: (value) => updateNestedState(setCharacter, ['hp', 'base'], value)
+    });
     
-    // Update local input state when character state changes (from external updates)
-    useEffect(() => {
-        setHpInputValue(String(character.hp.base));
-    }, [character.hp.base]);
-    
-    useEffect(() => {
-        setXpInputValue(String(character.xp));
-    }, [character.xp]);
+    const xpInput = useNumericInput(character.xp, {
+        min: XP_MIN,
+        onUpdate: (value) => updateNestedState(setCharacter, 'xp', value)
+    });
 
     // Function to handle changes in armour set up
     const handleArmourChanges = (e) => {
         const { name, value, type, checked } = e.target;
-
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            ac: {
-                ...prevCharacter.ac,
-                [name]: type === 'checkbox' ? checked : value,
-            }
-        }));
+        const fieldValue = type === 'checkbox' ? checked : value;
+        updateNestedState(setCharacter, ['ac', name], fieldValue);
     };
 
     // Function to handle changes in Race selection
     const handleRaceChanges = (e) => {
-        const {value} = e.target;
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            race: value, //Update the race with selection
-        }))
-    }
+        updateNestedState(setCharacter, 'race', e.target.value);
+    };
 
     // Function to handle Character Class selection
     const handleClassChanges = (e) => {
-        const {value} = e.target;
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            characterClass: value, // Update the Character Class with selection
-        }))
-    }
+        updateNestedState(setCharacter, 'characterClass', e.target.value);
+    };
 
     // Function to handle name changes
     const handleNameChange = (e) => {
-        const { value } = e.target;
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            name: value
-        }));
+        updateNestedState(setCharacter, 'name', e.target.value);
     };
 
     // Function to handle ability score changes from stat blocks
     const handleScoreChange = (statAbbrev, newValue) => {
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            scores: {
-                ...prevCharacter.scores,
-                [statAbbrev]: newValue
-            }
-        }));
-    };
-
-    // Function to handle HP base changes
-    const handleHPChange = (e) => {
-        const { value } = e.target;
-        
-        // Update local state to show what user is typing
-        setHpInputValue(value);
-        
-        // Allow empty string temporarily
-        if (value === '') {
-            return;
-        }
-        
-        const parsedValue = parseInt(value, 10);
-        
-        // If not a valid number, don't update character state
-        if (isNaN(parsedValue)) {
-            return;
-        }
-        
-        // Allow any positive number for HP (minimum 1)
-        const newHP = Math.max(1, parsedValue);
-        
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            hp: {
-                ...prevCharacter.hp,
-                base: newHP
-            }
-        }));
-    };
-    
-    // Handle HP input blur - restore value if empty
-    const handleHPBlur = () => {
-        if (hpInputValue === '' || isNaN(parseInt(hpInputValue, 10))) {
-            // Restore the current base HP value
-            setHpInputValue(String(character.hp.base));
-        }
-    };
-
-    // Function to handle XP changes (auto-calculates level)
-    const handleXPChange = (e) => {
-        const { value } = e.target;
-        
-        // Update local state to show what user is typing
-        setXpInputValue(value);
-        
-        // Allow empty string temporarily
-        if (value === '') {
-            return;
-        }
-        
-        const parsedValue = parseInt(value, 10);
-        
-        // If not a valid number, don't update character state
-        if (isNaN(parsedValue)) {
-            return;
-        }
-        
-        const newXP = Math.max(0, parsedValue);
-        
-        // Simply update XP - level will be calculated in rulesEngine
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            xp: newXP
-        }));
-    };
-    
-    // Handle XP input blur - restore value if empty
-    const handleXPBlur = () => {
-        if (xpInputValue === '' || isNaN(parseInt(xpInputValue, 10))) {
-            // Restore the current XP value
-            setXpInputValue(String(character.xp));
-        }
+        updateNestedState(setCharacter, ['scores', statAbbrev], newValue);
     };
 
     // Function to update weapon proficiency (add or change slot count)
     const handleAddProficiency = (weaponKey, slots) => {
-        setCharacter(prevCharacter => ({
-            ...prevCharacter,
-            weaponProficiencies: {
-                ...prevCharacter.weaponProficiencies,
-                [weaponKey]: slots
-            }
-        }));
+        updateNestedState(setCharacter, ['weaponProficiencies', weaponKey], slots);
     };
 
     // Function to remove weapon proficiency
@@ -273,40 +162,28 @@ export default function CharacterSheet() {
                         </label>
 
                         {/* Character Class Selector */}
-                        <label className="input-row">
-                            <span className="input-label">Class:</span>
-                            <select
-                                name="characterClass"
-                                value={character.characterClass || ""}
-                                onChange={handleClassChanges}
-                                className="select-input"
-                            >
-                                <option value="">Choose class</option>
-                                {CLASS_OPTIONS.map(charClass => (
-                                    <option key={charClass} value={charClass}>
-                                        {capitaliseWords(charClass)}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
+                        <SelectInput
+                            label="Class"
+                            name="characterClass"
+                            value={character.characterClass}
+                            onChange={handleClassChanges}
+                            options={CLASS_OPTIONS.map(cls => ({
+                                value: cls,
+                                label: capitaliseWords(cls)
+                            }))}
+                        />
 
                         {/* Race Selector */}
-                        <label className="input-row">
-                            <span className="input-label">Race:</span>
-                            <select
-                                name="race"
-                                value={character.race || ""}
-                                onChange={handleRaceChanges}
-                                className="select-input"
-                            >
-                                <option value="">Choose race</option>
-                                {RACE_OPTIONS.map(race => (
-                                    <option key={race} value={race}>
-                                        {capitaliseWords(race)}
-                                    </option>
-                                ))}
-                            </select>
-                        </label>
+                        <SelectInput
+                            label="Race"
+                            name="race"
+                            value={character.race}
+                            onChange={handleRaceChanges}
+                            options={RACE_OPTIONS.map(race => ({
+                                value: race,
+                                label: capitaliseWords(race)
+                            }))}
+                        />
                         
                         {racialAdjDisplay !== 'none' && (
                             <p className="racial-adj-display">Racial Adjustments: {racialAdjDisplay}</p>
@@ -324,10 +201,10 @@ export default function CharacterSheet() {
                                 type="text"
                                 inputMode="numeric"
                                 name="xp"
-                                value={xpInputValue}
-                                onChange={handleXPChange}
-                                onBlur={handleXPBlur}
-                                min="0"
+                                value={xpInput.inputValue}
+                                onChange={xpInput.handleChange}
+                                onBlur={xpInput.handleBlur}
+                                min={XP_MIN}
                                 className="number-input"
                             />
                         </label>
@@ -352,10 +229,10 @@ export default function CharacterSheet() {
                                 type="text"
                                 inputMode="numeric"
                                 name="baseHP"
-                                value={hpInputValue}
-                                onChange={handleHPChange}
-                                onBlur={handleHPBlur}
-                                min="1"
+                                value={hpInput.inputValue}
+                                onChange={hpInput.handleChange}
+                                onBlur={hpInput.handleBlur}
+                                min={HP_MIN}
                                 className="number-input"
                             />
                             <span className="input-note">(Rolled HD total)</span>
@@ -380,6 +257,7 @@ export default function CharacterSheet() {
                                     onChange={handleArmourChanges}
                                     className="p-1 border rounded"
                                 >
+                                    <option value="">Choose armour type</option>
                                     {ARMOUR_OPTIONS.map(armour => (
                                         <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
                                     ))}
@@ -523,18 +401,55 @@ export default function CharacterSheet() {
                     <SpellSlotDisplay 
                         characterClass={character.characterClass}
                         characterLevel={derivedStats.level}
+                        intSpellLevel={derivedStats.intSpellLevel}
                         />
                 </div>
 
-                {/* WIZARD SPELLS BROWSER */}
-                <div className="column-span">
-                    <WizardSpellsDisplay 
-                        characterClass={character.characterClass}
-                        characterLevel={derivedStats.level}
-                        intSpellLevel={derivedStats.intSpellLevel}
-                        intMaxSpellsPerLevel={derivedStats.intMaxSpellsPerLevel}
-                    />
-                </div>
+                {/* SPELLS BROWSER */}
+                {(() => {
+                    // Determine which spell types this class uses
+                    if (!character.characterClass || !derivedStats.level) return null;
+                    
+                    const classKey = character.characterClass.toLowerCase();
+                    const classData = charClasses[classKey];
+                    if (!classData?.levelProg) return null;
+                    
+                    const levelData = classData.levelProg[derivedStats.level];
+                    if (!levelData) return null;
+                    
+                    // Check for wizard/mage spells
+                    const hasWizardSpells = levelData.mageSpells && 
+                        Array.isArray(levelData.mageSpells) && 
+                        levelData.mageSpells.some(s => s > 0);
+                    
+                    // Check for priest/cleric spells - handle both property names and null values
+                    const priestSpellArray = levelData.priestSpells || levelData.clericSpells;
+                    const hasPriestSpells = priestSpellArray && 
+                        Array.isArray(priestSpellArray) && 
+                        priestSpellArray.some(s => s > 0);
+                    
+                    return (
+                        <div className="column-span">
+                            {hasWizardSpells && (
+                                <SpellDisplay 
+                                    characterClass={character.characterClass}
+                                    characterLevel={derivedStats.level}
+                                    spellType="wizard"
+                                    intSpellLevel={derivedStats.intSpellLevel}
+                                    intMaxSpellsPerLevel={derivedStats.intMaxSpellsPerLevel}
+                                />
+                            )}
+                            {hasPriestSpells && (
+                                <SpellDisplay 
+                                    characterClass={character.characterClass}
+                                    characterLevel={derivedStats.level}
+                                    spellType="priest"
+                                    wisBonusSpells={derivedStats.wisBonusSpells}
+                                />
+                            )}
+                        </div>
+                    );
+                })()}
             </div>
         </>
     )

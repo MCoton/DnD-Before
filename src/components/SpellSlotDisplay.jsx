@@ -8,8 +8,9 @@ import charClasses from '../data/classes/character_classes.json';
  * @param {object} props
  * @param {string} props.characterClass - The character's class
  * @param {number} props.characterLevel - The character's level
+ * @param {number} props.intSpellLevel - Maximum spell level from Intelligence (wizards only, 0-9)
  */
-export default function SpellSlotsDisplay({ characterClass, characterLevel }) {
+export default function SpellSlotsDisplay({ characterClass, characterLevel, intSpellLevel }) {
     
     // If no class selected
     if (!characterClass) {
@@ -53,9 +54,23 @@ export default function SpellSlotsDisplay({ characterClass, characterLevel }) {
     }
 
     // Filter out spell levels with 0 slots
-    const availableSpellLevels = spellSlots
+    let availableSpellLevels = spellSlots
         .map((slots, index) => ({ level: index + 1, slots }))
         .filter(item => item.slots > 0);
+    
+    // For Arcane spells (wizards), apply Intelligence and character level limits
+    // Maximum knowable spell level is the minimum of Intelligence limit and character level limit
+    if (spellType === 'Arcane' && intSpellLevel !== undefined && intSpellLevel !== null && intSpellLevel > 0) {
+        // Character level determines max spell level: roughly level/2, capped at 9
+        // Level 1-2: 1st, 3-4: 2nd, 5-6: 3rd, 7-8: 4th, 9-10: 5th, 11-12: 6th, 13-14: 7th, 15-16: 8th, 17+: 9th
+        const levelBasedMaxSpellLevel = Math.min(Math.ceil(characterLevel / 2), 9);
+        
+        // Use the minimum of Intelligence limit and character level limit
+        const maxKnowableSpellLevel = Math.min(intSpellLevel, levelBasedMaxSpellLevel);
+        
+        // Filter to only show spell levels up to the maximum knowable level
+        availableSpellLevels = availableSpellLevels.filter(item => item.level <= maxKnowableSpellLevel);
+    }
 
     return (
         <div className="spell-slots-block area-box details-box">

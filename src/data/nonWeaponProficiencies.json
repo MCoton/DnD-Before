@@ -1,0 +1,875 @@
+[
+  {
+    "name": "Acting",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": -1,
+    "notes": "Bonus of +1 if disguise proficiency known"
+  },
+  {
+    "name": "Agriculture",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Ha +1"
+  },
+  {
+    "name": "Alertness ++",
+    "category": "GENERAL, Dw Wr, Dw Rg",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 1,
+    "notes": "El +1, Ha +1"
+  },
+  {
+    "name": "Ancient History",
+    "category": "Pr, Rg, Wz, Dw Pr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -1,
+    "notes": "Dw +1, El +1, Gn +1"
+  },
+  {
+    "name": "Animal Handling",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": "Rangers gain special benefit, El +1"
+  },
+  {
+    "name": "Animal Lore",
+    "category": "Wr, Dw Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "El +1"
+  },
+  {
+    "name": "Animal Noise",
+    "category": "Rg @, Hu Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": "El +1, Gn +1, Ha +1"
+  },
+  {
+    "name": "Animal Training",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": "Rangers gain special benefit"
+  },
+  {
+    "name": "Appraising",
+    "category": "Rg, Dw Gen",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Dw +3, Gn +1"
+  },
+  {
+    "name": "Armorer",
+    "category": "Wr, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "modifierAlt": 0,
+    "notes": "See Complete Fighter for more details"
+  },
+  {
+    "name": "Artistic Ability",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": "Dw +1, El +1, Gn +1"
+  },
+  {
+    "name": "Astrology",
+    "category": "Pr, Wz, Dw Pr",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "El +1"
+  },
+  {
+    "name": "Begging",
+    "category": "Rg @, Hu Gen",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": "Special",
+    "notes": "Ha +1"
+  },
+  {
+    "name": "Blacksmithing",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Strength",
+    "modifier": 0,
+    "notes": "Dw +1, Gn +1"
+  },
+  {
+    "name": "Blind-fighting",
+    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "slots": 2,
+    "stat": "N/A",
+    "modifier": "N/A",
+    "notes": "Dw 1 slot"
+  },
+  {
+    "name": "Boating",
+    "category": "GENERAL, Dw Sp",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 1,
+    "notes": "Dw -1"
+  },
+  {
+    "name": "Boatwright",
+    "category": "Dw Sp",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Bowyer/Fletcher",
+    "category": "Wr, Dw Cr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": -1,
+    "notes": "Dw +2, El +1, Ha +1"
+  },
+  {
+    "name": "Brewing",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Dw +1, Gn +1, Ha +1"
+  },
+  {
+    "name": "Bureaucracy",
+    "category": "Pr, Rg",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Camouflage",
+    "category": "Rg, Wr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Carpentry",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Strength",
+    "modifier": 0,
+    "notes": "Gn +1, Ha +1"
+  },
+  {
+    "name": "Cartography",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Chanting",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 2,
+    "notes": ""
+  },
+  {
+    "name": "Charioteering",
+    "category": "Wr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 2,
+    "notes": ""
+  },
+  {
+    "name": "Cheesemaking",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Cobbling",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": "Gn +1, Ha +1"
+  },
+  {
+    "name": "Cooking",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Ha +1"
+  },
+  {
+    "name": "Close Quarter Fighting",
+    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "slots": 2,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Craft Instrument",
+    "category": "GENERAL, Dw Cr",
+    "slots": 2,
+    "stat": "Dexterity",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Crowd Working",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Dancing",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": "El +1"
+  },
+  {
+    "name": "Danger Sense",
+    "category": "Hu Gen",
+    "slots": 2,
+    "stat": "Wisdom",
+    "modifier": 1,
+    "notes": ""
+  },
+  {
+    "name": "Diagnostics",
+    "category": "Pr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": "Gives +1 with Healing Proficiency"
+  },
+  {
+    "name": "Direction Sense",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 1,
+    "notes": "Dw +1 indoors, El +1 outdoors"
+  },
+  {
+    "name": "Distance Sense",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Disguise",
+    "category": "Rg, Dw Rg",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": -1,
+    "notes": "Dw -1, Gn +1"
+  },
+  {
+    "name": "Drinking",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Constitution",
+    "modifier": 0,
+    "notes": "For non Hu, only works vs alcohol"
+  },
+  {
+    "name": "Dwarf Runes",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 2,
+    "notes": "Dw 0 slots"
+  },
+  {
+    "name": "Eating",
+    "category": "Hu Gen",
+    "slots": 1,
+    "stat": "Constitution",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Endurance",
+    "category": "Wr, Rg @, Dw Gen",
+    "slots": 2,
+    "stat": "Constitution",
+    "modifier": 0,
+    "notes": "Dw 0 slots"
+  },
+  {
+    "name": "Engineering",
+    "category": "Pr, Wz, Dw Cr",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": -3,
+    "notes": "Dw +3, Gn +1"
+  },
+  {
+    "name": "Etiquette",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 0,
+    "notes": "El +1"
+  },
+  {
+    "name": "Falconry",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Fast-talking",
+    "category": "Rg @, Hu Gen",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": "Special",
+    "notes": "Ha +1"
+  },
+  {
+    "name": "Fire-building",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Fishing",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Forgery",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Gaming",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Gem Cutting",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": -2,
+    "notes": "Dw +2, Gn +1"
+  },
+  {
+    "name": "Heraldry",
+    "category": "Pr, Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Healing",
+    "category": "Pr, Rg",
+    "slots": 2,
+    "stat": "Wisdom",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Herbalism",
+    "category": "Pr, Rg, Wz",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Hunting",
+    "category": "Rg, Wr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Information Gathering",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Intimidation",
+    "category": "Wr, Dw Wr",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": "Special",
+    "notes": ""
+  },
+  {
+    "name": "Juggling",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Jumping",
+    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "slots": 1,
+    "stat": "Strength",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Languages, Modern",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Leatherworking",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Dw +1, Ha +1"
+  },
+  {
+    "name": "Local History",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Locksmithing",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Mining",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": "Dw +2, Gn +1"
+  },
+  {
+    "name": "Mountaineering",
+    "category": "Rg, Wr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Musical Instrument",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Navigation",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Observation",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Oratory",
+    "category": "Pr, Wz",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Poetry",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Pottery",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Reading Lips",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Reading/Writing",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Religion",
+    "category": "Pr, Wz",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Riding, Airborne",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Riding, Land-based",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Rope Use",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Running",
+    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "slots": 1,
+    "stat": "Constitution",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Seamanship",
+    "category": "GENERAL, Dw Sp",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": "Dw -1"
+  },
+  {
+    "name": "Set Snares",
+    "category": "Rg, Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Signaling",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": "Dw +4"
+  },
+  {
+    "name": "Singing",
+    "category": "GENERAL, Dw Gen",
+    "slots": 1,
+    "stat": "Charisma",
+    "modifier": 0,
+    "notes": "Dw +2, El +1"
+  },
+  {
+    "name": "Slow Respiration",
+    "category": "Dw Gen",
+    "slots": 1,
+    "stat": "N/A",
+    "modifier": "N/A",
+    "notes": ""
+  },
+  {
+    "name": "Smelting",
+    "category": "Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Sound Analysis",
+    "category": "Dw Gen",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Spellcraft",
+    "category": "Pr, Wz, Dw Pr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": "El +1, Gn +1"
+  },
+  {
+    "name": "Spelunking",
+    "category": "Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": ""
+  },
+  {
+    "name": "Stonemasonry",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Strength",
+    "modifier": -2,
+    "notes": "Dw +2, Gn +1"
+  },
+  {
+    "name": "Survival",
+    "category": "Rg @, Wr, Dw Sp",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "Rangers gain special benefit"
+  },
+  {
+    "name": "Survival, Hills, Woods",
+    "category": "Gn Rg @, Gn Wr",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": 1,
+    "notes": ""
+  },
+  {
+    "name": "Survival, Woodland",
+    "category": "El Rg @, El Wr",
+    "slots": 2,
+    "stat": "Intelligence",
+    "modifier": 1,
+    "notes": ""
+  },
+  {
+    "name": "Survival, Hills, Mtns",
+    "category": "Dw Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Survival, Underground",
+    "category": "Dw Gen",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Swimming",
+    "category": "GENERAL, Dw Sp",
+    "slots": 1,
+    "stat": "Strength",
+    "modifier": 0,
+    "notes": "Dw -1"
+  },
+  {
+    "name": "Tightrope Walking",
+    "category": "Rg, Dw Rg",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": "El +1"
+  },
+  {
+    "name": "Tracking",
+    "category": "Rg @, Wr",
+    "slots": 2,
+    "stat": "Wisdom",
+    "modifier": "Special",
+    "notes": "Rangers gain special benefit, El +1"
+  },
+  {
+    "name": "Trail Marking",
+    "category": "Wr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Trail Signs",
+    "category": "Rg, Wr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -1,
+    "notes": ""
+  },
+  {
+    "name": "Trailing",
+    "category": "Rg @",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": "Special",
+    "notes": "Ha +1"
+  },
+  {
+    "name": "Tumbling",
+    "category": "Rg, Dw Rg",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 0,
+    "notes": "El +1, Ha +1"
+  },
+  {
+    "name": "Ventriloquism",
+    "category": "Rg, Dw Rg",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -2,
+    "notes": "Gn +1"
+  },
+  {
+    "name": "Veterinary Healing",
+    "category": "Pr, Rangers",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -3,
+    "notes": ""
+  },
+  {
+    "name": "Voice Mimicry",
+    "category": "Rg @, Hu Gen",
+    "slots": 2,
+    "stat": "Charisma",
+    "modifier": "Special",
+    "notes": ""
+  },
+  {
+    "name": "Weaponsmithing",
+    "category": "Wr, Dw Cr",
+    "slots": 3,
+    "stat": "Intelligence",
+    "modifier": -3,
+    "notes": "Dw +2 Dw 2 slots"
+  },
+  {
+    "name": "Weaponsmithing, Crude",
+    "category": "Wr",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -3,
+    "notes": ""
+  },
+  {
+    "name": "Weather Sense",
+    "category": "GENERAL, Dw Sp",
+    "slots": 1,
+    "stat": "Wisdom",
+    "modifier": -1,
+    "notes": "El +1"
+  },
+  {
+    "name": "Weaving",
+    "category": "GENERAL, Dw Cr",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": -1,
+    "notes": "Dw -1, El +1, Ha +1"
+  },
+  {
+    "name": "Whistling/Humming",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Dexterity",
+    "modifier": 2,
+    "notes": ""
+  },
+  {
+    "name": "Wild Fighting",
+    "category": "Wr, Dw Wr",
+    "slots": 2,
+    "stat": "Constitution",
+    "modifier": 0,
+    "notes": ""
+  },
+  {
+    "name": "Winemaking",
+    "category": "GENERAL",
+    "slots": 1,
+    "stat": "Intelligence",
+    "modifier": 0,
+    "notes": "El +1, Ha +1"
+  }
+]
