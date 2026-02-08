@@ -14,7 +14,7 @@
     "bonuses": {
       "attackBonus": 1,
       "damageBonus": 2,
-      "attacksPerRound": "+1/2 for melee, +1 for ranged",
+      "attacksPerRound": "+1/2 att/rnd (melee), +1 att/rnd (ranged)",
       "description": "+1 to hit, +2 damage, bonus attacks"
     },
     "restrictedTo": ["warrior"]
@@ -25,7 +25,7 @@
     "bonuses": {
       "attackBonus": 2,
       "damageBonus": 3,
-      "attacksPerRound": "+1 for melee, +2 for ranged",
+      "attacksPerRound": "+1 att/rnd (melee), +2 att/rnd (ranged)",
       "description": "+2 to hit, +3 damage, more bonus attacks"
     },
     "restrictedTo": ["fighter"]

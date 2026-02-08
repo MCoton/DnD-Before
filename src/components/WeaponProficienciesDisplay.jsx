@@ -106,10 +106,10 @@ export default function WeaponProficiencies({
         );
     }
 
-    // Get weapon specialization settings from class data
-    const canSpecializeData = classData.canSpecialize || [false, null];
-    const canSpecialise = canSpecializeData[0] === true;
-    const maxSlotsPerWeapon = canSpecializeData[1] !== null ? canSpecializeData[1] : 1;
+    // Get weapon specialisation settings from class data
+    const canSpecialiseData = classData.canSpecialise || [false, null];
+    const canSpecialise = canSpecialiseData[0] === true;
+    const maxSlotsPerWeapon = canSpecialiseData[1] !== null ? canSpecialiseData[1] : 1;
 
     // Calculate slots
     const usedSlots = Object.values(proficiencies).reduce((sum, slots) => sum + slots, 0);
@@ -119,6 +119,113 @@ export default function WeaponProficiencies({
     // Get specialised level for a weapon
     const getSpecialisationLevel = (slots) => {
         return SPECIALISATION_LEVELS[slots] ?? SPECIALISATION_LEVELS[0];
+    };
+
+    // Extract attacks per round bonus value as a decimal number
+    const getAttacksPerRoundBonusValue = (attacksPerRoundText, weaponType) => {
+        if (!attacksPerRoundText) return 0;
+        
+        const isRanged = weaponType === 'Ranged';
+        const isMelee = weaponType === 'Melee';
+        
+        if (!isRanged && !isMelee) return 0;
+        
+        // Split by comma to get melee and ranged parts
+        const parts = attacksPerRoundText.split(',');
+        
+        for (const part of parts) {
+            const trimmed = part.trim();
+            if (isMelee && trimmed.includes('(melee)')) {
+                // Extract the bonus value (e.g., "+1/2" or "+1")
+                const match = trimmed.match(/^\+(\d+(?:\/\d+)?)/);
+                if (match) {
+                    const value = match[1];
+                    if (value.includes('/')) {
+                        // Fraction like "1/2" = 0.5
+                        const [num, den] = value.split('/').map(Number);
+                        return num / den;
+                    } else {
+                        // Whole number
+                        return Number(value);
+                    }
+                }
+            }
+            if (isRanged && trimmed.includes('(ranged)')) {
+                // Extract the bonus value
+                const match = trimmed.match(/^\+(\d+(?:\/\d+)?)/);
+                if (match) {
+                    const value = match[1];
+                    if (value.includes('/')) {
+                        const [num, den] = value.split('/').map(Number);
+                        return num / den;
+                    } else {
+                        return Number(value);
+                    }
+                }
+            }
+        }
+        
+        return 0;
+    };
+
+    // Calculate effective attacks per round with specialisation bonus
+    const calculateEffectiveAttacksPerRound = (baseAttsPerRound, specData, weaponType) => {
+        if (!baseAttsPerRound || !Array.isArray(baseAttsPerRound) || baseAttsPerRound.length !== 2) {
+            return baseAttsPerRound || [1, 1];
+        }
+        
+        // Base attacks per round as decimal: [x, y] means x attacks per y rounds = x/y attacks per round
+        const baseAttacksPerRound = baseAttsPerRound[0] / baseAttsPerRound[1];
+        
+        // Get specialisation bonus
+        const bonus = specData?.bonuses?.attacksPerRound 
+            ? getAttacksPerRoundBonusValue(specData.bonuses.attacksPerRound, weaponType)
+            : 0;
+        
+        // Calculate new attacks per round
+        const newAttacksPerRound = baseAttacksPerRound + bonus;
+        
+        // Convert to fraction format, multiplying by 2 if we have fractional attacks
+        // This ensures we can display things like 1.5 as 3/2
+        if (newAttacksPerRound % 1 !== 0) {
+            // Has fractional part, multiply by 2
+            const numerator = Math.round(newAttacksPerRound * 2);
+            return [numerator, 2];
+        } else {
+            // Whole number
+            return [Math.round(newAttacksPerRound), 1];
+        }
+    };
+
+    // Extract attacks per round bonus based on weapon type (for display in summary)
+    const getAttacksPerRoundBonus = (attacksPerRoundText, weaponType) => {
+        if (!attacksPerRoundText) return null;
+        
+        // Parse the string format: "+1/2 att/rnd (melee), +1 att/rnd (ranged)"
+        const isRanged = weaponType === 'Ranged';
+        const isMelee = weaponType === 'Melee';
+        
+        if (!isRanged && !isMelee) return attacksPerRoundText;
+        
+        // Split by comma to get melee and ranged parts
+        const parts = attacksPerRoundText.split(',');
+        
+        for (const part of parts) {
+            const trimmed = part.trim();
+            if (isMelee && trimmed.includes('(melee)')) {
+                // Extract just the bonus part before "att/rnd"
+                const match = trimmed.match(/^([^a]+)att\/rnd/);
+                return match ? match[1].trim() + ' att/rnd' : trimmed.replace('(melee)', '').trim();
+            }
+            if (isRanged && trimmed.includes('(ranged)')) {
+                // Extract just the bonus part before "att/rnd"
+                const match = trimmed.match(/^([^a]+)att\/rnd/);
+                return match ? match[1].trim() + ' att/rnd' : trimmed.replace('(ranged)', '').trim();
+            }
+        }
+        
+        // Fallback: return the original text if parsing fails
+        return attacksPerRoundText;
     };
 
     // Get list of weapons not yet proficient with
@@ -132,7 +239,7 @@ export default function WeaponProficiencies({
         
         let thac0 = baseThac0;
         
-        // Add specialization attack bonus
+        // Add specialisation attack bonus
         if (specData?.bonuses?.attackBonus) {
             thac0 -= specData.bonuses.attackBonus;
         }
@@ -155,6 +262,11 @@ export default function WeaponProficiencies({
             const specData = specialisation[specLevel];
             const calculatedThac0 = calculateWeaponThac0(weapon, slots, specData);
             const damageType = getDamageType(weapon);
+            const effectiveAttsPerRound = calculateEffectiveAttacksPerRound(
+                weapon?.attsPerRound, 
+                specData, 
+                weapon?.type
+            );
             
             return {
                 key: weaponKey,
@@ -163,7 +275,8 @@ export default function WeaponProficiencies({
                 specLevel,
                 specData,
                 calculatedThac0,
-                damageType
+                damageType,
+                effectiveAttsPerRound
             };
         })
         .sort((a, b) => a.weapon.name.localeCompare(b.weapon.name));
@@ -198,17 +311,22 @@ export default function WeaponProficiencies({
                             <tr>
                                 <th>Weapon</th>
                                 <th>Level</th>
-                                <th>THAC0</th>
+                                <th>
+                                    THAC0
+                                    <br />
+                                    <span style={{ fontSize: '0.75em', fontWeight: 'normal', color: 'var(--color-text-muted)' }}>(Calculated)</span>
+                                </th>
                                 <th>Damage (S-M)</th>
                                 <th>Damage (L)</th>
                                 <th>Range</th>
+                                <th>Attacks/Round</th>
                                 <th>Type</th>
                                 <th>Speed</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThac0, damageType }) => (
+                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThac0, damageType, effectiveAttsPerRound }) => (
                                 <tr key={key} className="proficiency-row">
                                     <td className="weapon-name-cell">
                                         <strong>{weapon?.name || key}</strong>
@@ -223,23 +341,6 @@ export default function WeaponProficiencies({
                                         {calculatedThac0 !== null ? (
                                             <span className="thac0-value">
                                                 {calculatedThac0}
-                                                {specData.bonuses.attackBonus > 0 && (
-                                                    <span className="thac0-breakdown">
-                                                        <br />
-                                                        <small>
-                                                            Base: {baseThac0}
-                                                            {weapon?.type === 'Melee' && strHitProb !== 0 && (
-                                                                <> + STR({strHitProb >= 0 ? '+' : ''}{strHitProb})</>
-                                                            )}
-                                                            {weapon?.type === 'Ranged' && dexMissileAdj !== 0 && (
-                                                                <> + DEX({dexMissileAdj >= 0 ? '+' : ''}{dexMissileAdj})</>
-                                                            )}
-                                                            {specData.bonuses.attackBonus > 0 && (
-                                                                <> + Spec({specData.bonuses.attackBonus})</>
-                                                            )}
-                                                        </small>
-                                                    </span>
-                                                )}
                                             </span>
                                         ) : (
                                             <span className="thac0-na">N/A</span>
@@ -249,6 +350,9 @@ export default function WeaponProficiencies({
                                     <td className="damage-cell">{weapon?.damageL || '-'}</td>
                                     <td className="range-cell">
                                         {weapon?.range || (weapon?.type === 'Melee' ? 'Melee' : '-')}
+                                    </td>
+                                    <td className="rate-of-fire-cell">
+                                        {effectiveAttsPerRound ? `${effectiveAttsPerRound[0]}/${effectiveAttsPerRound[1]}` : '1/1'}
                                     </td>
                                     <td className="damage-type-cell">{damageType}</td>
                                     <td className="speed-cell">{weapon?.speed || '-'}</td>
@@ -291,10 +395,10 @@ export default function WeaponProficiencies({
                         </tbody>
                     </table>
                     
-                    {/* Show specialization bonuses summary */}
+                    {/* Show specialisation bonuses summary */}
                     {proficientWeapons.some(p => p.specLevel !== 'proficient') && (
                         <div className="spec-bonuses-summary">
-                            <h4>Specialization Bonuses:</h4>
+                            <h4>Specialisation Bonuses:</h4>
                             {proficientWeapons
                                 .filter(p => p.specLevel !== 'proficient')
                                 .map(({ key, weapon, specData }) => (
@@ -307,7 +411,7 @@ export default function WeaponProficiencies({
                                             <span className="bonus"> +{specData.bonuses.damageBonus} damage</span>
                                         )}
                                         {specData.bonuses.attacksPerRound && (
-                                            <span className="bonus"> {specData.bonuses.attacksPerRound}</span>
+                                            <span className="bonus"> {getAttacksPerRoundBonus(specData.bonuses.attacksPerRound, weapon?.type)}</span>
                                         )}
                                     </div>
                                 ))}

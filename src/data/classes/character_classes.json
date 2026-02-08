@@ -8,7 +8,7 @@
         "allowedWeapons":  "all",
         "races": "all",
         "alignment": "all",
-        "canSpecialize": [true, 3],
+        "canSpecialise": [true, 3],
         "classAbilities": { "saveVal": 0 },
         "levelProg": {
             "1":  { "saveThrow":  [14, 16, 15, 17, 17], "xp": 0,        "hitDice": 1, "lvlHPAdj": 0, "thaco": 20, "attacksPerRound": "1/round",   "weaponSlots": 4,  "nonWeaponSlots": 4 },
@@ -42,7 +42,7 @@
         "allowedWeapons":  "all",
         "races": "Human",
         "alignment": "lg",
-        "canSpecialize": [true, 2],
+        "canSpecialise": [true, 2],
         "classAbilities": { "saveVal": 2 },
         "levelProg": {
             "1": {
@@ -376,7 +376,7 @@
         "allowedWeapons":  "all",
         "races": ["human", "elf", "half-elf"],
         "alignment": "g",
-        "canSpecialize": [true, 2],
+        "canSpecialise": [true, 2],
         "classAbilities": { "saveVal": 0 },
         "levelProg": {
             "1":  { "saveThrow":  [14, 16, 15, 17, 17], "xp": 0,        "hitDice": 1, "lvlHPAdj": 0, "thaco": 20, "attacksPerRound": "1/round",   "weaponSlots": 4,  "nonWeaponSlots": 3, "hideInShad": 10, "moveSilent": 15, "priestSpells": null, "animalEmpathy" : -1 },
@@ -410,7 +410,7 @@
         "allowedWeapons":  "Dagger, Staff, Darts, Knives, Slings",
         "races": ["human", "elf", "half-elf"],
         "alignment": "all",
-        "canSpecialize": [false, null],
+        "canSpecialise": [false, null],
         "classAbilities": { "saveVal": 0 },
         "levelProg":  {
             "1":  {"saveThrow": [14, 11, 13, 15, 12 ],  "xp": 0,        "hitDice": 1, "lvlHPAdj": 0,    "thaco": 20, "attacksPerRound": 1, "weaponSlots": 1, "nonWeaponSlots": 4, "mageSpells": [1, 0, 0, 0, 0, 0, 0, 0, 0]},
@@ -444,7 +444,7 @@
         "allowedWeapons": "Dagger, Staff, Darts, Knives, Slings",
         "races": ["human", "elf", "half-elf"],
         "alignment": "all",
-        "canSpecialize": [false, null],
+        "canSpecialise": [false, null],
         "classAbilities": { "saveVal": 0 },
         "levelProg":  {
             "1":  {"saveThrow": [14, 11, 13, 15, 12 ],  "xp": 0,        "hitDice": 1, "lvlHPAdj": 0,    "thaco": 20, "attacksPerRound": 1, "weaponSlots": 1, "nonWeaponSlots": 4, "mageSpells": [1, 0, 0, 0, 0, 0, 0, 0, 0]},

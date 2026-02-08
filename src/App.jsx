@@ -388,7 +388,7 @@ export default function CharacterSheet() {
                         savingThrows={derivedStats.savingThrows}
                         characterClass={character.characterClass}
                         characterLevel={derivedStats.level}
-                        magicalDefenseAdj={derivedStats.wisMagicalDefenseAdj}
+                        magicalDefenceAdj={derivedStats.wisMagicalDefenceAdj}
                     />
                 </div>
 

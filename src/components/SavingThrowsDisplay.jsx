@@ -9,7 +9,7 @@ import React from 'react';
  * @param {number} props.magicalDefAdj - Wisdom based save adjusment (mind affecting spells only)
  */
 
-export default function SavingThrowsDisplay({ savingThrows, magicalDefenseAdj }) {
+export default function SavingThrowsDisplay({ savingThrows, magicalDefenceAdj }) {
     // Check if saves are calculated (savingThrows is an object, not null/undefined)
     const isCalculated = savingThrows && typeof savingThrows === 'object';
 
@@ -83,9 +83,9 @@ export default function SavingThrowsDisplay({ savingThrows, magicalDefenseAdj })
             )}
 
             {/* Conditional Magical Defense Adjustment footnote */}
-            {magicalDefenseAdj !== 0 && (
-                <p className="magical-defense-note">
-                    <strong>Magical Defense Adjustment:</strong> {magicalDefenseAdj >= 0 ? '+' : ''}{magicalDefenseAdj} 
+            {magicalDefenceAdj !== 0 && (
+                <p className="magical-defence-note">
+                    <strong>Magical Defence Adjustment:</strong> {magicalDefenceAdj >= 0 ? '+' : ''}{magicalDefenceAdj} 
                     {' '}(Applies only to saving throws vs. spells that affect the mind)
                 </p>
             )}

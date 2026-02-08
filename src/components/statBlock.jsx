@@ -100,7 +100,7 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
         ],
         // --- WISDOM ---
         wis: [
-            { label: 'Mag Def Adj', value: `+${derivedData.wisMagicalDefenseAdj}` },
+            { label: 'Mag Def Adj', value: `+${derivedData.wisMagicalDefenceAdj}` },
             { label: 'Bonus Spells', value: derivedData.wisBonusSpells?.join(', ') || 'None' },
             { label: 'Spell Fail', value: `${derivedData.wisSpellFailureChance}%` },
         ],

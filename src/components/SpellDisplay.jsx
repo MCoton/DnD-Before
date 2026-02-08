@@ -24,7 +24,7 @@ export default function SpellDisplay({
     wisBonusSpells
 }) {
     const [spellBook, setSpellBook] = useState([]); // Array of known spell objects (wizards only)
-    const [preparedSpells, setPreparedSpells] = useState([]); // Array of prepared/memorized spell objects
+    const [preparedSpells, setPreparedSpells] = useState([]); // Array of prepared/memorised spell objects
     const [modalSpell, setModalSpell] = useState(null); // Currently displayed spell in modal
     const [spellSearchQuery, setSpellSearchQuery] = useState(''); // Search query for priest spell reference
 
@@ -358,12 +358,12 @@ export default function SpellDisplay({
                 )}
 
                 {/* Prepared Spells Section */}
-                <div className={`memorized-spells-section ${'with-reference'}`}>
+                <div className={`memorised-spells-section ${'with-reference'}`}>
                     <hr className="style14"></hr>
                     <div className="prepared-spells-layout">
                         <div className="prepared-spells-main">
-                            <h3 className="memorized-spells-heading">
-                                {isWizard ? 'Memorized Spells (Spell Slots)' : 'Prepared Spells (Spell Slots)'}
+                            <h3 className="memorised-spells-heading">
+                                {isWizard ? 'Memorised Spells (Spell Slots)' : 'Prepared Spells (Spell Slots)'}
                             </h3>
                     {availableSpellLevels.map(level => {
                         // For wizards, use spell book; for priests, use all available spells
@@ -381,12 +381,12 @@ export default function SpellDisplay({
                         const preparedSpellsForLevel = preparedSpells.filter(s => s["Spell Level"] === level);
 
                         return (
-                            <div key={`prep-${level}`} className="memorized-level-section">
-                                <div className="memorized-level-header">
-                                    <span className="memorized-level-heading">
+                            <div key={`prep-${level}`} className="memorised-level-section">
+                                <div className="memorised-level-header">
+                                    <span className="memorised-level-heading">
                                         {formatOrdinal(level)} Level Spells
-                                        <span className="memorized-slots-badge">
-                                            ({preparedCount}/{slotsAvailable} {isWizard ? 'memorized' : 'prepared'})
+                                        <span className="memorised-slots-badge">
+                                            ({preparedCount}/{slotsAvailable} {isWizard ? 'memorised' : 'prepared'})
                                             {bonusSlots > 0 && !isWizard && (
                                                 <span className="bonus-slots-indicator" title={`Base: ${baseSlots}, Bonus: +${bonusSlots}`}>
                                                     {' '}(+{bonusSlots} bonus)
@@ -402,11 +402,11 @@ export default function SpellDisplay({
                                     const currentSpellName = currentSelection ? currentSelection.Name : '';
                                     
                                     return (
-                                        <label key={`prep-dropdown-${level}-${index}`} className="memorized-dropdown-label">
+                                        <label key={`prep-dropdown-${level}-${index}`} className="memorised-dropdown-label">
                                             <select
                                                 value={currentSpellName}
                                                 onChange={(e) => handlePreparationChange(level, e.target.value, index)}
-                                                className={`memorized-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
+                                                className={`memorised-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
                                                 disabled={isAtLimit && !currentSpellName || (isWizard && availableSpells.length === 0)}
                                             >
                                                 <option value="">-- {isWizard ? 'Select from book' : 'Select spell'} --</option>
@@ -421,7 +421,7 @@ export default function SpellDisplay({
                                                                 value={spell.Name}
                                                                 disabled={disabled}
                                                             >
-                                                                {spell.Name} {prepared && currentSpellName !== spell.Name ? `(${isWizard ? 'memorized' : 'prepared'})` : ''}
+                                                                {spell.Name} {prepared && currentSpellName !== spell.Name ? `(${isWizard ? 'memorised' : 'prepared'})` : ''}
                                                             </option>
                                                         );
                                                     })
@@ -434,13 +434,13 @@ export default function SpellDisplay({
                                 })}
                                 
                                 {isAtLimit && (
-                                    <p className="memorized-limit-message">
-                                        All slots filled ({slotsAvailable} slot{slotsAvailable > 1 ? 's' : ''}). Remove a spell to {isWizard ? 'memorize' : 'prepare'} another.
+                                    <p className="memorised-limit-message">
+                                        All slots filled ({slotsAvailable} slot{slotsAvailable > 1 ? 's' : ''}). Remove a spell to {isWizard ? 'memorise' : 'prepare'} another.
                                     </p>
                                 )}
                                 
                                 {!isAtLimit && remainingSlots > 0 && (
-                                    <p className="memorized-remaining-message">
+                                    <p className="memorised-remaining-message">
                                         {remainingSlots} slot{remainingSlots > 1 ? 's' : ''} remaining
                                     </p>
                                 )}

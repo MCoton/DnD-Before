@@ -12,79 +12,79 @@
   "11": { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 10, "spellImmunity": null },
   "12": { "magicalDefenseAdj": 0,  "bonusSpells": null, "spellFailureChance": 5,  "spellImmunity": null },
   "13": { 
-    "magicalDefenseAdj": 0,
+    "magicalDefenceAdj": 0,
     "bonusSpells": [1, 0, 0, 0, 0, 0, 0],
     "spellFailureChance": 0,
       "spellImmunity": null
     },
   "14": { 
-    "magicalDefenseAdj": 0,
+    "magicalDefenceAdj": 0,
     "bonusSpells": [2, 0, 0, 0, 0, 0, 0],
     "spellFailureChance": 0,
       "spellImmunity": null
     },
   "15": { 
-    "magicalDefenseAdj": 1,
+    "magicalDefenceAdj": 1,
     "bonusSpells": [2, 1, 0, 0, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": null
     },
   "16": { 
-    "magicalDefenseAdj": 2,
+    "magicalDefenceAdj": 2,
     "bonusSpells": [2, 2, 0, 0, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": null
     },
   "17": { 
-    "magicalDefenseAdj": 3,
+    "magicalDefenceAdj": 3,
     "bonusSpells": [2, 2, 1, 0, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": null
     },
   "18": { 
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [2, 2, 1, 1, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": null
     },
   "19": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [3, 2, 2, 1, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["cause fear", "charm person", "command", "friends", "hypnotism"]
     },
   "20": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [3, 3, 2, 2, 0, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["forget", "hold person", "ray of enfeeblement", "scare"]
     },
   "21": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [3, 3, 3, 2, 1, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["fear"]
     },
   "22": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [3, 3, 3, 3, 2, 0, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["charm monster", "confusion", "emotion", "fumble", "suggestion"]
     },
   "23": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [4, 3, 3, 3, 2, 1, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["chaos", "feeblemind", "hold monster", "magic jar", "quest"]
     },
   "24": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [4, 3, 3, 3, 3, 2, 0],
     "spellFailureChance": 0,
     "spellImmunity": ["geas", "mass suggestion", "rod of rulership"]
     },
   "25": {
-    "magicalDefenseAdj": 4,
+    "magicalDefenceAdj": 4,
     "bonusSpells": [4, 3, 3, 3, 3, 3, 1],
     "spellFailureChance": 0,
     "spellImmunity": ["death spell", "mass charm", "maze", "mind blank", "imprisonment"]

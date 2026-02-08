@@ -215,7 +215,7 @@ export function calculateDerivedStats(character) {
 
     // WISDOM
     const wisMods = wisTable[wis] || {};
-    results.wisMagicalDefenseAdj = wisMods.magicalDefenseAdj || 0;
+    results.wisMagicalDefenceAdj = wisMods.magicalDefenceAdj || 0;
     results.wisBonusSpells = wisMods.bonusSpells || null;
     results.wisSpellFailureChance = wisMods.spellFailureChance || 0;
     results.wisSpellImmunity = getCumulativeImmunities(wisTable, wis);

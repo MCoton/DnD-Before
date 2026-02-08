@@ -455,7 +455,7 @@ div.saving-throws-block, h3#saves-title {
   margin-top: var(--spacing-sm);
 }
 
-.magical-defense-note {
+.magical-defence-note {
   margin-top: var(--spacing-md);
   padding: var(--spacing-md);
   background-color: var(--color-bg-tertiary);
@@ -465,7 +465,7 @@ div.saving-throws-block, h3#saves-title {
   border-radius: 4px;
 }
 
-.magical-defense-note strong {
+.magical-defence-note strong {
   color: var(--color-accent-secondary);
 }
 
@@ -701,6 +701,11 @@ div.saving-throws-block, h3#saves-title {
 
 .range-cell {
   text-align: center;
+}
+
+.rate-of-fire-cell {
+  text-align: center;
+  font-family: monospace;
 }
 
 .damage-type-cell {
@@ -1611,12 +1616,12 @@ div.saving-throws-block, h3#saves-title {
   }
 }
 
-/* Memorized Spells Section */
-.memorized-spells-section {
+/* Memorised Spells Section */
+.memorised-spells-section {
   margin-top: var(--spacing-lg);
 }
 
-.memorized-spells-section.with-reference {
+.memorised-spells-section.with-reference {
   margin-top: var(--spacing-lg);
 }
 
@@ -1774,21 +1779,21 @@ div.saving-throws-block, h3#saves-title {
   margin-bottom: 0;
 }
 
-.memorized-spells-heading {
+.memorised-spells-heading {
   color: var(--color-accent-secondary);
   margin-bottom: var(--spacing-md);
   font-size: 1.2em;
 }
 
-.memorized-level-section {
+.memorised-level-section {
   margin-bottom: var(--spacing-lg);
 }
 
-.memorized-level-header {
+.memorised-level-header {
   margin-bottom: var(--spacing-md);
 }
 
-.memorized-level-heading {
+.memorised-level-heading {
   color: var(--color-accent-secondary);
   font-size: 1.1em;
   display: flex;
@@ -1797,20 +1802,20 @@ div.saving-throws-block, h3#saves-title {
   flex-wrap: wrap;
 }
 
-.memorized-slots-badge {
+.memorised-slots-badge {
   font-size: 0.85em;
   color: var(--color-text-muted);
   font-weight: normal;
 }
 
-.memorized-dropdown-label {
+.memorised-dropdown-label {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
   margin-bottom: var(--spacing-sm);
 }
 
-.memorized-dropdown {
+.memorised-dropdown {
   width: 100%;
   padding: var(--spacing-sm);
   font-size: 1em;
@@ -1822,23 +1827,23 @@ div.saving-throws-block, h3#saves-title {
   transition: border-color 0.2s, background-color 0.2s;
 }
 
-.memorized-dropdown:focus {
+.memorised-dropdown:focus {
   outline: none;
   border-color: var(--color-accent-primary);
 }
 
-.memorized-dropdown:disabled {
+.memorised-dropdown:disabled {
   background-color: var(--color-bg-elevated);
   color: var(--color-text-muted);
   cursor: not-allowed;
   opacity: 0.6;
 }
 
-.memorized-dropdown.at-limit:not(:disabled) {
+.memorised-dropdown.at-limit:not(:disabled) {
   border-color: var(--color-accent-secondary);
 }
 
-.memorized-limit-message {
+.memorised-limit-message {
   margin-top: var(--spacing-xs);
   padding: var(--spacing-xs);
   background-color: var(--color-bg-elevated);
@@ -1849,7 +1854,7 @@ div.saving-throws-block, h3#saves-title {
   margin-bottom: 0;
 }
 
-.memorized-remaining-message {
+.memorised-remaining-message {
   margin-top: var(--spacing-xs);
   padding: var(--spacing-xs);
   background-color: var(--color-bg-tertiary);
