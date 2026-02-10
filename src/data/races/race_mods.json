@@ -27,5 +27,17 @@
     "human": { 
         "statAdj": {}, 
         "saveBonus": null 
+    },
+    "half-elf": { 
+        "statAdj": {}, 
+        "saveBonus": null 
+    },
+    "half-orc": { 
+        "statAdj": {"str": 1, "con": 1, "cha": -2}, 
+        "saveBonus": null 
+    },
+    "half-ogre": { 
+        "statAdj": {"str": 1, "con": 1, "int": -1, "cha": -1}, 
+        "saveBonus": null 
     }
 }

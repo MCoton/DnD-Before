@@ -182,7 +182,46 @@ export function calculateDerivedStats(character) {
     // --- STEP 4: LOOK UP ABILITY SCORE MODIFIERS ---
 
     // STRENGTH
-    const strMods = strTable[str] || {};
+    // Use exceptional strength if: raw strength is 18, exceptional strength is set, and it's a valid value
+    let strengthLookupKey = str.toString();
+    if (character.scores.str === 18 && character.exceptionalStrength) {
+        const exceptionalValue = character.exceptionalStrength;
+        
+        // Convert percentile roll to table key based on ranges
+        // Handle "00" as 100, otherwise parse as integer
+        let roll;
+        if (exceptionalValue === '00' || exceptionalValue === '0') {
+            roll = 100;
+        } else {
+            roll = parseInt(exceptionalValue, 10);
+        }
+        
+        // Validate roll is in valid range (1-100)
+        if (!isNaN(roll) && roll >= 1 && roll <= 100) {
+            let tableKey = null;
+            
+            // Map percentile ranges to table keys
+            // 01-50 → "18/01", 51-75 → "18/51", 76-90 → "18/76", 91-99 → "18/91", 00 (100) → "18/00"
+            if (roll >= 1 && roll <= 50) {
+                tableKey = '18/01';
+            } else if (roll >= 51 && roll <= 75) {
+                tableKey = '18/51';
+            } else if (roll >= 76 && roll <= 90) {
+                tableKey = '18/76';
+            } else if (roll >= 91 && roll <= 99) {
+                tableKey = '18/91';
+            } else if (roll === 100) {
+                tableKey = '18/00';
+            }
+            
+            // Validate that the table key exists in the table
+            if (tableKey && strTable[tableKey]) {
+                strengthLookupKey = tableKey;
+            }
+        }
+    }
+    
+    const strMods = strTable[strengthLookupKey] || {};
     results.strHitProb = strMods.hitProb || 0;
     results.strDamAdj = strMods.damageAdj || 0;
     results.strWeightAllow = strMods.weightAllow || 0;
@@ -215,7 +254,7 @@ export function calculateDerivedStats(character) {
 
     // WISDOM
     const wisMods = wisTable[wis] || {};
-    results.wisMagicalDefenceAdj = wisMods.magicalDefenceAdj || 0;
+    results.wisMagicalDefenseAdj = wisMods.magicalDefenseAdj || 0;
     results.wisBonusSpells = wisMods.bonusSpells || null;
     results.wisSpellFailureChance = wisMods.spellFailureChance || 0;
     results.wisSpellImmunity = getCumulativeImmunities(wisTable, wis);

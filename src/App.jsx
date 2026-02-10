@@ -18,6 +18,8 @@ import { useNumericInput } from "./hooks/useNumericInput.js";
 import { updateNestedState } from "./utils/stateHelpers.js";
 import { ARMOUR_OPTIONS, RACE_OPTIONS, CLASS_OPTIONS } from "./constants/characterOptions.js";
 import { HP_MIN, XP_MIN } from "./constants/characterLimits.js";
+import raceRequirements from "./data/races/race_requirements.json";
+import raceMods from "./data/races/race_mods.json";
 
 // Initial data model for a new character
 const initialCharacterState = {
@@ -33,9 +35,26 @@ const initialCharacterState = {
         dex: 10,
         con: 10,
         int: 10,
-        wis: 25,
+        wis: 10,
         cha: 10
     },
+    
+    // Stat override flags (bypass racial maximums)
+    statOverrides: {
+        str: false,
+        dex: false,
+        con: false,
+        int: false,
+        wis: false,
+        cha: false
+    },
+    
+    // Exceptional Strength (for warriors with natural 18 Strength)
+    exceptionalStrength: null, // Can be "18/01", "18/51", "18/76", or "18/00"
+    
+    // Race and Class override flags (bypass filtering rules)
+    raceOverride: false,
+    classOverride: false,
 
     // Progressional stats
     xp: 10000,
@@ -89,6 +108,90 @@ export default function CharacterSheet() {
     const handleRaceChanges = (e) => {
         updateNestedState(setCharacter, 'race', e.target.value);
     };
+
+    // Filter available races based on ability score minimums and maximums
+    const availableRaces = useMemo(() => {
+        // If race override is enabled, show all races
+        if (character.raceOverride) {
+            return RACE_OPTIONS;
+        }
+        
+        return RACE_OPTIONS.filter(race => {
+            const requirements = raceRequirements[race];
+            if (!requirements) return true; // If no requirements defined, allow the race
+            
+            const scores = character.scores;
+            const statKeys = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
+            
+            // Check if all minimum and maximum requirements are met
+            return statKeys.every(stat => {
+                const statRequirements = requirements[stat];
+                if (!statRequirements) return true; // No requirements for this stat, allow it
+                
+                const minRequired = statRequirements.min;
+                const maxAllowed = statRequirements.max;
+                const score = scores[stat];
+                
+                if (score === undefined) return true; // Score not set, allow it
+                
+                // Check minimum requirement
+                if (minRequired !== undefined && score < minRequired) {
+                    return false;
+                }
+                
+                // Check maximum requirement (skip if override is enabled for this stat)
+                if (maxAllowed !== undefined && score > maxAllowed) {
+                    if (!character.statOverrides[stat]) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+        });
+    }, [character.scores, character.statOverrides, character.raceOverride]);
+
+    // Filter available classes based on minimum stat requirements
+    // Also accounts for racial adjustments and race-specific restrictions
+    const availableClasses = useMemo(() => {
+        // If class override is enabled, show all classes
+        if (character.classOverride) {
+            return CLASS_OPTIONS;
+        }
+        
+        return CLASS_OPTIONS.filter(classKey => {
+            const classData = charClasses[classKey];
+            if (!classData) return true; // If class data doesn't exist, allow it (safety fallback)
+            
+            // Hard rule: Dwarves can never be Paladins (unless override is enabled)
+            if (classKey === 'paladin' && character.race?.toLowerCase() === 'dwarf' && !character.classOverride) {
+                return false;
+            }
+            
+            const minStatreqs = classData.minStatreqs;
+            if (!minStatreqs) return true; // If no minimum requirements defined, allow the class
+            
+            // Get racial adjustments to calculate adjusted scores
+            const raceKey = character.race?.toLowerCase() || 'human';
+            const raceData = raceMods[raceKey] || { statAdj: {} };
+            const statAdjustments = raceData.statAdj || {};
+            
+            const scores = character.scores;
+            
+            // Check if all minimum stat requirements are met using adjusted scores
+            // (raw score + racial adjustment)
+            return Object.entries(minStatreqs).every(([stat, minRequired]) => {
+                const rawScore = scores[stat];
+                if (rawScore === undefined) return false;
+                
+                // Calculate adjusted score (raw + racial adjustment)
+                const adjustment = statAdjustments[stat] || 0;
+                const adjustedScore = rawScore + adjustment;
+                
+                return adjustedScore >= minRequired;
+            });
+        });
+    }, [character.scores, character.race, character.classOverride]);
 
     // Function to handle Character Class selection
     const handleClassChanges = (e) => {
@@ -186,28 +289,48 @@ export default function CharacterSheet() {
                         </label>
 
                         {/* Character Class Selector */}
-                        <SelectInput
-                            label="Class"
-                            name="characterClass"
-                            value={character.characterClass}
-                            onChange={handleClassChanges}
-                            options={CLASS_OPTIONS.map(cls => ({
-                                value: cls,
-                                label: capitaliseWords(cls)
-                            }))}
-                        />
+                        <div className="input-row">
+                            <SelectInput
+                                label="Class"
+                                name="characterClass"
+                                value={character.characterClass}
+                                onChange={handleClassChanges}
+                                options={availableClasses.map(cls => ({
+                                    value: cls,
+                                    label: capitaliseWords(cls)
+                                }))}
+                            />
+                            <label className="override-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={character.classOverride || false}
+                                    onChange={(e) => updateNestedState(setCharacter, 'classOverride', e.target.checked)}
+                                />
+                                <span>Override</span>
+                            </label>
+                        </div>
 
                         {/* Race Selector */}
-                        <SelectInput
-                            label="Race"
-                            name="race"
-                            value={character.race}
-                            onChange={handleRaceChanges}
-                            options={RACE_OPTIONS.map(race => ({
-                                value: race,
-                                label: capitaliseWords(race)
-                            }))}
-                        />
+                        <div className="input-row">
+                            <SelectInput
+                                label="Race"
+                                name="race"
+                                value={character.race}
+                                onChange={handleRaceChanges}
+                                options={availableRaces.map(race => ({
+                                    value: race,
+                                    label: capitaliseWords(race)
+                                }))}
+                            />
+                            <label className="override-checkbox">
+                                <input
+                                    type="checkbox"
+                                    checked={character.raceOverride || false}
+                                    onChange={(e) => updateNestedState(setCharacter, 'raceOverride', e.target.checked)}
+                                />
+                                <span>Override</span>
+                            </label>
+                        </div>
                         
                         {racialAdjDisplay !== 'none' && (
                             <p className="racial-adj-display">Racial Adjustments: {racialAdjDisplay}</p>
@@ -330,6 +453,12 @@ export default function CharacterSheet() {
                         adjustedScore={derivedStats.adjustedScores.str}  // ← NEW: Pass adjusted for display
                         derivedData={derivedStats}
                         onScoreChange={handleScoreChange}
+                        characterClass={character.characterClass}
+                        race={character.race}
+                        exceptionalStrength={character.exceptionalStrength}
+                        onExceptionalStrengthChange={(value) => updateNestedState(setCharacter, 'exceptionalStrength', value)}
+                        statOverride={character.statOverrides.str}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'str'], value)}
                     />
 
                     <StatBlock 
@@ -338,6 +467,8 @@ export default function CharacterSheet() {
                         adjustedScore={derivedStats.adjustedScores.dex}  // ← Adjusted score
                         derivedData={derivedStats} 
                         onScoreChange={handleScoreChange}
+                        statOverride={character.statOverrides.dex}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'dex'], value)}
                     />
 
                     <StatBlock 
@@ -347,6 +478,8 @@ export default function CharacterSheet() {
                         derivedData={derivedStats} 
                         onScoreChange={handleScoreChange}
                         race={character.race}
+                        statOverride={character.statOverrides.con}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'con'], value)}
                     />
 
                     <StatBlock 
@@ -355,6 +488,8 @@ export default function CharacterSheet() {
                         adjustedScore={derivedStats.adjustedScores.int}  // ← Adjusted score
                         derivedData={derivedStats} 
                         onScoreChange={handleScoreChange}
+                        statOverride={character.statOverrides.int}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'int'], value)}
                     />
 
                     <StatBlock 
@@ -363,6 +498,8 @@ export default function CharacterSheet() {
                         adjustedScore={derivedStats.adjustedScores.wis}  // ← Adjusted score
                         derivedData={derivedStats} 
                         onScoreChange={handleScoreChange}
+                        statOverride={character.statOverrides.wis}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'wis'], value)}
                     />
 
                     <StatBlock 
@@ -371,6 +508,8 @@ export default function CharacterSheet() {
                         adjustedScore={derivedStats.adjustedScores.cha}  // ← Adjusted score
                         derivedData={derivedStats} 
                         onScoreChange={handleScoreChange}
+                        statOverride={character.statOverrides.cha}
+                        onStatOverrideChange={(value) => updateNestedState(setCharacter, ['statOverrides', 'cha'], value)}
                     />
                 </div>
 
@@ -388,7 +527,7 @@ export default function CharacterSheet() {
                         savingThrows={derivedStats.savingThrows}
                         characterClass={character.characterClass}
                         characterLevel={derivedStats.level}
-                        magicalDefenceAdj={derivedStats.wisMagicalDefenceAdj}
+                        magicalDefenseAdj={derivedStats.wisMagicalDefenseAdj}
                     />
                 </div>
 

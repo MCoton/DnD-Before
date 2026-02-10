@@ -106,10 +106,10 @@ export default function WeaponProficiencies({
         );
     }
 
-    // Get weapon specialisation settings from class data
-    const canSpecialiseData = classData.canSpecialise || [false, null];
-    const canSpecialise = canSpecialiseData[0] === true;
-    const maxSlotsPerWeapon = canSpecialiseData[1] !== null ? canSpecialiseData[1] : 1;
+    // Get weapon specialization settings from class data
+    const canSpecializeData = classData.canSpecialize || [false, null];
+    const canSpecialise = canSpecializeData[0] === true;
+    const maxSlotsPerWeapon = canSpecializeData[1] !== null ? canSpecializeData[1] : 1;
 
     // Calculate slots
     const usedSlots = Object.values(proficiencies).reduce((sum, slots) => sum + slots, 0);
@@ -168,7 +168,7 @@ export default function WeaponProficiencies({
         return 0;
     };
 
-    // Calculate effective attacks per round with specialisation bonus
+    // Calculate effective attacks per round with specialization bonus
     const calculateEffectiveAttacksPerRound = (baseAttsPerRound, specData, weaponType) => {
         if (!baseAttsPerRound || !Array.isArray(baseAttsPerRound) || baseAttsPerRound.length !== 2) {
             return baseAttsPerRound || [1, 1];
@@ -177,7 +177,7 @@ export default function WeaponProficiencies({
         // Base attacks per round as decimal: [x, y] means x attacks per y rounds = x/y attacks per round
         const baseAttacksPerRound = baseAttsPerRound[0] / baseAttsPerRound[1];
         
-        // Get specialisation bonus
+        // Get specialization bonus
         const bonus = specData?.bonuses?.attacksPerRound 
             ? getAttacksPerRoundBonusValue(specData.bonuses.attacksPerRound, weaponType)
             : 0;
@@ -239,7 +239,7 @@ export default function WeaponProficiencies({
         
         let thac0 = baseThac0;
         
-        // Add specialisation attack bonus
+        // Add specialization attack bonus
         if (specData?.bonuses?.attackBonus) {
             thac0 -= specData.bonuses.attackBonus;
         }
@@ -395,10 +395,10 @@ export default function WeaponProficiencies({
                         </tbody>
                     </table>
                     
-                    {/* Show specialisation bonuses summary */}
+                    {/* Show specialization bonuses summary */}
                     {proficientWeapons.some(p => p.specLevel !== 'proficient') && (
                         <div className="spec-bonuses-summary">
-                            <h4>Specialisation Bonuses:</h4>
+                            <h4>Specialization Bonuses:</h4>
                             {proficientWeapons
                                 .filter(p => p.specLevel !== 'proficient')
                                 .map(({ key, weapon, specData }) => (

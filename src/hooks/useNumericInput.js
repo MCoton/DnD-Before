@@ -14,11 +14,11 @@ import { useState, useEffect } from 'react';
  */
 export function useNumericInput(initialValue, options = {}) {
   const { min = 0, max = Infinity, onUpdate, onBlur } = options;
-  const [inputValue, setInputValue] = useState(String(initialValue));
+  const [inputValue, setInputValue] = useState(initialValue === null || initialValue === undefined ? '' : String(initialValue));
   
   // Update local state when initialValue prop changes (from external updates)
   useEffect(() => {
-    setInputValue(String(initialValue));
+    setInputValue(initialValue === null || initialValue === undefined ? '' : String(initialValue));
   }, [initialValue]);
   
   const handleChange = (e) => {

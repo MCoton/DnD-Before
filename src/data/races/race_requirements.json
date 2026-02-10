@@ -1,0 +1,66 @@
+{
+    "dwarf": {
+        "str": {"min": 8, "max": 18},
+        "dex": {"min": 3, "max": 17},
+        "con": {"min": 11, "max": 18},
+        "int": {"min": 3, "max": 18},
+        "wis": {"min": 3, "max": 18},
+        "cha": {"min": 3, "max": 17}
+    },
+    "elf": {
+        "str": {"min": 3, "max": 18},
+        "dex": {"min": 6, "max": 18},
+        "con": {"min": 7, "max": 18},
+        "int": {"min": 8, "max": 18},
+        "wis": {"min": 3, "max": 18},
+        "cha": {"min": 8, "max": 18}
+    },
+    "gnome": {
+        "str": {"min": 6, "max": 18},
+        "dex": {"min": 3, "max": 18},
+        "con": {"min": 8, "max": 18},
+        "int": {"min": 6, "max": 18},
+        "wis": {"min": 3, "max": 18},
+        "cha": {"min": 3, "max": 18}
+    },
+    "half-elf": {
+        "str": {"min": 3, "max": 18},
+        "dex": {"min": 6, "max": 18},
+        "con": {"min": 6, "max": 18},
+        "int": {"min": 4, "max": 18},
+        "wis": {"min": 3, "max": 18},
+        "cha": {"min": 3, "max": 18}
+    },
+    "half-orc": {
+        "str": {"min": 6, "max": 18},
+        "dex": {"min": 3, "max": 17},
+        "con": {"min": 8, "max": 18},
+        "int": {"min": 3, "max": 17},
+        "wis": {"min": 3, "max": 14},
+        "cha": {"min": 3, "max": 12}
+    },
+    "half-ogre": {
+        "str": {"min": 14, "max": 18},
+        "dex": {"min": 3, "max": 12},
+        "con": {"min": 14, "max": 18},
+        "int": {"min": 3, "max": 12},
+        "wis": {"min": 3, "max": 12},
+        "cha": {"min": 3, "max": 8}
+    },
+    "halfling": {
+        "str": {"min": 7, "max": 18},
+        "dex": {"min": 7, "max": 18},
+        "con": {"min": 10, "max": 18},
+        "int": {"min": 6, "max": 18},
+        "wis": {"min": 3, "max": 17},
+        "cha": {"min": 3, "max": 18}
+    },
+    "human": {
+        "str": {"min": 3, "max": 18},
+        "dex": {"min": 3, "max": 18},
+        "con": {"min": 3, "max": 18},
+        "int": {"min": 3, "max": 18},
+        "wis": {"min": 3, "max": 18},
+        "cha": {"min": 3, "max": 18}
+    }
+}

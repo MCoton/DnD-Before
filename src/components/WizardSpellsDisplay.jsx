@@ -4,7 +4,7 @@ import charClasses from '../data/classes/character_classes.json';
 import SpellModal from './SpellModal';
 
 /**
- * Displays wizard spells with a Spell Book for known spells and slots for memorised spells
+ * Displays wizard spells with a Spell Book for known spells and slots for memorized spells
  * 
  * @param {object} props
  * @param {string} props.characterClass - The character's class
@@ -19,7 +19,7 @@ export default function WizardSpellsDisplay({
     intMaxSpellsPerLevel 
 }) {
     const [spellBook, setSpellBook] = useState([]); // Array of known spell objects
-    const [memorisedSpells, setMemorisedSpells] = useState([]); // Array of memorised spell objects
+    const [memorizedSpells, setMemorizedSpells] = useState([]); // Array of memorized spell objects
     const [modalSpell, setModalSpell] = useState(null); // Currently displayed spell in modal
 
     // Combined calculation: Get mage spells, available levels, and spells by level in one pass
@@ -105,15 +105,15 @@ export default function WizardSpellsDisplay({
     // Destructure for easier access
     const { spellBookByLevel, spellBookCountByLevel } = spellBookData;
 
-    // Count memorised spells per level
-    const memorisedSpellsByLevel = useMemo(() => {
+    // Count memorized spells per level
+    const memorizedSpellsByLevel = useMemo(() => {
         const countByLevel = {};
-        memorisedSpells.forEach(spell => {
+        memorizedSpells.forEach(spell => {
             const level = spell["Spell Level"];
             countByLevel[level] = (countByLevel[level] || 0) + 1;
         });
         return countByLevel;
-    }, [memorisedSpells]);
+    }, [memorizedSpells]);
 
     // Check if spell book level has reached its limit
     const isSpellBookAtLimit = (level) => {
@@ -125,12 +125,12 @@ export default function WizardSpellsDisplay({
         return currentCount >= intMaxSpellsPerLevel;
     };
 
-    // Check if a level has reached its memorisation slot limit
-    const isMemorisationAtLimit = (level) => {
+    // Check if a level has reached its memorization slot limit
+    const isMemorizationAtLimit = (level) => {
         if (!mageSpells) return false;
         const slotsAvailable = mageSpells[level - 1] || 0;
-        const memorisedCount = memorisedSpellsByLevel[level] || 0;
-        return memorisedCount >= slotsAvailable;
+        const memorizedCount = memorizedSpellsByLevel[level] || 0;
+        return memorizedCount >= slotsAvailable;
     };
 
     // Check if a spell is in the spell book
@@ -140,9 +140,9 @@ export default function WizardSpellsDisplay({
         );
     };
 
-    // Check if a spell is memorised
-    const isMemorised = (spell) => {
-        return memorisedSpells.some(s => 
+    // Check if a spell is memorized
+    const isMemorized = (spell) => {
+        return memorizedSpells.some(s => 
             s.Name === spell.Name && s["Spell Level"] === spell["Spell Level"]
         );
     };
@@ -156,26 +156,26 @@ export default function WizardSpellsDisplay({
 
     // Handle removing spell from spell book
     const handleRemoveFromSpellBook = (spellToRemove) => {
-        // Also remove from memorised spells if it's memorised
+        // Also remove from memorized spells if it's memorized
         const newSpellBook = spellBook.filter(spell => 
             !(spell.Name === spellToRemove.Name && spell["Spell Level"] === spellToRemove["Spell Level"])
         );
         setSpellBook(newSpellBook);
         
-        // Remove from memorised if it was memorised
-        setMemorisedSpells(memorisedSpells.filter(spell => 
+        // Remove from memorized if it was memorized
+        setMemorizedSpells(memorizedSpells.filter(spell => 
             !(spell.Name === spellToRemove.Name && spell["Spell Level"] === spellToRemove["Spell Level"])
         ));
     };
 
-    // Handle dropdown selection for memorisation
-    const handleMemorisationChange = (level, spellName, dropdownIndex) => {
+    // Handle dropdown selection for memorization
+    const handleMemorizationChange = (level, spellName, dropdownIndex) => {
         if (!spellName || spellName === '') {
             // Empty selection - remove the spell at this dropdown index if it exists
-            const spellsForLevel = memorisedSpells.filter(s => s["Spell Level"] === level);
+            const spellsForLevel = memorizedSpells.filter(s => s["Spell Level"] === level);
             if (dropdownIndex < spellsForLevel.length) {
                 const spellToRemove = spellsForLevel[dropdownIndex];
-                setMemorisedSpells(memorisedSpells.filter(spell => 
+                setMemorizedSpells(memorizedSpells.filter(spell => 
                     !(spell.Name === spellToRemove.Name && spell["Spell Level"] === spellToRemove["Spell Level"])
                 ));
             }
@@ -188,23 +188,23 @@ export default function WizardSpellsDisplay({
         if (!selectedSpell) return;
 
         // Check if level is at limit and this is a new selection
-        if (isMemorisationAtLimit(level) && !isMemorised(selectedSpell)) {
-            return; // Level is at limit, cannot memorise more
+        if (isMemorizationAtLimit(level) && !isMemorized(selectedSpell)) {
+            return; // Level is at limit, cannot memorize more
         }
 
         // If replacing an existing selection at this dropdown index
-        const spellsForLevel = memorisedSpells.filter(s => s["Spell Level"] === level);
+        const spellsForLevel = memorizedSpells.filter(s => s["Spell Level"] === level);
         if (dropdownIndex < spellsForLevel.length) {
             const spellToReplace = spellsForLevel[dropdownIndex];
-            setMemorisedSpells(memorisedSpells.map(spell => 
+            setMemorizedSpells(memorizedSpells.map(spell => 
                 (spell.Name === spellToReplace.Name && spell["Spell Level"] === spellToReplace["Spell Level"])
                     ? selectedSpell
                     : spell
             ));
         } else {
-            // Adding a new memorisation
-            if (!isMemorised(selectedSpell)) {
-                setMemorisedSpells([...memorisedSpells, selectedSpell]);
+            // Adding a new memorization
+            if (!isMemorized(selectedSpell)) {
+                setMemorizedSpells([...memorizedSpells, selectedSpell]);
             }
         }
     };
@@ -330,49 +330,49 @@ export default function WizardSpellsDisplay({
                     })}
                 </div>
 
-                {/* Memorised Spells Section */}
-                <div className="memorised-spells-section">
+                {/* Memorized Spells Section */}
+                <div className="memorized-spells-section">
                     <hr className="style14"></hr>
-                    <h3 className="memorised-spells-heading">Memorised Spells (Spell Slots)</h3>
+                    <h3 className="memorized-spells-heading">Memorized Spells (Spell Slots)</h3>
                     {availableSpellLevels.map(level => {
                         const bookSpells = spellBookByLevel[level] || [];
                         if (bookSpells.length === 0) return null;
 
                         const slotsAvailable = mageSpells[level - 1] || 0;
-                        const memorisedCount = memorisedSpellsByLevel[level] || 0;
-                        const isAtLimit = isMemorisationAtLimit(level);
-                        const remainingSlots = slotsAvailable - memorisedCount;
-                        const memorisedSpellsForLevel = memorisedSpells.filter(s => s["Spell Level"] === level);
+                        const memorizedCount = memorizedSpellsByLevel[level] || 0;
+                        const isAtLimit = isMemorizationAtLimit(level);
+                        const remainingSlots = slotsAvailable - memorizedCount;
+                        const memorizedSpellsForLevel = memorizedSpells.filter(s => s["Spell Level"] === level);
 
                         return (
-                            <div key={`mem-${level}`} className="memorised-level-section">
-                                <div className="memorised-level-header">
-                                    <span className="memorised-level-heading">
+                            <div key={`mem-${level}`} className="memorized-level-section">
+                                <div className="memorized-level-header">
+                                    <span className="memorized-level-heading">
                                         {formatOrdinal(level)} Level Spells
-                                        <span className="memorised-slots-badge">
-                                            ({memorisedCount}/{slotsAvailable} memorised)
+                                        <span className="memorized-slots-badge">
+                                            ({memorizedCount}/{slotsAvailable} memorized)
                                         </span>
                                     </span>
                                 </div>
                                 
                                 {/* Create one dropdown per available slot */}
                                 {Array.from({ length: slotsAvailable }, (_, index) => {
-                                    const currentSelection = memorisedSpellsForLevel[index];
+                                    const currentSelection = memorizedSpellsForLevel[index];
                                     const currentSpellName = currentSelection ? currentSelection.Name : '';
                                     
                                     return (
-                                        <label key={`mem-dropdown-${level}-${index}`} className="memorised-dropdown-label">
+                                        <label key={`mem-dropdown-${level}-${index}`} className="memorized-dropdown-label">
                                             <select
                                                 value={currentSpellName}
-                                                onChange={(e) => handleMemorisationChange(level, e.target.value, index)}
-                                                className={`memorised-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
+                                                onChange={(e) => handleMemorizationChange(level, e.target.value, index)}
+                                                className={`memorized-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
                                                 disabled={isAtLimit && !currentSpellName}
                                             >
                                                 <option value="">-- Select from book --</option>
                                                 {bookSpells.map((spell, spellIndex) => {
-                                                    const memorised = isMemorised(spell);
-                                                    // Disable if: already memorised in another slot, OR level is at limit and this dropdown is empty
-                                                    const disabled = (memorised && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName);
+                                                    const memorized = isMemorized(spell);
+                                                    // Disable if: already memorized in another slot, OR level is at limit and this dropdown is empty
+                                                    const disabled = (memorized && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName);
                                                     
                                                     return (
                                                         <option
@@ -380,7 +380,7 @@ export default function WizardSpellsDisplay({
                                                             value={spell.Name}
                                                             disabled={disabled}
                                                         >
-                                                            {spell.Name} {memorised && currentSpellName !== spell.Name ? '(memorised)' : ''}
+                                                            {spell.Name} {memorized && currentSpellName !== spell.Name ? '(memorized)' : ''}
                                                         </option>
                                                     );
                                                 })}
@@ -390,13 +390,13 @@ export default function WizardSpellsDisplay({
                                 })}
                                 
                                 {isAtLimit && (
-                                    <p className="memorised-limit-message">
-                                        All slots filled ({slotsAvailable} slot{slotsAvailable > 1 ? 's' : ''}). Remove a spell to memorise another.
+                                    <p className="memorized-limit-message">
+                                        All slots filled ({slotsAvailable} slot{slotsAvailable > 1 ? 's' : ''}). Remove a spell to memorize another.
                                     </p>
                                 )}
                                 
                                 {!isAtLimit && remainingSlots > 0 && (
-                                    <p className="memorised-remaining-message">
+                                    <p className="memorized-remaining-message">
                                         {remainingSlots} slot{remainingSlots > 1 ? 's' : ''} remaining
                                     </p>
                                 )}

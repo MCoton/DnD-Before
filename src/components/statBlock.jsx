@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import raceMods from '../data/races/race_mods.json';
 import { clamp } from '../utils';
 import { useNumericInput } from '../hooks/useNumericInput';
 import { STAT_MIN, STAT_MAX } from '../constants/characterLimits';
+
+import charClasses from '../data/classes/character_classes.json';
 
 /**
  * Renders the score and derived statistics for a single D&D Attribute.
@@ -13,9 +15,14 @@ import { STAT_MIN, STAT_MAX } from '../constants/characterLimits';
  * @param {object} props.derivedData - The full object of calculated results.
  * @param {function} props.onScoreChange - Handler for score changes
  * @param {string} props.race - The character's race
+ * @param {string} props.characterClass - The character's class (for exceptional strength check)
+ * @param {string} props.exceptionalStrength - The exceptional strength value (e.g., "18/01")
+ * @param {function} props.onExceptionalStrengthChange - Handler for exceptional strength changes
+ * @param {boolean} props.statOverride - Whether stat override is enabled for this stat
+ * @param {function} props.onStatOverrideChange - Handler for stat override changes
  */
 
-export default function StatBlock({ statName, score, adjustedScore, derivedData, onScoreChange, race }) {
+export default function StatBlock({ statName, score, adjustedScore, derivedData, onScoreChange, race, characterClass, exceptionalStrength, onExceptionalStrengthChange, statOverride, onStatOverrideChange }) {
 
     // Helper to get the first three letters of the stat name for key prefixing
     // e.g., 'Strength' -> 'str', 'Constitution' -> 'con'
@@ -29,8 +36,8 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
         min: STAT_MIN,
         max: STAT_MAX,
         onUpdate: (clampedAdjustedValue) => {
-            // Calculate what the raw score should be to achieve this adjusted score
-            const racialAdjustment = adjustedScore - score;
+        // Calculate what the raw score should be to achieve this adjusted score
+        const racialAdjustment = adjustedScore - score;
             const newRawScore = clampedAdjustedValue - racialAdjustment;
             const clampedRawScore = clamp(newRawScore, STAT_MIN, STAT_MAX);
 
@@ -100,7 +107,7 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
         ],
         // --- WISDOM ---
         wis: [
-            { label: 'Mag Def Adj', value: `+${derivedData.wisMagicalDefenceAdj}` },
+            { label: 'Mag Def Adj', value: `+${derivedData.wisMagicalDefenseAdj}` },
             { label: 'Bonus Spells', value: derivedData.wisBonusSpells?.join(', ') || 'None' },
             { label: 'Spell Fail', value: `${derivedData.wisSpellFailureChance}%` },
         ],
@@ -114,6 +121,62 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
 
     const statsToDisplay = derivedStatsMap[statPrefix] || [];
 
+    // Check if exceptional strength should be shown (only for Strength stat)
+    const isStrength = statPrefix === 'str';
+    const showExceptionalStrength = isStrength && characterClass && race;
+    
+    let canHaveExceptionalStrength = false;
+    if (showExceptionalStrength) {
+        const classKey = characterClass.toLowerCase();
+        const classData = charClasses[classKey];
+        const isWarrior = classData?.group === 'warrior';
+        const isHalfling = race?.toLowerCase() === 'halfling';
+        const isNatural18 = score === 18; // Natural (raw) strength must be 18
+        
+        canHaveExceptionalStrength = isWarrior && !isHalfling && isNatural18;
+    }
+    
+    // Clear exceptional strength if conditions are no longer met
+    useEffect(() => {
+        if (isStrength && exceptionalStrength && !canHaveExceptionalStrength && onExceptionalStrengthChange) {
+            onExceptionalStrengthChange(null);
+        }
+    }, [isStrength, exceptionalStrength, canHaveExceptionalStrength, onExceptionalStrengthChange]);
+
+    // Use numeric input hook for exceptional strength (allows 0-100, where 0 or 100 = 00 percentile)
+    // Convert stored value to number for display: "00" → 100, others → parseInt
+    // Handle null/empty as empty string for the hook
+    const exceptionalStrengthDisplayValue = exceptionalStrength 
+        ? (exceptionalStrength === '00' ? 100 : parseInt(exceptionalStrength, 10))
+        : '';
+    
+    const exceptionalStrengthInput = useNumericInput(
+        exceptionalStrengthDisplayValue || null,
+        {
+            min: 0,
+            max: 100,
+            onUpdate: (value) => {
+                if (onExceptionalStrengthChange) {
+                    // Convert number back to percentile string format
+                    if (value === null || value === '' || isNaN(value)) {
+                        onExceptionalStrengthChange(null);
+                    } else {
+                        const numValue = parseInt(value, 10);
+                        // 0 or 100 both represent percentile "00" (100)
+                        if (numValue === 0 || numValue === 100) {
+                            onExceptionalStrengthChange('00');
+                        } else if (numValue >= 1 && numValue <= 99) {
+                            // Pad to 2 digits: "01", "47", "99", etc.
+                            onExceptionalStrengthChange(numValue.toString().padStart(2, '0'));
+                        } else {
+                            onExceptionalStrengthChange(null);
+                        }
+                    }
+                }
+            }
+        }
+    );
+
     return (
         <div className="inner-border stat-block">
             <div id={statPrefix}>
@@ -122,18 +185,51 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
                     <label htmlFor={`${statPrefix}-input`}>
                         <h3>{statName}: </h3>
                     </label>
-                    <input
-                        id={`${statPrefix}-input`}
-                        type="text"
-                        inputMode="numeric"
-                        value={inputValue}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                        min={STAT_MIN}
-                        max={STAT_MAX}
-                        className="stat-score-input"
-                    />
+                    <div className="stat-input-wrapper">
+                        <input
+                            id={`${statPrefix}-input`}
+                            type="text"
+                            inputMode="numeric"
+                            value={inputValue}
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            min={STAT_MIN}
+                            max={STAT_MAX}
+                            className="stat-score-input"
+                        />
+                        {onStatOverrideChange && (
+                            <label className="stat-override-checkbox" title="Override racial maximum">
+                                <input
+                                    type="checkbox"
+                                    checked={statOverride || false}
+                                    onChange={(e) => onStatOverrideChange(e.target.checked)}
+                                />
+                                <span>Override</span>
+                            </label>
+                        )}
+                    </div>
                 </div>
+                
+                {/* Exceptional Strength Input (only for Strength, warriors, natural 18, not halfling) */}
+                {canHaveExceptionalStrength && (
+                    <div className="stat-header exceptional-strength-header">
+                        <label htmlFor={`${statPrefix}-exceptional-input`}>
+                            <span className="exceptional-strength-label">Exceptional Strength:</span>
+                        </label>
+                        <input
+                            id={`${statPrefix}-exceptional-input`}
+                            type="text"
+                            inputMode="numeric"
+                            value={exceptionalStrengthInput.inputValue}
+                            onChange={exceptionalStrengthInput.handleChange}
+                            onBlur={exceptionalStrengthInput.handleBlur}
+                            min={0}
+                            max={100}
+                            placeholder="00-100"
+                            className="stat-score-input exceptional-strength-input"
+                        />
+                    </div>
+                )}
                 
                 <hr className="style14"></hr>
                 
