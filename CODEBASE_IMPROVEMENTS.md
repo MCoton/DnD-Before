@@ -398,11 +398,11 @@ Move to dedicated constants file:
 ```javascript
 // constants/characterOptions.js
 import armourTable from '../data/equipment/armour_class.json';
-import raceMods from '../data/races/race_mods.json';
+import { RACES } from '../constants/races.js';
 import charClass from '../data/classes/character_classes.json';
 
 export const ARMOUR_OPTIONS = Object.keys(armourTable.armourType);
-export const RACE_OPTIONS = Object.keys(raceMods);
+export const RACE_OPTIONS = Object.keys(RACES);
 export const CLASS_OPTIONS = Object.keys(charClass);
 ```
 

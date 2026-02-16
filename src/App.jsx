@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import './index.css'
 
 import { calculateDerivedStats } from "./rulesEngine";
@@ -18,8 +18,7 @@ import { useNumericInput } from "./hooks/useNumericInput.js";
 import { updateNestedState } from "./utils/stateHelpers.js";
 import { ARMOUR_OPTIONS, RACE_OPTIONS, CLASS_OPTIONS } from "./constants/characterOptions.js";
 import { HP_MIN, XP_MIN } from "./constants/characterLimits.js";
-import raceRequirements from "./data/races/race_requirements.json";
-import raceMods from "./data/races/race_mods.json";
+import { RACES } from "./constants/races.js";
 
 // Initial data model for a new character
 const initialCharacterState = {
@@ -109,89 +108,108 @@ export default function CharacterSheet() {
         updateNestedState(setCharacter, 'race', e.target.value);
     };
 
-    // Filter available races based on ability score minimums and maximums
+    // Filter available races: stat requirements + race must be allowed for selected class (RACES[race].levelLimits)
     const availableRaces = useMemo(() => {
-        // If race override is enabled, show all races
         if (character.raceOverride) {
             return RACE_OPTIONS;
         }
-        
+
+        const classKey = character.characterClass?.toLowerCase();
+
         return RACE_OPTIONS.filter(race => {
-            const requirements = raceRequirements[race];
-            if (!requirements) return true; // If no requirements defined, allow the race
-            
+            const raceData = RACES[race];
+            // If a class is selected, race can only be chosen if it can take that class (present in levelLimits)
+            if (classKey && raceData?.levelLimits && !Object.prototype.hasOwnProperty.call(raceData.levelLimits, classKey)) {
+                return false;
+            }
+
+            const requirements = raceData?.requirements;
+            if (!requirements) return true;
+
             const scores = character.scores;
             const statKeys = ['str', 'dex', 'con', 'int', 'wis', 'cha'];
-            
-            // Check if all minimum and maximum requirements are met
+
             return statKeys.every(stat => {
                 const statRequirements = requirements[stat];
-                if (!statRequirements) return true; // No requirements for this stat, allow it
-                
+                if (!statRequirements) return true;
+
                 const minRequired = statRequirements.min;
                 const maxAllowed = statRequirements.max;
                 const score = scores[stat];
-                
-                if (score === undefined) return true; // Score not set, allow it
-                
-                // Check minimum requirement
+
+                if (score === undefined) return true;
+
                 if (minRequired !== undefined && score < minRequired) {
                     return false;
                 }
-                
-                // Check maximum requirement (skip if override is enabled for this stat)
                 if (maxAllowed !== undefined && score > maxAllowed) {
                     if (!character.statOverrides[stat]) {
                         return false;
                     }
                 }
-                
                 return true;
             });
         });
-    }, [character.scores, character.statOverrides, character.raceOverride]);
+    }, [character.scores, character.statOverrides, character.raceOverride, character.characterClass]);
 
-    // Filter available classes based on minimum stat requirements
-    // Also accounts for racial adjustments and race-specific restrictions
+    // Filter available classes: race's levelLimits (race can only adopt classes listed there) + min stat requirements
     const availableClasses = useMemo(() => {
-        // If class override is enabled, show all classes
         if (character.classOverride) {
             return CLASS_OPTIONS;
         }
-        
+
+        const raceKey = character.race?.toLowerCase() || 'human';
+        const raceData = RACES[raceKey];
+        const levelLimits = raceData?.levelLimits || {};
+
         return CLASS_OPTIONS.filter(classKey => {
             const classData = charClasses[classKey];
-            if (!classData) return true; // If class data doesn't exist, allow it (safety fallback)
-            
-            // Hard rule: Dwarves can never be Paladins (unless override is enabled)
-            if (classKey === 'paladin' && character.race?.toLowerCase() === 'dwarf' && !character.classOverride) {
+            if (!classData) return true;
+
+            // Race can only adopt classes present in its levelLimits; absence means class is prohibited
+            if (!Object.prototype.hasOwnProperty.call(levelLimits, classKey)) {
                 return false;
             }
-            
+
             const minStatreqs = classData.minStatreqs;
-            if (!minStatreqs) return true; // If no minimum requirements defined, allow the class
-            
-            // Get racial adjustments to calculate adjusted scores
-            const raceKey = character.race?.toLowerCase() || 'human';
-            const raceData = raceMods[raceKey] || { statAdj: {} };
-            const statAdjustments = raceData.statAdj || {};
-            
+            if (!minStatreqs) return true;
+
+            const statAdjustments = raceData?.statAdj || {};
             const scores = character.scores;
-            
-            // Check if all minimum stat requirements are met using adjusted scores
-            // (raw score + racial adjustment)
+
             return Object.entries(minStatreqs).every(([stat, minRequired]) => {
                 const rawScore = scores[stat];
                 if (rawScore === undefined) return false;
-                
-                // Calculate adjusted score (raw + racial adjustment)
                 const adjustment = statAdjustments[stat] || 0;
                 const adjustedScore = rawScore + adjustment;
-                
                 return adjustedScore >= minRequired;
             });
         });
     }, [character.scores, character.race, character.classOverride]);
+
+    // When override is off, keep race/class in sync with filtered lists so we never show an invalid combination
+    useEffect(() => {
+        if (character.raceOverride && character.classOverride) return;
+        setCharacter(prev => {
+            let next = { ...prev };
+            let changed = false;
+            if (!character.classOverride && prev.characterClass && availableClasses.length > 0) {
+                const classKey = prev.characterClass?.toLowerCase();
+                if (!availableClasses.includes(classKey)) {
+                    next.characterClass = availableClasses[0];
+                    changed = true;
+                }
+            }
+            if (!character.raceOverride && prev.race && availableRaces.length > 0) {
+                const raceKey = prev.race?.toLowerCase();
+                if (!availableRaces.includes(raceKey)) {
+                    next.race = availableRaces[0];
+                    changed = true;
+                }
+            }
+            return changed ? next : prev;
+        });
+    }, [character.raceOverride, character.classOverride, character.race, character.characterClass, availableRaces, availableClasses]);
 
     // Function to handle Character Class selection
     const handleClassChanges = (e) => {

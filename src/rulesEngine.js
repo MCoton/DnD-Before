@@ -5,7 +5,7 @@ import conTable from "./data/statTables/constitution_table.json";
 import intTable from "./data/statTables/intelligence_table.json";
 import wisTable from "./data/statTables/wisdom_table.json";
 import chaTable from "./data/statTables/charisma_table.json";
-import raceMods from "./data/races/race_mods.json";
+import { RACES } from "./constants/races.js";
 import charClasses from "./data/classes/character_classes.json";
 import charAbilities from "./data/classes/character_abilities_text.json"
 import armourTable from "./data/equipment/armour_class.json";
@@ -15,7 +15,7 @@ import { capitaliseWords, clamp } from './utils.js';
 /**
  * Calculates racial save bonus for a given race.
  * 
- * @param {object} saveBonusData - The race's saveBonus object from race_mods.json
+ * @param {object} saveBonusData - The race's saveBonus object from RACES (races.js)
  * @param {object} adjustedScores - The character's adjusted ability scores
  * @param {object} conTable - The constitution table for CON-based lookups
  * @returns {number} The bonus amount (e.g., 3 for a Dwarf with CON 13)
@@ -161,7 +161,7 @@ export function calculateDerivedStats(character) {
 
     // --- STEP 2: GET RACE DATA ---
     const race = character.race.toLowerCase();
-    const raceData = raceMods[race] || { statAdj: {}, saveBonus: null };
+    const raceData = RACES[race] || { statAdj: {}, saveBonus: null };
     const statAdjustments = raceData.statAdj || {};
 
 

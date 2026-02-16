@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import raceMods from '../data/races/race_mods.json';
+import { RACES } from '../constants/races.js';
 import { clamp } from '../utils';
 import { useNumericInput } from '../hooks/useNumericInput';
 import { STAT_MIN, STAT_MAX } from '../constants/characterLimits';
@@ -47,9 +47,9 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
         }
     });
 
-    // Check if Race gets CON-based save bonuses by looking at race_mods data
+    // Check if Race gets CON-based save bonuses from RACES
     const raceKey = race?.toLowerCase() || 'human';
-    const raceData = raceMods[raceKey];
+    const raceData = RACES[raceKey];
     const showConSaveBonus = raceData?.saveBonus?.source === 'con';
 
     // Check if Race gets high CON bonus to Poison save

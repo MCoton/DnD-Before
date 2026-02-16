@@ -4,14 +4,14 @@
  */
 
 import armourTable from '../data/equipment/armour_class.json';
-import raceMods from '../data/races/race_mods.json';
+import { RACES } from '../constants/races.js';
 import charClass from '../data/classes/character_classes.json';
 
 // Object.keys() pulls all the base armour names directly for the dropdown
 export const ARMOUR_OPTIONS = Object.keys(armourTable.armourType);
 
-// Same for races held in raceMods
-export const RACE_OPTIONS = Object.keys(raceMods);
+// Same for races from RACES
+export const RACE_OPTIONS = Object.keys(RACES);
 
 // And again for class
 export const CLASS_OPTIONS = Object.keys(charClass);
