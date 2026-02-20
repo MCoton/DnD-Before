@@ -54,10 +54,13 @@ export default function SpellDisplay({
             return { spellSlots: null, availableSpellLevels: [], allSpellsByLevel: {} };
         }
         
-        // Get spell slots - for priest spells, try both priestSpells and clericSpells
+        // Get spell slots - for priest spells, try priestSpells, clericSpells, and druidSpells
         let spellSlots = levelData[slotArrayKey];
         if (!spellSlots && altSlotArrayKey) {
             spellSlots = levelData[altSlotArrayKey];
+        }
+        if (!spellSlots && levelData.druidSpells) {
+            spellSlots = levelData.druidSpells;
         }
         
         // Ensure spellSlots is a valid array

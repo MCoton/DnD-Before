@@ -620,8 +620,8 @@ export default function CharacterSheet() {
                         Array.isArray(levelData.mageSpells) && 
                         levelData.mageSpells.some(s => s > 0);
                     
-                    // Check for priest/cleric spells - handle both property names and null values
-                    const priestSpellArray = levelData.priestSpells || levelData.clericSpells;
+                    // Check for priest/cleric/druid spells - handle all priest-type property names
+                    const priestSpellArray = levelData.priestSpells || levelData.clericSpells || levelData.druidSpells;
                     const hasPriestSpells = priestSpellArray && 
                         Array.isArray(priestSpellArray) && 
                         priestSpellArray.some(s => s > 0);
