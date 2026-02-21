@@ -294,6 +294,206 @@ hr.style14 {
   grid-column: 1 / 5;
 }
 
+/* Thief skills block */
+.thief-abilities-note {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin-bottom: var(--spacing-sm);
+}
+/* Thief abilities: half-width container */
+.thief-abilities-wrapper {
+  max-width: 50%;
+}
+.thief-backstab {
+  margin-bottom: var(--spacing-md);
+}
+.thief-points-total {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+.thief-points-ok {
+  color: var(--color-accent-secondary);
+}
+.thief-points-warn {
+  color: var(--color-text-muted);
+}
+.thief-allocated-input {
+  width: 2.75rem;
+  padding: 2px 4px;
+  text-align: right;
+}
+.thief-points-unallocated {
+  color: var(--color-accent-secondary);
+  font-size: var(--font-size-sm);
+}
+.thief-allocation-actions {
+  margin-bottom: var(--spacing-md);
+}
+.thief-allocation-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-accent-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.thief-allocation-btn:hover {
+  background-color: var(--color-accent-hover);
+}
+.thief-allocation-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+}
+.thief-allocation-btn:disabled:hover {
+  background-color: var(--color-bg-elevated);
+}
+
+/* Thief allocation modal */
+.thief-allocation-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: var(--spacing-md);
+  overflow-y: auto;
+}
+.thief-allocation-modal {
+  position: relative;
+  background-color: var(--color-bg-primary);
+  border-radius: 8px;
+  padding: var(--spacing-lg);
+  max-width: 420px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid var(--color-accent-primary);
+}
+.thief-allocation-modal-close {
+  position: absolute;
+  top: var(--spacing-sm);
+  right: var(--spacing-sm);
+  background: none;
+  border: none;
+  color: var(--color-text-primary);
+  font-size: 1.5em;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+}
+.thief-allocation-modal-close:hover {
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-accent-secondary);
+}
+.thief-allocation-modal-title {
+  margin-top: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+  font-size: var(--font-size-lg);
+  color: var(--color-accent-secondary);
+}
+.thief-allocation-modal-total {
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+}
+.thief-allocation-modal-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+.thief-allocation-modal-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+.thief-allocation-modal-label {
+  flex: 1;
+  min-width: 0;
+}
+.thief-allocation-modal-row .thief-allocated-input {
+  flex-shrink: 0;
+}
+.thief-allocation-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+.thief-allocation-done-btn {
+  padding: var(--spacing-xs) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-accent-primary);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.thief-allocation-done-btn:hover {
+  background-color: var(--color-accent-hover);
+}
+.table-wrap {
+  overflow-x: auto;
+}
+.thief-skills-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+.thief-skills-table th,
+.thief-skills-table td {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-bottom: 1px solid var(--color-border-default);
+  vertical-align: middle;
+}
+.thief-skills-table th {
+  color: var(--color-text-muted);
+  font-weight: 600;
+  text-align: left;
+}
+.thief-skills-table th:not(:first-child) {
+  text-align: right;
+}
+.thief-skills-table th:first-child,
+.thief-skills-table td:first-child {
+  width: 1%;
+  min-width: 7rem;
+}
+.thief-skills-table td:first-child {
+  text-align: left;
+  white-space: nowrap;
+}
+.thief-skills-table td:not(:first-child) {
+  text-align: right;
+}
+.thief-skills-table tbody tr:hover {
+  background-color: var(--color-bg-elevated);
+}
+/* Keep allocated input from stretching column */
+.thief-skills-table td .thief-allocated-input {
+  display: block;
+  margin-left: auto;
+  box-sizing: border-box;
+}
+
 /* ============================================================================
    STAT BLOCKS
    ============================================================================ */

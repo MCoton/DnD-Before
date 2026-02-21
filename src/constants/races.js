@@ -27,6 +27,16 @@ export const RACES = {
             source: "con",
             appliesTo: ["poison", "rsw", "spell"]
         },
+        thiefSkills: {
+            pickPockets: 0,
+            openLocks: 10,
+            findRemoveTraps: 15,
+            moveSilently: 0,
+            hideInShadows: 0,
+            detectNoise: 0,
+            climbWalls: -10,
+            readLanguages: -5
+        },
         levelLimits: {
             cleric:  10,
             fighter: 15,
@@ -45,6 +55,16 @@ export const RACES = {
         },
         statAdj: { dex: 1, con: -1 },
         saveBonus: null,
+        thiefSkills: {
+            pickPockets: 5,
+            openLocks: -5,
+            findRemoveTraps: 0,
+            moveSilently: 5,
+            hideInShadows: 10,
+            detectNoise: 5,
+            climbWalls: 0,
+            readLanguages: 0
+        },
         levelLimits: {
             cleric:  12,
             fighter: 15,
@@ -68,6 +88,16 @@ export const RACES = {
             source: "con",
             appliesTo: ["rsw", "spell"]
         },
+        thiefSkills: {
+            pickPockets: 0,
+            openLocks: 5,
+            findRemoveTraps: 10,
+            moveSilently: 5,
+            hideInShadows: 5,
+            detectNoise: 10,
+            climbWalls: -15,
+            readLanguages: 0
+        },
         levelLimits: {
             cleric:      9,
             fighter:     11,
@@ -87,6 +117,16 @@ export const RACES = {
         },
         statAdj: {},
         saveBonus: null,
+        thiefSkills: {
+            pickPockets: 10,
+            openLocks: 0,
+            findRemoveTraps: 0,
+            moveSilently: 0,
+            hideInShadows: 5,
+            detectNoise: 0,
+            climbWalls: 0,
+            readLanguages: 0
+        },
         levelLimits: {
             bard:    30,
             cleric:  14,
@@ -145,6 +185,16 @@ export const RACES = {
         saveBonus: {
             source: "con",
             appliesTo: ["poison", "rsw", "spell"]
+        },
+        thiefSkills: {
+            pickPockets: 5,
+            openLocks: 5,
+            findRemoveTraps: 5,
+            moveSilently: 10,
+            hideInShadows: 15,
+            detectNoise: 5,
+            climbWalls: -15,
+            readLanguages: -5
         },
         levelLimits: {
             cleric:  4,

@@ -7,6 +7,7 @@ import SavingThrows from "./components/SavingThrowsDisplay.jsx";
 import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
 import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
 import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
+import ThiefAbilitiesDisplay from "./components/ThiefAbilitiesDisplay.jsx";
 import WeaponProficiencies from "./components/WeaponProficienciesDisplay.jsx";
 import NonWeapProfDisplay from "./components/NonWeapProfDisplay.jsx";
 import SpellSlotDisplay from "./components/SpellSlotDisplay.jsx";
@@ -76,7 +77,10 @@ const initialCharacterState = {
         dexAdj: 0,
         armourType: "",
         shield: false
-    }
+    },
+
+    // Thief only: total skill points allocated per skill (edited directly in Thief Skills table).
+    thiefSkillPoints: {}
 }
 
 export default function CharacterSheet() {
@@ -101,6 +105,11 @@ export default function CharacterSheet() {
         const { name, value, type, checked } = e.target;
         const fieldValue = type === 'checkbox' ? checked : value;
         updateNestedState(setCharacter, ['ac', name], fieldValue);
+    };
+
+    // Thief only: update allocated points for a single skill
+    const handleThiefSkillPoints = (skill, value) => {
+        updateNestedState(setCharacter, ['thiefSkillPoints', skill], value);
     };
 
     // Function to handle changes in Race selection
@@ -565,6 +574,19 @@ export default function CharacterSheet() {
                         characterLevel={derivedStats.level}
                     />
                 </div>
+
+                {/* THIEF SKILLS (when class is thief) */}
+                {character.characterClass?.toLowerCase() === 'thief' && (
+                    <div className="thief-abilities-wrapper column-span">
+                        <ThiefAbilitiesDisplay
+                            thiefSkills={derivedStats.thiefSkills}
+                            armourType={character.ac?.armourType?.trim() || undefined}
+                            characterLevel={derivedStats.level}
+                            thiefSkillPoints={character.thiefSkillPoints || {}}
+                            onThiefSkillPoints={handleThiefSkillPoints}
+                        />
+                    </div>
+                )}
 
                 {/* PROFICIENCIES CONTAINER */}
                 <div className="proficiencies-container">

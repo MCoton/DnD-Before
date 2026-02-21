@@ -9,12 +9,22 @@
     "scale mail": 6,
     "hide": 6,
     "chain mail": 5,
+    "elven chain": 5,
     "splint mail": 4,
     "banded mail": 4,
     "bronze plate mail": 4,
     "plate mail": 3,
     "field plate": 2,
     "full plate": 1
+  },
+  "armourThiefSkills": {
+    "none": { "pickPockets": 5, "openLocks": 0, "findRemoveTraps": 0, "moveSilently": 10, "hideInShadows": 5, "detectNoise": 0, "climbWalls": 10 },
+    "padded": { "pickPockets": -30, "openLocks": -10, "findRemoveTraps": -10, "moveSilently": -20, "hideInShadows": -20, "detectNoise": -10, "climbWalls": -30 },
+    "studded leather": { "pickPockets": -30, "openLocks": -10, "findRemoveTraps": -10, "moveSilently": -20, "hideInShadows": -20, "detectNoise": -10, "climbWalls": -30 },
+    "ring mail": { "pickPockets": -25, "openLocks": -10, "findRemoveTraps": -10, "moveSilently": -15, "hideInShadows": -15, "detectNoise": -5, "climbWalls": -25 },
+    "hide": { "pickPockets": -30, "openLocks": -10, "findRemoveTraps": -10, "moveSilently": -20, "hideInShadows": -20, "detectNoise": -10, "climbWalls": -30 },
+    "chain mail": { "pickPockets": -25, "openLocks": -10, "findRemoveTraps": -10, "moveSilently": -15, "hideInShadows": -15, "detectNoise": -5, "climbWalls": -25 },
+    "elven chain": { "pickPockets": -20, "openLocks": -5, "findRemoveTraps": -5, "moveSilently": -10, "hideInShadows": -10, "detectNoise": -5, "climbWalls": -20 }
   },
   "footnotes": {
     "note": "See 'Shields' for more on the defensive benefits of various shields."

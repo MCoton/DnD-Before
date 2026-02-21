@@ -10,6 +10,7 @@ import charClasses from "./data/classes/character_classes.json";
 import charAbilities from "./data/classes/character_abilities_text.json"
 import armourTable from "./data/equipment/armour_class.json";
 import { SAVE_CATEGORY_MAP, SAVE_CATEGORY_LABELS } from './constants.js';
+import { THIEF_SKILL_ORDER, THIEF_SKILL_PERCENT_CAP } from './constants/thief.js';
 import { capitaliseWords, clamp } from './utils.js';
 
 /**
@@ -367,6 +368,34 @@ export function calculateDerivedStats(character) {
         strDamage: results.strDamAdj,
         dexBonus: results.dexMissileAdj
     };
+
+    // --- STEP 10: THIEF SKILLS (class-specific) ---
+    if (charClassKey === 'thief') {
+        const thiefAbilities = charAbilities.thief;
+        const baseSkill = thiefAbilities?.baseThiefSkill || {};
+        const raceMods = raceData?.thiefSkills || {};
+        const armourMods = (armourTable.armourThiefSkills && armourTable.armourThiefSkills[armourType]) || {};
+        const dexRow = dexTable[dex] || {};
+        const thiefSkillPoints = character.thiefSkillPoints || {};
+        const allocatedPerSkill = {};
+        THIEF_SKILL_ORDER.forEach(skill => {
+            allocatedPerSkill[skill] = typeof thiefSkillPoints[skill] === 'number' ? thiefSkillPoints[skill] : 0;
+        });
+        const skills = {};
+        THIEF_SKILL_ORDER.forEach(skill => {
+            const base = baseSkill[skill] ?? 0;
+            const allocated = allocatedPerSkill[skill] ?? 0;
+            const race = raceMods[skill] ?? 0;
+            const armour = armourMods[skill] ?? 0;
+            const dexVal = dexRow[skill] ?? 0;
+            const total = clamp(base + allocated + race + armour + dexVal, 0, THIEF_SKILL_PERCENT_CAP);
+            skills[skill] = { base, allocated, race, armour, dex: dexVal, total };
+        });
+        results.thiefSkills = {
+            skills,
+            backstabMulti: classData.levelProg[level]?.backstabMulti?.[0] ?? 2
+        };
+    }
 
     return results;
 }

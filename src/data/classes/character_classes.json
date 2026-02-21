@@ -536,5 +536,39 @@
             "19": {	"saveThrow":  [2, 6, 5, 8, 7], "xp": 5000000,  "hitDice": 9, "lvlHPAdj": 20, "thaco": 8,  "attacksPerRound": "1/round",   "weaponSlots": 7, "nonWeaponSlots": 10, "druidSpells": [6, 6, 6, 6, 4, 2, 1]  },
             "20": {	"saveThrow":  [2, 6, 5, 8, 7], "xp": 5500000,  "hitDice": 9, "lvlHPAdj": 22, "thaco": 8,  "attacksPerRound": "1/round",   "weaponSlots": 7, "nonWeaponSlots": 10, "druidSpells": [6, 6, 6, 6, 4, 2, 1] }
         }
-    }
+    },
+    "thief": {
+        "group": "rogue",
+        "hitDie": 6,
+        "primeStats": ["Dexterity"],
+        "minStatreqs": {"dex": 9},
+        "nonProfPen": -5,
+        "allowedWeapons":  "Simple weapons, hand crossbows, longswords, rapiers, shortswords",
+        "races": ["all"],
+        "alignment": "!lg",
+        "canSpecialize": [false, null],
+        "classAbilities": { "saveVal": 0 },
+        "levelProg": {
+            "1":  { "saveThrow":  [13, 14, 12, 16, 15], "xp": 0, "hitDice": 1, "lvlHPAdj": 0, "thaco": 20, "attacksPerRound": "1/round", "weaponSlots": 2,  "nonWeaponSlots": 3, "backstabMulti": [2] },
+            "2":  { "saveThrow":  [13, 14, 12, 16, 15], "xp": 1250, "hitDice": 2, "lvlHPAdj": 0, "thaco": 20, "attacksPerRound": "1/round", "weaponSlots": 2,  "nonWeaponSlots": 3, "backstabMulti": [2] },
+            "3":  { "saveThrow":  [13, 14, 12, 16, 15], "xp": 2500, "hitDice": 3, "lvlHPAdj": 0, "thaco": 19, "attacksPerRound": "1/round", "weaponSlots": 2,  "nonWeaponSlots": 3, "backstabMulti": [2] },
+            "4":  { "saveThrow":  [13, 14, 12, 16, 15], "xp": 5000, "hitDice": 4, "lvlHPAdj": 0, "thaco": 19, "attacksPerRound": "1/round", "weaponSlots": 3,  "nonWeaponSlots": 4, "backstabMulti": [2] },
+            "5":  { "saveThrow":  [12, 12, 11, 15, 13], "xp": 10000, "hitDice": 5, "lvlHPAdj": 0, "thaco": 18, "attacksPerRound": "1/round", "weaponSlots": 3,  "nonWeaponSlots": 4, "backstabMulti": [3] },
+            "6":  { "saveThrow":  [12, 12, 11, 15, 13], "xp": 20000, "hitDice": 6, "lvlHPAdj": 0, "thaco": 18, "attacksPerRound": "1/round", "weaponSlots": 3,  "nonWeaponSlots": 4, "backstabMulti": [3] },
+            "7":  { "saveThrow":  [12, 12, 11, 15, 13], "xp": 40000, "hitDice": 7, "lvlHPAdj": 0, "thaco": 17, "attacksPerRound": "1/round", "weaponSlots": 3, "nonWeaponSlots": 4, "backstabMulti": [3] },
+            "8":  { "saveThrow":  [12, 12, 11, 15, 13], "xp": 70000, "hitDice": 8, "lvlHPAdj": 0, "thaco": 17, "attacksPerRound": "1/round", "weaponSlots": 4,  "nonWeaponSlots": 5, "backstabMulti": [3] },
+            "9":  { "saveThrow":  [11, 10, 10, 14, 11], "xp": 110000, "hitDice": 9, "lvlHPAdj": 0, "thaco": 16, "attacksPerRound": "1/round", "weaponSlots": 4,  "nonWeaponSlots": 5, "backstabMulti": [4] },
+            "10": { "saveThrow":  [11, 10, 10, 14, 11], "xp": 160000, "hitDice": 10, "lvlHPAdj": 2, "thaco": 16, "attacksPerRound": "1/round", "weaponSlots": 4,  "nonWeaponSlots": 5, "backstabMulti": [4] },
+            "11": { "saveThrow":  [11, 10, 10, 14, 11], "xp": 220000, "hitDice": 10, "lvlHPAdj": 2, "thaco": 15, "attacksPerRound": "1/round", "weaponSlots": 5,  "nonWeaponSlots": 5, "backstabMulti": [4] },
+            "12": { "saveThrow":  [11, 10, 10, 14, 11], "xp": 440000, "hitDice": 10, "lvlHPAdj": 4, "thaco": 15, "attacksPerRound": "1/round", "weaponSlots": 5,  "nonWeaponSlots": 6, "backstabMulti": [4] },
+            "13": { "saveThrow":  [10, 8, 9, 13, 9], "xp": 660000, "hitDice": 10, "lvlHPAdj": 6, "thaco": 14, "attacksPerRound": "1/round", "weaponSlots": 5,  "nonWeaponSlots": 6, "backstabMulti": [5] },
+            "14": { "saveThrow":  [10, 8, 9, 13, 9], "xp": 880000, "hitDice": 10, "lvlHPAdj": 8, "thaco": 14, "attacksPerRound": "1/round", "weaponSlots": 5,  "nonWeaponSlots": 6, "backstabMulti": [5] },
+            "15": { "saveThrow":  [10, 8, 9, 13, 9], "xp": 1100000, "hitDice": 10, "lvlHPAdj": 10, "thaco": 13, "attacksPerRound": "1/round", "weaponSlots": 6,  "nonWeaponSlots": 6, "backstabMulti": [5] },
+            "16": { "saveThrow":  [10, 8, 9, 13, 9], "xp": 1320000, "hitDice": 10, "lvlHPAdj": 12, "thaco": 13, "attacksPerRound": "1/round", "weaponSlots": 6,  "nonWeaponSlots": 7, "backstabMulti": [5] },
+            "17": { "saveThrow":  [9, 6, 8, 11, 7], "xp": 1540000, "hitDice": 10, "lvlHPAdj": 14, "thaco": 12, "attacksPerRound": "1/round", "weaponSlots": 6,  "nonWeaponSlots": 7, "backstabMulti": [5] },
+            "18": { "saveThrow":  [9, 6, 8, 11, 7], "xp": 1760000, "hitDice": 10, "lvlHPAdj": 16, "thaco": 12, "attacksPerRound": "1/round", "weaponSlots": 6,  "nonWeaponSlots": 7, "backstabMulti": [5] },
+            "19": { "saveThrow":  [9, 6, 8, 11, 7], "xp": 1980000, "hitDice": 10, "lvlHPAdj": 18, "thaco": 11, "attacksPerRound": "1/round", "weaponSlots": 7,  "nonWeaponSlots": 7, "backstabMulti": [5] },
+            "20": { "saveThrow":  [9, 6, 8, 11, 7], "xp": 2200000, "hitDice": 10, "lvlHPAdj": 20, "thaco": 11, "attacksPerRound": "1/round", "weaponSlots": 7,  "nonWeaponSlots": 8, "backstabMulti": [5] }
+        }  
+    }     
 }
