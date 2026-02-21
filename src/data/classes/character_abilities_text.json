@@ -9,7 +9,8 @@
         "cureDisText": "Cure Diseases. A paladin can cure diseases of all sorts (though not cursed afflictions such as lycanthropy). Once per week for each five levels of experience (once per week at levels 1 through 5, twice per week at levels 6 through 10, etc.).",
         "protEvilText": "Protection from Evil. A paladin is surrounded by an aura of protection with a 10-foot radius. Within this radius, all summoned and specifically evil creatures suffer a -1 penalty to their attack rolls, regardless of whom they attack. Creatures affected by this aura can spot its source easily, even if the paladin is disguised.",
         "holyWeap": "Holy Weapons. A paladin using a holy sword projects a circle of power 10 feet in diameter when the sword is unsheathed and held. This power dispels hostile magic of a level up to the paladin's experience level. (A holy sword is a very special weapon; if your paladin acquires one, the DM will explain its other powers.)",
-        "faithMount": "Faithful Mount. A paladin may call for their war horse upon reaching 4th level, or anytime thereafter. This faithful steed need not be a horse; it may be whatever sort of creature is appropriate to the character (as decided by the DM). A paladin's war horse is a very special animal, bonded by fate to the warrior. The paladin does not really 'call' the animal, nor does the horse instantly appear in front of them. Rather, the character must find their war horse in some memorable way, most frequently by a specific quest."
+        "faithMount": "Faithful Mount. A paladin may call for their war horse upon reaching 4th level, or anytime thereafter. This faithful steed need not be a horse; it may be whatever sort of creature is appropriate to the character (as decided by the DM). A paladin's war horse is a very special animal, bonded by fate to the warrior. The paladin does not really 'call' the animal, nor does the horse instantly appear in front of them. Rather, the character must find their war horse in some memorable way, most frequently by a specific quest.",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
     "ranger": {
         "tracking" : "Tracking (Skill). You automatically gain the Tracking skill without expending a non-weapon proficiency.",
@@ -18,17 +19,37 @@
         "stealth" : "Stealth. You can also hide in shadows and move silently while wearing armour less than AC 7 or lower e.g. Ring Mail",
         "speciesEnemy" : "Species Enemy. You have a particular enmity with a particular specied. Choose this before advancing to 2nd level. You gain +4 to hit when fighting this enemy and (Charisma) Reaction Penalty of -4 when seeing them.",
         "animalEmpathy" : "Animal Empathy. Rangershave an innate understanding of animal behavior giving a limited ability to influence their emotions and manipulate their behavior. Animal saves vs Rods minus the Rangers modifier",
-        "nature" : "Nature Lore. All rangers have an inherent understanding of natural lore, encompassing a broad set of principles involving conservation, ecology, and natural order. Though not every ranger knows specific details about particular situations, all of them understand the general concepts at work."
+        "nature" : "Nature Lore. All rangers have an inherent understanding of natural lore, encompassing a broad set of principles involving conservation, ecology, and natural order. Though not every ranger knows specific details about particular situations, all of them understand the general concepts at work.",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
     "fighter": {
-        "specialise" : "Fighters can double specialise in weapons. There may be house rules regarding how it's handled, ask the DM"
+        "specialise" : "Fighters can double specialise in weapons. There may be house rules regarding how it's handled, ask the DM",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
     "mage" : {
         "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required.",
+        "magicSphere" : "all",
         "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
     "specialist wizard" : {
         "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required. 1 of the starting spells can be of the Specialist Wizard's specialty (1st level spell only) without making a learn spells roll",
         "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
+    },
+    "cleric": {
+        "spellBook" : "Spells granted by divine favour",
+        "majorSphere" : "diety",
+        "minorSphere" : "deity"
+    },
+    "druid": {
+        "spellBook" : "Spells granted by divine favour",
+        "majorSphere" : "all, animal, elemental, healing, plant, weather",
+        "minorSphere" : "divination",
+        "saveBonText" : "+2 to all saving throws vs. fire or electrical attacks",
+        "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots. All druids can speak a secret language in addition to any other tongues they know. The vocabulary of this druidic language is limited to dealing with nature and natural events. Druids jealously guard this language; it is the one infallible method they have of recognizing each other.",
+        "levelAbilities" : {
+            "3": ["Identify plants, animals, and pure water with perfect accuracy", "He can learn the languages of woodland creatures. An additional one can be added each level above 3rd"],
+            "7": ["Immune to charm spells cast by woodland creatures (dryads, nixies, etc.)", "Gains the ability to shapechange into a reptile, bird, or mammal up to three times per day. Each animal form (reptile, bird, or mammal) can be used only once per day. The size can vary from that of a bullfrog or small bird to as large as a black bear. Upon assuming a new form, the druid heals 10-60% (1d6 в 10%) of all damage he has suffered (round fractions down). The druid can only assume the form of a normal (real world) animal in its normal proportions, but by doing so he takes on all of that creature's characteristics—its movement rate and abilities, its Armor Class, number of attacks, and damage per attack."],
+            "15": ["Beyond 15th level a druid never gains any new spells, but casting level increases as normal.", "Refer to information about Heirophantic Druids"]
+        }
     }
 }
