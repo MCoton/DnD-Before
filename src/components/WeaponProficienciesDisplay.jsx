@@ -12,7 +12,7 @@ import specialisation from "../data/equipment/weapon_specialisation.json";
  * @param {array} props.proficiencies - Array of weapon keys the character is proficient with
  * @param {function} props.onAddProficiency - Called when adding a weapon
  * @param {function} props.onRemoveProficiency - Called when removing a weapon
- * @param {number} props.baseThac0 - Base THAC0 from class level
+ * @param {number} props.baseThaco - Base THACO from class level
  * @param {number} props.strHitProb - Strength hit probability bonus
  * @param {number} props.dexMissileAdj - Dexterity missile adjustment
  */
@@ -58,7 +58,7 @@ export default function WeaponProficiencies({
     proficiencies = {},
     onAddProficiency,
     onRemoveProficiency,
-    baseThac0,
+    baseThaco,
     strHitProb = 0,
     dexMissileAdj = 0
 }) {
@@ -234,24 +234,24 @@ export default function WeaponProficiencies({
         .sort((a, b) => a[1].name.localeCompare(b[1].name));
     
     // Calculate THACO for a weapon
-    const calculateWeaponThac0 = (weapon, slots, specData) => {
-        if (!baseThac0) return null;
+    const calculateWeaponThaco = (weapon, slots, specData) => {
+        if (!baseThaco) return null;
         
-        let thac0 = baseThac0;
+        let thaco = baseThaco;
         
         // Add specialization attack bonus
         if (specData?.bonuses?.attackBonus) {
-            thac0 -= specData.bonuses.attackBonus;
+            thaco -= specData.bonuses.attackBonus;
         }
         
         // Add stat bonus based on weapon type
         if (weapon?.type === 'Melee') {
-            thac0 -= (strHitProb || 0);
+            thaco -= (strHitProb || 0);
         } else if (weapon?.type === 'Ranged') {
-            thac0 -= (dexMissileAdj || 0);
+            thaco -= (dexMissileAdj || 0);
         }
         
-        return thac0;
+        return thaco;
     };
 
     //Get proficient weapons with their details
@@ -260,7 +260,7 @@ export default function WeaponProficiencies({
             const weapon = weapons[weaponKey];
             const specLevel = getSpecialisationLevel(slots);
             const specData = specialisation[specLevel];
-            const calculatedThac0 = calculateWeaponThac0(weapon, slots, specData);
+            const calculatedThaco = calculateWeaponThaco(weapon, slots, specData);
             const damageType = getDamageType(weapon);
             const effectiveAttsPerRound = calculateEffectiveAttacksPerRound(
                 weapon?.attsPerRound, 
@@ -274,7 +274,7 @@ export default function WeaponProficiencies({
                 slots,
                 specLevel,
                 specData,
-                calculatedThac0,
+                calculatedThaco,
                 damageType,
                 effectiveAttsPerRound
             };
@@ -306,13 +306,13 @@ export default function WeaponProficiencies({
             {proficientWeapons.length > 0 ? (
                 <div className="current-proficiencies">
                     <h3>Current Proficiencies:</h3>
-                    <table className="weapon-proficiency-table">
+                    <table className="weapon-proficiency-table table-responsive">
                         <thead>
                             <tr>
                                 <th>Weapon</th>
                                 <th>Level</th>
                                 <th>
-                                    THAC0
+                                    THACO
                                     <br />
                                     <span style={{ fontSize: '0.75em', fontWeight: 'normal', color: 'var(--color-text-muted)' }}>(Calculated)</span>
                                 </th>
@@ -326,7 +326,7 @@ export default function WeaponProficiencies({
                             </tr>
                         </thead>
                         <tbody>
-                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThac0, damageType, effectiveAttsPerRound }) => (
+                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThaco, damageType, effectiveAttsPerRound }) => (
                                 <tr key={key} className="proficiency-row">
                                     <td className="weapon-name-cell">
                                         <strong>{weapon?.name || key}</strong>
@@ -337,13 +337,13 @@ export default function WeaponProficiencies({
                                         </span>
                                         <span className="slots-used">({slots} slot{slots !== 1 ? 's' : ''})</span>
                                     </td>
-                                    <td className="thac0-cell">
-                                        {calculatedThac0 !== null ? (
-                                            <span className="thac0-value">
-                                                {calculatedThac0}
+                                    <td className="thaco-cell">
+                                        {calculatedThaco !== null ? (
+                                            <span className="thaco-value">
+                                                {calculatedThaco}
                                             </span>
                                         ) : (
-                                            <span className="thac0-na">N/A</span>
+                                            <span className="thaco-na">N/A</span>
                                         )}
                                     </td>
                                     <td className="damage-cell">{weapon?.['damageS-M'] || '-'}</td>
@@ -426,22 +426,25 @@ export default function WeaponProficiencies({
             {remainingSlots > 0 && availableWeapons.length > 0 && (
                 <div className="add-proficiency">
                     <h3>Add Proficiency:</h3>
-                    <select 
-                        onChange={(e) => {
-                            if (e.target.value) {
-                                onAddProficiency(e.target.value, 1);
-                                e.target.value = ''; // Reset dropdown
-                            }
-                        }}
-                        className="weapon-select"
-                    >
-                        <option value="">Choose a weapon...</option>
-                        {availableWeapons.map(([key, weapon]) => (
-                            <option key={key} value={key}>
-                                {weapon.name}
-                            </option>
-                        ))}
-                    </select>
+                    <label className="input-row">
+                        <span className="input-label">Weapon:</span>
+                        <select
+                            onChange={(e) => {
+                                if (e.target.value) {
+                                    onAddProficiency(e.target.value, 1);
+                                    e.target.value = ''; // Reset dropdown
+                                }
+                            }}
+                            className="weapon-select"
+                        >
+                            <option value="">Choose a weapon...</option>
+                            {availableWeapons.map(([key, weapon]) => (
+                                <option key={key} value={key}>
+                                    {weapon.name}
+                                </option>
+                            ))}
+                        </select>
+                    </label>
                 </div>
             )}
 

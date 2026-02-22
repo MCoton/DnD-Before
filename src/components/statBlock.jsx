@@ -183,50 +183,48 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
                 {/* Editable Score Input */}
                 <div className="stat-header">
                     <label htmlFor={`${statPrefix}-input`}>
-                        <h3>{statName}: </h3>
+                        <h3>{statName}</h3>
                     </label>
-                    <div className="stat-input-wrapper">
-                        <input
-                            id={`${statPrefix}-input`}
-                            type="text"
-                            inputMode="numeric"
-                            value={inputValue}
-                            onChange={handleChange}
-                            onBlur={handleBlur}
-                            min={STAT_MIN}
-                            max={STAT_MAX}
-                            className="stat-score-input"
-                        />
-                        {onStatOverrideChange && (
-                            <label className="stat-override-checkbox" title="Override racial maximum">
-                                <input
-                                    type="checkbox"
-                                    checked={statOverride || false}
-                                    onChange={(e) => onStatOverrideChange(e.target.checked)}
-                                />
-                                <span>Override</span>
-                            </label>
-                        )}
-                    </div>
+                    {onStatOverrideChange && (
+                        <label className="stat-override-checkbox" title="Override racial maximum">
+                            <input
+                                type="checkbox"
+                                checked={statOverride || false}
+                                onChange={(e) => onStatOverrideChange(e.target.checked)}
+                            />
+                            <span>Override</span>
+                        </label>
+                    )}
+                </div>
+                <div className="stat-input-wrapper">
+                    <input
+                        id={`${statPrefix}-input`}
+                        type="text"
+                        inputMode="numeric"
+                        value={inputValue}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                        min={STAT_MIN}
+                        max={STAT_MAX}
+                        className="stat-score-input"
+                    />
                 </div>
                 
                 {/* Exceptional Strength Input (only for Strength, warriors, natural 18, not halfling) */}
                 {canHaveExceptionalStrength && (
-                    <div className="stat-header exceptional-strength-header">
-                        <label htmlFor={`${statPrefix}-exceptional-input`}>
-                            <span className="exceptional-strength-label">Exceptional Strength:</span>
-                        </label>
+                    <div className="stat-header">
                         <input
                             id={`${statPrefix}-exceptional-input`}
                             type="text"
                             inputMode="numeric"
-                            value={exceptionalStrengthInput.inputValue}
+                            value={exceptionalStrengthInput.inputValue === '100' ? '00' : exceptionalStrengthInput.inputValue}
                             onChange={exceptionalStrengthInput.handleChange}
                             onBlur={exceptionalStrengthInput.handleBlur}
                             min={0}
                             max={100}
                             placeholder="00-100"
                             className="stat-score-input exceptional-strength-input"
+                            aria-label="Exceptional Strength"
                         />
                     </div>
                 )}

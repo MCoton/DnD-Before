@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Displays THAC0 and combat-related statistics.
+ * Displays THACO and combat-related statistics.
  * 
  * @param {object} props
  * @param {object} props.combat - Combat stats from derivedStats
@@ -28,19 +28,19 @@ export default function CombatStatsDisplay({ combat, characterClass, characterLe
             <hr className="style14"></hr>
 
             <div className="combat-grid">
-                {/* THAC0 Section */}
+                {/* THACO Section */}
                 <div className="combat-section">
-                    <h3 className="section-title">THAC0 (To Hit AC 0)</h3>
+                    <h3 className="section-title">THACO (To Hit AC 0)</h3>
                     
                     <div className="stat-row">
-                        <span className="stat-label">Base THAC0:</span>
-                        <span className="stat-value">{combat.baseThac0}</span>
+                        <span className="stat-label">Base THACO:</span>
+                        <span className="stat-value">{combat.baseThaco}</span>
                     </div>
 
                     <div className="stat-row">
-                        <span className="stat-label">Melee THAC0:</span>
+                        <span className="stat-label">Melee THACO:</span>
                         <span className="stat-value">
-                            {combat.meleeThac0}
+                            {combat.meleeThaco}
                             {combat.strBonus !== 0 && (
                                 <span className="modifier"> (STR: {combat.strBonus >= 0 ? '+' : ''}{combat.strBonus})</span>
                             )}
@@ -48,9 +48,9 @@ export default function CombatStatsDisplay({ combat, characterClass, characterLe
                     </div>
 
                     <div className="stat-row">
-                        <span className="stat-label">Missile THAC0:</span>
+                        <span className="stat-label">Missile THACO:</span>
                         <span className="stat-value">
-                            {combat.missileThac0}
+                            {combat.missileThaco}
                             {combat.dexBonus !== 0 && (
                                 <span className="modifier"> (DEX: {combat.dexBonus >= 0 ? '+' : ''}{combat.dexBonus})</span>
                             )}

@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import wizardSpells from '../data/spellLists/wizard_spells.json';
 import charClasses from '../data/classes/character_classes.json';
 import SpellModal from './SpellModal';
+import SpellDropdown from './SpellDropdown';
 
 /**
  * Displays wizard spells with a Spell Book for known spells and slots for memorized spells
@@ -267,34 +268,29 @@ export default function WizardSpellsDisplay({
                                     </span>
                                 </div>
                                 
-                                <label className="spell-book-add-label">
-                                    <select
+                                <div className="input-row spell-book-add-label">
+                                    <span className="input-label">Add:</span>
+                                    <SpellDropdown
                                         value=""
-                                        onChange={(e) => {
-                                            if (e.target.value) {
-                                                const spell = allSpells.find(s => s.Name === e.target.value);
+                                        onChange={(val) => {
+                                            if (val) {
+                                                const spell = allSpells.find(s => s.Name === val);
                                                 if (spell) handleAddToSpellBook(spell);
-                                                e.target.value = '';
                                             }
                                         }}
+                                        options={[
+                                            { value: '', label: '-- Add spell to book --' },
+                                            ...allSpells.map((spell) => ({
+                                                value: spell.Name,
+                                                label: spell.Name + (isInSpellBook(spell) ? ' (in book)' : ''),
+                                                disabled: isInSpellBook(spell) || isAtBookLimit,
+                                            })),
+                                        ]}
+                                        placeholder="-- Add spell to book --"
                                         className="spell-book-add-dropdown"
                                         disabled={isAtBookLimit}
-                                    >
-                                        <option value="">-- Add spell to book --</option>
-                                        {allSpells.map((spell, index) => {
-                                            const inBook = isInSpellBook(spell);
-                                            return (
-                                                <option
-                                                    key={`add-${spell.Name}-${index}`}
-                                                    value={spell.Name}
-                                                    disabled={inBook || isAtBookLimit}
-                                                >
-                                                    {spell.Name} {inBook ? '(in book)' : ''}
-                                                </option>
-                                            );
-                                        })}
-                                    </select>
-                                </label>
+                                    />
+                                </div>
 
                                 {bookSpells.length > 0 && (
                                     <ul className="spell-book-list">
@@ -359,33 +355,27 @@ export default function WizardSpellsDisplay({
                                 {Array.from({ length: slotsAvailable }, (_, index) => {
                                     const currentSelection = memorizedSpellsForLevel[index];
                                     const currentSpellName = currentSelection ? currentSelection.Name : '';
-                                    
+                                    const memOptions = bookSpells.map((spell) => {
+                                        const memorized = isMemorized(spell);
+                                        return {
+                                            value: spell.Name,
+                                            label: spell.Name + (memorized && currentSpellName !== spell.Name ? ' (memorized)' : ''),
+                                            disabled: (memorized && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName),
+                                        };
+                                    });
+                                    const options = [{ value: '', label: '-- Select from book --' }, ...memOptions];
                                     return (
-                                        <label key={`mem-dropdown-${level}-${index}`} className="memorized-dropdown-label">
-                                            <select
+                                        <div key={`mem-dropdown-${level}-${index}`} className="input-row memorized-dropdown-label">
+                                            <span className="input-label">Slot {index + 1}:</span>
+                                            <SpellDropdown
                                                 value={currentSpellName}
-                                                onChange={(e) => handleMemorizationChange(level, e.target.value, index)}
+                                                onChange={(val) => handleMemorizationChange(level, val, index)}
+                                                options={options}
+                                                placeholder="-- Select from book --"
                                                 className={`memorized-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
                                                 disabled={isAtLimit && !currentSpellName}
-                                            >
-                                                <option value="">-- Select from book --</option>
-                                                {bookSpells.map((spell, spellIndex) => {
-                                                    const memorized = isMemorized(spell);
-                                                    // Disable if: already memorized in another slot, OR level is at limit and this dropdown is empty
-                                                    const disabled = (memorized && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName);
-                                                    
-                                                    return (
-                                                        <option
-                                                            key={`mem-${spell.Name}-${spellIndex}`}
-                                                            value={spell.Name}
-                                                            disabled={disabled}
-                                                        >
-                                                            {spell.Name} {memorized && currentSpellName !== spell.Name ? '(memorized)' : ''}
-                                                        </option>
-                                                    );
-                                                })}
-                                            </select>
-                                        </label>
+                                            />
+                                        </div>
                                     );
                                 })}
                                 

@@ -1,4 +1,14 @@
 /* ============================================================================
+   LAYOUT REFACTOR TEST FILE
+   ============================================================================
+   Copy of index.css with all grid and flex layout removed (display: grid/flex
+   replaced with display: block; grid-template-*, flex-*, align-*, justify-*,
+   gap, grid-column etc. removed). Use this file to test a new layout approach
+   without existing grid/flex: in main.jsx or index.jsx, import this file
+   instead of index.css: in src/App.jsx change to import "./index-layout-refactor.css".
+   ============================================================================ */
+
+/* ============================================================================
    ROOT & RESET
    ============================================================================ */
 :root {
@@ -43,6 +53,11 @@
   /* Border radius */
   --radius-sm: 4px;
   --radius-md: 8px;
+
+  /* Form layout – label column width, control min size */
+  --form-label-width: 8.5rem;
+  --form-control-min-width: 11rem;
+  --form-control-min-height: 2.25rem;
   
   /* Typography Scale */
   --font-size-xs: 0.75rem;   /* 12px */
@@ -218,12 +233,199 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* Input Row Layout */
+/* Input Row Layout – label column + control column, controls left-aligned and same-size */
 .input-row {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  align-items: center;
+  gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.input-row > .input-label {
+  flex: 0 0 var(--form-label-width);
+  font-weight: 500;
+  color: var(--color-text-label);
+  font-size: 0.95em;
+}
+
+/* All form controls (direct children): same min size so boxes align and look uniform */
+.input-row > .text-input,
+.input-row > .number-input,
+.input-row > select,
+.input-row > .select-input,
+.input-row > .weapon-select,
+.input-row > .proficiency-dropdown,
+.input-row > .spell-dropdown-wrap {
+  flex: 1 1 auto;
+  min-width: var(--form-control-min-width);
+  box-sizing: border-box;
+}
+
+.input-row > .text-input,
+.input-row > .number-input,
+.input-row > select,
+.input-row > .select-input,
+.input-row > .weapon-select,
+.input-row > .proficiency-dropdown {
+  min-height: var(--form-control-min-height);
+}
+
+.input-row > .spell-dropdown-wrap {
+  min-height: 0;
+}
+
+.input-row > .spell-dropdown-wrap .spell-dropdown-trigger {
+  min-height: var(--form-control-min-height);
+}
+
+/* Notes after a control (e.g. "Calculated from XP") don't take flex space */
+.input-row > .input-note {
+  flex: 0 0 auto;
+  font-size: 0.9em;
+  color: var(--color-text-muted);
+}
+
+/* Nested input-row (e.g. SelectInput inside a div with override checkbox) takes remaining space */
+.input-row > .input-row {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+/* Calculated stat row: label same width as form labels so value aligns with controls */
+.calculated-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+.calculated-stat .stat-label {
+  flex: 0 0 var(--form-label-width);
+}
+
+/* Proficiency dropdown row – same label column + control alignment */
+.proficiency-dropdown-label,
+.proficiency-slot > .proficiency-dropdown-label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+.proficiency-dropdown-label .proficiency-slot-number,
+.proficiency-slot .proficiency-dropdown-label .proficiency-slot-number {
+  flex: 0 0 var(--form-label-width);
+  font-weight: 500;
+  color: var(--color-text-label);
+}
+.proficiency-dropdown-label .proficiency-dropdown,
+.proficiency-slot .proficiency-dropdown {
+  flex: 1 1 auto;
+  min-width: var(--form-control-min-width);
+  min-height: var(--form-control-min-height);
+  box-sizing: border-box;
+}
+
+/* Add proficiency (weapon) row */
+.add-proficiency .input-row {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Thief allocation modal – same label + control alignment */
+.thief-allocation-modal-row {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
+}
+.thief-allocation-modal-label {
+  flex: 0 0 var(--form-label-width);
+  font-weight: 500;
+  color: var(--color-text-label);
+}
+.thief-allocation-modal-row .number-input,
+.thief-allocation-modal-row .thief-allocated-input {
+  flex: 1 1 auto;
+  min-width: var(--form-control-min-width);
+  min-height: var(--form-control-min-height);
+  box-sizing: border-box;
+}
+
+/* Stat block (ability scores) – label column + control alignment; override in top-right (stat blocks only) */
+.stat-header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+/* Stat boxes only: stat name centered, Override checkbox aligned right */
+.stat-block .stat-header:first-of-type {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-sm);
+}
+.stat-block .stat-header:first-of-type > label {
+  flex: 0 0 auto;
+}
+.stat-block .stat-header:first-of-type .stat-override-checkbox {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.stat-block .stat-header + .stat-header {
+  margin-top: var(--spacing-xs);
+}
+/* Stat block: input row below header (sibling of .stat-header) */
+.stat-block .stat-input-wrapper {
+  margin-bottom: var(--spacing-sm);
+}
+.stat-block .stat-input-wrapper .stat-score-input {
+  min-width: var(--form-control-min-width);
+  min-height: var(--form-control-min-height);
+  box-sizing: border-box;
+  text-align: center;
+}
+.stat-header > label,
+.stat-header .stat-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.stat-header .stat-score-input,
+.stat-header .exceptional-strength-input {
+  min-width: var(--form-control-min-width);
+  min-height: var(--form-control-min-height);
+  box-sizing: border-box;
+  text-align: center;
+}
+.stat-header .stat-input-wrapper .stat-score-input {
+  flex: 1 1 auto;
+}
+
+/* Memorized / prepared spell slot label row – when wrapped in input-row */
+.memorized-dropdown-label.input-row > .input-label {
+  flex: 0 0 var(--form-label-width);
+}
+.memorized-dropdown-label .spell-dropdown-wrap,
+.memorized-dropdown-label > .spell-dropdown-wrap {
+  flex: 1 1 auto;
+  min-width: var(--form-control-min-width);
+}
+
+/* Spell book add row */
+.spell-book-add-label .spell-dropdown-wrap,
+.spell-book-add-label-compact .spell-dropdown-wrap {
+  min-width: var(--form-control-min-width);
+  min-height: var(--form-control-min-height);
+}
+.spell-book-add-label.input-row > .input-label,
+.spell-book-add-label-compact.input-row > .input-label {
+  flex: 0 0 var(--form-label-width);
 }
 
 .input-label {
@@ -269,65 +471,72 @@ hr.style14 {
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr;  /* Mobile: single column */
-  gap: var(--spacing-md);
+  display: block;
   padding: var(--content-padding);
   max-width: var(--container-max-width);
   margin: 0 auto;
 }
 
-/* Tablet: 2 columns where appropriate */
-@media (min-width: var(--bp-lg)) {
-  .wrapper {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* Layout removed for refactor – was: wrapper grid 2/3 cols, force 1 col below tablet */
 
-/* Desktop: We'll let children span as needed */
-@media (min-width: var(--bp-xl)) {
-  .wrapper {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Force single column below tablet (overrides when coming from larger viewport) */
-@media (max-width: var(--bp-lg-max)) {
-  .wrapper {
-    grid-template-columns: 1fr !important;
-  }
-  .wrapper > * {
-    grid-column: 1 / -1 !important;
-  }
-}
-
-/* Optional layout utility: 1 col → 2 at tablet → 3 at desktop */
+/* Optional layout utility – layout removed for refactor */
 .grid-responsive {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-md);
-}
-@media (min-width: var(--bp-lg)) {
-  .grid-responsive { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: var(--bp-xl)) {
-  .grid-responsive { grid-template-columns: repeat(3, 1fr); }
+  display: block;
 }
 
-/* Identity + Progression: one row on wide screens, left/right halves */
+/* Identity (left) + Progression (right): one row at largest breakpoint only */
 .identity-progression-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--spacing-md);
+  width: 100%;
+  display: block;
+  margin-bottom: var(--spacing-md);
 }
-@media (min-width: var(--bp-xl)) {
+.identity-progression-row > .identity-section,
+.identity-progression-row > .progression-section {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
+  min-width: 0;
+}
+/* 1024px = --bp-xl: force two-column row so Identity and Progression tile horizontally */
+@media (min-width: 1024px) {
   .identity-progression-row {
+    display: grid !important;
     grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  .identity-progression-row > .identity-section,
+  .identity-progression-row > .progression-section {
+    width: auto;
+    margin-bottom: 0;
   }
 }
-.identity-section,
-.progression-section {
+
+/* Equipment & AC (left) + Health Points (right): one row at largest breakpoint */
+.equipment-hp-row {
+  width: 100%;
+  display: block;
+  margin-bottom: var(--spacing-md);
+}
+.equipment-hp-row > .equipment-section,
+.equipment-hp-row > .hp-section {
+  display: block;
+  width: 100%;
+  margin-bottom: var(--spacing-md);
   min-width: 0;
+}
+@media (min-width: 1024px) {
+  .equipment-hp-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+  }
+  .equipment-hp-row > .equipment-section,
+  .equipment-hp-row > .hp-section {
+    width: auto;
+    margin-bottom: 0;
+  }
 }
 
 /* ============================================================================
@@ -341,7 +550,7 @@ hr.style14 {
 }
 
 .column-span {
-  grid-column: 1 / 5;
+  /* grid-column removed for refactor */
 }
 
 /* Thief skills block */
@@ -353,7 +562,7 @@ hr.style14 {
 /* Thief abilities: full-width container */
 .thief-abilities-wrapper {
   width: 100%;
-  grid-column: 1 / -1;
+  /* grid-column removed for refactor */
 }
 .thief-backstab {
   display: inline;
@@ -421,9 +630,7 @@ hr.style14 {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   z-index: 1000;
   padding: var(--spacing-md);
   overflow-y: auto;
@@ -460,9 +667,7 @@ hr.style14 {
   padding: 0;
   width: 32px;
   height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   border-radius: var(--radius-sm);
   transition: background-color 0.2s, color 0.2s;
 }
@@ -492,28 +697,21 @@ hr.style14 {
   font-size: var(--font-size-sm);
 }
 .thief-allocation-modal-inputs {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   margin-bottom: var(--spacing-md);
 }
 .thief-allocation-modal-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
+  display: block;
   font-size: var(--font-size-sm);
 }
 .thief-allocation-modal-label {
-  flex: 1;
   min-width: 0;
 }
 .thief-allocation-modal-row .thief-allocated-input {
-  flex-shrink: 0;
+  /* flex-shrink removed for refactor */
 }
 .thief-allocation-modal-actions {
-  display: flex;
-  justify-content: flex-end;
+  display: block;
 }
 .thief-allocation-done-btn {
   padding: var(--spacing-xs) var(--spacing-lg);
@@ -583,24 +781,30 @@ hr.style14 {
    STAT BLOCKS
    ============================================================================ */
 .container {
+  display: block;
+}
+
+/* Stats block: 6 stats – 1 col (default), 2 cols at md–lg-max, 3 cols at xl */
+.main-stats {
   display: grid;
-  grid-template-columns: 1fr;  /* Mobile: stack vertically */
-  gap: var(--spacing-sm);
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
 }
-
-/* Tablet: 2 columns */
-@media (min-width: var(--bp-md)) {
-  .container {
-    grid-template-columns: repeat(2, 1fr);
+@media (min-width: var(--bp-md)) and (max-width: var(--bp-lg-max)) {
+  .main-stats {
+    grid-template-columns: 1fr 1fr;
   }
 }
-
-/* Desktop: 3 columns */
-@media (min-width: var(--bp-xl)) {
-  .container {
-    grid-template-columns: repeat(3, 1fr);
+@media (min-width: 1024px) {
+  .main-stats {
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
+.main-stats > .inner-border {
+  min-width: 0;
+}
+
+/* Container layout removed for refactor – was 2/3 column grid */
 
 .container div {
   /* grid-auto-flow: column; */
@@ -618,10 +822,7 @@ hr.style14 {
 }
 
 .stat-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-sm);
+  display: block;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -630,15 +831,13 @@ hr.style14 {
 }
 
 .stat-input-wrapper {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: block;
 }
 
 .stat-override-checkbox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 5px;
   font-size: 0.85em;
   color: var(--color-text-muted);
   cursor: pointer;
@@ -647,12 +846,13 @@ hr.style14 {
 
 .stat-override-checkbox input[type="checkbox"] {
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .override-checkbox {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: var(--spacing-xs);
+  gap: 5px;
   font-size: 0.85em;
   color: var(--color-text-muted);
   cursor: pointer;
@@ -662,17 +862,20 @@ hr.style14 {
 
 .override-checkbox input[type="checkbox"] {
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-.exceptional-strength-header {
-  margin-top: var(--spacing-xs);
-  margin-bottom: 0;
+.check-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.exceptional-strength-label {
-  font-size: 1em;
-  color: var(--color-text-primary);
-  font-weight: normal;
+.check-box input[type="checkbox"] {
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
 /* =================
@@ -684,31 +887,10 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .saves-grid {
-  display: grid;
-  grid-template-columns: 1fr;  /* Mobile: stack */
-  gap: var(--spacing-sm);
+  display: block;
 }
 
-/* Small screens: 2 columns */
-@media (min-width: var(--bp-sm)) {
-  .saves-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Tablet: 3 columns */
-@media (min-width: var(--bp-lg)) {
-  .saves-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-}
-
-/* Desktop: 5 columns (original layout) */
-@media (min-width: var(--bp-xl)) {
-  .saves-grid {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
+/* Saves grid layout removed for refactor */
 
 .category-name {
   background-color: #003300;
@@ -804,23 +986,15 @@ div.saving-throws-block, h3#saves-title {
    Combat Statistics Block
    ========================= */
 .combat-stats-block {
-    grid-column: 1 / -1;  /* Span all columns */
     margin-top: 1rem;
 }
 
 .combat-grid {
-  display: grid;
-  grid-template-columns: 1fr;  /* Mobile: stack */
-  gap: var(--spacing-lg);
+  display: block;
   margin-bottom: var(--spacing-md);
 }
 
-/* Tablet and up: 2 columns */
-@media (min-width: var(--bp-lg)) {
-  .combat-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-}
+/* Combat grid layout removed for refactor */
 
 .combat-section {
     padding: 0.5rem;
@@ -835,8 +1009,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .stat-row {
-    display: flex;
-    justify-content: space-between;
+    display: block;
     padding: 0.35rem 0;
     border-bottom: 1px dotted #444;
 }
@@ -865,31 +1038,15 @@ div.saving-throws-block, h3#saves-title {
     Proficiencies Container
   ========================= */
 .proficiencies-container {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+  display: block;
   width: 100%;
-  grid-column: 1 / -1;
 }
 
 .proficiency-section {
-  flex: 1;
   min-width: 0; /* Allows flex items to shrink below content size */
 }
 
-/* Desktop: side by side */
-@media (min-width: var(--bp-lg)) {
-  .proficiencies-container {
-    flex-direction: row;
-  }
-}
-
-/* Mobile: stack vertically */
-@media (max-width: var(--bp-lg-max)) {
-  .proficiencies-container {
-    flex-direction: column;
-  }
-}
+/* Proficiencies container layout removed for refactor */
 
 /* =========================
     Weapon Proficiencies
@@ -970,9 +1127,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spec-level-cell {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
 }
 
 .spec-level-cell .slots-used {
@@ -1032,9 +1187,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-actions {
-  display: flex;
-  gap: var(--spacing-xs);
-  justify-content: center;
+  display: block;
 }
 
 .proficiency-actions button {
@@ -1107,9 +1260,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .weapon-info {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
+  display: block;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -1146,9 +1297,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spec-bonuses {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-sm);
+  display: block;
   margin-bottom: var(--spacing-sm);
   padding: var(--spacing-sm);
   background-color: var(--color-bg-secondary);
@@ -1165,8 +1314,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-actions {
-  display: flex;
-  gap: var(--spacing-sm);
+  display: block;
 }
 
 .upgrade-btn,
@@ -1257,24 +1405,17 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-selection {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
+  display: block;
   margin-bottom: var(--spacing-lg);
 }
 
 .proficiency-slot {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: block;
 }
 
 .proficiency-dropdown-label {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: block;
   width: 100%;
-  flex-wrap: wrap;
 }
 
 .proficiency-slot-number {
@@ -1284,7 +1425,6 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-dropdown {
-  flex: 1;
   min-width: 200px;
   padding: var(--spacing-sm);
   font-size: 1em;
@@ -1386,30 +1526,15 @@ div.saving-throws-block, h3#saves-title {
     Spell Slots Display
    =========================*/
 .spell-slots-block {
-  grid-column: 1 / -1;
   margin-top: var(--spacing-md);
 }
 
 .spell-slots-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);  /* Mobile: 2 columns (small boxes) */
-  gap: var(--spacing-md);
+  display: block;
   margin: var(--spacing-md) 0;
 }
 
-/* Small screens: 3 columns */
-@media (min-width: var(--bp-sm)) {
-  .spell-slots-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Tablet and up: auto-fit (responsive) */
-@media (min-width: var(--bp-lg)) {
-  .spell-slots-grid {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  }
-}
+/* Spell slots grid layout removed for refactor */
 
 .spell-level-box {
   background-color: var(--color-bg-tertiary);
@@ -1426,9 +1551,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-level-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
   margin-bottom: var(--spacing-sm);
   padding-bottom: var(--spacing-sm);
   border-bottom: 1px solid var(--color-border-default);
@@ -1448,9 +1571,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-slots-count {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: block;
 }
 
 .slots-number {
@@ -1471,7 +1592,6 @@ div.saving-throws-block, h3#saves-title {
    =========================*/
 .wizard-spells-block,
 .priest-spells-block {
-  grid-column: 1 / -1;
   margin-top: var(--spacing-md);
 }
 
@@ -1530,10 +1650,7 @@ div.saving-throws-block, h3#saves-title {
 .spell-book-level-heading {
   color: var(--color-accent-secondary);
   font-size: 1.1em;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
+  display: block;
 }
 
 .spell-book-count-badge {
@@ -1543,9 +1660,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-book-add-label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   margin-bottom: var(--spacing-sm);
 }
 
@@ -1577,15 +1692,11 @@ div.saving-throws-block, h3#saves-title {
   list-style: none;
   padding: 0;
   margin: var(--spacing-sm) 0 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
 }
 
 .spell-book-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: block;
   padding: var(--spacing-sm);
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-sm);
@@ -1593,7 +1704,6 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-book-link {
-  flex: 1;
   text-align: left;
   background: none;
   border: none;
@@ -1678,9 +1788,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-reference-content {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
+  display: block;
 }
 
 .spell-reference-level-compact {
@@ -1688,9 +1796,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-reference-level-header-compact {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   margin-bottom: var(--spacing-xs);
   padding-bottom: var(--spacing-xs);
   border-bottom: 1px solid var(--color-border-default);
@@ -1712,16 +1818,13 @@ div.saving-throws-block, h3#saves-title {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: block;
   max-height: 200px;
   overflow-y: auto;
 }
 
 .spell-reference-item-compact {
-  display: flex;
-  align-items: center;
+  display: block;
 }
 
 .spell-reference-link-compact {
@@ -1772,9 +1875,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-book-level-header-compact {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display: block;
   margin-bottom: var(--spacing-xs);
   padding-bottom: var(--spacing-xs);
   border-bottom: 1px solid var(--color-border-default);
@@ -1793,9 +1894,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-book-add-label-compact {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   margin-bottom: var(--spacing-xs);
 }
 
@@ -1827,21 +1926,16 @@ div.saving-throws-block, h3#saves-title {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  display: block;
   max-height: 200px;
   overflow-y: auto;
 }
 
 .spell-book-item-compact {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-xs);
+  display: block;
 }
 
 .spell-book-link-compact {
-  flex: 1;
   text-align: left;
   background: none;
   border: none;
@@ -1873,7 +1967,6 @@ div.saving-throws-block, h3#saves-title {
   line-height: 1;
   transition: color 0.2s;
   min-width: 20px;
-  flex-shrink: 0;
 }
 
 .spell-book-remove-btn-compact:hover {
@@ -1891,12 +1984,7 @@ div.saving-throws-block, h3#saves-title {
   margin-bottom: 0;
 }
 
-/* Responsive: Stack on smaller screens */
 @media (max-width: var(--bp-xl)) {
-  .prepared-spells-layout {
-    grid-template-columns: 1fr;
-  }
-  
   .spell-reference-sidebar {
     position: static;
     max-height: none;
@@ -1913,10 +2001,7 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .prepared-spells-layout {
-  display: grid;
-  grid-template-columns: 1fr 350px;
-  gap: var(--spacing-lg);
-  align-items: start;
+  display: block;
 }
 
 .prepared-spells-main {
@@ -1940,10 +2025,7 @@ div.saving-throws-block, h3#saves-title {
 .memorized-level-heading {
   color: var(--color-accent-secondary);
   font-size: 1.1em;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
+  display: block;
 }
 
 .memorized-slots-badge {
@@ -1953,10 +2035,98 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .memorized-dropdown-label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   margin-bottom: var(--spacing-sm);
+}
+
+/* Custom spell dropdown – opens upward when space below is limited */
+.spell-dropdown-wrap {
+  position: relative;
+  width: 100%;
+}
+.spell-dropdown-trigger {
+  position: relative;
+  width: 100%;
+  padding: var(--spacing-sm);
+  padding-right: 2rem;
+  font-size: 1em;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  display: block;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.spell-dropdown-trigger:hover:not(:disabled) {
+  border-color: var(--color-border-accent);
+}
+.spell-dropdown-trigger:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+.spell-dropdown-trigger:disabled {
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+.spell-dropdown-value {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.spell-dropdown-arrow {
+  position: absolute;
+  right: var(--spacing-sm);
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.75em;
+  color: var(--color-text-muted);
+}
+.spell-dropdown-list {
+  z-index: 1000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background-color: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: var(--spacing-xs);
+  box-sizing: border-box;
+}
+.spell-dropdown-list-up {
+  bottom: 0;
+  top: auto !important;
+}
+.spell-dropdown-option {
+  display: block;
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: none;
+  color: var(--color-text-primary);
+  font-family: inherit;
+  font-size: 1em;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+.spell-dropdown-option:hover:not(:disabled) {
+  background-color: var(--color-bg-tertiary);
+}
+.spell-dropdown-option:disabled {
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+  opacity: 0.7;
 }
 
 .memorized-dropdown {
@@ -2022,19 +2192,14 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-level-dropdown-label {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   margin-bottom: var(--spacing-sm);
 }
 
 .spell-level-heading {
   color: var(--color-accent-secondary);
   font-size: 1.1em;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
-  flex-wrap: wrap;
+  display: block;
 }
 
 .spell-slots-badge {
@@ -2119,15 +2284,11 @@ div.saving-throws-block, h3#saves-title {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
 }
 
 .selected-spell-item {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+  display: block;
   padding: var(--spacing-sm);
   background-color: var(--color-bg-tertiary);
   border-radius: var(--radius-sm);
@@ -2135,7 +2296,6 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .selected-spell-link {
-  flex: 1;
   text-align: left;
   background: none;
   border: none;
@@ -2184,40 +2344,24 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spell-modal-info-grid {
-  display: grid;
-  grid-template-columns: 1fr; /* Mobile: single column */
-  gap: var(--spacing-sm);
+  display: block;
   margin-bottom: var(--spacing-lg);
   padding: var(--spacing-md);
   background-color: var(--color-bg-tertiary);
   border-radius: var(--radius-sm);
 }
 
-/* Tablet: 2 columns */
-@media (min-width: var(--bp-md)) {
-  .spell-modal-info-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Desktop: 3 columns */
-@media (min-width: var(--bp-xl)) {
-  .spell-modal-info-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
+/* Spell modal info grid layout removed for refactor */
 
 .spell-modal-info-item {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-xs);
+  display: block;
   padding: var(--spacing-sm);
   background-color: var(--color-bg-secondary);
   border-radius: var(--radius-sm);
 }
 
 .spell-modal-info-item.spell-modal-info-full {
-  grid-column: 1 / -1; /* Span all columns */
+  /* grid-column span removed for refactor */
 }
 
 .spell-modal-info-label {
@@ -2250,6 +2394,123 @@ div.saving-throws-block, h3#saves-title {
   line-height: 1.6;
   margin: 0;
   white-space: pre-wrap;
+}
+
+/* ============================================================================
+   PHONE / SMALL SCREEN – modals, thief skills, spell list
+   ============================================================================ */
+@media (max-width: var(--bp-lg-max)) {
+  /* Modals: full-bleed backdrop, compact panel, touch-friendly close */
+  .modal-backdrop,
+  .spell-modal-backdrop,
+  .thief-allocation-modal-backdrop {
+    padding: var(--spacing-xs);
+    min-height: 100vh;
+    display: block;
+    box-sizing: border-box;
+  }
+  .modal-panel,
+  .spell-modal,
+  .thief-allocation-modal {
+    width: 100%;
+    max-width: none;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+    padding-top: 2.75rem; /* space for close button */
+    max-height: calc(100vh - var(--spacing-md));
+    box-sizing: border-box;
+  }
+  .modal-close,
+  .spell-modal-close,
+  .thief-allocation-modal-close {
+    min-width: 44px;
+    min-height: 44px;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+  }
+  .thief-allocation-modal-close {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  .spell-modal-name {
+    font-size: 1.25em;
+  }
+  .spell-modal-info-grid {
+    padding: var(--spacing-sm);
+  }
+  .spell-modal-description {
+    padding: var(--spacing-sm);
+  }
+
+  /* Thief skills: stack header row, scrollable table */
+  .thief-abilities-block .thief-backstab,
+  .thief-abilities-block .thief-points-total,
+  .thief-abilities-block .thief-allocation-actions {
+    display: block;
+    margin-right: 0;
+    margin-bottom: var(--spacing-sm);
+  }
+  .thief-abilities-block .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: var(--spacing-sm);
+  }
+  .thief-abilities-block .thief-skills-table {
+    font-size: var(--font-size-xs);
+    min-width: 320px;
+  }
+  .thief-abilities-block .thief-skills-table th,
+  .thief-abilities-block .thief-skills-table td {
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+  .thief-allocation-modal-row {
+    margin-bottom: var(--spacing-sm);
+  }
+  .thief-allocation-modal-label {
+    display: block;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  /* Spell list / prepared spells: full width, no sticky, readable */
+  .prepared-spells-layout {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .prepared-spells-main {
+    width: 100%;
+    min-width: 0;
+  }
+  .spell-book-sidebar,
+  .spell-reference-sidebar {
+    position: static;
+    max-height: none;
+    width: 100%;
+    margin-bottom: var(--spacing-lg);
+  }
+  .spell-reference-list-compact,
+  .spell-book-list-compact {
+    max-height: 180px;
+  }
+  .spell-book-section {
+    padding: var(--spacing-sm);
+  }
+  .spell-book-level-section {
+    padding: var(--spacing-sm);
+  }
+  .spell-book-add-dropdown,
+  .spell-book-add-dropdown-compact,
+  .spell-reference-search-input {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .spell-reference-link-compact,
+  .spell-book-link-compact {
+    padding: var(--spacing-sm) var(--spacing-md);
+    min-height: 44px;
+    display: block;
+    line-height: 1.4;
+  }
 }
 
 /* ============================================================================

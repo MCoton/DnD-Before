@@ -38,11 +38,10 @@ export function useNumericInput(initialValue, options = {}) {
       return;
     }
     
-    // Update local state to show what user is typing
-    setInputValue(value);
-    
-    // Clamp the value to valid range
+    // Clamp the value to valid range so display never exceeds max
     const clampedValue = Math.max(min, Math.min(max, parsedValue));
+    const displayValue = String(clampedValue);
+    setInputValue(displayValue);
     
     // Call update callback if provided
     if (onUpdate) {

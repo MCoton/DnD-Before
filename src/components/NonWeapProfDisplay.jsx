@@ -156,8 +156,8 @@ export default function NonWeapProfDisplay({
                         
                         return (
                             <div key={`prof-slot-${arrayIndex}`} className="proficiency-slot">
-                                <label className="proficiency-dropdown-label">
-                                    <span className="proficiency-slot-number">Select proficiency:</span>
+                                <label className="input-row proficiency-dropdown-label">
+                                    <span className="input-label proficiency-slot-number">Select proficiency:</span>
                                     <select
                                         value=""
                                         onChange={(e) => {
@@ -203,7 +203,7 @@ export default function NonWeapProfDisplay({
             {currentProficiencies.length > 0 && (
                 <div className="proficiencies-table-container">
                     <h3 className="proficiencies-table-title">Selected Proficiencies</h3>
-                    <table className="proficiencies-table">
+                    <table className="proficiencies-table table-responsive">
                         <thead>
                             <tr>
                                 <th>Name</th>

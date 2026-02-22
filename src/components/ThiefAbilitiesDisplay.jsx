@@ -44,11 +44,6 @@ export default function ThiefAbilitiesDisplay({
     const hasUnallocatedPoints = totalPointsSpent < totalPointsAvailable;
     const [allocationModalOpen, setAllocationModalOpen] = useState(false);
 
-    const formatMod = (n) => {
-        if (n === 0) return '—';
-        return n > 0 ? `+${n}` : String(n);
-    };
-
     const maxPerSkillFromRule = Math.floor(totalPointsAvailable * 0.5);
 
     const handleAllocatedChange = (skill, e) => {
@@ -66,10 +61,6 @@ export default function ThiefAbilitiesDisplay({
         <div className="thief-abilities-block area-box details-box">
             <h3 className="title">Thief Skills</h3>
             <hr className="style14" />
-            <p className="thief-abilities-note">
-                Base chances plus allocated skill points, modified by race, worn armour
-                {armourType ? ` (${armourType})` : ''}, and Dexterity. Total % capped at 0–99.
-            </p>
             <div className="thief-backstab">
                 <strong>Backstab multiplier:</strong> ×{backstabMulti} 
             </div>
@@ -82,7 +73,6 @@ export default function ThiefAbilitiesDisplay({
                     <span className="thief-points-unallocated"> ({totalPointsAvailable - totalPointsSpent} unallocated)</span>
                 )}
             </div>
-
             <div className="thief-allocation-actions">
                 <button
                     type="button"
@@ -94,41 +84,29 @@ export default function ThiefAbilitiesDisplay({
                 </button>
             </div>
 
+
             <div className="table-wrap">
                 <table className="thief-skills-table">
                     <thead>
                         <tr>
-                            <th>Skill</th>
-                            <th>Total %</th>
-                            <th>Allocated</th>
-                            <th>Dex</th>
-                            <th>Race</th>
-                            <th>Armour</th>
-                            <th>Base</th>
+                            {THIEF_SKILL_ORDER.map((key) => (
+                                <th key={key}>{skillKeyToLabel(key)}</th>
+                            ))}
                         </tr>
                     </thead>
                     <tbody>
-                        {THIEF_SKILL_ORDER.map((key) => {
-                            const row = skills[key];
-                            if (!row) return null;
-                            const allocated = typeof thiefSkillPoints[key] === 'number' ? thiefSkillPoints[key] : 0;
-                            return (
-                                <tr key={key}>
-                                    <td>{skillKeyToLabel(key)}</td>
-                                    <td><strong>{row.total}</strong></td>
-                                    <td>{allocated}</td>
-                                    <td>{formatMod(row.dex)}</td>
-                                    <td>{formatMod(row.race)}</td>
-                                    <td>{formatMod(row.armour)}</td>
-                                    <td>{row.base}</td>
-                                </tr>
-                            );
-                        })}
+                        <tr>
+                            {THIEF_SKILL_ORDER.map((key) => {
+                                const row = skills[key];
+                                if (!row) return <td key={key}>—</td>;
+                                return (
+                                    <td key={key}>{row.total}%</td>
+                                );
+                            })}
+                        </tr>
                     </tbody>
                 </table>
-            </div>
-
-            {allocationModalOpen && (
+            </div>            {allocationModalOpen && (
                 <div
                     className="thief-allocation-modal-backdrop"
                     onClick={() => setAllocationModalOpen(false)}
@@ -161,8 +139,8 @@ export default function ThiefAbilitiesDisplay({
                                 const maxFromTotal = Math.max(0, totalPointsAvailable - otherTotal);
                                 const maxForSkill = Math.min(maxFromTotal, maxPerSkillFromRule);
                                 return (
-                                    <label key={key} className="thief-allocation-modal-row">
-                                        <span className="thief-allocation-modal-label">{skillKeyToLabel(key)}</span>
+                                    <label key={key} className="thief-allocation-modal-row input-row">
+                                        <span className="thief-allocation-modal-label input-label">{skillKeyToLabel(key)}</span>
                                         <input
                                             type="number"
                                             min={0}

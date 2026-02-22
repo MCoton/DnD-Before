@@ -3,6 +3,7 @@ import wizardSpells from '../data/spellLists/wizard_spells.json';
 import priestSpells from '../data/spellLists/priest_spells.json';
 import charClasses from '../data/classes/character_classes.json';
 import SpellModal from './SpellModal';
+import SpellDropdown from './SpellDropdown';
 
 /**
  * Generic spell display component that handles both Wizard and Priest spells.
@@ -403,36 +404,30 @@ export default function SpellDisplay({
                                 {Array.from({ length: slotsAvailable }, (_, index) => {
                                     const currentSelection = preparedSpellsForLevel[index];
                                     const currentSpellName = currentSelection ? currentSelection.Name : '';
-                                    
+                                    const placeholder = isWizard ? 'Select from book' : 'Select spell';
+                                    const prepOptions = availableSpells.length > 0
+                                        ? availableSpells.map((spell) => {
+                                            const prepared = isPrepared(spell);
+                                            return {
+                                                value: spell.Name,
+                                                label: spell.Name + (prepared && currentSpellName !== spell.Name ? ` (${isWizard ? 'memorized' : 'prepared'})` : ''),
+                                                disabled: (prepared && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName),
+                                            };
+                                        })
+                                        : [{ value: '', label: 'No spells in book for this level', disabled: true }];
+                                    const options = [{ value: '', label: `-- ${placeholder} --` }, ...prepOptions];
                                     return (
-                                        <label key={`prep-dropdown-${level}-${index}`} className="memorized-dropdown-label">
-                                            <select
+                                        <div key={`prep-dropdown-${level}-${index}`} className="input-row memorized-dropdown-label">
+                                            <span className="input-label">Slot {index + 1}:</span>
+                                            <SpellDropdown
                                                 value={currentSpellName}
-                                                onChange={(e) => handlePreparationChange(level, e.target.value, index)}
+                                                onChange={(val) => handlePreparationChange(level, val, index)}
+                                                options={options}
+                                                placeholder={`-- ${placeholder} --`}
                                                 className={`memorized-dropdown ${isAtLimit && !currentSpellName ? 'at-limit' : ''}`}
                                                 disabled={isAtLimit && !currentSpellName || (isWizard && availableSpells.length === 0)}
-                                            >
-                                                <option value="">-- {isWizard ? 'Select from book' : 'Select spell'} --</option>
-                                                {availableSpells.length > 0 ? (
-                                                    availableSpells.map((spell, spellIndex) => {
-                                                        const prepared = isPrepared(spell);
-                                                        const disabled = (prepared && currentSpellName !== spell.Name) || (isAtLimit && !currentSpellName);
-                                                        
-                                                        return (
-                                                            <option
-                                                                key={`prep-${spell.Name}-${spellIndex}`}
-                                                                value={spell.Name}
-                                                                disabled={disabled}
-                                                            >
-                                                                {spell.Name} {prepared && currentSpellName !== spell.Name ? `(${isWizard ? 'memorized' : 'prepared'})` : ''}
-                                                            </option>
-                                                        );
-                                                    })
-                                                ) : (
-                                                    <option value="" disabled>No spells in book for this level</option>
-                                                )}
-                                            </select>
-                                        </label>
+                                            />
+                                        </div>
                                     );
                                 })}
                                 
@@ -474,34 +469,29 @@ export default function SpellDisplay({
                                                 </span>
                                             </div>
                                             
-                                            <label className="spell-book-add-label-compact">
-                                                <select
+                                            <div className="input-row spell-book-add-label-compact">
+                                                <span className="input-label">Add:</span>
+                                                <SpellDropdown
                                                     value=""
-                                                    onChange={(e) => {
-                                                        if (e.target.value) {
-                                                            const spell = allSpells.find(s => s.Name === e.target.value);
+                                                    onChange={(val) => {
+                                                        if (val) {
+                                                            const spell = allSpells.find(s => s.Name === val);
                                                             if (spell) handleAddToSpellBook(spell);
-                                                            e.target.value = '';
                                                         }
                                                     }}
+                                                    options={[
+                                                        { value: '', label: '-- Add spell --' },
+                                                        ...allSpells.map((spell) => ({
+                                                            value: spell.Name,
+                                                            label: spell.Name + (isInSpellBook(spell) ? ' (in book)' : ''),
+                                                            disabled: isInSpellBook(spell) || isAtBookLimit,
+                                                        })),
+                                                    ]}
+                                                    placeholder="-- Add spell --"
                                                     className="spell-book-add-dropdown-compact"
                                                     disabled={isAtBookLimit}
-                                                >
-                                                    <option value="">-- Add spell --</option>
-                                                    {allSpells.map((spell, index) => {
-                                                        const inBook = isInSpellBook(spell);
-                                                        return (
-                                                            <option
-                                                                key={`add-${spell.Name}-${index}`}
-                                                                value={spell.Name}
-                                                                disabled={inBook || isAtBookLimit}
-                                                            >
-                                                                {spell.Name} {inBook ? '(in book)' : ''}
-                                                            </option>
-                                                        );
-                                                    })}
-                                                </select>
-                                            </label>
+                                                />
+                                            </div>
 
                                             {bookSpells.length > 0 && (
                                                 <ul className="spell-book-list-compact">
@@ -544,13 +534,16 @@ export default function SpellDisplay({
                             <div className="spell-reference-sidebar">
                                 <h3 className="spell-reference-heading">Spell Reference</h3>
                                 <div className="spell-reference-search-container">
-                                    <input
-                                        type="text"
-                                        placeholder="Search by name or school..."
-                                        value={spellSearchQuery}
-                                        onChange={(e) => setSpellSearchQuery(e.target.value)}
-                                        className="spell-reference-search-input"
-                                    />
+                                    <label className="input-row">
+                                        <span className="input-label">Search:</span>
+                                        <input
+                                            type="text"
+                                            placeholder="Search by name or school..."
+                                            value={spellSearchQuery}
+                                            onChange={(e) => setSpellSearchQuery(e.target.value)}
+                                            className="text-input spell-reference-search-input"
+                                        />
+                                    </label>
                                 </div>
                                 <div className="spell-reference-content">
                                     {availableSpellLevels.map(level => {

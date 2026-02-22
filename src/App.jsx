@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useEffect } from "react";
-import './index.css'
+import React, { useState, useMemo, useEffect, useRef } from "react";
+import './index-layout-refactor.css'
 
 import { calculateDerivedStats } from "./rulesEngine";
 import StatBlock from "./components/statBlock.jsx";
@@ -61,7 +61,7 @@ const initialCharacterState = {
     hp: {
         base: 10, // The manually rolled numbers
         bonus: 0, // Will be the "con" modifier
-        current: 0, // HP minus any damage
+        current: undefined, // undefined = use Max HP; set only when manually changed
         hpMax: 0 // Maximum HP if uninjured, plus and "con" bonus
     },
 
@@ -88,12 +88,6 @@ export default function CharacterSheet() {
     // 'character' is the current state object.
     // 'setCharacter' is the function we call to change the state.
     const [character, setCharacter] = useState(initialCharacterState);
-    
-    // Use custom hook for numeric input handling
-    const hpInput = useNumericInput(character.hp.base, {
-        min: HP_MIN,
-        onUpdate: (value) => updateNestedState(setCharacter, ['hp', 'base'], value)
-    });
     
     const xpInput = useNumericInput(character.xp, {
         min: XP_MIN,
@@ -278,6 +272,46 @@ export default function CharacterSheet() {
         return calculateDerivedStats(character);
     }, [character]);
 
+    // Recalculate Base HP when class changes: set to level × new class hit die
+    const prevClassRef = useRef(character.characterClass);
+    useEffect(() => {
+        if (prevClassRef.current === character.characterClass) return;
+        prevClassRef.current = character.characterClass;
+        const key = character.characterClass?.toLowerCase();
+        const die = key ? charClasses[key]?.hitDie : null;
+        const level = derivedStats.level;
+        if (level && die) {
+            const newBaseHp = level * die;
+            setCharacter(prev => ({ ...prev, hp: { ...prev.hp, base: newBaseHp } }));
+        }
+    }, [character.characterClass, derivedStats.level]);
+
+    // Max Base HP = level × class hit die (e.g. 4th level fighter = 4 × 10 = 40)
+    const classKey = character.characterClass?.toLowerCase();
+    const classData = classKey ? charClasses[classKey] : null;
+    const hitDie = classData?.hitDie;
+    const maxBaseHp = (derivedStats.level && hitDie) ? derivedStats.level * hitDie : undefined;
+
+    const hpInput = useNumericInput(character.hp.base, {
+        min: HP_MIN,
+        max: maxBaseHp ?? Infinity,
+        onUpdate: (value) => updateNestedState(setCharacter, ['hp', 'base'], value)
+    });
+
+    // Current HP: display effective value (stored or Max HP), clamped to 0..hpMax
+    const effectiveCurrentHp = (character.hp.current !== undefined && character.hp.current !== null)
+        ? Math.min(derivedStats.hpMax, Math.max(0, Number(character.hp.current)))
+        : derivedStats.hpMax;
+    const currentHpInput = useNumericInput(effectiveCurrentHp, {
+        min: 0,
+        max: Math.max(0, derivedStats.hpMax),
+        onUpdate: (value) => {
+            // Store undefined when equal to Max HP so Current HP follows Max HP when it changes
+            const newCurrent = value === derivedStats.hpMax ? undefined : value;
+            updateNestedState(setCharacter, ['hp', 'current'], newCurrent);
+        }
+    });
+
     // Derive racial adjustment string
     let racialAdjDisplay = 'none';
     const adjustments = derivedStats.raceAdjustments;
@@ -296,13 +330,10 @@ export default function CharacterSheet() {
             
             <div className="wrapper">
 
-                <div className="container area-box">
-                    
-                    {/* NAME AND IDENTITY SECTION */}
-                    <div className="">
+                {/* Character Identity (left) + Experience & Progression (right) – one row at xl */}
+                <div className="identity-progression-row">
+                    <div className="area-box identity-section">
                         <h3>Character Identity</h3>
-                        
-                        {/* Name Input */}
                         <label className="input-row">
                             <span className="input-label">Name:</span>
                             <input
@@ -314,8 +345,6 @@ export default function CharacterSheet() {
                                 placeholder="Enter character name"
                             />
                         </label>
-
-                        {/* Character Class Selector */}
                         <div className="input-row">
                             <SelectInput
                                 label="Class"
@@ -336,8 +365,6 @@ export default function CharacterSheet() {
                                 <span>Override</span>
                             </label>
                         </div>
-
-                        {/* Race Selector */}
                         <div className="input-row">
                             <SelectInput
                                 label="Race"
@@ -358,19 +385,14 @@ export default function CharacterSheet() {
                                 <span>Override</span>
                             </label>
                         </div>
-                        
                         {racialAdjDisplay !== 'none' && (
                             <p className="racial-adj-display">Racial Adjustments: {racialAdjDisplay}</p>
                         )}
                     </div>
-
-                    {/* PROGRESSION SECTION */}
-                    <div className="">
+                    <div className="area-box progression-section">
                         <h3>Experience & Progression</h3>
-                        
-                        {/* Experience Points */}
                         <label className="input-row">
-                            <span className="input-label">Experience Points:</span>
+                            <span className="input-label">XPs:</span>
                             <input
                                 type="text"
                                 inputMode="numeric"
@@ -382,23 +404,60 @@ export default function CharacterSheet() {
                                 className="number-input"
                             />
                         </label>
-
-                        {/* Level (calculated from XP - read only) */}
                         <label className="input-row">
                             <span className="input-label">Level:</span>
                             <input
                                 type="number"
                                 name="level"
-                                value={derivedStats.level}  // ← Changed from character.level
-                                readOnly  // ← Added read-only attribute
-                                className="number-input level-readonly"  // ← Added class for styling
+                                value={derivedStats.level}
+                                readOnly
+                                className="number-input level-readonly"
                             />
                             <span className="input-note">(Calculated from XP)</span>
                         </label>
+                    </div>
+                </div>
 
-                        {/* Base HP */}
+                {/* Equipment & AC (left) + Health Points (right) – one row at xl */}
+                <div className="equipment-hp-row">
+                    <div className="area-box equipment-section">
+                        <h3>Equipment & Armour Class (AC)</h3>
                         <label className="input-row">
-                            <span className="input-label">Base Hit Points:</span>
+                            <span className="input-label">Armour Type:</span>
+                            <select
+                                name="armourType"
+                                value={character.ac.armourType}
+                                onChange={handleArmourChanges}
+                                className="select-input"
+                            >
+                                <option value="">Choose armour type</option>
+                                {ARMOUR_OPTIONS.map(armour => (
+                                    <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
+                                ))}
+                            </select>
+                        </label>
+
+                        <label className="check-box">
+                            <input
+                                type="checkbox"
+                                name="shield"
+                                checked={character.ac.shield}
+                                onChange={handleArmourChanges}
+                            />
+                            <span>Shield equipped</span>
+                        </label>
+
+                        <p className="no-margin">
+                            Front: {derivedStats.acFinal} |
+                            Rear: {derivedStats.acComponents.base} |
+                            Dex Adj: {derivedStats.acComponents.dexAdj} |
+                            Shield Adj: {derivedStats.acComponents.shieldAdj}
+                        </p>
+                    </div>
+                    <div className="area-box hp-section">
+                        <h3>Health Points (HP)</h3>
+                        <label className="input-row">
+                            <span className="input-label">Base HP (Rolled):</span>
                             <input
                                 type="text"
                                 inputMode="numeric"
@@ -409,66 +468,35 @@ export default function CharacterSheet() {
                                 min={HP_MIN}
                                 className="number-input"
                             />
-                            <span className="input-note">(Rolled HD total)</span>
                         </label>
-
-                        {/* Display calculated max HP */}
                         <div className="calculated-stat">
-                            <span className="stat-label">Maximum HP:</span>
+                            <span className="stat-label">Con Bonus:</span>
+                            <span className="stat-value">
+                                {(() => {
+                                    const total = (derivedStats.conHitPointAdj ?? 0) * (derivedStats.level ?? 1);
+                                    return total > 0 ? `+${total}` : String(total);
+                                })()}
+                            </span>
+                        </div>
+                        <div className="calculated-stat">
+                            <span className="stat-label">Max HP:</span>
                             <span className="stat-value">{derivedStats.hpMax}</span>
                         </div>
-                    </div>
-
-                    <div className="">
-                        <h3 className="">Equipment & Armour Class (AC)</h3>
-                        <div className="">
-                            {/* ARMOUR TYPE DROPDOWN */}
-                            <label className="flex flex-col">
-                                <h3>Armour Type: </h3>
-                                <select 
-                                    name="armourType"
-                                    value={character.ac.armourType}
-                                    onChange={handleArmourChanges}
-                                    className="p-1 border rounded"
-                                >
-                                    <option value="">Choose armour type</option>
-                                    {ARMOUR_OPTIONS.map(armour => (
-                                        <option key={armour} value={armour}>{capitaliseWords(armour)}</option>
-                                    ))}
-                                </select>
-                            </label>
-
-                            {/* SHIELD CHECKBOX */}
-                            <label className="check-box">
-                                <input 
-                                    type="checkbox"
-                                    name="shield"
-                                    checked={character.ac.shield}
-                                    onChange={handleArmourChanges}
-                                />
-                                <span>Equipped with Shield</span>
-                            </label>
-                        </div>
-
-                        {/* Display the calculated AC */}
-                        <div className="">
-                            <p className="no-margin">
-                                Front: {derivedStats.acFinal} | 
-                                Rear: {derivedStats.acComponents.base} |
-                                Dex Adj: {derivedStats.acComponents.dexAdj} |
-                                Shield Adj: {derivedStats.acComponents.shieldAdj}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="column-span">
-                        <h3 className="">Health Points (HP)</h3>
-                        <ul className="no-disc-list">
-                            <li className="hori-list">Base HP (Rolled): **{character.hp.base}**</li>
-                            <li className="hori-list">Con Bonus: **{derivedStats.conHitPointAdj}**</li>
-                            <li className="hori-list">Max HP: **{derivedStats.hpMax}**</li>
-                            <li className="hori-list">Current HP: **{derivedStats.currentHp}**</li>
-                        </ul>
+                        <label className="input-row">
+                            <span className="input-label">Current HP:</span>
+                            <input
+                                type="text"
+                                inputMode="numeric"
+                                name="currentHP"
+                                value={currentHpInput.inputValue}
+                                onChange={currentHpInput.handleChange}
+                                onBlur={currentHpInput.handleBlur}
+                                min={-10}
+                                max={derivedStats.hpMax}
+                                className="number-input"
+                                aria-label="Current HP"
+                            />
+                        </label>
                     </div>
                 </div>
 
@@ -598,7 +626,7 @@ export default function CharacterSheet() {
                             proficiencies={character.weaponProficiencies}
                             onAddProficiency={handleAddProficiency}
                             onRemoveProficiency={handleRemoveProficiency}
-                            baseThac0={derivedStats.combat?.baseThac0}
+                            baseThaco={derivedStats.combat?.baseThaco}
                             strHitProb={derivedStats.strHitProb}
                             dexMissileAdj={derivedStats.dexMissileAdj}
                         />

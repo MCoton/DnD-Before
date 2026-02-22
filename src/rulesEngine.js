@@ -268,9 +268,17 @@ export function calculateDerivedStats(character) {
 
 
     // --- STEP 5: CALCULATE HIT POINTS ---
-    const baseHp = character.hp.base;
+    // Base HP cannot exceed level × class hit die (e.g. 4th level fighter max 40)
+    const hitDie = charClasses[charClassKey]?.hitDie;
+    const maxBaseHp = (level && hitDie) ? level * hitDie : null;
+    const baseHp = maxBaseHp != null ? Math.min(Number(character.hp.base) || 0, maxBaseHp) : (Number(character.hp.base) || 0);
     const hpBonus = results.conHitPointAdj * level;
     results.hpMax = baseHp + hpBonus;
+    // Current HP: stored value or default to Max HP, clamped to 0..hpMax
+    const rawCurrent = character.hp.current;
+    results.currentHp = rawCurrent !== undefined && rawCurrent !== null
+        ? Math.min(results.hpMax, Math.max(0, Number(rawCurrent)))
+        : results.hpMax;
 
 
     // --- STEP 6: CALCULATE ARMOUR CLASS ---
@@ -344,25 +352,25 @@ export function calculateDerivedStats(character) {
         );
 
 
-    // --- STEP 9: CALCULATE THAC0 AND ATTACKS ---
+    // --- STEP 9: CALCULATE THACO AND ATTACKS ---
 
-    // Get base THAC0 from class progression
-    const baseThac0 = classData.levelProg[level].thaco;
+    // Get base THACO from class progression
+    const baseThaco = classData.levelProg[level].thaco;
 
-    // Calculate modified THAC0 for melee (with STR bonus)
-    const meleeThac0 = baseThac0 - results.strHitProb;
+    // Calculate modified THACO for melee (with STR bonus)
+    const meleeThaco = baseThaco - results.strHitProb;
 
-    // Calculate modified THAC0 for missile (with DEX bonus)
-    const missileThac0 = baseThac0 - results.dexMissileAdj;
+    // Calculate modified THACO for missile (with DEX bonus)
+    const missileThaco = baseThaco - results.dexMissileAdj;
 
     // Get attacks per round
     const attacksPerRound = classData.levelProg[level].attacksPerRound;
 
     // Store combat stats
     results.combat = {
-        baseThac0,
-        meleeThac0,
-        missileThac0,
+        baseThaco,
+        meleeThaco,
+        missileThaco,
         attacksPerRound,
         strBonus: results.strHitProb,
         strDamage: results.strDamAdj,
