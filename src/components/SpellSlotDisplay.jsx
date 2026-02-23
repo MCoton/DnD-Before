@@ -80,15 +80,15 @@ export default function SpellSlotsDisplay({ characterClass, characterLevel, intS
             <div className="spell-slots-grid">
                 {availableSpellLevels.map(({ level, slots }) => (
                     <div key={level} className="spell-level-box">
-                        <div className="spell-level-header">
-                            <span className="spell-level-number">{level}</span>
+                        <div className="spell-level-number">
+                            {/* <span className="spell-level-number">{level}</span> */}
                             <span className="spell-level-label">
                                 {level === 1 ? '1st' : level === 2 ? '2nd' : level === 3 ? '3rd' : `${level}th`} Level
                             </span>
                         </div>
                         <div className="spell-slots-count">
                             <span className="slots-number">{slots}</span>
-                            <span className="slots-label">{slots === 1 ? 'slot' : 'slots'}</span>
+                            <span className="slots-label">{slots === 1 ? ' slot' : ' slots'}</span>
                         </div>
                     </div>
                 ))}

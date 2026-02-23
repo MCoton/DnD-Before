@@ -28,7 +28,7 @@
     },
     "mage" : {
         "spellBook" : "At 1st-level the spell book contains 3d4 1st-level spells. Read Magic and Detect Magic are required.",
-        "magicSphere" : "all",
+        "magicSphere" : "Can use spells from all magic spheres",
         "languageSlots" : "Can use Language Slots from Intelligence for Nonweapon Proficiencies Slots"
     },
     "specialist wizard" : {
@@ -37,8 +37,8 @@
     },
     "cleric": {
         "spellBook" : "Spells granted by divine favour",
-        "majorSphere" : "diety",
-        "minorSphere" : "deity"
+        "majorSphere" : "Can use spells from the deity's major sphere",
+        "minorSphere" : "Can use spells from the deity's minor sphere"
     },
     "druid": {
         "spellBook" : "Spells granted by divine favour",

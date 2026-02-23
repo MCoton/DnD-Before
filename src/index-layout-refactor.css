@@ -455,7 +455,7 @@ hr.style14 {
   border: 0; 
   height: 1px; 
   margin: var(--spacing-sm) 0;
-  background-image: linear-gradient(to right, #1d1c1c, #b4b4b4, #1d1c1c);
+  background-image: linear-gradient(to right, var(--color-border-default), var(--color-text-muted), var(--color-border-default));
 }
 
 /* ============================================================================
@@ -808,7 +808,8 @@ hr.style14 {
 
 .container div {
   /* grid-auto-flow: column; */
-  background-color: #1d1c1c;
+  background-color: var(--color-bg-tertiary);
+  color: var(--color-text-primary);
   padding: 5px 2px 0;
   font-size: 15px;
   text-align: center;
@@ -887,20 +888,37 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .saves-grid {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  justify-content: flex-start;
 }
 
-/* Saves grid layout removed for refactor */
-
 .category-name {
-  background-color: #003300;
-  padding: 3px 0px;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  margin: 0;
+  font-size: 0.95em;
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
 }
 
 .save-category {
-  background-color: #302f2f;
-  padding: 0px;
+  background-color: var(--color-bg-card);
+  color: var(--color-text-primary);
+  padding: 0;
   font-size: 15px;
+  flex: 1 1 10rem;
+  min-width: 10rem;
+  border: 1px solid var(--color-border-default);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+
+.save-category .subcategory-list {
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin: 0;
 }
 
 /* =================
@@ -1003,15 +1021,15 @@ div.saving-throws-block, h3#saves-title {
 .section-title {
     font-size: 1.1em;
     margin-bottom: 0.75rem;
-    color: #c0e226;
-    border-bottom: 1px solid #646cff;
+    color: var(--color-accent-secondary);
+    border-bottom: 1px solid var(--color-border-accent);
     padding-bottom: 0.25rem;
 }
 
 .stat-row {
     display: block;
     padding: 0.35rem 0;
-    border-bottom: 1px dotted #444;
+    border-bottom: 1px dotted var(--color-border-default);
 }
 
 .stat-row:last-child {
@@ -1020,17 +1038,17 @@ div.saving-throws-block, h3#saves-title {
 
 .stat-label {
     font-weight: normal;
-    color: #ccc;
+    color: var(--color-text-label);
 }
 
 .stat-value {
     font-weight: bold;
-    color: #fff;
+    color: var(--color-text-primary);
 }
 
 .modifier {
     font-size: 0.85em;
-    color: #c0e226;
+    color: var(--color-accent-secondary);
     font-weight: normal;
 }
 
@@ -2530,6 +2548,10 @@ div.saving-throws-block, h3#saves-title {
     --color-text-label: #555;
     
     --color-border-default: #ddd;
+    
+    /* Accent secondary: darker green for readable text on light backgrounds (dark mode uses #c0e226) */
+    --color-accent-secondary: #1a6b1a;
+    --color-border-highlight: #1a6b1a;
     
     color: var(--color-text-primary);
     background-color: var(--color-bg-primary);
