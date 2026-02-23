@@ -12,7 +12,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "battleaxe": {
     "cost": "5 gp",
@@ -27,7 +28,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "bec-de-corbin": {
     "cost": "8 gp",
@@ -42,7 +44,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/B"
   },
   "bill": {
     "cost": "7 gp",
@@ -57,7 +60,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "bill-guisarme": {
     "cost": "7 gp",
@@ -72,7 +76,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/S"
   },
   "bow-composite-long": {
     "cost": "100 gp",
@@ -88,7 +93,8 @@
     "size": "L",
     "speed": 7,
     "type": "Ranged",
-    "weight": 3
+    "weight": 3,
+    "damageType": "P"
   },
   "bow-composite-short": {
     "cost": "75 gp",
@@ -104,7 +110,8 @@
     "size": "M",
     "speed": 6,
     "type": "Ranged",
-    "weight": 2
+    "weight": 2,
+    "damageType": "P"
   },
   "bow-long": {
     "cost": "75 gp",
@@ -120,7 +127,8 @@
     "size": "L",
     "speed": 8,
     "type": "Ranged",
-    "weight": 3
+    "weight": 3,
+    "damageType": "P"
   },
   "bow-short": {
     "cost": "30 gp",
@@ -136,7 +144,8 @@
     "size": "M",
     "speed": 7,
     "type": "Ranged",
-    "weight": 2
+    "weight": 2,
+    "damageType": "P"
   },
   "club": {
     "cost": "0 gp",
@@ -151,7 +160,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "crossbow-hand": {
     "cost": "300 gp",
@@ -167,7 +177,8 @@
     "size": "S",
     "speed": 5,
     "type": "Ranged",
-    "weight": 3
+    "weight": 3,
+    "damageType": "P"
   },
   "crossbow-heavy": {
     "cost": "50 gp",
@@ -183,7 +194,8 @@
     "size": "M",
     "speed": 10,
     "type": "Ranged",
-    "weight": 14
+    "weight": 14,
+    "damageType": "P"
   },
   "crossbow-light": {
     "cost": "35 gp",
@@ -199,7 +211,8 @@
     "size": "M",
     "speed": 7,
     "type": "Ranged",
-    "weight": 7
+    "weight": 7,
+    "damageType": "P"
   },
   "dagger": {
     "cost": "2 gp",
@@ -214,7 +227,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "dart": {
     "cost": "5 sp",
@@ -230,7 +244,8 @@
     "size": "S",
     "speed": 2,
     "type": "Ranged",
-    "weight": 0.5
+    "weight": 0.5,
+    "damageType": "P"
   },
   "dirk": {
     "cost": "2 gp",
@@ -245,7 +260,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "fauchard": {
     "cost": "5 gp",
@@ -260,7 +276,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/S"
   },
   "fauchard-fork": {
     "cost": "6 gp",
@@ -275,7 +292,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/S"
   },
   "footmans-flail": {
     "cost": "15 gp",
@@ -290,7 +308,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "footmans-mace": {
     "cost": "8 gp",
@@ -305,7 +324,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "footmans-pick": {
     "cost": "8 gp",
@@ -320,7 +340,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "glaive": {
     "cost": "6 gp",
@@ -335,7 +356,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "guisarme": {
     "cost": "5 gp",
@@ -350,7 +372,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "halberd": {
     "cost": "7 gp",
@@ -365,7 +388,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S/P/B"
   },
   "hammer": {
     "cost": "5 sp",
@@ -380,7 +404,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "hammer-lucern": {
     "cost": "7 gp",
@@ -395,7 +420,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/B"
   },
   "hammer-war": {
     "cost": "2 gp",
@@ -410,7 +436,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "handaxe": {
     "cost": "1 gp",
@@ -425,7 +452,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "harpoon": {
     "cost": "20 gp",
@@ -441,7 +469,8 @@
     "size": "L",
     "speed": 7,
     "type": "Ranged",
-    "weight": 6
+    "weight": 6,
+    "damageType": "P"
   },
   "horsemans-flail": {
     "cost": "8 gp",
@@ -456,7 +485,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "horsemans-mace": {
     "cost": "5 gp",
@@ -471,7 +501,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "horsemans-pick": {
     "cost": "7 gp",
@@ -486,7 +517,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "javelin": {
     "cost": "5 sp",
@@ -502,7 +534,8 @@
     "size": "M",
     "speed": 4,
     "type": "Ranged",
-    "weight": 2
+    "weight": 2,
+    "damageType": "P"
   },
   "knife": {
     "cost": "5 sp",
@@ -517,7 +550,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P/S"
   },
   "lance-heavy-horsemans": {
     "cost": "15 gp",
@@ -532,7 +566,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "lance-jousting": {
     "cost": "20 gp",
@@ -547,7 +582,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "lance-light-horsemans": {
     "cost": "6 gp",
@@ -562,7 +598,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "lance-medium-horsemans": {
     "cost": "10 gp",
@@ -577,7 +614,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "mancatcher": {
     "cost": "30 gp",
@@ -592,7 +630,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "military-pick": {
     "cost": "8 gp",
@@ -607,7 +646,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "morningstar": {
     "cost": "10 gp",
@@ -622,7 +662,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "partisan": {
     "cost": "10 gp",
@@ -637,7 +678,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "quarterstaff": {
     "cost": "0 gp",
@@ -652,7 +694,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "ranseur": {
     "cost": "6 gp",
@@ -667,7 +710,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "scourge": {
     "cost": "1 gp",
@@ -682,7 +726,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sickle": {
     "cost": "6 sp",
@@ -697,7 +742,25 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
+  },
+  "shield": {
+    "cost": "7 gp",
+    "damageL": "-",
+    "damageS-M": "-",
+    "knockdown": null,
+    "name": "Shield",
+    "size": "M",
+    "speed": null,
+    "type": "Shield",
+    "weight": 10,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "B",
+    "proficiencyNote": "Optional (POSP): Shield proficiency costs 1 slot for warriors, 2 for others. Improves AC vs. one or more attacks per round from the front or shield side; no benefit vs. rear or opposite flank. Weapon & Shield Style (PO: Combat & Tactics) allows shield bash (1d4) with two-weapon penalties."
   },
   "sling": {
     "cost": "5 cp",
@@ -713,7 +776,8 @@
     "size": "S",
     "speed": 6,
     "type": "Ranged",
-    "weight": 0
+    "weight": 0,
+    "damageType": "B"
   },
   "spear": {
     "cost": "8 sp",
@@ -728,7 +792,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "spetum": {
     "cost": "5 gp",
@@ -743,7 +808,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "staff": {
     "cost": "0 gp",
@@ -758,7 +824,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "B"
   },
   "staff-sling": {
     "cost": "2 sp",
@@ -774,7 +841,8 @@
     "size": "M",
     "speed": 11,
     "type": "Ranged",
-    "weight": 2
+    "weight": 2,
+    "damageType": "B"
   },
   "sword-bastard": {
     "cost": "25 gp",
@@ -789,7 +857,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sword-broad": {
     "cost": "10 gp",
@@ -804,7 +873,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sword-khopesh": {
     "cost": "10 gp",
@@ -819,7 +889,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sword-long": {
     "cost": "15 gp",
@@ -834,7 +905,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sword-rapier": {
     "cost": "15 gp",
@@ -849,7 +921,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "sword-scimitar": {
     "cost": "15 gp",
@@ -864,7 +937,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "sword-short": {
     "cost": "10 gp",
@@ -879,7 +953,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "sword-two-handed": {
     "cost": "50 gp",
@@ -894,7 +969,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "trident": {
     "cost": "15 gp",
@@ -909,7 +985,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "P"
   },
   "voulge": {
     "cost": "3 gp",
@@ -924,7 +1001,8 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   },
   "whip": {
     "cost": "1 gp",
@@ -939,6 +1017,7 @@
     "attsPerRound": [
       1,
       1
-    ]
+    ],
+    "damageType": "S"
   }
 }

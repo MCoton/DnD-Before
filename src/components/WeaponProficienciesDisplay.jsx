@@ -66,34 +66,6 @@ const SPECIALISATION_LEVELS = {
     3: 'master',
 };
 
-// Helper function to determine damage type from weapon name/type
-const getDamageType = (weapon) => {
-    const name = (weapon?.name || '').toLowerCase();
-    const type = (weapon?.type || '').toLowerCase();
-    
-    // Bludgeoning weapons
-    if (name.includes('mace') || name.includes('club') || name.includes('hammer') || 
-        name.includes('flail') || name.includes('staff') || name.includes('sling')) {
-        return 'B';
-    }
-    // Piercing weapons
-    if (name.includes('dagger') || name.includes('dirk') || name.includes('spear') || 
-        name.includes('lance') || name.includes('pike') || name.includes('arrow') ||
-        name.includes('bolt') || name.includes('javelin') || name.includes('dart') ||
-        name.includes('pick') || name.includes('trident') || name.includes('harpoon') ||
-        name.includes('rapier')) {
-        return 'P';
-    }
-    // Slashing weapons (default for swords, axes, etc.)
-    if (name.includes('sword') || name.includes('axe') || name.includes('scimitar') ||
-        name.includes('sickle') || name.includes('scourge') || name.includes('whip') ||
-        name.includes('khopesh')) {
-        return 'S';
-    }
-    // Default based on type
-    return type === 'ranged' ? 'P' : 'S';
-};
-
 export default function WeaponProficiencies({
     characterClass,
     characterLevel,
@@ -307,7 +279,7 @@ export default function WeaponProficiencies({
             const specLevel = getSpecialisationLevel(slots);
             const specData = specialisation[specLevel];
             const calculatedThaco = calculateWeaponThaco(weapon, slots, specData);
-            const damageType = getDamageType(weapon);
+            const damageType = weapon?.damageType ?? '-';
             const effectiveAttsPerRound = calculateEffectiveAttacksPerRound(
                 weapon?.attsPerRound,
                 specData,

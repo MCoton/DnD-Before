@@ -763,6 +763,22 @@ div.saving-throws-block, h3#saves-title {
   color: var(--color-accent-secondary);
 }
 
+/* Collapsible section headers */
+.collapsible-section .collapsible-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  user-select: none;
+}
+.collapsible-section .collapsible-header:hover {
+  color: var(--color-accent-primary);
+}
+.collapsible-section .collapse-icon {
+  font-size: 0.75em;
+  opacity: 0.9;
+}
+
 .caption {
   font-size: 0.9em;
   color: var(--color-text-muted);

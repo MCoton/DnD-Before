@@ -520,13 +520,13 @@ hr.style14 {
 .identity-progression-row {
   width: 100%;
   display: block;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 .identity-progression-row > .identity-section,
 .identity-progression-row > .progression-section {
   display: block;
   width: 100%;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   min-width: 0;
 }
 /* 1024px = --bp-xl: force two-column row so Identity and Progression tile horizontally */
@@ -534,8 +534,8 @@ hr.style14 {
   .identity-progression-row {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
   }
   .identity-progression-row > .identity-section,
   .identity-progression-row > .progression-section {
@@ -561,8 +561,8 @@ hr.style14 {
   .equipment-hp-row {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
   }
   .equipment-hp-row > .equipment-section,
   .equipment-hp-row > .hp-section {
@@ -579,10 +579,7 @@ hr.style14 {
   background-color: var(--color-bg-card);
   padding: var(--spacing-md);
   border-radius: var(--radius-sm);
-}
-
-.column-span {
-  /* grid-column removed for refactor */
+  margin-bottom: var(--spacing-sm);
 }
 
 /* Thief skills block */
@@ -820,7 +817,7 @@ hr.style14 {
 .main-stats {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm);
 }
 @media (min-width: var(--bp-md)) and (max-width: var(--bp-lg-max)) {
   .main-stats {
@@ -995,6 +992,22 @@ div.saving-throws-block, h3#saves-title {
   color: var(--color-accent-secondary);
 }
 
+/* Collapsible section headers */
+.collapsible-section .collapsible-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  user-select: none;
+}
+.collapsible-section .collapsible-header:hover {
+  color: var(--color-accent-primary);
+}
+.collapsible-section .collapse-icon {
+  font-size: 0.75em;
+  opacity: 0.9;
+}
+
 .caption {
   font-size: 0.9em;
   color: var(--color-text-muted);
@@ -1146,7 +1159,7 @@ div.saving-throws-block, h3#saves-title {
     Weapon Proficiencies
   ========================= */
 .weapon-proficiencies-block {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
   width: 100%;
 }
 
@@ -1542,7 +1555,7 @@ div.saving-throws-block, h3#saves-title {
    Non-Weapon Proficiencies
    =========================*/
 .non-weapon-proficiencies-block {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
   width: 100%;
 }
 
@@ -1685,12 +1698,12 @@ div.saving-throws-block, h3#saves-title {
     Spell Slots Display
    =========================*/
 .spell-slots-block {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
 }
 
 .spell-slots-grid {
   display: block;
-  margin: var(--spacing-md) 0;
+  margin: var(--spacing-sm) 0;
 }
 
 /* Spell slots grid layout removed for refactor */
@@ -1751,7 +1764,7 @@ div.saving-throws-block, h3#saves-title {
    =========================*/
 .wizard-spells-block,
 .priest-spells-block {
-  margin-top: var(--spacing-md);
+  margin-top: var(--spacing-sm);
 }
 
 .spell-browser-controls {

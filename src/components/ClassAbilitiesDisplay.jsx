@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import charClassAbilities from '../data/classes/character_abilities_text.json';
 import { capitaliseWords } from '../utils';
 
@@ -11,15 +11,23 @@ import { capitaliseWords } from '../utils';
  */
 
 export default function ClassAbilitiesDisplay({ characterClass, characterLevel }) {
+    const [isOpen, setIsOpen] = useState(true);
+
     // If no class selected, show message
     if (!characterClass) {
         return (
-            <div className="class-abilities area-box details-box">
-                <h3 className="title">Class Abilities</h3>
+            <div className="class-abilities area-box details-box collapsible-section">
+                <h3 className="title collapsible-header" onClick={() => setIsOpen((o) => !o)}>
+                    Class Abilities <span className="collapse-icon" aria-hidden>{isOpen ? '▼' : '▶'}</span>
+                </h3>
                 <hr className="style14"></hr>
-                <p className="no-class-message">
-                    Abilities and features show here when you select a class. (So get on with it)
-                </p>
+                {isOpen && (
+                    <div className="collapsible-content">
+                        <p className="no-class-message">
+                            Abilities and features show here when you select a class. (So get on with it)
+                        </p>
+                    </div>
+                )}
             </div>
         );
     }
@@ -31,12 +39,18 @@ export default function ClassAbilitiesDisplay({ characterClass, characterLevel }
     // If no data found for this class
     if (!classData) {
         return (
-            <div className="class-abilities-block area-box details-box">
-                <h3 className="title">Class Abilities</h3>
+            <div className="class-abilities-block area-box details-box collapsible-section">
+                <h3 className="title collapsible-header" onClick={() => setIsOpen((o) => !o)}>
+                    Class Abilities <span className="collapse-icon" aria-hidden>{isOpen ? '▼' : '▶'}</span>
+                </h3>
                 <hr className="style14"></hr>
-                <p className="no-data-message">
-                    No ability data available - yet - for {capitaliseWords(characterClass)}.
-                </p>
+                {isOpen && (
+                    <div className="collapsible-content">
+                        <p className="no-data-message">
+                            No ability data available - yet - for {capitaliseWords(characterClass)}.
+                        </p>
+                    </div>
+                )}
             </div>
         );
     }
@@ -66,24 +80,30 @@ export default function ClassAbilitiesDisplay({ characterClass, characterLevel }
     const hasAnyAbilities = abilityEntries.length > 0 || levelGatedEntries.length > 0;
 
     return (
-        <div className="class-abilities-block area-box details-box">
-            <h3 className="title">{capitaliseWords(characterClass)} Abilities</h3>
+        <div className="class-abilities-block area-box details-box collapsible-section">
+            <h3 className="title collapsible-header" onClick={() => setIsOpen((o) => !o)}>
+                {capitaliseWords(characterClass)} Abilities <span className="collapse-icon" aria-hidden>{isOpen ? '▼' : '▶'}</span>
+            </h3>
             <hr className="style14"></hr>
-            {hasAnyAbilities ? (
-                <ul className="abilities-list">
-                    {abilityEntries.map(([key, text]) => (
-                        <li key={key} className="ability-item">
-                            <p>{text}</p>
-                        </li>
-                    ))}
-                    {levelGatedEntries.map(({ key, level, text }) => (
-                        <li key={key} className="ability-item level-ability">
-                            <p><strong>Level {level}:</strong> {text}</p>
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p className="no-data-message">No ability data available - yet - for {capitaliseWords(characterClass)}</p>
+            {isOpen && (
+                <div className="collapsible-content">
+                    {hasAnyAbilities ? (
+                        <ul className="abilities-list">
+                            {abilityEntries.map(([key, text]) => (
+                                <li key={key} className="ability-item">
+                                    <p>{text}</p>
+                                </li>
+                            ))}
+                            {levelGatedEntries.map(({ key, level, text }) => (
+                                <li key={key} className="ability-item level-ability">
+                                    <p><strong>Level {level}:</strong> {text}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p className="no-data-message">No ability data available - yet - for {capitaliseWords(characterClass)}</p>
+                    )}
+                </div>
             )}
         </div>
     );
