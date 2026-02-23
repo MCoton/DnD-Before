@@ -1034,7 +1034,7 @@ div.saving-throws-block, h3#saves-title {
 .proficiency-actions {
   display: flex;
   gap: var(--spacing-xs);
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .proficiency-actions button {
@@ -1167,6 +1167,7 @@ div.saving-throws-block, h3#saves-title {
 .proficiency-actions {
   display: flex;
   gap: var(--spacing-sm);
+  justify-content: flex-end;
 }
 
 .upgrade-btn,

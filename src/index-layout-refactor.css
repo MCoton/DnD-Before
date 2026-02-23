@@ -1011,6 +1011,50 @@ div.saving-throws-block, h3#saves-title {
   padding: var(--spacing-xl);
 }
 
+/* Race description block */
+.race-description-block {
+  margin-top: 0;
+}
+
+.race-description-text {
+  margin: 0 0 var(--spacing-md) 0;
+  line-height: 1.6;
+  color: var(--color-text-primary);
+}
+
+.race-effects-heading {
+  font-size: 1em;
+  margin: var(--spacing-sm) 0 var(--spacing-xs) 0;
+  color: var(--color-text-label);
+}
+
+.race-effects-list {
+  margin: 0;
+  padding-left: 0;
+}
+
+.race-effect-item {
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px dotted var(--color-border-default);
+  color: var(--color-text-primary);
+}
+
+.race-effect-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.race-effect-label {
+  font-weight: 600;
+  color: var(--color-accent-secondary);
+}
+
+.race-effect-detail {
+  color: var(--color-text-primary);
+}
+
 .racial-adj-display {
   font-size: 0.9em;
   color: var(--color-text-muted);
@@ -1128,15 +1172,65 @@ div.saving-throws-block, h3#saves-title {
   font-style: italic;
 }
 
-/* Weapon Proficiency Table */
+/* Weapon Proficiency Table – fixed layout so columns don't resize when spec/slots change */
 .weapon-proficiency-table {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   margin-top: var(--spacing-md);
   background-color: var(--color-bg-tertiary);
   border-radius: var(--radius-sm);
   overflow: hidden;
-  min-width: 600px; /* Minimum width for table content */
+  min-width: 600px;
+}
+
+/* Fixed column widths so Level (Proficient/Expert/Master) and slot text don't cause resize */
+.weapon-proficiency-table th:nth-child(1),
+.weapon-proficiency-table td:nth-child(1) {
+  width: 18%;
+  min-width: 7rem;
+}
+.weapon-proficiency-table th:nth-child(2),
+.weapon-proficiency-table td:nth-child(2) {
+  width: 10%;
+  min-width: 7.5rem;
+}
+.weapon-proficiency-table th:nth-child(3),
+.weapon-proficiency-table td:nth-child(3) {
+  width: 5%;
+  min-width: 3rem;
+}
+.weapon-proficiency-table th:nth-child(4),
+.weapon-proficiency-table td:nth-child(4),
+.weapon-proficiency-table th:nth-child(5),
+.weapon-proficiency-table td:nth-child(5) {
+  width: 6%;
+  min-width: 2.5rem;
+}
+.weapon-proficiency-table th:nth-child(6),
+.weapon-proficiency-table td:nth-child(6) {
+  width: 8%;
+  min-width: 4rem;
+}
+.weapon-proficiency-table th:nth-child(7),
+.weapon-proficiency-table td:nth-child(7) {
+  width: 6%;
+  min-width: 2.5rem;
+}
+.weapon-proficiency-table th:nth-child(8),
+.weapon-proficiency-table td:nth-child(8) {
+  width: 4%;
+  min-width: 2rem;
+}
+.weapon-proficiency-table th:nth-child(9),
+.weapon-proficiency-table td:nth-child(9) {
+  width: 4%;
+  min-width: 2rem;
+}
+.weapon-proficiency-table th:nth-child(10),
+.weapon-proficiency-table td:nth-child(10) {
+  width: 6%;
+  min-width: 4.5rem;
 }
 
 @media (max-width: var(--bp-lg-max)) {
@@ -1156,12 +1250,14 @@ div.saving-throws-block, h3#saves-title {
   color: var(--color-accent-secondary);
   border-bottom: 2px solid var(--color-border-default);
   font-size: 0.9em;
+  vertical-align: middle;
 }
 
 .weapon-proficiency-table td {
   padding: var(--spacing-sm) var(--spacing-xs);
   border-bottom: 1px solid var(--color-border-default);
   font-size: 0.9em;
+  vertical-align: middle;
 }
 
 .weapon-proficiency-table tbody tr:hover {
@@ -1177,12 +1273,21 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .spec-level-cell {
-  display: block;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.spec-level-cell .spec-level {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1.4;
+  min-height: 1.5em;
 }
 
 .spec-level-cell .slots-used {
   font-size: 0.8em;
   color: var(--color-text-muted);
+  vertical-align: middle;
 }
 
 .thaco-cell {
@@ -1237,7 +1342,9 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-actions {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-xs);
 }
 
 .proficiency-actions button {
@@ -1364,7 +1471,9 @@ div.saving-throws-block, h3#saves-title {
 }
 
 .proficiency-actions {
-  display: block;
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-xs);
 }
 
 .upgrade-btn,

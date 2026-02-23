@@ -13,7 +13,7 @@
  */
 
 export const RACES = {
-    dwarf: {
+    "dwarf": {
         requirements: {
             str: { min: 8,  max: 18 },
             dex: { min: 3,  max: 17 },
@@ -44,7 +44,7 @@ export const RACES = {
         }
     },
 
-    elf: {
+    "elf": {
         requirements: {
             str: { min: 3, max: 18 },
             dex: { min: 6, max: 18 },
@@ -74,7 +74,7 @@ export const RACES = {
         }
     },
 
-    gnome: {
+    "gnome": {
         requirements: {
             str: { min: 6, max: 18 },
             dex: { min: 3, max: 18 },
@@ -172,7 +172,7 @@ export const RACES = {
         }
     },
 
-    halfling: {
+    "halfling": {
         requirements: {
             str: { min: 7,  max: 18 },
             dex: { min: 7,  max: 18 },
@@ -203,7 +203,7 @@ export const RACES = {
         }
     },
 
-    human: {
+    "human": {
         requirements: {
             str: { min: 3, max: 18 },
             dex: { min: 3, max: 18 },

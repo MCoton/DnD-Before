@@ -2,14 +2,56 @@ import react from 'react';
 import weapons from "../data/equipment/weapons.json";
 import charClasses from "../data/classes/character_classes.json";
 import specialisation from "../data/equipment/weapon_specialisation.json";
+import raceDescriptions from "../data/races/race_descriptions.json";
+
+/**
+ * Returns the racial attack bonus for a weapon (e.g. Elf +1 bows/short or long sword, Halfling +1 sling/thrown).
+ * Only applies to weapon-type bonuses, not enemy-specific (e.g. Dwarf vs orcs).
+ */
+function getRacialAttackBonus(race, weapon) {
+    if (!race || !weapon?.name) return 0;
+    const raceKey = String(race).toLowerCase().trim();
+    const raceData = raceDescriptions[raceKey];
+    const attackEffects = Array.isArray(raceData?.effects)
+        ? raceData.effects.filter((e) => e.affects === 'attack')
+        : [];
+    const name = (weapon.name || '').toLowerCase();
+
+    for (const effect of attackEffects) {
+        const cond = (effect.condition || '').toLowerCase();
+        // Skip enemy-specific bonuses (vs orcs, vs kobolds, etc.)
+        if (cond.startsWith('vs ')) continue;
+
+        const mod = effect.modifier;
+        let bonus = 0;
+        if (typeof mod === 'number') bonus = mod;
+        else if (typeof mod === 'string' && mod.startsWith('+')) bonus = parseInt(mod.slice(1), 10) || 0;
+        if (bonus <= 0) continue;
+
+        // Elf: "when using bows (except crossbows) or short/long swords"
+        if (cond.includes('bow') && (cond.includes('crossbow') || cond.includes('short') || cond.includes('long'))) {
+            if ((name.includes('bow') && !name.includes('crossbow')) || name.includes('short sword') || name.includes('long sword')) {
+                return bonus;
+            }
+        }
+        // Halfling: "when using sling or thrown weapons"
+        if (cond.includes('sling') || cond.includes('thrown')) {
+            if (name.includes('sling') || name.includes('dart') || name.includes('javelin') || name.includes('throwing')) {
+                return bonus;
+            }
+        }
+    }
+    return 0;
+}
 
 /**
  * Displays weapon proficiencies and allows managing them
- * 
+ *
  * @param {object} props
  * @param {string} props.characterClass - The character's class
  * @param {number} props.characterLevel - The character's level
- * @param {array} props.proficiencies - Array of weapon keys the character is proficient with
+ * @param {string} [props.race] - The character's race (for racial weapon bonuses)
+ * @param {object} props.proficiencies - Weapon keys to slot count
  * @param {function} props.onAddProficiency - Called when adding a weapon
  * @param {function} props.onRemoveProficiency - Called when removing a weapon
  * @param {number} props.baseThaco - Base THACO from class level
@@ -55,6 +97,7 @@ const getDamageType = (weapon) => {
 export default function WeaponProficiencies({
     characterClass,
     characterLevel,
+    race,
     proficiencies = {},
     onAddProficiency,
     onRemoveProficiency,
@@ -233,28 +276,31 @@ export default function WeaponProficiencies({
         .filter(([key]) => !proficiencies[key])
         .sort((a, b) => a[1].name.localeCompare(b[1].name));
     
-    // Calculate THACO for a weapon
+    // Calculate THACO for a weapon (includes racial weapon bonus in background)
     const calculateWeaponThaco = (weapon, slots, specData) => {
         if (!baseThaco) return null;
-        
+
         let thaco = baseThaco;
-        
+
         // Add specialization attack bonus
         if (specData?.bonuses?.attackBonus) {
             thaco -= specData.bonuses.attackBonus;
         }
-        
+
         // Add stat bonus based on weapon type
         if (weapon?.type === 'Melee') {
             thaco -= (strHitProb || 0);
         } else if (weapon?.type === 'Ranged') {
             thaco -= (dexMissileAdj || 0);
         }
-        
+
+        // Apply racial weapon bonus (e.g. Elf +1 bows/short or long sword, Halfling +1 sling/thrown)
+        thaco -= getRacialAttackBonus(race, weapon);
+
         return thaco;
     };
 
-    //Get proficient weapons with their details
+    // Get proficient weapons with their details
     const proficientWeapons = Object.entries(proficiencies)
         .map(([weaponKey, slots]) => {
             const weapon = weapons[weaponKey];
@@ -263,11 +309,12 @@ export default function WeaponProficiencies({
             const calculatedThaco = calculateWeaponThaco(weapon, slots, specData);
             const damageType = getDamageType(weapon);
             const effectiveAttsPerRound = calculateEffectiveAttacksPerRound(
-                weapon?.attsPerRound, 
-                specData, 
+                weapon?.attsPerRound,
+                specData,
                 weapon?.type
             );
-            
+            const hasRacialBonus = getRacialAttackBonus(race, weapon) > 0;
+
             return {
                 key: weaponKey,
                 weapon,
@@ -276,7 +323,8 @@ export default function WeaponProficiencies({
                 specData,
                 calculatedThaco,
                 damageType,
-                effectiveAttsPerRound
+                effectiveAttsPerRound,
+                hasRacialBonus
             };
         })
         .sort((a, b) => a.weapon.name.localeCompare(b.weapon.name));
@@ -326,10 +374,10 @@ export default function WeaponProficiencies({
                             </tr>
                         </thead>
                         <tbody>
-                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThaco, damageType, effectiveAttsPerRound }) => (
+                            {proficientWeapons.map(({ key, weapon, slots, specLevel, specData, calculatedThaco, damageType, effectiveAttsPerRound, hasRacialBonus }) => (
                                 <tr key={key} className="proficiency-row">
                                     <td className="weapon-name-cell">
-                                        <strong>{weapon?.name || key}</strong>
+                                        <strong>{weapon?.name || key}{hasRacialBonus ? ' (R)' : ''}</strong>
                                     </td>
                                     <td className="spec-level-cell">
                                         <span className={`spec-level spec-${specLevel}`}>
@@ -358,6 +406,16 @@ export default function WeaponProficiencies({
                                     <td className="speed-cell">{weapon?.speed || '-'}</td>
                                     <td className="actions-cell">
                                         <div className="proficiency-actions">
+                                            {/* Downgrade button (left of upgrade so upgrade doesn't jump when downgrade appears) */}
+                                            {slots > 1 && (
+                                                <button 
+                                                    onClick={() => onAddProficiency(key, slots - 1)}
+                                                    className="downgrade-btn"
+                                                    title="Remove one slot"
+                                                >
+                                                    ↓
+                                                </button>
+                                            )}
                                             {/* Upgrade button (if can specialise and has slots) */}
                                             {canSpecialise && slots < maxSlotsPerWeapon && remainingSlots > 0 && (
                                                 <button 
@@ -368,18 +426,6 @@ export default function WeaponProficiencies({
                                                     ↑
                                                 </button>
                                             )}
-                                            
-                                            {/* Downgrade button */}
-                                            {slots > 1 && (
-                                                <button 
-                                                    onClick={() => onAddProficiency(key, slots - 1)}
-                                                    className="downgrade-btn"
-                                                    title="Remove one slot"
-                                                >
-                                                    ↓
-                                                </button>
-                                            )}
-                                            
                                             {/* Remove button */}
                                             <button 
                                                 onClick={() => onRemoveProficiency(key)}

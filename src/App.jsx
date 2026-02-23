@@ -7,6 +7,7 @@ import SavingThrows from "./components/SavingThrowsDisplay.jsx";
 import SpellImmunitiesDisplay from "./components/SpellImmunitiesDisplay.jsx";
 import CombatStatsDisplay from "./components/CombatStatsDisplay.jsx";
 import ClassAbilitiesDisplay from "./components/ClassAbilitiesDisplay.jsx";
+import RaceDescriptionDisplay from "./components/RaceDescriptionDisplay.jsx";
 import ThiefAbilitiesDisplay from "./components/ThiefAbilitiesDisplay.jsx";
 import WeaponProficiencies from "./components/WeaponProficienciesDisplay.jsx";
 import NonWeapProfDisplay from "./components/NonWeapProfDisplay.jsx";
@@ -151,20 +152,14 @@ export default function CharacterSheet() {
         updateNestedState(setCharacter, 'race', e.target.value);
     };
 
-    // Filter available races: stat requirements + race must be allowed for selected class (RACES[race].levelLimits)
+    // Filter available races: stat requirements only (all races shown; invalid class/race combos are fixed by sync below)
     const availableRaces = useMemo(() => {
         if (character.raceOverride) {
             return RACE_OPTIONS;
         }
 
-        const classKey = character.characterClass?.toLowerCase();
-
         return RACE_OPTIONS.filter(race => {
             const raceData = RACES[race];
-            // If a class is selected, race can only be chosen if it can take that class (present in levelLimits)
-            if (classKey && raceData?.levelLimits && !Object.prototype.hasOwnProperty.call(raceData.levelLimits, classKey)) {
-                return false;
-            }
 
             const requirements = raceData?.requirements;
             if (!requirements) return true;
@@ -193,7 +188,7 @@ export default function CharacterSheet() {
                 return true;
             });
         });
-    }, [character.scores, character.statOverrides, character.raceOverride, character.characterClass]);
+    }, [character.scores, character.statOverrides, character.raceOverride]);
 
     // Filter available classes: race's levelLimits (race can only adopt classes listed there) + min stat requirements
     const availableClasses = useMemo(() => {
@@ -666,6 +661,11 @@ export default function CharacterSheet() {
                     />
                 </div>
 
+                {/* RACE DESCRIPTION */}
+                <div className="column-span">
+                    <RaceDescriptionDisplay race={character.race} />
+                </div>
+
                 {/* THIEF SKILLS (when class is thief) */}
                 {character.characterClass?.toLowerCase() === 'thief' && (
                     <div className="thief-abilities-wrapper column-span">
@@ -686,6 +686,7 @@ export default function CharacterSheet() {
                         <WeaponProficiencies
                             characterClass={character.characterClass}
                             characterLevel={derivedStats.level}
+                            race={character.race}
                             proficiencies={character.weaponProficiencies}
                             onAddProficiency={handleAddProficiency}
                             onRemoveProficiency={handleRemoveProficiency}
