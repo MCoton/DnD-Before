@@ -5,6 +5,20 @@
 const STORAGE_KEY = 'dnd-2nd-sheet-character';
 const SAVE_FORMAT_VERSION = 1;
 
+/** Legacy weapon keys -> current keys (sword-*, hammer-* convention). */
+const WEAPON_KEY_MIGRATION = {
+  'bastard-sword': 'sword-bastard',
+  'broad-sword': 'sword-broad',
+  'long-sword': 'sword-long',
+  'short-sword': 'sword-short',
+  'two-handed-sword': 'sword-two-handed',
+  'scimitar': 'sword-scimitar',
+  'khopesh': 'sword-khopesh',
+  'rapier': 'sword-rapier',
+  'warhammer': 'hammer-war',
+  'lucern-hammer': 'hammer-lucern',
+};
+
 function isPlainObject(value) {
   return value !== null && typeof value === 'object' && !Array.isArray(value);
 }
@@ -37,6 +51,19 @@ export function mergeWithInitial(loaded, initial) {
 }
 
 /**
+ * Migrate weaponProficiencies keys from legacy names to current (sword-*, hammer-*) keys.
+ */
+function migrateWeaponProficiencies(character) {
+  const prof = character?.weaponProficiencies;
+  if (!prof || typeof prof !== 'object') return character;
+  const next = {};
+  for (const [key, slots] of Object.entries(prof)) {
+    next[WEAPON_KEY_MIGRATION[key] ?? key] = slots;
+  }
+  return { ...character, weaponProficiencies: next };
+}
+
+/**
  * Save character to localStorage (used for auto-save and "restore last" on load).
  */
 export function saveToStorage(character) {
@@ -57,7 +84,8 @@ export function loadFromStorage(initialCharacterState) {
     if (!raw) return null;
     const { version, character } = JSON.parse(raw);
     if (!character || typeof character !== 'object') return null;
-    return mergeWithInitial(character, initialCharacterState);
+    const merged = mergeWithInitial(character, initialCharacterState);
+    return migrateWeaponProficiencies(merged);
   } catch (e) {
     console.warn('Character load from localStorage failed:', e);
     return null;
@@ -93,5 +121,6 @@ export function parseImportedJson(jsonString, initialCharacterState) {
   if (!character || typeof character !== 'object') {
     throw new Error('Invalid character file: missing character data');
   }
-  return mergeWithInitial(character, initialCharacterState);
+  const merged = mergeWithInitial(character, initialCharacterState);
+  return migrateWeaponProficiencies(merged);
 }

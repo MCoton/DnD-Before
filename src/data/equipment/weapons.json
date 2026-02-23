@@ -14,21 +14,6 @@
       1
     ]
   },
-  "bastard-sword": {
-    "cost": "25 gp",
-    "damageL": "2d8",
-    "damageS-M": "2d4",
-    "knockdown": "d10",
-    "name": "Bastard sword",
-    "size": "M",
-    "speed": 6,
-    "type": "Melee",
-    "weight": 10,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
   "battleaxe": {
     "cost": "5 gp",
     "damageL": "1d8",
@@ -39,6 +24,51 @@
     "speed": 7,
     "type": "Melee",
     "weight": 7,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "bec-de-corbin": {
+    "cost": "8 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6+1",
+    "knockdown": "d8",
+    "name": "Bec de corbin",
+    "size": "L",
+    "speed": 7,
+    "type": "Melee",
+    "weight": 10,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "bill": {
+    "cost": "7 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6+1",
+    "knockdown": "d8",
+    "name": "Bill",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 10,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "bill-guisarme": {
+    "cost": "7 gp",
+    "damageL": "2d4",
+    "damageS-M": "1d8",
+    "knockdown": "d8",
+    "name": "Bill-guisarme",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 12,
     "attsPerRound": [
       1,
       1
@@ -107,21 +137,6 @@
     "speed": 7,
     "type": "Ranged",
     "weight": 2
-  },
-  "broad-sword": {
-    "cost": "10 gp",
-    "damageL": "1d6+1",
-    "damageS-M": "2d4",
-    "knockdown": "d8",
-    "name": "Broad sword",
-    "size": "M",
-    "speed": 5,
-    "type": "Melee",
-    "weight": 4,
-    "attsPerRound": [
-      1,
-      1
-    ]
   },
   "club": {
     "cost": "0 gp",
@@ -232,6 +247,36 @@
       1
     ]
   },
+  "fauchard": {
+    "cost": "5 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6",
+    "knockdown": "d8",
+    "name": "Fauchard",
+    "size": "L",
+    "speed": 8,
+    "type": "Melee",
+    "weight": 5,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "fauchard-fork": {
+    "cost": "6 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6",
+    "knockdown": "d8",
+    "name": "Fauchard-fork",
+    "size": "L",
+    "speed": 8,
+    "type": "Melee",
+    "weight": 8,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
   "footmans-flail": {
     "cost": "15 gp",
     "damageL": "2d4",
@@ -277,6 +322,51 @@
       1
     ]
   },
+  "glaive": {
+    "cost": "6 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6",
+    "knockdown": "d8",
+    "name": "Glaive",
+    "size": "L",
+    "speed": 8,
+    "type": "Melee",
+    "weight": 8,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "guisarme": {
+    "cost": "5 gp",
+    "damageL": "2d4",
+    "damageS-M": "1d8",
+    "knockdown": "d8",
+    "name": "Guisarme",
+    "size": "L",
+    "speed": 8,
+    "type": "Melee",
+    "weight": 8,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "halberd": {
+    "cost": "7 gp",
+    "damageL": "1d10",
+    "damageS-M": "1d6+1",
+    "knockdown": "d10",
+    "name": "Halberd",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 15,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
   "hammer": {
     "cost": "5 sp",
     "damageL": "1d4",
@@ -287,6 +377,36 @@
     "speed": 4,
     "type": "Melee",
     "weight": 2,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "hammer-lucern": {
+    "cost": "7 gp",
+    "damageL": "2d4",
+    "damageS-M": "1d6",
+    "knockdown": "d8",
+    "name": "Lucern hammer",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 15,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "hammer-war": {
+    "cost": "2 gp",
+    "damageL": "1d4",
+    "damageS-M": "1d4+1",
+    "knockdown": "d6",
+    "name": "War hammer",
+    "size": "M",
+    "speed": 4,
+    "type": "Melee",
+    "weight": 6,
     "attsPerRound": [
       1,
       1
@@ -323,6 +443,51 @@
     "type": "Ranged",
     "weight": 6
   },
+  "horsemans-flail": {
+    "cost": "8 gp",
+    "damageL": "1d6+1",
+    "damageS-M": "1d4+1",
+    "knockdown": "d6",
+    "name": "Horseman's flail",
+    "size": "S",
+    "speed": 6,
+    "type": "Melee",
+    "weight": 5,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "horsemans-mace": {
+    "cost": "5 gp",
+    "damageL": "1d6",
+    "damageS-M": "1d4+1",
+    "knockdown": "d6",
+    "name": "Horseman's mace",
+    "size": "S",
+    "speed": 6,
+    "type": "Melee",
+    "weight": 4,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "horsemans-pick": {
+    "cost": "7 gp",
+    "damageL": "1d6",
+    "damageS-M": "1d4",
+    "knockdown": "d6",
+    "name": "Horseman's pick",
+    "size": "S",
+    "speed": 5,
+    "type": "Melee",
+    "weight": 3,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
   "javelin": {
     "cost": "5 sp",
     "damageL": "1d6",
@@ -338,21 +503,6 @@
     "speed": 4,
     "type": "Ranged",
     "weight": 2
-  },
-  "khopesh": {
-    "cost": "10 gp",
-    "damageL": "1d6",
-    "damageS-M": "2d4",
-    "knockdown": "d8",
-    "name": "Khopesh",
-    "size": "M",
-    "speed": 9,
-    "type": "Melee",
-    "weight": 7,
-    "attsPerRound": [
-      1,
-      1
-    ]
   },
   "knife": {
     "cost": "5 sp",
@@ -429,21 +579,6 @@
       1
     ]
   },
-  "long-sword": {
-    "cost": "15 gp",
-    "damageL": "1d12",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
-    "name": "Long sword",
-    "size": "M",
-    "speed": 5,
-    "type": "Melee",
-    "weight": 4,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
   "mancatcher": {
     "cost": "30 gp",
     "damageL": "special",
@@ -454,6 +589,21 @@
     "speed": 7,
     "type": "Melee",
     "weight": 8,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "military-pick": {
+    "cost": "8 gp",
+    "damageL": "1d6",
+    "damageS-M": "1d4+1",
+    "knockdown": "d6",
+    "name": "Military pick",
+    "size": "M",
+    "speed": 7,
+    "type": "Melee",
+    "weight": 6,
     "attsPerRound": [
       1,
       1
@@ -489,6 +639,21 @@
       1
     ]
   },
+  "quarterstaff": {
+    "cost": "0 gp",
+    "damageL": "1d6",
+    "damageS-M": "1d6",
+    "knockdown": "d6",
+    "name": "Quarterstaff",
+    "size": "L",
+    "speed": 4,
+    "type": "Melee",
+    "weight": 4,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
   "ranseur": {
     "cost": "6 gp",
     "damageL": "2d4",
@@ -504,21 +669,6 @@
       1
     ]
   },
-  "scimitar": {
-    "cost": "15 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
-    "name": "Scimitar",
-    "size": "M",
-    "speed": 5,
-    "type": "Melee",
-    "weight": 4,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
   "scourge": {
     "cost": "1 gp",
     "damageL": "1d2",
@@ -529,21 +679,6 @@
     "speed": 5,
     "type": "Melee",
     "weight": 2,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "short-sword": {
-    "cost": "10 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6",
-    "knockdown": "d6",
-    "name": "Short sword",
-    "size": "S",
-    "speed": 3,
-    "type": "Melee",
-    "weight": 3,
     "attsPerRound": [
       1,
       1
@@ -641,119 +776,14 @@
     "type": "Ranged",
     "weight": 2
   },
-  "trident": {
-    "cost": "15 gp",
-    "damageL": "3d4",
-    "damageS-M": "1d6+1",
-    "knockdown": "d8",
-    "name": "Trident",
-    "size": "L",
-    "speed": 7,
-    "type": "Melee",
-    "weight": 5,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "two-handed-sword": {
-    "cost": "50 gp",
-    "damageL": "3d6",
-    "damageS-M": "1d10",
-    "knockdown": "d12",
-    "name": "Two-handed sword",
-    "size": "L",
-    "speed": 10,
-    "type": "Melee",
-    "weight": 15,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "warhammer": {
-    "cost": "2 gp",
-    "damageL": "1d4",
-    "damageS-M": "1d4+1",
-    "knockdown": "d6",
-    "name": "War hammer",
-    "size": "M",
-    "speed": 4,
-    "type": "Melee",
-    "weight": 6,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "whip": {
-    "cost": "1 gp",
-    "damageL": "1",
-    "damageS-M": "1d2",
-    "knockdown": null,
-    "name": "Whip",
-    "size": "M",
-    "speed": 8,
-    "type": "Melee",
-    "weight": 2,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "halberd": {
-    "cost": "7 gp",
-    "damageL": "1d10",
-    "damageS-M": "1d6+1",
+  "sword-bastard": {
+    "cost": "25 gp",
+    "damageL": "2d8",
+    "damageS-M": "2d4",
     "knockdown": "d10",
-    "name": "Halberd",
-    "size": "L",
-    "speed": 9,
-    "type": "Melee",
-    "weight": 15,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "glaive": {
-    "cost": "6 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
-    "name": "Glaive",
-    "size": "L",
-    "speed": 8,
-    "type": "Melee",
-    "weight": 8,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "guisarme": {
-    "cost": "5 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
-    "name": "Guisarme",
-    "size": "L",
-    "speed": 8,
-    "type": "Melee",
-    "weight": 8,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "bill": {
-    "cost": "7 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6+1",
-    "knockdown": "d8",
-    "name": "Bill",
-    "size": "L",
-    "speed": 9,
+    "name": "Bastard sword",
+    "size": "M",
+    "speed": 6,
     "type": "Melee",
     "weight": 10,
     "attsPerRound": [
@@ -761,59 +791,14 @@
       1
     ]
   },
-  "fauchard": {
-    "cost": "5 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
-    "name": "Fauchard",
-    "size": "L",
-    "speed": 8,
-    "type": "Melee",
-    "weight": 5,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "military-pick": {
-    "cost": "8 gp",
-    "damageL": "1d6",
-    "damageS-M": "1d4+1",
-    "knockdown": "d6",
-    "name": "Military pick",
-    "size": "M",
-    "speed": 7,
-    "type": "Melee",
-    "weight": 6,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "horsemans-flail": {
-    "cost": "8 gp",
+  "sword-broad": {
+    "cost": "10 gp",
     "damageL": "1d6+1",
-    "damageS-M": "1d4+1",
-    "knockdown": "d6",
-    "name": "Horseman's flail",
-    "size": "S",
-    "speed": 6,
-    "type": "Melee",
-    "weight": 5,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "horsemans-mace": {
-    "cost": "5 gp",
-    "damageL": "1d6",
-    "damageS-M": "1d4+1",
-    "knockdown": "d6",
-    "name": "Horseman's mace",
-    "size": "S",
-    "speed": 6,
+    "damageS-M": "2d4",
+    "knockdown": "d8",
+    "name": "Broad sword",
+    "size": "M",
+    "speed": 5,
     "type": "Melee",
     "weight": 4,
     "attsPerRound": [
@@ -821,22 +806,37 @@
       1
     ]
   },
-  "horsemans-pick": {
-    "cost": "7 gp",
+  "sword-khopesh": {
+    "cost": "10 gp",
     "damageL": "1d6",
-    "damageS-M": "1d4",
-    "knockdown": "d6",
-    "name": "Horseman's pick",
-    "size": "S",
-    "speed": 5,
+    "damageS-M": "2d4",
+    "knockdown": "d8",
+    "name": "Khopesh",
+    "size": "M",
+    "speed": 9,
     "type": "Melee",
-    "weight": 3,
+    "weight": 7,
     "attsPerRound": [
       1,
       1
     ]
   },
-  "rapier": {
+  "sword-long": {
+    "cost": "15 gp",
+    "damageL": "1d12",
+    "damageS-M": "1d8",
+    "knockdown": "d8",
+    "name": "Long sword",
+    "size": "M",
+    "speed": 5,
+    "type": "Melee",
+    "weight": 4,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "sword-rapier": {
     "cost": "15 gp",
     "damageL": "1d8",
     "damageS-M": "1d6",
@@ -851,16 +851,61 @@
       1
     ]
   },
-  "quarterstaff": {
-    "cost": "0 gp",
-    "damageL": "1d6",
-    "damageS-M": "1d6",
-    "knockdown": "d6",
-    "name": "Quarterstaff",
-    "size": "L",
-    "speed": 4,
+  "sword-scimitar": {
+    "cost": "15 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d8",
+    "knockdown": "d8",
+    "name": "Scimitar",
+    "size": "M",
+    "speed": 5,
     "type": "Melee",
     "weight": 4,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "sword-short": {
+    "cost": "10 gp",
+    "damageL": "1d8",
+    "damageS-M": "1d6",
+    "knockdown": "d6",
+    "name": "Short sword",
+    "size": "S",
+    "speed": 3,
+    "type": "Melee",
+    "weight": 3,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "sword-two-handed": {
+    "cost": "50 gp",
+    "damageL": "3d6",
+    "damageS-M": "1d10",
+    "knockdown": "d12",
+    "name": "Two-handed sword",
+    "size": "L",
+    "speed": 10,
+    "type": "Melee",
+    "weight": 15,
+    "attsPerRound": [
+      1,
+      1
+    ]
+  },
+  "trident": {
+    "cost": "15 gp",
+    "damageL": "3d4",
+    "damageS-M": "1d6+1",
+    "knockdown": "d8",
+    "name": "Trident",
+    "size": "L",
+    "speed": 7,
+    "type": "Melee",
+    "weight": 5,
     "attsPerRound": [
       1,
       1
@@ -881,61 +926,16 @@
       1
     ]
   },
-  "bec-de-corbin": {
-    "cost": "8 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6+1",
-    "knockdown": "d8",
-    "name": "Bec de corbin",
-    "size": "L",
-    "speed": 7,
-    "type": "Melee",
-    "weight": 10,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "lucern-hammer": {
-    "cost": "7 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
-    "name": "Lucern hammer",
-    "size": "L",
-    "speed": 9,
-    "type": "Melee",
-    "weight": 15,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "bill-guisarme": {
-    "cost": "7 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
-    "name": "Bill-guisarme",
-    "size": "L",
-    "speed": 9,
-    "type": "Melee",
-    "weight": 12,
-    "attsPerRound": [
-      1,
-      1
-    ]
-  },
-  "fauchard-fork": {
-    "cost": "6 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
-    "name": "Fauchard-fork",
-    "size": "L",
+  "whip": {
+    "cost": "1 gp",
+    "damageL": "1",
+    "damageS-M": "1d2",
+    "knockdown": null,
+    "name": "Whip",
+    "size": "M",
     "speed": 8,
     "type": "Melee",
-    "weight": 8,
+    "weight": 2,
     "attsPerRound": [
       1,
       1
