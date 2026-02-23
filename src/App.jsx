@@ -17,6 +17,7 @@ import SelectInput from "./components/SelectInput.jsx";
 import { capitaliseWords } from "./utils.js";
 import { useNumericInput } from "./hooks/useNumericInput.js";
 import { updateNestedState } from "./utils/stateHelpers.js";
+import { loadFromStorage, saveToStorage, clearStorage, exportToJsonBlob, parseImportedJson } from "./utils/characterStorage.js";
 import { ARMOUR_OPTIONS, RACE_OPTIONS, CLASS_OPTIONS } from "./constants/characterOptions.js";
 import { HP_MIN, XP_MIN } from "./constants/characterLimits.js";
 import { RACES } from "./constants/races.js";
@@ -24,19 +25,19 @@ import { RACES } from "./constants/races.js";
 // Initial data model for a new character
 const initialCharacterState = {
     // Identity
-    name: "Bozo",
+    name: "Mondo Gnomo",
     characterClass: "paladin",
     race: "human",
     gender: "male",
 
     // CORE stats (Raw user input)
     scores: {
-        str: 10,
-        dex: 10,
-        con: 10,
-        int: 10,
-        wis: 10,
-        cha: 10
+        str: 13,
+        dex: 8,
+        con: 11,
+        int: 7,
+        wis: 16,
+        cha: 18
     },
     
     // Stat override flags (bypass racial maximums)
@@ -57,7 +58,7 @@ const initialCharacterState = {
     classOverride: false,
 
     // Progressional stats
-    xp: 10000,
+    xp: 6154,
     hp: {
         base: 10, // The manually rolled numbers
         bonus: 0, // Will be the "con" modifier
@@ -84,10 +85,49 @@ const initialCharacterState = {
 }
 
 export default function CharacterSheet() {
-    // Use the useState hook to manage the character's data.
-    // 'character' is the current state object.
-    // 'setCharacter' is the function we call to change the state.
-    const [character, setCharacter] = useState(initialCharacterState);
+    // Restore from localStorage on first load, otherwise use initial state
+    const [character, setCharacter] = useState(() =>
+        loadFromStorage(initialCharacterState) ?? initialCharacterState
+    );
+
+    // Debounced auto-save to localStorage (500ms after last change)
+    useEffect(() => {
+        const t = setTimeout(() => saveToStorage(character), 500);
+        return () => clearTimeout(t);
+    }, [character]);
+
+    const importFileRef = useRef(null);
+
+    const handleExportToFile = () => {
+        const blob = exportToJsonBlob(character);
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `${(character.name || 'character').replace(/[^a-z0-9-_]/gi, '_')}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    };
+
+    const handleImportFromFile = (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+            try {
+                const merged = parseImportedJson(reader.result, initialCharacterState);
+                setCharacter(merged);
+            } catch (err) {
+                alert(err instanceof Error ? err.message : 'Invalid character file');
+            }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+    };
+
+    const handleNewCharacter = () => {
+        clearStorage();
+        setCharacter(initialCharacterState);
+    };
     
     const xpInput = useNumericInput(character.xp, {
         min: XP_MIN,
@@ -326,6 +366,29 @@ export default function CharacterSheet() {
         <>
             <div className="page-header">
                 <h1>D&D Be...fore</h1>
+                <div className="save-load-actions">
+                    <button type="button" onClick={handleExportToFile} className="save-load-btn">
+                        Save to file
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => importFileRef.current?.click()}
+                        className="save-load-btn"
+                    >
+                        Load from file
+                    </button>
+                    <input
+                        ref={importFileRef}
+                        type="file"
+                        accept=".json,application/json"
+                        onChange={handleImportFromFile}
+                        style={{ display: 'none' }}
+                        aria-hidden="true"
+                    />
+                    <button type="button" onClick={handleNewCharacter} className="save-load-btn save-load-btn-secondary">
+                        New character
+                    </button>
+                </div>
             </div>
             
             <div className="wrapper">

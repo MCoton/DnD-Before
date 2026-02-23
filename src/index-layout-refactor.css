@@ -470,6 +470,38 @@ hr.style14 {
   box-sizing: border-box;  /* ← Ensure padding doesn't add to width */
 }
 
+.save-load-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-md);
+}
+
+.save-load-btn {
+  padding: var(--spacing-xs) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1px solid var(--color-border-default);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.save-load-btn:hover {
+  border-color: var(--color-accent-primary);
+  background-color: var(--color-bg-tertiary);
+}
+
+.save-load-btn-secondary {
+  border-color: var(--color-border-default);
+}
+
+.save-load-btn-secondary:hover {
+  border-color: var(--color-text-muted);
+}
+
 .wrapper {
   display: block;
   padding: var(--content-padding);
