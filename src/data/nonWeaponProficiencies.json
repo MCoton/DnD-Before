@@ -373,7 +373,7 @@
     "category": "GENERAL",
     "slots": 1,
     "stat": "Wisdom",
-    "modifier": 0,
+    "modifier": -1,
     "notes": ""
   },
   {
@@ -500,8 +500,8 @@
     "name": "Mining",
     "category": "GENERAL, Dw Cr",
     "slots": 1,
-    "stat": "Intelligence",
-    "modifier": -2,
+    "stat": "Wisdom",
+    "modifier": -3,
     "notes": "Dw +2, Gn +1"
   },
   {
@@ -517,7 +517,7 @@
     "category": "GENERAL",
     "slots": 1,
     "stat": "Dexterity",
-    "modifier": 0,
+    "modifier": -1,
     "notes": ""
   },
   {
@@ -557,7 +557,7 @@
     "category": "GENERAL, Dw Cr",
     "slots": 1,
     "stat": "Dexterity",
-    "modifier": 0,
+    "modifier": -2,
     "notes": ""
   },
   {
@@ -573,7 +573,7 @@
     "category": "GENERAL",
     "slots": 1,
     "stat": "Intelligence",
-    "modifier": 0,
+    "modifier": 1,
     "notes": ""
   },
   {
@@ -597,7 +597,7 @@
     "category": "GENERAL",
     "slots": 1,
     "stat": "Wisdom",
-    "modifier": 0,
+    "modifier": 3,
     "notes": ""
   },
   {
@@ -620,8 +620,8 @@
     "name": "Seamanship",
     "category": "GENERAL, Dw Sp",
     "slots": 1,
-    "stat": "Wisdom",
-    "modifier": 0,
+    "stat": "Dexterity",
+    "modifier": 1,
     "notes": "Dw -1"
   },
   {
