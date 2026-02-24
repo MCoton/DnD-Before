@@ -5,10 +5,9 @@ import React from 'react';
  * 
  * @param {object} props
  * @param {object} props.combat - Combat stats from derivedStats
- * @param {string} props.characterClass - Character's class name
- * @param {number} props.characterLevel - Character's level
  */
-export default function CombatStatsDisplay({ combat, characterClass, characterLevel }) {
+
+export default function CombatStatsDisplay({ combat }) {
     // Don't render if no combat data
     if (!combat) {
         return (
