@@ -16,33 +16,30 @@ function skillKeyToLabel(key) {
  *
  * @param {object} props
  * @param {object} props.thiefSkills - From derivedStats.thiefSkills
- * @param {string} [props.armourType] - Current armour for context
  * @param {number} [props.characterLevel] - Thief level (1–20)
  * @param {object} props.thiefSkillPoints - { pickPockets: n, ... } total points allocated per skill
  * @param {function} props.onThiefSkillPoints - (skill, value) => void
  */
 export default function ThiefAbilitiesDisplay({
     thiefSkills,
-    armourType,
     characterLevel = 1,
     thiefSkillPoints = {},
     onThiefSkillPoints
 }) {
+    // All hooks must run unconditionally at the top (Rules of Hooks)
     const { startingSkillPoints, skillPointsPerLevel } = useMemo(getThiefPointRules, []);
+    const totalPointsSpent = useMemo(() => {
+        return THIEF_SKILL_ORDER.reduce((sum, skill) => sum + (typeof thiefSkillPoints[skill] === 'number' ? thiefSkillPoints[skill] : 0), 0);
+    }, [thiefSkillPoints]);
+    const [allocationModalOpen, setAllocationModalOpen] = useState(false);
 
     if (!thiefSkills || !thiefSkills.skills) {
         return null;
     }
 
     const { skills, backstabMulti } = thiefSkills;
-
     const totalPointsAvailable = startingSkillPoints + (characterLevel - 1) * skillPointsPerLevel;
-    const totalPointsSpent = useMemo(() => {
-        return THIEF_SKILL_ORDER.reduce((sum, skill) => sum + (typeof thiefSkillPoints[skill] === 'number' ? thiefSkillPoints[skill] : 0), 0);
-    }, [thiefSkillPoints]);
-
     const hasUnallocatedPoints = totalPointsSpent < totalPointsAvailable;
-    const [allocationModalOpen, setAllocationModalOpen] = useState(false);
 
     const maxPerSkillFromRule = Math.floor(totalPointsAvailable * 0.5);
 

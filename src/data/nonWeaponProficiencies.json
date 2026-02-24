@@ -1,7 +1,9 @@
 [
   {
     "name": "Acting",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": -1,
@@ -9,7 +11,10 @@
   },
   {
     "name": "Agriculture",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -17,7 +22,11 @@
   },
   {
     "name": "Alertness ++",
-    "category": "GENERAL, Dw Wr, Dw Rg",
+    "category": [
+      "general",
+      "dw_wr",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 1,
@@ -25,7 +34,12 @@
   },
   {
     "name": "Ancient History",
-    "category": "Pr, Rg, Wz, Dw Pr",
+    "category": [
+      "pr",
+      "rg",
+      "wz",
+      "dw_pr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -1,
@@ -33,7 +47,10 @@
   },
   {
     "name": "Animal Handling",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -41,7 +58,10 @@
   },
   {
     "name": "Animal Lore",
-    "category": "Wr, Dw Wr",
+    "category": [
+      "wr",
+      "dw_wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -49,7 +69,10 @@
   },
   {
     "name": "Animal Noise",
-    "category": "Rg @, Hu Gen",
+    "category": [
+      "rg_restricted",
+      "hu_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -57,7 +80,10 @@
   },
   {
     "name": "Animal Training",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -65,7 +91,10 @@
   },
   {
     "name": "Appraising",
-    "category": "Rg, Dw Gen",
+    "category": [
+      "rg",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -73,7 +102,10 @@
   },
   {
     "name": "Armorer",
-    "category": "Wr, Dw Cr",
+    "category": [
+      "wr",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -82,7 +114,10 @@
   },
   {
     "name": "Artistic Ability",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -90,7 +125,11 @@
   },
   {
     "name": "Astrology",
-    "category": "Pr, Wz, Dw Pr",
+    "category": [
+      "pr",
+      "wz",
+      "dw_pr"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": 0,
@@ -98,7 +137,10 @@
   },
   {
     "name": "Begging",
-    "category": "Rg @, Hu Gen",
+    "category": [
+      "rg_restricted",
+      "hu_gen"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": "Special",
@@ -106,7 +148,10 @@
   },
   {
     "name": "Blacksmithing",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Strength",
     "modifier": 0,
@@ -114,7 +159,12 @@
   },
   {
     "name": "Blind-fighting",
-    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "category": [
+      "rg",
+      "wr",
+      "dw_wr",
+      "dw_rg"
+    ],
     "slots": 2,
     "stat": "N/A",
     "modifier": "N/A",
@@ -122,7 +172,10 @@
   },
   {
     "name": "Boating",
-    "category": "GENERAL, Dw Sp",
+    "category": [
+      "general",
+      "dw_sp"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 1,
@@ -130,7 +183,9 @@
   },
   {
     "name": "Boatwright",
-    "category": "Dw Sp",
+    "category": [
+      "dw_sp"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -138,7 +193,10 @@
   },
   {
     "name": "Bowyer/Fletcher",
-    "category": "Wr, Dw Cr",
+    "category": [
+      "wr",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -1,
@@ -146,7 +204,10 @@
   },
   {
     "name": "Brewing",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -154,7 +215,10 @@
   },
   {
     "name": "Bureaucracy",
-    "category": "Pr, Rg",
+    "category": [
+      "pr",
+      "rg"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": 0,
@@ -162,7 +226,10 @@
   },
   {
     "name": "Camouflage",
-    "category": "Rg, Wr",
+    "category": [
+      "rg",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -170,7 +237,10 @@
   },
   {
     "name": "Carpentry",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Strength",
     "modifier": 0,
@@ -178,7 +248,9 @@
   },
   {
     "name": "Cartography",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -186,7 +258,9 @@
   },
   {
     "name": "Chanting",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 2,
@@ -194,7 +268,9 @@
   },
   {
     "name": "Charioteering",
-    "category": "Wr",
+    "category": [
+      "wr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 2,
@@ -202,7 +278,9 @@
   },
   {
     "name": "Cheesemaking",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -210,7 +288,10 @@
   },
   {
     "name": "Cobbling",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -218,7 +299,10 @@
   },
   {
     "name": "Cooking",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -226,7 +310,12 @@
   },
   {
     "name": "Close Quarter Fighting",
-    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "category": [
+      "rg",
+      "wr",
+      "dw_wr",
+      "dw_rg"
+    ],
     "slots": 2,
     "stat": "Dexterity",
     "modifier": 0,
@@ -234,7 +323,10 @@
   },
   {
     "name": "Craft Instrument",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 2,
     "stat": "Dexterity",
     "modifier": -2,
@@ -242,7 +334,9 @@
   },
   {
     "name": "Crowd Working",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 0,
@@ -250,7 +344,10 @@
   },
   {
     "name": "Dancing",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -258,7 +355,9 @@
   },
   {
     "name": "Danger Sense",
-    "category": "Hu Gen",
+    "category": [
+      "hu_gen"
+    ],
     "slots": 2,
     "stat": "Wisdom",
     "modifier": 1,
@@ -266,7 +365,9 @@
   },
   {
     "name": "Diagnostics",
-    "category": "Pr",
+    "category": [
+      "pr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -274,7 +375,10 @@
   },
   {
     "name": "Direction Sense",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 1,
@@ -282,7 +386,9 @@
   },
   {
     "name": "Distance Sense",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -290,7 +396,10 @@
   },
   {
     "name": "Disguise",
-    "category": "Rg, Dw Rg",
+    "category": [
+      "rg",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": -1,
@@ -298,7 +407,9 @@
   },
   {
     "name": "Drinking",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Constitution",
     "modifier": 0,
@@ -306,7 +417,10 @@
   },
   {
     "name": "Dwarf Runes",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 2,
@@ -314,7 +428,9 @@
   },
   {
     "name": "Eating",
-    "category": "Hu Gen",
+    "category": [
+      "hu_gen"
+    ],
     "slots": 1,
     "stat": "Constitution",
     "modifier": 0,
@@ -322,7 +438,11 @@
   },
   {
     "name": "Endurance",
-    "category": "Wr, Rg @, Dw Gen",
+    "category": [
+      "wr",
+      "rg_restricted",
+      "dw_gen"
+    ],
     "slots": 2,
     "stat": "Constitution",
     "modifier": 0,
@@ -330,7 +450,11 @@
   },
   {
     "name": "Engineering",
-    "category": "Pr, Wz, Dw Cr",
+    "category": [
+      "pr",
+      "wz",
+      "dw_cr"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": -3,
@@ -338,7 +462,10 @@
   },
   {
     "name": "Etiquette",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 0,
@@ -346,7 +473,9 @@
   },
   {
     "name": "Falconry",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -354,7 +483,10 @@
   },
   {
     "name": "Fast-talking",
-    "category": "Rg @, Hu Gen",
+    "category": [
+      "rg_restricted",
+      "hu_gen"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": "Special",
@@ -362,7 +494,10 @@
   },
   {
     "name": "Fire-building",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -370,7 +505,9 @@
   },
   {
     "name": "Fishing",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -378,7 +515,9 @@
   },
   {
     "name": "Forgery",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -386,7 +525,9 @@
   },
   {
     "name": "Gaming",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -394,7 +535,10 @@
   },
   {
     "name": "Gem Cutting",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -2,
@@ -402,7 +546,10 @@
   },
   {
     "name": "Heraldry",
-    "category": "Pr, Wr",
+    "category": [
+      "pr",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -410,7 +557,10 @@
   },
   {
     "name": "Healing",
-    "category": "Pr, Rg",
+    "category": [
+      "pr",
+      "rg"
+    ],
     "slots": 2,
     "stat": "Wisdom",
     "modifier": -2,
@@ -418,7 +568,11 @@
   },
   {
     "name": "Herbalism",
-    "category": "Pr, Rg, Wz",
+    "category": [
+      "pr",
+      "rg",
+      "wz"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": -2,
@@ -426,7 +580,10 @@
   },
   {
     "name": "Hunting",
-    "category": "Rg, Wr",
+    "category": [
+      "rg",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -434,7 +591,9 @@
   },
   {
     "name": "Information Gathering",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 0,
@@ -442,7 +601,10 @@
   },
   {
     "name": "Intimidation",
-    "category": "Wr, Dw Wr",
+    "category": [
+      "wr",
+      "dw_wr"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": "Special",
@@ -450,7 +612,9 @@
   },
   {
     "name": "Juggling",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -458,7 +622,12 @@
   },
   {
     "name": "Jumping",
-    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "category": [
+      "rg",
+      "wr",
+      "dw_wr",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Strength",
     "modifier": 0,
@@ -466,7 +635,9 @@
   },
   {
     "name": "Languages, Modern",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -474,7 +645,10 @@
   },
   {
     "name": "Leatherworking",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -482,7 +656,9 @@
   },
   {
     "name": "Local History",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -490,7 +666,9 @@
   },
   {
     "name": "Locksmithing",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -1,
@@ -498,7 +676,10 @@
   },
   {
     "name": "Mining",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -3,
@@ -506,7 +687,10 @@
   },
   {
     "name": "Mountaineering",
-    "category": "Rg, Wr",
+    "category": [
+      "rg",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -1,
@@ -514,7 +698,9 @@
   },
   {
     "name": "Musical Instrument",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -1,
@@ -522,7 +708,9 @@
   },
   {
     "name": "Navigation",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -530,7 +718,9 @@
   },
   {
     "name": "Observation",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -538,7 +728,10 @@
   },
   {
     "name": "Oratory",
-    "category": "Pr, Wz",
+    "category": [
+      "pr",
+      "wz"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 0,
@@ -546,7 +739,9 @@
   },
   {
     "name": "Poetry",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -554,7 +749,10 @@
   },
   {
     "name": "Pottery",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": -2,
@@ -562,7 +760,9 @@
   },
   {
     "name": "Reading Lips",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -570,7 +770,9 @@
   },
   {
     "name": "Reading/Writing",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 1,
@@ -578,7 +780,10 @@
   },
   {
     "name": "Religion",
-    "category": "Pr, Wz",
+    "category": [
+      "pr",
+      "wz"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -586,7 +791,9 @@
   },
   {
     "name": "Riding, Airborne",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -2,
@@ -594,7 +801,9 @@
   },
   {
     "name": "Riding, Land-based",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 3,
@@ -602,7 +811,9 @@
   },
   {
     "name": "Rope Use",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -610,7 +821,12 @@
   },
   {
     "name": "Running",
-    "category": "Rg, Wr, Dw Wr, Dw Rg",
+    "category": [
+      "rg",
+      "wr",
+      "dw_wr",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Constitution",
     "modifier": 0,
@@ -618,7 +834,10 @@
   },
   {
     "name": "Seamanship",
-    "category": "GENERAL, Dw Sp",
+    "category": [
+      "general",
+      "dw_sp"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 1,
@@ -626,7 +845,10 @@
   },
   {
     "name": "Set Snares",
-    "category": "Rg, Wr",
+    "category": [
+      "rg",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -1,
@@ -634,7 +856,10 @@
   },
   {
     "name": "Signaling",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -642,7 +867,10 @@
   },
   {
     "name": "Singing",
-    "category": "GENERAL, Dw Gen",
+    "category": [
+      "general",
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Charisma",
     "modifier": 0,
@@ -650,7 +878,9 @@
   },
   {
     "name": "Slow Respiration",
-    "category": "Dw Gen",
+    "category": [
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "N/A",
     "modifier": "N/A",
@@ -658,7 +888,9 @@
   },
   {
     "name": "Smelting",
-    "category": "Dw Cr",
+    "category": [
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -666,7 +898,9 @@
   },
   {
     "name": "Sound Analysis",
-    "category": "Dw Gen",
+    "category": [
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -674,7 +908,11 @@
   },
   {
     "name": "Spellcraft",
-    "category": "Pr, Wz, Dw Pr",
+    "category": [
+      "pr",
+      "wz",
+      "dw_pr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -682,7 +920,9 @@
   },
   {
     "name": "Spelunking",
-    "category": "Wr",
+    "category": [
+      "wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -690,7 +930,10 @@
   },
   {
     "name": "Stonemasonry",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Strength",
     "modifier": -2,
@@ -698,7 +941,11 @@
   },
   {
     "name": "Survival",
-    "category": "Rg @, Wr, Dw Sp",
+    "category": [
+      "rg_restricted",
+      "wr",
+      "dw_sp"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": 0,
@@ -706,7 +953,10 @@
   },
   {
     "name": "Survival, Hills, Woods",
-    "category": "Gn Rg @, Gn Wr",
+    "category": [
+      "gn_rg_restricted",
+      "gn_wr"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": 1,
@@ -714,7 +964,10 @@
   },
   {
     "name": "Survival, Woodland",
-    "category": "El Rg @, El Wr",
+    "category": [
+      "el_rg_restricted",
+      "el_wr"
+    ],
     "slots": 2,
     "stat": "Intelligence",
     "modifier": 1,
@@ -722,7 +975,9 @@
   },
   {
     "name": "Survival, Hills, Mtns",
-    "category": "Dw Wr",
+    "category": [
+      "dw_wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -730,7 +985,9 @@
   },
   {
     "name": "Survival, Underground",
-    "category": "Dw Gen",
+    "category": [
+      "dw_gen"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,
@@ -738,7 +995,10 @@
   },
   {
     "name": "Swimming",
-    "category": "GENERAL, Dw Sp",
+    "category": [
+      "general",
+      "dw_sp"
+    ],
     "slots": 1,
     "stat": "Strength",
     "modifier": 0,
@@ -746,7 +1006,10 @@
   },
   {
     "name": "Tightrope Walking",
-    "category": "Rg, Dw Rg",
+    "category": [
+      "rg",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -754,7 +1017,10 @@
   },
   {
     "name": "Tracking",
-    "category": "Rg @, Wr",
+    "category": [
+      "rg_restricted",
+      "wr"
+    ],
     "slots": 2,
     "stat": "Wisdom",
     "modifier": "Special",
@@ -762,7 +1028,9 @@
   },
   {
     "name": "Trail Marking",
-    "category": "Wr",
+    "category": [
+      "wr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": 0,
@@ -770,7 +1038,10 @@
   },
   {
     "name": "Trail Signs",
-    "category": "Rg, Wr",
+    "category": [
+      "rg",
+      "wr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -1,
@@ -778,7 +1049,9 @@
   },
   {
     "name": "Trailing",
-    "category": "Rg @",
+    "category": [
+      "rg_restricted"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": "Special",
@@ -786,7 +1059,10 @@
   },
   {
     "name": "Tumbling",
-    "category": "Rg, Dw Rg",
+    "category": [
+      "rg",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 0,
@@ -794,7 +1070,10 @@
   },
   {
     "name": "Ventriloquism",
-    "category": "Rg, Dw Rg",
+    "category": [
+      "rg",
+      "dw_rg"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -2,
@@ -802,7 +1081,10 @@
   },
   {
     "name": "Veterinary Healing",
-    "category": "Pr, Rangers",
+    "category": [
+      "pr",
+      "rangers"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -3,
@@ -810,7 +1092,10 @@
   },
   {
     "name": "Voice Mimicry",
-    "category": "Rg @, Hu Gen",
+    "category": [
+      "rg_restricted",
+      "hu_gen"
+    ],
     "slots": 2,
     "stat": "Charisma",
     "modifier": "Special",
@@ -818,7 +1103,10 @@
   },
   {
     "name": "Weaponsmithing",
-    "category": "Wr, Dw Cr",
+    "category": [
+      "wr",
+      "dw_cr"
+    ],
     "slots": 3,
     "stat": "Intelligence",
     "modifier": -3,
@@ -826,7 +1114,9 @@
   },
   {
     "name": "Weaponsmithing, Crude",
-    "category": "Wr",
+    "category": [
+      "wr"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -3,
@@ -834,7 +1124,10 @@
   },
   {
     "name": "Weather Sense",
-    "category": "GENERAL, Dw Sp",
+    "category": [
+      "general",
+      "dw_sp"
+    ],
     "slots": 1,
     "stat": "Wisdom",
     "modifier": -1,
@@ -842,7 +1135,10 @@
   },
   {
     "name": "Weaving",
-    "category": "GENERAL, Dw Cr",
+    "category": [
+      "general",
+      "dw_cr"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": -1,
@@ -850,7 +1146,9 @@
   },
   {
     "name": "Whistling/Humming",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Dexterity",
     "modifier": 2,
@@ -858,7 +1156,10 @@
   },
   {
     "name": "Wild Fighting",
-    "category": "Wr, Dw Wr",
+    "category": [
+      "wr",
+      "dw_wr"
+    ],
     "slots": 2,
     "stat": "Constitution",
     "modifier": 0,
@@ -866,7 +1167,9 @@
   },
   {
     "name": "Winemaking",
-    "category": "GENERAL",
+    "category": [
+      "general"
+    ],
     "slots": 1,
     "stat": "Intelligence",
     "modifier": 0,

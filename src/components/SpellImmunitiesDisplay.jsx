@@ -6,9 +6,8 @@ import React from 'react';
  * 
  * @param {object} props
  * @param {string[]} props.immunities - Array of spell names
- * @param {number} props.wisdomScore - Character's Wisdom score
  */
-export default function SpellImmunitiesDisplay({ immunities, wisdomScore }) {
+export default function SpellImmunitiesDisplay({ immunities }) {
     // Don't render anything if no immunities
     if (!immunities || immunities.length === 0) {
         return null;
@@ -18,7 +17,7 @@ export default function SpellImmunitiesDisplay({ immunities, wisdomScore }) {
         <div className="area-box details-box">
             <h3 className="title">Spell Immunities</h3>
             <hr className="style13"></hr>
-            <p className='immunity-text'> {...immunities.sort().join(', ')} </p>
+            <p className='immunity-text'> {immunities.sort().join(', ')} </p>
         </div>
     );
 }

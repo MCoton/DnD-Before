@@ -1,4 +1,3 @@
-import react from 'react';
 import weapons from "../data/equipment/weapons.json";
 import charClasses from "../data/classes/character_classes.json";
 import specialisation from "../data/equipment/weapon_specialisation.json";

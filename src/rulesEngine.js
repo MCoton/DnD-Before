@@ -304,8 +304,6 @@ export function calculateDerivedStats(character) {
 
 
     // --- STEP 7: CLASS CHECK (Defensive Guard) ---
-    const selectedClass = character.characterClass || "";
-
     if (!charClassKey || !charClasses[charClassKey]) {
         // No class selected - return safe defaults
         results.savingThrows = {

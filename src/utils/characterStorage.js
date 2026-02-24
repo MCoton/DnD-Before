@@ -82,7 +82,7 @@ export function loadFromStorage(initialCharacterState) {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return null;
-    const { version, character } = JSON.parse(raw);
+    const { character } = JSON.parse(raw);
     if (!character || typeof character !== 'object') return null;
     const merged = mergeWithInitial(character, initialCharacterState);
     return migrateWeaponProficiencies(merged);

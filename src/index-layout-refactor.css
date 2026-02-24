@@ -226,10 +226,12 @@ input:focus {
 input[type="number"] {
   text-align: center;
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
 
@@ -736,9 +738,7 @@ hr.style14 {
 .thief-allocation-modal-label {
   min-width: 0;
 }
-.thief-allocation-modal-row .thief-allocated-input {
-  /* flex-shrink removed for refactor */
-}
+
 .thief-allocation-modal-actions {
   display: block;
 }
@@ -2532,9 +2532,7 @@ div.saving-throws-block, h3#saves-title {
   border-radius: var(--radius-sm);
 }
 
-.spell-modal-info-item.spell-modal-info-full {
-  /* grid-column span removed for refactor */
-}
+
 
 .spell-modal-info-label {
   font-weight: 600;

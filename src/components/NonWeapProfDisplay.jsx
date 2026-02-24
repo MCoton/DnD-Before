@@ -81,15 +81,12 @@ export default function NonWeapProfDisplay({
     // Get available proficiencies (filter by class restrictions if needed)
     // For now, show all GENERAL proficiencies plus class-specific ones
     const availableProficiencies = nonWeaponProficiencies.filter(prof => {
-        // Check if proficiency is available to this class
-        const category = prof.category || '';
-        const categories = category.split(',').map(c => c.trim());
-        
+        // Category is an array of codes (e.g. ['general', 'dw_cr'])
+        const categories = Array.isArray(prof.category) ? prof.category : [];
         // GENERAL proficiencies are available to all
-        if (categories.includes('GENERAL')) {
+        if (categories.includes('general')) {
             return true;
         }
-        
         // Check class-specific categories (simplified - would need more complex logic for full implementation)
         // For now, include all proficiencies
         return true;
@@ -109,18 +106,6 @@ export default function NonWeapProfDisplay({
         return abilityScores[statKey] || 0;
     };
 
-    // Helper function to calculate proficiency value
-    const calculateProficiencyValue = (proficiency) => {
-        if (!proficiency || proficiency === '') return null;
-        
-        const profData = nonWeaponProficiencies.find(p => p.name === proficiency);
-        if (!profData) return null;
-        
-        const statValue = getAbilityScore(profData.stat);
-        const modifier = typeof profData.modifier === 'number' ? profData.modifier : 0;
-        
-        return statValue + modifier;
-    };
 
     // Handle proficiency selection change
     const handleProficiencyChange = (index, proficiencyName) => {

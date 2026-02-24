@@ -27,38 +27,76 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
     // Helper to get the first three letters of the stat name for key prefixing
     // e.g., 'Strength' -> 'str', 'Constitution' -> 'con'
     const statPrefix = statName.toLowerCase().slice(0, 3);
-    
-    // Check if derivedData is available before attempting lookups
-    if (!derivedData) return null;
-    
-    // Use custom hook for numeric input handling
+
+    // Computed before hooks so hook order is stable (no conditional hook calls)
+    const isStrength = statPrefix === 'str';
+    const showExceptionalStrength = isStrength && characterClass && race;
+    let canHaveExceptionalStrength = false;
+    if (showExceptionalStrength) {
+        const classKey = characterClass.toLowerCase();
+        const classData = charClasses[classKey];
+        const isWarrior = classData?.group === 'warrior';
+        const isHalfling = race?.toLowerCase() === 'halfling';
+        const isNatural18 = score === 18;
+        canHaveExceptionalStrength = isWarrior && !isHalfling && isNatural18;
+    }
+
+    // All hooks must run unconditionally at the top (Rules of Hooks)
     const { inputValue, handleChange, handleBlur } = useNumericInput(adjustedScore, {
         min: STAT_MIN,
         max: STAT_MAX,
         onUpdate: (clampedAdjustedValue) => {
-        // Calculate what the raw score should be to achieve this adjusted score
-        const racialAdjustment = adjustedScore - score;
+            const racialAdjustment = adjustedScore - score;
             const newRawScore = clampedAdjustedValue - racialAdjustment;
             const clampedRawScore = clamp(newRawScore, STAT_MIN, STAT_MAX);
-
             if (onScoreChange) {
                 onScoreChange(statPrefix, clampedRawScore);
             }
         }
     });
 
+    useEffect(() => {
+        if (isStrength && exceptionalStrength && !canHaveExceptionalStrength && onExceptionalStrengthChange) {
+            onExceptionalStrengthChange(null);
+        }
+    }, [isStrength, exceptionalStrength, canHaveExceptionalStrength, onExceptionalStrengthChange]);
+
+    const exceptionalStrengthDisplayValue = exceptionalStrength
+        ? (exceptionalStrength === '00' ? 100 : parseInt(exceptionalStrength, 10))
+        : '';
+    const exceptionalStrengthInput = useNumericInput(
+        exceptionalStrengthDisplayValue || null,
+        {
+            min: 0,
+            max: 100,
+            onUpdate: (value) => {
+                if (onExceptionalStrengthChange) {
+                    if (value === null || value === '' || isNaN(value)) {
+                        onExceptionalStrengthChange(null);
+                    } else {
+                        const numValue = parseInt(value, 10);
+                        if (numValue === 0 || numValue === 100) {
+                            onExceptionalStrengthChange('00');
+                        } else if (numValue >= 1 && numValue <= 99) {
+                            onExceptionalStrengthChange(numValue.toString().padStart(2, '0'));
+                        } else {
+                            onExceptionalStrengthChange(null);
+                        }
+                    }
+                }
+            }
+        }
+    );
+
+    // After all hooks: guard so we don't use derivedData when missing
+    if (!derivedData) return null;
+
     // Check if Race gets CON-based save bonuses from RACES
     const raceKey = race?.toLowerCase() || 'human';
     const raceData = RACES[raceKey];
     const showConSaveBonus = raceData?.saveBonus?.source === 'con';
 
-    // Check if Race gets high CON bonus to Poison save
-
-
     // --- Data Lookup ---
-    // This allows us to dynamically map the generic component to specific derived stats
-    // Example: if statPrefix is 'str', we look up derivedData.strHitProb
-    
     const derivedStatsMap = {
         // --- STRENGTH ---
         str: [
@@ -120,62 +158,6 @@ export default function StatBlock({ statName, score, adjustedScore, derivedData,
     };
 
     const statsToDisplay = derivedStatsMap[statPrefix] || [];
-
-    // Check if exceptional strength should be shown (only for Strength stat)
-    const isStrength = statPrefix === 'str';
-    const showExceptionalStrength = isStrength && characterClass && race;
-    
-    let canHaveExceptionalStrength = false;
-    if (showExceptionalStrength) {
-        const classKey = characterClass.toLowerCase();
-        const classData = charClasses[classKey];
-        const isWarrior = classData?.group === 'warrior';
-        const isHalfling = race?.toLowerCase() === 'halfling';
-        const isNatural18 = score === 18; // Natural (raw) strength must be 18
-        
-        canHaveExceptionalStrength = isWarrior && !isHalfling && isNatural18;
-    }
-    
-    // Clear exceptional strength if conditions are no longer met
-    useEffect(() => {
-        if (isStrength && exceptionalStrength && !canHaveExceptionalStrength && onExceptionalStrengthChange) {
-            onExceptionalStrengthChange(null);
-        }
-    }, [isStrength, exceptionalStrength, canHaveExceptionalStrength, onExceptionalStrengthChange]);
-
-    // Use numeric input hook for exceptional strength (allows 0-100, where 0 or 100 = 00 percentile)
-    // Convert stored value to number for display: "00" → 100, others → parseInt
-    // Handle null/empty as empty string for the hook
-    const exceptionalStrengthDisplayValue = exceptionalStrength 
-        ? (exceptionalStrength === '00' ? 100 : parseInt(exceptionalStrength, 10))
-        : '';
-    
-    const exceptionalStrengthInput = useNumericInput(
-        exceptionalStrengthDisplayValue || null,
-        {
-            min: 0,
-            max: 100,
-            onUpdate: (value) => {
-                if (onExceptionalStrengthChange) {
-                    // Convert number back to percentile string format
-                    if (value === null || value === '' || isNaN(value)) {
-                        onExceptionalStrengthChange(null);
-                    } else {
-                        const numValue = parseInt(value, 10);
-                        // 0 or 100 both represent percentile "00" (100)
-                        if (numValue === 0 || numValue === 100) {
-                            onExceptionalStrengthChange('00');
-                        } else if (numValue >= 1 && numValue <= 99) {
-                            // Pad to 2 digits: "01", "47", "99", etc.
-                            onExceptionalStrengthChange(numValue.toString().padStart(2, '0'));
-                        } else {
-                            onExceptionalStrengthChange(null);
-                        }
-                    }
-                }
-            }
-        }
-    );
 
     return (
         <div className="inner-border stat-block">

@@ -128,7 +128,7 @@ export default function SpellDisplay({
         }
         
         return { spellSlots, effectiveSpellSlots, availableSpellLevels, allSpellsByLevel };
-    }, [characterClass, characterLevel, spellType, intSpellLevel, slotArrayKey, maxSpellLevel, isWizard, spellList, wisBonusSpells]);
+    }, [characterClass, characterLevel, spellType, intSpellLevel, slotArrayKey, altSlotArrayKey, maxSpellLevel, isWizard, spellList, wisBonusSpells]);
     
     const { spellSlots, effectiveSpellSlots, availableSpellLevels, allSpellsByLevel } = spellData;
 
