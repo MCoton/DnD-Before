@@ -3,7 +3,6 @@
     "cost": "5 gp",
     "damageL": "1d12",
     "damageS-M": "1d6",
-    "knockdown": "d10",
     "name": "Awl pike",
     "size": "L",
     "speed": 13,
@@ -13,13 +12,45 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 3,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
+  },
+  "bardiche": {
+    "cost": "7 gp",
+    "damageL": "2d6",
+    "damageS-M": "2d4",
+    "name": "Bardiche",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 12,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "S",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "battleaxe": {
     "cost": "5 gp",
     "damageL": "1d8",
     "damageS-M": "1d8",
-    "knockdown": "d8",
     "name": "Battle axe",
     "size": "M",
     "speed": 7,
@@ -29,29 +60,45 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bec-de-corbin": {
     "cost": "8 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6+1",
-    "knockdown": "d8",
+    "damageL": "1d6",
+    "damageS-M": "1d8",
     "name": "Bec de corbin",
     "size": "L",
-    "speed": 7,
+    "speed": 9,
     "type": "Melee",
     "weight": 10,
     "attsPerRound": [
       1,
       1
     ],
-    "damageType": "P/B"
+    "damageType": "P/B",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bill": {
     "cost": "7 gp",
     "damageL": "1d8",
     "damageS-M": "1d6+1",
-    "knockdown": "d8",
     "name": "Bill",
     "size": "L",
     "speed": 9,
@@ -61,97 +108,141 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bill-guisarme": {
     "cost": "7 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
+    "damageL": "1d10",
+    "damageS-M": "2d4",
     "name": "Bill-guisarme",
     "size": "L",
-    "speed": 9,
+    "speed": 10,
     "type": "Melee",
-    "weight": 12,
+    "weight": 15,
     "attsPerRound": [
       1,
       1
     ],
-    "damageType": "P/S"
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bow-composite-long": {
     "cost": "100 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Bow, composite long",
-    "range": "6/12/21",
-    "attsPerRound": [
-      2,
-      1
-    ],
     "size": "L",
     "speed": 7,
     "type": "Ranged",
     "weight": 3,
-    "damageType": "P"
+    "attsPerRound": [
+      2,
+      1
+    ],
+    "damageType": "P",
+    "range": "6/12/21",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bow-composite-short": {
     "cost": "75 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Bow, composite short",
-    "range": "5/10/18",
-    "attsPerRound": [
-      2,
-      1
-    ],
     "size": "M",
     "speed": 6,
     "type": "Ranged",
     "weight": 2,
-    "damageType": "P"
+    "attsPerRound": [
+      2,
+      1
+    ],
+    "damageType": "P",
+    "range": "5/10/18",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bow-long": {
     "cost": "75 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Bow, long",
-    "range": "7/14/21",
-    "attsPerRound": [
-      2,
-      1
-    ],
     "size": "L",
     "speed": 8,
     "type": "Ranged",
     "weight": 3,
-    "damageType": "P"
+    "attsPerRound": [
+      2,
+      1
+    ],
+    "damageType": "P",
+    "range": "7/14/21",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "bow-short": {
     "cost": "30 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Bow, short",
-    "range": "5/10/17",
-    "attsPerRound": [
-      2,
-      1
-    ],
     "size": "M",
     "speed": 7,
     "type": "Ranged",
     "weight": 2,
-    "damageType": "P"
+    "attsPerRound": [
+      2,
+      1
+    ],
+    "damageType": "P",
+    "range": "5/10/17",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "club": {
     "cost": "0 gp",
     "damageL": "1d3",
     "damageS-M": "1d6",
-    "knockdown": "d4",
     "name": "Club",
     "size": "M",
     "speed": 4,
@@ -161,64 +252,93 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "crossbow-hand": {
     "cost": "300 gp",
     "damageL": "1d2",
     "damageS-M": "1d3",
-    "knockdown": "d4",
     "name": "Crossbow, hand",
-    "range": "2/4/6",
-    "attsPerRound": [
-      1,
-      1
-    ],
     "size": "S",
     "speed": 5,
     "type": "Ranged",
     "weight": 3,
-    "damageType": "P"
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P",
+    "range": "2/4/6",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "crossbow-heavy": {
     "cost": "50 gp",
     "damageL": "1d6+1",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "Crossbow, heavy",
-    "range": "8/16/24",
-    "attsPerRound": [
-      1,
-      2
-    ],
     "size": "M",
     "speed": 10,
     "type": "Ranged",
     "weight": 14,
-    "damageType": "P"
+    "attsPerRound": [
+      1,
+      2
+    ],
+    "damageType": "P",
+    "range": "8/16/24",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "crossbow-light": {
     "cost": "35 gp",
     "damageL": "1d4",
     "damageS-M": "1d4",
-    "knockdown": "d4",
     "name": "Crossbow, light",
-    "range": "6/12/18",
-    "attsPerRound": [
-      1,
-      1
-    ],
     "size": "M",
     "speed": 7,
     "type": "Ranged",
     "weight": 7,
-    "damageType": "P"
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P",
+    "range": "6/12/18",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "dagger": {
     "cost": "2 gp",
     "damageL": "1d3",
     "damageS-M": "1d4",
-    "knockdown": "d4",
     "name": "Dagger",
     "size": "S",
     "speed": 2,
@@ -228,30 +348,45 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "dart": {
     "cost": "5 sp",
     "damageL": "1d2",
     "damageS-M": "1d3",
-    "knockdown": "d4",
     "name": "Dart",
-    "range": "1/2/4",
-    "attsPerRound": [
-      3,
-      1
-    ],
     "size": "S",
     "speed": 2,
     "type": "Ranged",
     "weight": 0.5,
-    "damageType": "P"
+    "attsPerRound": [
+      3,
+      1
+    ],
+    "damageType": "P",
+    "range": "1/2/4",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "dirk": {
     "cost": "2 gp",
     "damageL": "1d3",
     "damageS-M": "1d4",
-    "knockdown": "d4",
     "name": "Dirk",
     "size": "S",
     "speed": 2,
@@ -261,45 +396,69 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "fauchard": {
     "cost": "5 gp",
     "damageL": "1d8",
     "damageS-M": "1d6",
-    "knockdown": "d8",
     "name": "Fauchard",
     "size": "L",
     "speed": 8,
     "type": "Melee",
-    "weight": 5,
+    "weight": 7,
     "attsPerRound": [
       1,
       1
     ],
-    "damageType": "P/S"
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "fauchard-fork": {
-    "cost": "6 gp",
-    "damageL": "1d8",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
+    "cost": "8 gp",
+    "damageL": "1d10",
+    "damageS-M": "1d8",
     "name": "Fauchard-fork",
     "size": "L",
     "speed": 8,
     "type": "Melee",
-    "weight": 8,
+    "weight": 9,
     "attsPerRound": [
       1,
       1
     ],
-    "damageType": "P/S"
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "footmans-flail": {
     "cost": "15 gp",
     "damageL": "2d4",
     "damageS-M": "1d6+1",
-    "knockdown": "d8",
     "name": "Footman's flail",
     "size": "M",
     "speed": 7,
@@ -309,13 +468,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "footmans-mace": {
     "cost": "8 gp",
     "damageL": "1d6",
     "damageS-M": "1d6+1",
-    "knockdown": "d6",
     "name": "Footman's mace",
     "size": "M",
     "speed": 7,
@@ -325,13 +492,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "footmans-pick": {
     "cost": "8 gp",
     "damageL": "2d4",
     "damageS-M": "1d6+1",
-    "knockdown": "d6",
     "name": "Footman's pick",
     "size": "M",
     "speed": 7,
@@ -341,13 +516,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "glaive": {
     "cost": "6 gp",
-    "damageL": "1d8",
+    "damageL": "1d10",
     "damageS-M": "1d6",
-    "knockdown": "d8",
     "name": "Glaive",
     "size": "L",
     "speed": 8,
@@ -357,13 +540,45 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
+  },
+  "glaive-guisarme": {
+    "cost": "10 gp",
+    "damageL": "2d6",
+    "damageS-M": "2d4",
+    "name": "Glaive-guisarme",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 10,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "guisarme": {
     "cost": "5 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
+    "damageL": "1d8",
+    "damageS-M": "2d4",
     "name": "Guisarme",
     "size": "L",
     "speed": 8,
@@ -373,13 +588,45 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
+  },
+  "guisarme-voulge": {
+    "cost": "8 gp",
+    "damageL": "2d4",
+    "damageS-M": "2d4",
+    "name": "Guisarme-voulge",
+    "size": "L",
+    "speed": 10,
+    "type": "Melee",
+    "weight": 15,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "halberd": {
-    "cost": "7 gp",
-    "damageL": "1d10",
-    "damageS-M": "1d6+1",
-    "knockdown": "d10",
+    "cost": "10 gp",
+    "damageL": "2d6",
+    "damageS-M": "1d10",
     "name": "Halberd",
     "size": "L",
     "speed": 9,
@@ -389,13 +636,21 @@
       1,
       1
     ],
-    "damageType": "S/P/B"
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "hammer": {
     "cost": "5 sp",
     "damageL": "1d4",
     "damageS-M": "1d4+1",
-    "knockdown": "d4",
     "name": "Hammer",
     "size": "S",
     "speed": 4,
@@ -405,29 +660,21 @@
       1,
       1
     ],
-    "damageType": "B"
-  },
-  "hammer-lucern": {
-    "cost": "7 gp",
-    "damageL": "2d4",
-    "damageS-M": "1d6",
-    "knockdown": "d8",
-    "name": "Lucern hammer",
-    "size": "L",
-    "speed": 9,
-    "type": "Melee",
-    "weight": 15,
-    "attsPerRound": [
-      1,
-      1
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
     ],
-    "damageType": "P/B"
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "hammer-war": {
     "cost": "2 gp",
     "damageL": "1d4",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "War hammer",
     "size": "M",
     "speed": 4,
@@ -437,13 +684,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "handaxe": {
     "cost": "1 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Hand/Throwing axe",
     "size": "M",
     "speed": 4,
@@ -453,30 +708,69 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "harpoon": {
     "cost": "20 gp",
     "damageL": "2d6",
     "damageS-M": "2d4",
-    "knockdown": "d8",
     "name": "Harpoon",
-    "range": "1/2/3",
-    "attsPerRound": [
-      1,
-      1
-    ],
     "size": "L",
     "speed": 7,
     "type": "Ranged",
     "weight": 6,
-    "damageType": "P"
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P",
+    "range": "1/2/3",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
+  },
+  "hook-fauchard": {
+    "cost": "10 gp",
+    "damageL": "1d4",
+    "damageS-M": "1d4",
+    "name": "Hook fauchard",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 8,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P/S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "horsemans-flail": {
     "cost": "8 gp",
     "damageL": "1d6+1",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "Horseman's flail",
     "size": "S",
     "speed": 6,
@@ -486,13 +780,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "horsemans-mace": {
     "cost": "5 gp",
     "damageL": "1d6",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "Horseman's mace",
     "size": "S",
     "speed": 6,
@@ -502,13 +804,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "horsemans-pick": {
     "cost": "7 gp",
     "damageL": "1d6",
     "damageS-M": "1d4",
-    "knockdown": "d6",
     "name": "Horseman's pick",
     "size": "S",
     "speed": 5,
@@ -518,30 +828,45 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "javelin": {
     "cost": "5 sp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Javelin",
-    "range": "2/4/6",
-    "attsPerRound": [
-      1,
-      1
-    ],
     "size": "M",
     "speed": 4,
     "type": "Ranged",
     "weight": 2,
-    "damageType": "P"
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P",
+    "range": "2/4/6",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "knife": {
     "cost": "5 sp",
     "damageL": "1d2",
     "damageS-M": "1d3",
-    "knockdown": "d4",
     "name": "Knife",
     "size": "S",
     "speed": 2,
@@ -551,13 +876,21 @@
       1,
       1
     ],
-    "damageType": "P/S"
+    "damageType": "P/S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "lance-heavy-horsemans": {
     "cost": "15 gp",
     "damageL": "3d6",
     "damageS-M": "1d8+1",
-    "knockdown": "d10",
     "name": "Lance, heavy horse",
     "size": "L",
     "speed": 8,
@@ -567,13 +900,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      true,
+      2
+    ]
   },
   "lance-jousting": {
     "cost": "20 gp",
     "damageL": "1d2-1",
     "damageS-M": "1d3-1",
-    "knockdown": "d12",
     "name": "Lance, jousting",
     "size": "L",
     "speed": 10,
@@ -583,13 +924,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      true,
+      2
+    ]
   },
   "lance-light-horsemans": {
     "cost": "6 gp",
     "damageL": "1d8",
     "damageS-M": "1d6",
-    "knockdown": "d8",
     "name": "Lance, light horse",
     "size": "L",
     "speed": 6,
@@ -599,13 +948,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      true,
+      2
+    ]
   },
   "lance-medium-horsemans": {
     "cost": "10 gp",
     "damageL": "2d6",
     "damageS-M": "1d6+1",
-    "knockdown": "d10",
     "name": "Lance, medium horse",
     "size": "L",
     "speed": 7,
@@ -615,13 +972,45 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      true,
+      2
+    ]
+  },
+  "lucern-hammer": {
+    "cost": "7 gp",
+    "damageL": "1d6",
+    "damageS-M": "2d4",
+    "name": "Lucern hammer",
+    "size": "L",
+    "speed": 9,
+    "type": "Melee",
+    "weight": 15,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P/B",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "mancatcher": {
     "cost": "30 gp",
     "damageL": "special",
     "damageS-M": "special",
-    "knockdown": null,
     "name": "Man catcher",
     "size": "L",
     "speed": 7,
@@ -631,13 +1020,45 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
+  },
+  "military-fork": {
+    "cost": "5 gp",
+    "damageL": "2d4",
+    "damageS-M": "1d8",
+    "name": "Military fork",
+    "size": "L",
+    "speed": 7,
+    "type": "Melee",
+    "weight": 7,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "military-pick": {
     "cost": "8 gp",
     "damageL": "1d6",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "Military pick",
     "size": "M",
     "speed": 7,
@@ -647,13 +1068,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "morningstar": {
     "cost": "10 gp",
     "damageL": "1d6+1",
     "damageS-M": "2d4",
-    "knockdown": "d8",
     "name": "Morning star",
     "size": "M",
     "speed": 7,
@@ -663,13 +1092,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "partisan": {
     "cost": "10 gp",
     "damageL": "1d6+1",
     "damageS-M": "1d6",
-    "knockdown": "d8",
     "name": "Partisan",
     "size": "L",
     "speed": 9,
@@ -679,13 +1116,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "quarterstaff": {
     "cost": "0 gp",
     "damageL": "1d6",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Quarterstaff",
     "size": "L",
     "speed": 4,
@@ -695,13 +1140,21 @@
       1,
       1
     ],
-    "damageType": "B"
+    "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "ranseur": {
     "cost": "6 gp",
     "damageL": "2d4",
     "damageS-M": "2d4",
-    "knockdown": "d8",
     "name": "Ranseur",
     "size": "L",
     "speed": 8,
@@ -711,13 +1164,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "scourge": {
     "cost": "1 gp",
     "damageL": "1d2",
     "damageS-M": "1d4",
-    "knockdown": "d4",
     "name": "Scourge",
     "size": "S",
     "speed": 5,
@@ -727,29 +1188,21 @@
       1,
       1
     ],
-    "damageType": "S"
-  },
-  "sickle": {
-    "cost": "6 sp",
-    "damageL": "1d4",
-    "damageS-M": "1d4+1",
-    "knockdown": "d4",
-    "name": "Sickle",
-    "size": "S",
-    "speed": 4,
-    "type": "Melee",
-    "weight": 3,
-    "attsPerRound": [
-      1,
-      1
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
     ],
-    "damageType": "S"
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "shield": {
     "cost": "7 gp",
     "damageL": "-",
     "damageS-M": "-",
-    "knockdown": null,
     "name": "Shield",
     "size": "M",
     "speed": null,
@@ -760,30 +1213,69 @@
       1
     ],
     "damageType": "B",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ],
     "proficiencyNote": "Optional (POSP): Shield proficiency costs 1 slot for warriors, 2 for others. Improves AC vs. one or more attacks per round from the front or shield side; no benefit vs. rear or opposite flank. Weapon & Shield Style (PO: Combat & Tactics) allows shield bash (1d4) with two-weapon penalties."
+  },
+  "sickle": {
+    "cost": "6 sp",
+    "damageL": "1d4",
+    "damageS-M": "1d4+1",
+    "name": "Sickle",
+    "size": "S",
+    "speed": 4,
+    "type": "Melee",
+    "weight": 3,
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sling": {
     "cost": "5 cp",
     "damageL": "1d6+1",
     "damageS-M": "1d4+1",
-    "knockdown": "d4",
     "name": "Sling",
-    "range": "5/10/20",
-    "attsPerRound": [
-      1,
-      1
-    ],
     "size": "S",
     "speed": 6,
     "type": "Ranged",
     "weight": 0,
-    "damageType": "B"
+    "attsPerRound": [
+      1,
+      1
+    ],
+    "damageType": "B",
+    "range": "5/10/20",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "spear": {
     "cost": "8 sp",
     "damageL": "1d8",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Spear",
     "size": "M",
     "speed": 6,
@@ -793,13 +1285,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "spetum": {
     "cost": "5 gp",
     "damageL": "2d6",
     "damageS-M": "1d6+1",
-    "knockdown": "d8",
     "name": "Spetum",
     "size": "L",
     "speed": 8,
@@ -809,46 +1309,45 @@
       1,
       1
     ],
-    "damageType": "S"
-  },
-  "staff": {
-    "cost": "0 gp",
-    "damageL": "1d6",
-    "damageS-M": "1d6",
-    "knockdown": "d6",
-    "name": "Staff",
-    "size": "L",
-    "speed": 4,
-    "type": "Melee",
-    "weight": 4,
-    "attsPerRound": [
-      1,
-      1
+    "damageType": "P",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
     ],
-    "damageType": "B"
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "staff-sling": {
     "cost": "2 sp",
     "damageL": "1d6+1",
     "damageS-M": "1d4+1",
-    "knockdown": "d6",
     "name": "Staff sling",
-    "range": "3-6/6-12/12-24",
-    "attsPerRound": [
-      2,
-      1
-    ],
     "size": "M",
     "speed": 11,
     "type": "Ranged",
     "weight": 2,
-    "damageType": "B"
+    "attsPerRound": [
+      2,
+      1
+    ],
+    "damageType": "B",
+    "range": "3-6/6-12/12-24",
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-bastard": {
     "cost": "25 gp",
     "damageL": "2d8",
     "damageS-M": "2d4",
-    "knockdown": "d10",
     "name": "Bastard sword",
     "size": "M",
     "speed": 6,
@@ -858,13 +1357,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-broad": {
     "cost": "10 gp",
     "damageL": "1d6+1",
     "damageS-M": "2d4",
-    "knockdown": "d8",
     "name": "Broad sword",
     "size": "M",
     "speed": 5,
@@ -874,13 +1381,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-khopesh": {
     "cost": "10 gp",
     "damageL": "1d6",
     "damageS-M": "2d4",
-    "knockdown": "d8",
     "name": "Khopesh",
     "size": "M",
     "speed": 9,
@@ -890,13 +1405,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-long": {
     "cost": "15 gp",
     "damageL": "1d12",
     "damageS-M": "1d8",
-    "knockdown": "d8",
     "name": "Long sword",
     "size": "M",
     "speed": 5,
@@ -906,13 +1429,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-rapier": {
     "cost": "15 gp",
     "damageL": "1d8",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Rapier",
     "size": "M",
     "speed": 4,
@@ -922,13 +1453,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-scimitar": {
     "cost": "15 gp",
     "damageL": "1d8",
     "damageS-M": "1d8",
-    "knockdown": "d8",
     "name": "Scimitar",
     "size": "M",
     "speed": 5,
@@ -938,13 +1477,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-short": {
     "cost": "10 gp",
     "damageL": "1d8",
     "damageS-M": "1d6",
-    "knockdown": "d6",
     "name": "Short sword",
     "size": "S",
     "speed": 3,
@@ -954,13 +1501,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "sword-two-handed": {
     "cost": "50 gp",
     "damageL": "3d6",
     "damageS-M": "1d10",
-    "knockdown": "d12",
     "name": "Two-handed sword",
     "size": "L",
     "speed": 10,
@@ -970,13 +1525,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "trident": {
     "cost": "15 gp",
     "damageL": "3d4",
     "damageS-M": "1d6+1",
-    "knockdown": "d8",
     "name": "Trident",
     "size": "L",
     "speed": 7,
@@ -986,13 +1549,21 @@
       1,
       1
     ],
-    "damageType": "P"
+    "damageType": "P",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "voulge": {
-    "cost": "3 gp",
+    "cost": "5 gp",
     "damageL": "2d4",
-    "damageS-M": "1d8",
-    "knockdown": "d8",
+    "damageS-M": "2d4",
     "name": "Voulge",
     "size": "L",
     "speed": 10,
@@ -1002,13 +1573,21 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 2,
+    "setMulti": [
+      true,
+      2
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   },
   "whip": {
     "cost": "1 gp",
-    "damageL": "1",
+    "damageL": "1d1",
     "damageS-M": "1d2",
-    "knockdown": null,
     "name": "Whip",
     "size": "M",
     "speed": 8,
@@ -1018,6 +1597,15 @@
       1,
       1
     ],
-    "damageType": "S"
+    "damageType": "S",
+    "range": 1,
+    "setMulti": [
+      false,
+      0
+    ],
+    "chargeMulti": [
+      false,
+      0
+    ]
   }
 }
